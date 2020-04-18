@@ -137,7 +137,9 @@
                                 <option th:each="bloodGroups : ${bloodGroup}"
                                         th:text="${bloodGroups.bloodGroup}"
                                         th:value="${bloodGroups}"
-                                        th:selected="${bloodGroups==employee.bloodGroup?'selected':'unselected'}">Please select</option>
+                                        th:selected="${bloodGroups==employee.bloodGroup?'selected':'unselected'}">Please
+                                    select
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -147,7 +149,8 @@
                             <label class="control-label" for="designation">Designation :</label>
                         </div>
                         <div class="col-md-8">
-                            <select id="designation" th:field="*{designation}" class="form-control" tabindex="10" required>
+                            <select id="designation" th:field="*{designation}" class="form-control" tabindex="10"
+                                    required>
                                 <option value="">Please select</option>
                                 <option th:each="designations : ${designation}"
                                         th:text="${designations.designation}"
@@ -165,7 +168,8 @@
                             <label class="control-label" for="civilStatus">Civil State :</label>
                         </div>
                         <div class="col-md-8">
-                            <select th:field="*{civilStatus}" id="civilStatus" class="form-control" tabindex="11" required>
+                            <select th:field="*{civilStatus}" id="civilStatus" class="form-control" tabindex="11"
+                                    required>
                                 <option value="">Please select</option>
                                 <option th:each="civilStatu : ${civilStatus}"
                                         th:text="${civilStatu.CivilStatus}"
@@ -180,7 +184,8 @@
                             <label class="control-label" for="address">Address :</label>
                         </div>
                         <div class="col-md-8">
-                            <textarea id="address" th:field="*{address}" class="form-control" tabindex="12" required></textarea>
+                            <textarea id="address" th:field="*{address}" class="form-control" tabindex="12"
+                                      required></textarea>
                             <span class="error" th:errors="*{address}"
                                   th:if="${#fields.hasErrors('address')}" id="addressError">Error Address</span>
                         </div>
@@ -191,11 +196,13 @@
                             <label class="control-label" for="mobileOne">Mobile One No :</label>
                         </div>
                         <div class="col-md-8">
-                            <input id="mobileOne" th:field="*{mobileOne}" class="form-control mobile" tabindex="13" type="text"
+                            <input id="mobileOne" th:field="*{mobileOne}" class="form-control mobile" tabindex="13"
+                                   type="text"
                                    maxlength="10" min="9"
                                    required/>
                             <span class="error" th:errors="*{mobileOne}"
-                                  th:if="${#fields.hasErrors('mobileOne')}" id="mobileOneError">Error Mobile Number</span>
+                                  th:if="${#fields.hasErrors('mobileOne')}"
+                                  id="mobileOneError">Error Mobile Number</span>
                         </div>
                     </div>
                     <!--Mobile Number Two-->
@@ -204,10 +211,12 @@
                             <label class="control-label" for="mobileTwo">Mobile Two No :</label>
                         </div>
                         <div class="col-md-8">
-                            <input id="mobileTwo" th:field="*{mobileTwo}" class="form-control mobile" tabindex="14" type="text"
+                            <input id="mobileTwo" th:field="*{mobileTwo}" class="form-control mobile" tabindex="14"
+                                   type="text"
                                    maxlength="10" min="9"/>
                             <span class="error" th:errors="*{mobileTwo}"
-                                  th:if="${#fields.hasErrors('mobileTwo')}" id="mobileTwoError">Error Mobile  Number</span>
+                                  th:if="${#fields.hasErrors('mobileTwo')}"
+                                  id="mobileTwoError">Error Mobile  Number</span>
                         </div>
                     </div>
                     <!--Land Number-->
@@ -216,7 +225,8 @@
                             <label class="control-label" for="land">Land No :</label>
                         </div>
                         <div class="col-md-8">
-                            <input id="land" th:field="*{land}" class="form-control land" type="text" tabindex="15" maxlength="10"
+                            <input id="land" th:field="*{land}" class="form-control land" type="text" tabindex="15"
+                                   maxlength="10"
                                    min="9"/>
                             <span class="error" th:errors="*{land}"
                                   th:if="${#fields.hasErrors('land')}" id="landError">Error Land Number</span>
@@ -228,7 +238,8 @@
                             <label class="control-label" for="email">Email :</label>
                         </div>
                         <div class="col-md-8">
-                            <input id="email" th:field="*{email}" class="form-control" tabindex="16" type="email" required/>
+                            <input id="email" th:field="*{email}" class="form-control" tabindex="16" type="email"
+                                   required/>
                             <span class="error" th:errors="*{email}"
                                   th:if="${#fields.hasErrors('email')}" id="emailError">Error Email</span>
                         </div>
@@ -239,9 +250,11 @@
                             <label class="control-label" for="officeEmail">Office Email :</label>
                         </div>
                         <div class="col-md-8">
-                            <input id="officeEmail" th:field="*{officeEmail}" class="form-control" tabindex="17" type="email" required/>
+                            <input id="officeEmail" th:field="*{officeEmail}" class="form-control" tabindex="17"
+                                   type="email" required/>
                             <span class="error" th:errors="*{officeEmail}"
-                                  th:if="${#fields.hasErrors('officeEmail')}" id="officeEmailError">Error Office Email</span>
+                                  th:if="${#fields.hasErrors('officeEmail')}"
+                                  id="officeEmailError">Error Office Email</span>
                         </div>
                     </div>
                     <!--Date of assignment-->
@@ -250,7 +263,8 @@
                             <label class="control-label" for="dateOfAssignment">Date Of Assignment :</label>
                         </div>
                         <div class="col-md-8">
-                            <input id="dateOfAssignment" th:field="*{{dateOfAssignment}}" type="date" class="form-control" tabindex="18"
+                            <input id="dateOfAssignment" th:field="*{{dateOfAssignment}}" type="date"
+                                   class="form-control" tabindex="18"
                                    placeholder="Ex: 1990 - 01 - 20" required/>
                             <span class="error" th:errors="*{dateOfAssignment}"
                                   th:if="${#fields.hasErrors('dateOfAssignment')}" id="dateOfAssignmentError">Error Date Of Assignment</span>
@@ -262,7 +276,8 @@
                             <label class="control-label" for="employeeStatus">Employee Status :</label>
                         </div>
                         <div class="col-md-8">
-                            <select id="employeeStatus" th:field="*{employeeStatus}" class="form-control" tabindex="19" required>
+                            <select id="employeeStatus" th:field="*{employeeStatus}" class="form-control" tabindex="19"
+                                    required>
                                 <option value="">Please select</option>
                                 <option th:each="employeeStatuss : ${employeeStatus}"
                                         th:text="${employeeStatuss.employeeStatus}"
@@ -272,19 +287,20 @@
                         </div>
                     </div>
                     <!--Current Working Place-->
-                    <div class="form-row text-right">
+                    <!--<div class="form-row text-right">
                         <div class="col-md-4">
                             <label class="control-label" for="workingPlace">Employee Working Place :</label>
                         </div>
                         <div class="col-md-8">
-                            <select id="workingPlace" th:field="*{workingPlace}" class="form-control" tabindex="20" required>
+                            <select id="workingPlace" th:field="*{workingPlace}" class="form-control" tabindex="20"
+                                    required>
                                 <option value="">Please select</option>
                                 <option th:each="workingPlace : ${workingPlaces}"
                                         th:text="${workingPlace.name}"
                                         th:value="${workingPlace.id}"></option>
                             </select>
                         </div>
-                    </div>
+                    </div>-->
                     <!--Created by and created at-->
                     <div id="updateStatus" th:if="${addStatus==false}">
                         <div class="form-row text-right">
@@ -292,7 +308,8 @@
                                 <label class="control-label" for="createdBy">Created By :</label>
                             </div>
                             <div class="col-md-8">
-                                <input id="createdBy" th:field="*{createdBy}" class="form-control" type="text" readonly/>
+                                <input id="createdBy" th:field="*{createdBy}" class="form-control" type="text"
+                                       readonly/>
                             </div>
                         </div>
                         <div class="form-row text-right">
@@ -300,7 +317,8 @@
                                 <label class="control-label" for="createdAt">Created At :</label>
                             </div>
                             <div class="col-md-8">
-                                <input id="createdAt" th:text="${{createdAt}}" class="form-control" type="text" readonly/>
+                                <input id="createdAt" th:text="${{createdAt}}" class="form-control" type="text"
+                                       readonly/>
                             </div>
                         </div>
                     </div>
@@ -325,14 +343,16 @@
                                         </button>
                                         <div class="card text-center">
                                             <div class="card-header" hidden>
-                                                <input id="removeImages" th:value="${file.filename}" type="text" name="removeImages"></div>
+                                                <input id="removeImages" th:value="${file.filename}" type="text"
+                                                       name="removeImages"></div>
                                             <div class="card-body">
                                                 <img id="img" class="rounded" src="" th:src="${file.url}"
                                                      style="height: 150px; width: 150px; border-radius: 10px" alt=""/>
                                             </div>
                                             <div class="card-footer bg-secondary text-light text-center">
                                                 <p id="imgName" th:text="${file.filename}"></p>
-                                                <p> Uploaded Date : <span id="imgCreateAt" th:text="${{file.createAt}}"></span>
+                                                <p> Uploaded Date : <span id="imgCreateAt"
+                                                                          th:text="${{file.createAt}}"></span>
                                                 </p>
                                             </div>
                                         </div>
@@ -347,7 +367,8 @@
                     <!--Button-->
                     <div class="form-group col-md-12 col-sm-12 text-center flex-column ">
                         <button class="btn btn-success" type="submit" tabindex="21">
-                            <i class="fa fa-save " style="font-size: 20px"></i>&nbsp; &nbsp;<span id="submit" th:text="${addStatus==true?'Save': 'Update'}"></span>
+                            <i class="fa fa-save " style="font-size: 20px"></i>&nbsp; &nbsp;<span id="submit"
+                                                                                                  th:text="${addStatus==true?'Save': 'Update'}"></span>
                         </button>
                     </div>
                 </div>

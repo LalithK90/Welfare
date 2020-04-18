@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title>Thymeleaf Springboot </title>
+</head>
+<body>
+<nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
+
+<!--Page header -->
+<div class="container-fluid bg-secondary form-Border">
+    <div class="row text-center formManagement border-info">
+        <div class="col">
+            <a class="btn btn-primary" href="/home">
+                <i class="fa fa-home" style="font-size: 20px"></i> &nbsp; Home
+            </a>
+        </div>
+        <div class="col">
+            <h4 class="text-light text-center">
+                <strong>
+                    <span id="formHeader" th:text="${addStatus==false?'New District':'Update District'}"></span>
+                </strong>
+            </h4>
+        </div>
+        <div class="col">
+            <a href="/district" class="btn btn-primary">
+                <i class="fa fa-list"></i>&nbsp; View List
+            </a>
+        </div>
+    </div>
+</div>
+<!--add form-->
+<div class="container-fluid">
+    <form th:action="${addStatus==false?'/district/save' :'/district/update'}" method="post" th:object="${district}"
+          class="mt-3">
+        <div class="offset-3 col-6" >
+            <!--/* id this comment not visualize */-->
+            <!--Id-->
+            <div class="form-group row" th:if="${addStatus==true}">
+                <label for="id" class="col-sm-2 col-form-label "> Id </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{id}" id="id" readonly>
+                </div>
+            </div>
+            <!--Province-->
+            <div class="form-group row">
+                <label th:for="${'province'}" class="col-sm-2 col-form-label "> Province </label>
+                <div class="col-sm-10">
+                   <select class="form-control" th:field="*{province}">
+                       <option th:each="province : ${provinces}" th:text="${province.province}" th:value="${province}"></option>
+                   </select>
+                    <p class="text-danger" th:if="${#fields.hasErrors('province')}"
+                       th:errors="*{province}">Error Name</p>
+                </div>
+            </div>
+            <!--District name-->
+            <div class="form-group row">
+                <label th:for="${'name'}" class="col-sm-2 col-form-label "> Name </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{name}" >
+                    <p class="text-danger" th:if="${#fields.hasErrors('name')}"
+                       th:errors="*{name}">Error Name</p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">
+                        <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i> <span
+                            th:text="${addStatus==false?'Save' : 'Update'}"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!--footer include-->
+<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+
+</body>
+</html>

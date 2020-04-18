@@ -1,0 +1,62 @@
+ToDo
+#   District
+#   Employee
+#   Employee Dependency
+#   Qualification
+#   Working Place
+#   Promotion History
+#   Accounts
+           - Receiving
+           - Expenses
+
+District & Province
+******************************************************
+Western Province        WP	Colombo                 CB
+Western Province        WP	Gampaha                 GP
+Western Province        WP	Kaluthara               KT
+Northern Province       NP	Jaffna                  JF
+Northern Province       NP	Kilinochchiya           KI
+Northern Province       NP	Vauniyava               VA
+Northern Province       NP	Mulative                MV
+Northern Province       NP	Mannar                  MA
+Southern Province       SP	Galle                   GL
+Southern Province       SP	Mattar                  MR
+Southern Province       SP	Hambantota              HT
+Eastern Province        EP	Ampara                  AM
+Eastern Province        EP	Batticlo                BT
+Eastern Province        EP	Trincomale              TM
+North Central Province  NC	Anuradhapura            AP
+North Central Province  NC	Polonnaruwa             PN
+Central Province        CP	Kandy                   KD
+Central Province        CP	Nuwara Eliya            NE
+Central Province        CP	Matale                  MT
+North Western Province  NW	Kurunrgala              KN
+North Western Province  NW	Puttlam                 PT
+Uva Province            UP	Badulla                 BU
+Uva Province            UP	Monaragala              MN
+Sabaragamuwa Province   SG	Rathnapura              RP
+Sabaragamuwa Province   SG	Kegalle                 KG
+
+
+Designation
+******************************************************
+Sentryman                           SM
+Patrolman                           PM
+Snr. Patrolman                      SPM
+Patrol Leader                       PL
+Snr. Patrol Leader                  SPL
+Security Officer                    SO
+Deputy Security Marshal             DSM
+Security Marshal                    SMsl
+Snr. Security Marshal               SSMsl
+Deputy Head Of Security Services    DHOSS
+Head of Security Services           HOSS
+
+Armorer                             Amr
+Arakshaka Sahayaka                  AS
+Podu Karya Sahayaka                 PKS
+Podu Karya Sewaka                   PKSe
+Office Service Assistant            OSA
+
+
+Management Assistant                MA
