@@ -38,6 +38,7 @@ public class WorkingPlaceService implements AbstractService<WorkingPlace, Intege
             put = {@CachePut( value = "workingPlace", key = "#workingPlace.id" )} )
     @Transactional
     public WorkingPlace persist(WorkingPlace workingPlace) {
+
         return workingPlaceDao.save(workingPlace);
     }
 

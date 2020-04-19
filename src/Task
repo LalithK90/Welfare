@@ -1,5 +1,5 @@
 ToDo
-#   District
+
 #   Employee
 #   Employee Dependency
 #   Qualification
@@ -9,54 +9,143 @@ ToDo
            - Receiving
            - Expenses
 
-District & Province
-******************************************************
-Western Province        WP	Colombo                 CB
-Western Province        WP	Gampaha                 GP
-Western Province        WP	Kaluthara               KT
-Northern Province       NP	Jaffna                  JF
-Northern Province       NP	Kilinochchiya           KI
-Northern Province       NP	Vauniyava               VA
-Northern Province       NP	Mulative                MV
-Northern Province       NP	Mannar                  MA
-Southern Province       SP	Galle                   GL
-Southern Province       SP	Mattar                  MR
-Southern Province       SP	Hambantota              HT
-Eastern Province        EP	Ampara                  AM
-Eastern Province        EP	Batticlo                BT
-Eastern Province        EP	Trincomale              TM
-North Central Province  NC	Anuradhapura            AP
-North Central Province  NC	Polonnaruwa             PN
-Central Province        CP	Kandy                   KD
-Central Province        CP	Nuwara Eliya            NE
-Central Province        CP	Matale                  MT
-North Western Province  NW	Kurunrgala              KN
-North Western Province  NW	Puttlam                 PT
-Uva Province            UP	Badulla                 BU
-Uva Province            UP	Monaragala              MN
-Sabaragamuwa Province   SG	Rathnapura              RP
-Sabaragamuwa Province   SG	Kegalle                 KG
 
 
-Designation
-******************************************************
-Sentryman                           SM
-Patrolman                           PM
-Snr. Patrolman                      SPM
-Patrol Leader                       PL
-Snr. Patrol Leader                  SPL
-Security Officer                    SO
-Deputy Security Marshal             DSM
-Security Marshal                    SMsl
-Snr. Security Marshal               SSMsl
-Deputy Head Of Security Services    DHOSS
-Head of Security Services           HOSS
+ToDo
+##################################################################
+Member Management
+##################################################################
+    Name with Initials
+    Full Name
+    NIC/PP
+    Nearest Town
+    Permanent Address
+    Temporary Address
+    Mobile No I
+    Mobile No I
+    Residence No
+    Office No
+    Emergency No
+    Office Email
+    Personal Email
+    1St Appointment Date
+    EPF No
+    Medical No
+    Nearest Police Station
+    Employee Status
+    Uniform Type
+    Intake No
+    Photo(Upload)
+    Department Name
+    Date of Birth
+Enum OK    Gender (Male , Female)
+Enum OK    Title  (Mr, Mrs, Miss, Ms, Rev, Dr, Dr(Mrs), Prof, Sister, Hon)
+Enum OK    Civil Status (Married, Widowed, Separated, Divorced, Single)
+Enum OK    Blood Group (A+, A-, B+, B-, O+, O-, AB+, AB-)
+Enum OK    Nationality (Sri Lankan, Other)
+Enum OK    Religion  (Buddhism, Hinduism, Islam , Christianity , Other
+Enum OK    Provision (Western , Central  ,North Western ,Uva , Southern , Sabaragamuwa , North Central , Northern , Eastern)
+Enum OK    District  (WP	Colombo,WP	Gampaha,WP	Kaluthara, NP	Jaffna, NP	Kilinochchiya, NP	Vauniyava, NP	Mulative, NP	Mannar, ST	Galle, ST	Mattar, ST	Hambantota, EP	Ampara, EP	Batticlo, EP	Trincomale, NC	Anuradhapura, NC	Polonnaruwa, CP	Kandy, CP	Nuwara Eliya, CP	Matale, NW	Kurunrgala, NW	Puttlam, UP	Badulla, UP	Monaragala, SG	Rathnapura, SG	Kegalle)
+Enum OK    Working Place
+Enum OK    Designation
 
-Armorer                             Amr
-Arakshaka Sahayaka                  AS
-Podu Karya Sahayaka                 PKS
-Podu Karya Sewaka                   PKSe
-Office Service Assistant            OSA
+
+    Promotion
+    Name        Effective Date
+
+    Qualification
+    Name    Institute   Grade   Complete Date
+
+    Dependency
+    Name    Relationship    DoB   NIC   Current Status
 
 
-Management Assistant                MA
+##################################################################
+User Roll Management
+##################################################################
+    (Chairman,     Secretary,     Treasure,     Teller / Cashier,     Member)
+
+
+##################################################################
+Location/Group Management
+##################################################################
+    Member transfer marking
+    Percent Location Duration
+
+
+
+##################################################################
+Email Management
+##################################################################
+    Send email individual, Group and many type of category
+
+
+
+##################################################################
+Contact Management
+##################################################################
+    filtering option any kind of details available with member and filler may be combine each other
+
+
+##################################################################
+Payment Management
+##################################################################
+    Individual Payment mark by month vice and it can be more than one month
+    Payment collector system update by pending status until handover to treasure
+    receiving -Collection/Donation/ Offering/debit/Credit/Welfare/Donation/Funeral/
+    Expenses
+
+
+##################################################################
+Decision Supportive Dashboard
+##################################################################
+    Summary Details
+
+
+##################################################################
+Training Materials
+##################################################################
+    Showing PDF File/Media/Doc/Image according to Designation
+
+
+##################################################################
+Day Briefing
+##################################################################
+    Date  toWhom    Nosies
+
+
+
+##################################################################
+Training/Meeting Schedule
+##################################################################
+    [TypeOfSchedule][name][Start date & time] [end date & time][description]
+
+
+
+##################################################################
+Grievances
+##################################################################
+    -Member will submit grievances thorough special category
+    -Transfer, Leave, Complain, Appointment, Other
+    -Sender,Combo list(Above Matter) TextArea(Short Description)
+
+
+##################################################################
+Department Structure
+##################################################################
+    -Only need Folder explore Structure list
+
+
+
+##################################################################
+Task Management
+##################################################################
+    -Task Assign by Person or Team(No of Amount)
+    -End Time Schedule
+    -Remark (Start,Finish,Pending,Process)
+
+
+##################################################################
+E-Application
+##################################################################
+

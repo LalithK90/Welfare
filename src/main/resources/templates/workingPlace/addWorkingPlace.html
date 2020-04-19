@@ -41,13 +41,14 @@
                 <label for="id" class="col-sm-4 col-form-label "> Id </label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" th:field="*{id}" id="id" readonly>
+                    <input type="hidden" id="provinceDistrict" th:value="${workingPlace.district.province}"/>
                 </div>
             </div>
             <!--Province-->
             <div class="form-group row">
                 <label th:for="${'province'}" class="col-sm-4 col-form-label "> Province </label>
                 <div class="col-sm-8">
-                    <select class="form-control">
+                    <select class="form-control" id="province">
                         <option th:each="province : ${provinces}"
                                 th:text="${province.province}"
                                 th:value="${province}">
@@ -58,10 +59,10 @@
             </div>
             <!--District-->
             <div class="form-group row">
-                <label th:for="${'province'}" class="col-sm-4 col-form-label "> Province </label>
+                <label th:for="${'province'}" class="col-sm-4 col-form-label "> District </label>
                 <div class="col-sm-8">
                     <select class="form-control" th:field="*{district}">
-                        <option value=""></option>
+                        <option value=""> Please Select</option>
                     </select>
                     <p class="text-danger" th:if="${#fields.hasErrors('district')}"
                        th:errors="*{district}">Error Name</p>
@@ -145,7 +146,7 @@
                        th:errors="*{shortName}">Error Name</p>
                 </div>
             </div>
-
+            <!--Button-->
             <div class="form-group row">
                 <div class="offset-sm-2 col-sm-8">
                     <button type="submit" class="btn btn-primary">
@@ -163,6 +164,32 @@
 <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
 <!--script include-->
 <script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+<script>
+    $('#province').bind("change", function () {
+        optionFieldAdd(this.value);
+    });
+
+    let optionFieldAdd = (value) => {
+        let url = "[[${districtFindUrl}]]" + value;
+        console.log(url);
+        let html = "";
+        $.get(url, function (data) {
+            data.forEach((item) => {
+                    html += `<option value="${item.id}">${item.name} </option>`
+                }
+            )
+            $("#district").html(html);
+        });
+    }
+    $(document).ready(function () {
+        let province = $("#provinceDistrict").val();
+        if (province !== null && province !== undefined ) {
+            optionFieldAdd(province);
+            $('#province').val(province);
+        }
+    });
+</script>
 
 
 </body>

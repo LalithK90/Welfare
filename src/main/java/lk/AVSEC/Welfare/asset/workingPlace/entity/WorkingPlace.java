@@ -3,6 +3,7 @@ package lk.AVSEC.Welfare.asset.workingPlace.entity;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Province;
 import lk.AVSEC.Welfare.asset.district.entity.District;
+import lk.AVSEC.Welfare.asset.employee.entity.Employee;
 import lk.AVSEC.Welfare.asset.workingPlace.entity.Enum.AirportType;
 import lk.AVSEC.Welfare.asset.workingPlace.entity.Enum.ShortName;
 import lk.AVSEC.Welfare.asset.workingPlace.entity.Enum.WorkingPlaceSection;
@@ -14,6 +15,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Getter
@@ -46,5 +48,8 @@ public class WorkingPlace {
 
     @ManyToOne
     private District district;
+
+    @OneToMany(mappedBy = "workingPlace")
+    private List<Employee> employees;
 
 }

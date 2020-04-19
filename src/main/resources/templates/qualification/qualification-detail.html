@@ -17,42 +17,42 @@
         </div>
         <div class="col">
             <h4 class="text-light text-center">
-                <strong>
+             <!--   <strong>
                     <span id="formHeader"
-                          th:text="${workingPlaceDetail.district.province.province}+${' '}+${workingPlaceDetail.name}"></span>
-                </strong>
+                          th:text="${qualificationDetail.province.province}+${' '}+${qualificationDetail.name}"></span>
+                </strong>-->
             </h4>
         </div>
         <div class="col">
-            <a href="/workingPlace" class="btn btn-primary">
+            <a href="/qualification" class="btn btn-primary">
                 <i class="fa fa-list"></i>&nbsp; View List
             </a>
         </div>
     </div>
 </div>
 
-<div class="container-fluid" th:fragment="workingPlaceDetail">
+<div class="container-fluid" th:fragment="qualificationDetail">
     <div class="offset-3 col-6">
         <!--/* id this comment not visualize */-->
         <!--Id-->
         <div class="form-group row">
             <label class="col-sm-2 col-form-label "> Id </label>
             <div class="col-sm-10">
-                <p class="display_detail" th:text="${workingPlaceDetail.id}"></p>
+                <p class="display_detail" th:text="${qualificationDetail.id}"></p>
             </div>
         </div>
         <!--Province-->
-        <div class="form-group row">
+       <!-- <div class="form-group row">
             <label th:for="${'province'}" class="col-sm-2 col-form-label "> Province </label>
             <div class="col-sm-10">
-                <p class="display_detail" th:text="${workingPlaceDetail.district.province.province}"></p>
+                <p class="display_detail" th:text="${qualificationDetail.province.province}"></p>
             </div>
-        </div>
-        <!--WorkingPlace name-->
+        </div>-->
+        <!--Qualification name-->
         <div class="form-group row">
             <label class="col-sm-2 col-form-label "> Name </label>
             <div class="col-sm-10">
-                <p class="display_detail" th:text="${workingPlaceDetail.name}"></p>
+                <p class="display_detail" th:text="${qualificationDetail.name}"></p>
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@
 
 <div class="form-group row">
     <div class="offset-sm-2 col-sm-10 text-center">
-        <a href="/workingPlace">
+        <a href="/qualification">
             <button class="btn btn-primary">
 
                 <i class="fa fa-step-backward mr-1"></i>Back
