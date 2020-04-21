@@ -47,7 +47,7 @@
                         <th th:text="${briefing.name}"></th>
                         <th th:text="${briefing.toWhom}"></th>
                         <th th:text="${briefing.notices}"></th>
-                        <th th:text="${priorotis.priority}"></th>
+                        <th th:text="${briefing.priority.Priority}"></th>
                         <th th:text="${briefing.effDate}"></th>
 
                         <th>
@@ -116,7 +116,7 @@
 
 
 <!--footer include-->
-<footer th:replace="~{fragments/footer1 :: footerFragment}"></footer>
+<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
 <!--script include-->
 <script th:replace="~{fragments/script :: scriptFragment}"></script>
 
