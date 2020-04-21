@@ -6,6 +6,7 @@
 </head>
 <body>
 <nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
+<nav th:replace="~{fragments/sidebar :: sidebarFragment}"></nav>
 
 <!--Page header -->
 <div class="container-fluid bg-secondary form-Border">
@@ -63,6 +64,7 @@
                 <div class="col-sm-8">
                     <select class="form-control" th:field="*{district}">
                         <option value=""> Please Select</option>
+                        <option th:each="district : ${districts}" th:text="${district.name}" th:value="${district.id}"></option>
                     </select>
                     <p class="text-danger" th:if="${#fields.hasErrors('district')}"
                        th:errors="*{district}">Error Name</p>
@@ -185,7 +187,6 @@
     $(document).ready(function () {
         let province = $("#provinceDistrict").val();
         if (province !== null && province !== undefined ) {
-            optionFieldAdd(province);
             $('#province').val(province);
         }
     });

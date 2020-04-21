@@ -6,6 +6,7 @@
 </head>
 <body>
 <nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
+<nav th:replace="~{fragments/sidebar :: sidebarFragment}"></nav>
 
 <div class="container-fluid bg-secondary form-Border">
     <div class="row text-center formManagement border-info">
@@ -162,7 +163,7 @@
                 </div>
                 <!--Right Side-->
                 <div class="form-group col-md-6 col-sm-6 text-right flex-column">
-                    <!--Civil status-->
+                    <!--Civil receivingExpensesStatus-->
                     <div class="form-row text-right">
                         <div class="col-md-4">
                             <label class="control-label" for="civilStatus">Civil State :</label>
@@ -270,7 +271,7 @@
                                   th:if="${#fields.hasErrors('dateOfAssignment')}" id="dateOfAssignmentError">Error Date Of Assignment</span>
                         </div>
                     </div>
-                    <!--Employee status-->
+                    <!--Employee receivingExpensesStatus-->
                     <div class="form-row text-right">
                         <div class="col-md-4">
                             <label class="control-label" for="employeeStatus">Employee Status :</label>

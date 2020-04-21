@@ -8,6 +8,8 @@ import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Title;
 import lk.AVSEC.Welfare.asset.commonAsset.model.FileInfo;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.Designation;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.EmployeeStatus;
+import lk.AVSEC.Welfare.asset.finance.entity.ReceivingFund;
+import lk.AVSEC.Welfare.asset.finance.entity.ExpensesFund;
 import lk.AVSEC.Welfare.asset.message.entity.EmailMessage;
 import lk.AVSEC.Welfare.asset.workingPlace.entity.WorkingPlace;
 import lk.AVSEC.Welfare.util.audit.AuditEntity;
@@ -15,9 +17,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -94,8 +93,15 @@ public class Employee extends AuditEntity {
     @ManyToOne
     private WorkingPlace workingPlace;
 
+    @OneToMany(mappedBy = "employee")
+    private List<ExpensesFund> expensesFunds;
+
+    @OneToMany(mappedBy = "employee")
+    private List<ReceivingFund> receivingFunds;
+
     @ManyToMany(mappedBy = "employees")
     private List<EmailMessage> emailMessages;
+
 
     @Transient
     private List<MultipartFile> files = new ArrayList<>();

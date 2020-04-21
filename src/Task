@@ -50,14 +50,14 @@ Enum OK    Working Place
 Enum OK    Designation
 
 
-    Promotion
-    Name        Effective Date
+Done                    Promotion
+                        Name        Effective Date
 
-    Qualification
-    Name    Institute   Grade   Complete Date
+ Done                   Qualification
+                        Name    Institute   Grade   Complete Date
 
-    Dependency
-    Name    Relationship    DoB   NIC   Current Status
+ Done    Dependency
+                        Name    Relationship    DoB   NIC   Current Status
 
 
 ##################################################################
@@ -91,8 +91,8 @@ Contact Management
 Payment Management
 ##################################################################
     Individual Payment mark by month vice and it can be more than one month
-    Payment collector system update by pending status until handover to treasure
-    receiving -Collection/Donation/ Offering/debit/Credit/Welfare/Donation/Funeral/
+    Payment collector system update by pending receivingExpensesStatus until handover to treasure
+    receiving -Collection/Donation/ Offering/expensesFund/Credit/Welfare/Donation/Funeral/
     Expenses
 
 
@@ -111,7 +111,7 @@ Training Materials
 ##################################################################
 Day Briefing
 ##################################################################
-    Date  toWhom    Nosies
+    Date  toWhom    Noties
 
 
 
@@ -129,13 +129,7 @@ Grievances
     -Transfer, Leave, Complain, Appointment, Other
     -Sender,Combo list(Above Matter) TextArea(Short Description)
 
-
-##################################################################
-Department Structure
-##################################################################
-    -Only need Folder explore Structure list
-
-
+Subject , Description , participant , Remark, priority
 
 ##################################################################
 Task Management
@@ -145,7 +139,14 @@ Task Management
     -Remark (Start,Finish,Pending,Process)
 
 
+No Need to Implement
+
 ##################################################################
 E-Application
 ##################################################################
 
+
+##################################################################
+Department Structure
+##################################################################
+    -Only need Folder explore Structure list

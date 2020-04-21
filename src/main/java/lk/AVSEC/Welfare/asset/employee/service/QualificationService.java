@@ -1,8 +1,7 @@
-package lk.AVSEC.Welfare.asset.qualification.service;
+package lk.AVSEC.Welfare.asset.employee.service;
 
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Province;
-import lk.AVSEC.Welfare.asset.qualification.dao.QualificationDao;
-import lk.AVSEC.Welfare.asset.qualification.entity.Qualification;
+import lk.AVSEC.Welfare.asset.employee.dao.QualificationDao;
+import lk.AVSEC.Welfare.asset.employee.entity.Qualification;
 import lk.AVSEC.Welfare.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;

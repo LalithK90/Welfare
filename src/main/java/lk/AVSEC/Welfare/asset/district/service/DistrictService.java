@@ -17,11 +17,11 @@ import java.util.List;
 // spring transactional annotation need to tell spring to this method work through the project
 @CacheConfig(cacheNames = "district")
 public class DistrictService implements AbstractService<District, Integer> {
-
     private final DistrictDao districtDao;
 
     @Autowired
     public DistrictService(DistrictDao districtDao) {
+
         this.districtDao = districtDao;
     }
 

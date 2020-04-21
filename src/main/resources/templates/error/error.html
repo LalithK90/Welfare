@@ -8,7 +8,7 @@
 <nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
 <main>
 <div class="col-12 col-sm-12 col-md-12 mt-4">
-    <div class="container-fluid" th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
+    <div class="container-fluid" th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.receivingExpensesStatus)}">
         <div class="container text-center">
             <h1 class="invalid-feedback" th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h1>
             <h1 class="invalid-feedback" th:if="${accessDenied!=null}" th:text="${accessDenied}">404</h1>
