@@ -20,6 +20,12 @@ body {
 }
 
 /*html Background - end*/
+/*Combo box size increase - start*/
+select{
+   font-size: large !important;
+}
+
+/*Combo box size increase - end*/
 
 /*radio button style -start*/
 .checkbox-round {

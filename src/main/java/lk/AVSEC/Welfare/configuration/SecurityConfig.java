@@ -71,12 +71,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-     /*       http.csrf().disable();
+            http.csrf().disable();
             http.authorizeRequests().antMatchers("/").permitAll();
-    */
         // For developing easy to give permission all lin
 
-        http
+       /* http
                 .authorizeRequests(
                         authorizeRequests ->
                                 authorizeRequests
@@ -86,12 +85,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         //this is used the normal admin to give access every url mapping
                                         .antMatchers("/employee").hasRole("ADMIN")
                                         //Need to login for access those are
-                                        /*   .antMatchers("/employee/**").hasRole("ADMIN")
+                                        *//*   .antMatchers("/employee/**").hasRole("ADMIN")
                                            .antMatchers("/employee1/**").hasRole("MANAGER")
                                            .antMatchers("/user/**").hasRole("ADMIN")
                                            .antMatchers("/petition/**").hasRole("ADMIN")
                                            .antMatchers("/minutePetition/**").hasRole("MANAGER")
-                                           .antMatchers("/invoiceProcess/add").hasRole("CASHIER")*/
+                                           .antMatchers("/invoiceProcess/add").hasRole("CASHIER")*//*
                                         .anyRequest()
                                         .authenticated())
                 // Login form
@@ -127,7 +126,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         .sessionRegistry(sessionRegistry()))
                 //Cross site disable
                 .csrf(AbstractHttpConfigurer::disable)
-                .exceptionHandling();
+                .exceptionHandling();*/
     }
 }
 

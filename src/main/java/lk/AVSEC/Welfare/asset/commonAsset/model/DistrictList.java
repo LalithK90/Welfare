@@ -11,6 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class DistrictList {
 
+
     private String name;
     private String district;
+
 }

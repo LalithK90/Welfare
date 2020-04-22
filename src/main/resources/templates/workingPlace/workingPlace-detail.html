@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title>Thymeleaf Springboot </title>
+</head>
+<body>
+<nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
+<nav th:replace="~{fragments/sidebar :: sidebarFragment}"></nav>
+
+<!--Page header -->
+<div class="container-fluid bg-secondary form-Border">
+    <div class="row text-center formManagement border-info">
+        <div class="col">
+            <a class="btn btn-primary" href="/home">
+                <i class="fa fa-home" style="font-size: 20px"></i> &nbsp; Home
+            </a>
+        </div>
+        <div class="col">
+            <h4 class="text-light text-center">
+                <strong>
+                    <span id="formHeader"
+                          th:text="${workingPlaceDetail.district.province.province}+${' '}+${workingPlaceDetail.name}"></span>
+                </strong>
+            </h4>
+        </div>
+        <div class="col">
+            <a href="/workingPlace" class="btn btn-primary">
+                <i class="fa fa-list"></i>&nbsp; View List
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" th:fragment="workingPlaceDetail">
+    <div class="offset-3 col-6">
+        <!--/* id this comment not visualize */-->
+        <!--Id-->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label "> Id </label>
+            <div class="col-sm-10">
+                <p class="display_detail" th:text="${workingPlaceDetail.id}"></p>
+            </div>
+        </div>
+        <!--Province-->
+        <div class="form-group row">
+            <label th:for="${'province'}" class="col-sm-2 col-form-label "> Province </label>
+            <div class="col-sm-10">
+                <p class="display_detail" th:text="${workingPlaceDetail.district.province.province}"></p>
+            </div>
+        </div>
+        <!--WorkingPlace name-->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label "> Name </label>
+            <div class="col-sm-10">
+                <p class="display_detail" th:text="${workingPlaceDetail.name}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="offset-sm-2 col-sm-10 text-center">
+        <a href="/workingPlace">
+            <button class="btn btn-primary">
+
+                <i class="fa fa-step-backward mr-1"></i>Back
+            </button>
+        </a>
+    </div>
+</div>
+<!--footer include-->
+<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+</body>
+</html>
