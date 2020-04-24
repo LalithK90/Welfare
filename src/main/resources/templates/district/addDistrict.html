@@ -48,7 +48,8 @@
                 <label th:for="${'province'}" class="col-sm-2 col-form-label "> Province </label>
                 <div class="col-sm-10">
                    <select class="form-control" th:field="*{province}">
-                       <option th:each="province : ${provinces}" th:text="${province.province}" th:value="${province}"></option>
+                       <option th:each="province : ${provinces}"
+                               th:text="${province.province}" th:value="${province}"></option>
                    </select>
                     <p class="text-danger" th:if="${#fields.hasErrors('province')}"
                        th:errors="*{province}">Error Name</p>

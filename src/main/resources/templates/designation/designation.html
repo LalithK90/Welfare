@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title>Thymeleaf Springboot </title>
+</head>
+<body>
+<nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
+<nav th:replace="~{fragments/sidebar :: sidebarFragment}"></nav>
+<!--Header-->
+<div class="container-fluid bg-secondary form-Border">
+    <div class="row text-center formManagement border-info">
+        <div class="col">
+            <a class="btn btn-success" id="newDesignation" th:href="${'/designation/add'}">
+                <i class="fa fa-designation-plus" style="font-size: 18px;"></i> &nbsp; Add Designation </a>
+        </div>
+        <div class="col">
+            <h4 class="text-info text-center">
+                <strong>
+                    Designation Management
+                </strong>
+            </h4>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+<div class="container bg-dark formBorder">
+    <div class="col-md-6">
+        <!--if not empty list-->
+        <div class="row" id="designationListTable" th:if="${not #lists.isEmpty(designations)}">
+                <table class="table table-hover table-striped" id="myTable">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>Index</th>
+                        <th>Designation</th>
+                        <th>Short Name</th>
+                        <th>Category Type</th>
+                        <th>Salary Scale</th>
+                        <th>Remark</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="designation, rowCount : ${designations}" scope="row">
+                        <td th:text="${rowCount.count}"></td>
+                        <td th:text="${designation.name}"></td>
+                        <td th:text="${designation.shortName}">
+                        <td th:text="${designation.categoryType.categoryType}"></td>
+                        <td th:text="${designation.salaryScale.salaryScale}"></td>
+                        <td th:text="${designation.remark}"></td>
+
+
+                        <td><a class="btn btn-success btn-sm" th:href="${'/designation/' + designation.id}" id="designationView"><i
+                                class="fa fa-folder-open"></i>&nbsp;View</a>
+                            <a class="btn btn-primary btn-sm" id="designationEdit"
+                               th:href="${'/designation/edit/' + designation.id}"><i
+                                    class="fa fa-edit"></i>&nbsp;Edit</a>
+                            <a class="btn btn-danger btn-sm" id="designationRemove"
+                               th:href="${'/designation/remove/' + designation.id}"
+                               th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                               th:onclick="if(!(confirm('Are you want to delete this civilStatus ?'))) return false"
+                            ><i
+                                    aria-hidden="true" class="fa fa-trash"></i>
+                                Delete</a>
+
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+
+
+
+        </div>
+        </div>
+        <!--if empty list-->
+        <div class="row" id="designationNotList" th:if="${ #lists.isEmpty(designations)}">
+            <div class="col-sm-12">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="text-center text-danger">
+                        <strong>There is no designation upto know please add designation to the system
+                            using add designation button.
+                        </strong>
+                    </h3>
+                </div>
+            </div>
+            <script>
+                /*active boostrap alert - start*/
+                $(".alert").alert();
+                /*active boostrap alert - end*/
+            </script>
+        </div>
+        <!--Show saved designation-->
+        <div class="row" th:if="${designationDetail!=null}">
+            <div class="col-sm-12">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="container">
+                        <div th:replace="~{designation/designation-detail :: designationDetail}"></div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                /*active boostrap alert - start*/
+                $(".alert").alert();
+                /*active boostrap alert - end*/
+            </script>
+        </div>
+
+    </div>
+</div>
+
+<!--footer include-->
+<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+<!--Subject(name) , Description , participant , Remark, priority-->
+</body>
+</html>

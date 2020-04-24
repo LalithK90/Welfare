@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>Thymeleaf Springboot </title>
 </head>
-<body>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
 <nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
-<nav th:replace="~{fragments/sidebar :: sidebarFragment}"></nav>
+<aside th:replace="~{fragments/sidebar :: sidebarFragment}"></aside>
 
 <div  class="content-wrapper">
     <div class="content-header">
@@ -18,7 +19,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard v1</li>
+                        <li class="breadcrumb-item active">Member</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -31,8 +32,8 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
+                <!-- 4 small box col-lg-3 col-6-->
                 <div class="col-lg-3 col-6">
-                    <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3>1867</h3>
@@ -93,24 +94,22 @@
                 <!-- ./col -->
             </div>
             <!-- /.row -->
-            <div class="row text-center formManagement border-info">
-                <div class="col">
-                    <a class="btn btn-success" href="/employee/add"><i class="fa fa-user-plus"></i>
-                        &nbsp; New Employee</a>
-                </div>
-                 <div class="col">
-                    <a href="/employee/workingPlace" id="searchShow" class="btn btn-primary">
+            <!-- Small boxes (End box) -->
 
-                        <i class="fa fa-user " ></i>&nbsp;Add&nbsp;<i class="fas fa-store-alt" ></i>
+            <!-- data table start -->
+            <div class="card">
+                <div class="card-header">
+                    <a class="btn btn-success" id="newBriefing" th:href="${'/employee/add'}">
+                        <i class="fa fa-briefing-plus"></i>  Add Employee </a>
 
-                    </a>
+
                 </div>
-            </div>
+            <!--</div>-->
             <!-- Main row -->
             <div class="row">
 
                 <div class="row" th:if="${ #lists.isEmpty(employees)}">
-                    <div class="col-sm-12">
+                   <!-- <div class="col-sm-12">-->
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -122,10 +121,9 @@
                             </h3>
                         </div>
                     </div>
-                </div>
 
                 <div class="card-body">
-                    <table id="example2" class="table table-bordered table-hover">
+                    <table id="example2" class="table table-hover table-dark">
                         <thead>
                         <tr>
                             <th> Index</th>
@@ -158,12 +156,6 @@
                     </table>
                 </div>
 
-
-
-
-
-
-
                     </div>
 
                 </div>
@@ -176,19 +168,16 @@
                 <section class="col-lg-5 connectedSortable">
 
 
-                </section></section>
+                </section>
+    </section>
                 <!-- right col -->
 </div>
-            <!-- /.row (main row) -->
-        </div><!-- /.container-fluid -->
-    </section>
+<!-- wrapper -->
 
-</div>
 
 <!--footer include-->
 <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
 <!--script include-->
 <script th:replace="~{fragments/script :: scriptFragment}"></script>
-
 </body>
 </html>

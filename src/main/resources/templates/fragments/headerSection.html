@@ -1,30 +1,32 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="headerFragment">
+<head th:fragment="headerSectionFragment">
     <title th:if="${headerTitle==null}" th:text="${'AVSEC WMS'}"></title>
     <title th:if="${headerTitle!=null}" th:text="${headerTitle}"></title>
-    <!-- Required meta tags -->
+     <!--Required meta tags-->
     <meta charset="utf-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <!-- Bootstrap core CSS Downloaded file add-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap core CSS Downloaded file add-->
-    <link th:href="@{/webjarsa/bootstrap/4.4.1/css/bootstrap.min.css} " media="all" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css} " media="all" rel="stylesheet" type="text/css"/>
 
     <!--Jquery ui-->
-    <link th:href="@{/webjarsa/jquery-ui/1.12.1/jquery-ui.css} " media="all" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/webjarsa/jquery-ui/1.12.1/jquery-ui.structure.css}" media="all" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/webjarsa/jquery-ui/1.12.1/jquery-ui.theme.css}" media="all" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/webjars/jquery-ui/1.12.1/jquery-ui.css} " media="all" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/webjars/jquery-ui/1.12.1/jquery-ui.structure.css}" media="all" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/webjars/jquery-ui/1.12.1/jquery-ui.theme.css}" media="all" rel="stylesheet" type="text/css"/>
 
     <!--Pdf js -->
     <link th:href="@{/webjarsa/pdf-js/2.3.200/web/viewer.css}" media="all" rel="stylesheet" type="text/css">
 
     <!--Chart js-->
-    <link th:href="@{/webjarsa/chart.js/2.9.3/dist/Chart.min.css}" media="all" rel="stylesheet" type="text/css">
+    <link th:href="@{/webjars/chart.js/2.9.3/dist/Chart.min.css}" media="all" rel="stylesheet" type="text/css">
 
     <!--table pagination-->
     <link th:href="@{/css/dataTables.bootstrap.min.css}" media="all" rel="stylesheet" type="text/css"/>
     <!-- Custom styles for this template -->
-    <link th:href="@{/css/myCss.css}" media="all" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/cssa/myCss.css}" media="all" rel="stylesheet" type="text/css"/>
     <!-- fontawesome css -->
     <link th:href="@{/webjars/font-awesome/5.11.2/css/fontawesome.min.css} " media="all" rel="stylesheet" type="text/css"/>
     <!--image uploader css-->
@@ -33,15 +35,15 @@
     <link th:href="@{/css/floating-labels.css}" media="all" rel="stylesheet" type="text/css"/>
 
     <!-- Font Awesome -->
-    <link th:href="@{/cssa/all.min.css}" media="all" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/all.min.css}" media="all" rel="stylesheet" type="text/css"/>
     <!-- Ionicons -->
-    <link th:href="@{/cssa/ionicons.min.css}" media="all" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/ionicons.min.css}" media="all" rel="stylesheet" type="text/css"/>
     <!-- Tempusdominus Bbootstrap 4 -->
-    <link th:href="@{/cssa/tempusdominus-bootstrap-4.min.css}" media="all" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/tempusdominus-bootstrap-4.min.css}" media="all" rel="stylesheet" type="text/css"/>
     <!-- iCheck -->
-    <link th:href="@{/cssa/icheck-bootstrap.min.css}" media="all" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/icheck-bootstrap.min.css}" media="all" rel="stylesheet" type="text/css"/>
     <!-- JQVMap -->
-    <link th:href="@{/cssa/jqvmap.min.css}" media="all" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/jqvmap.min.css}" media="all" rel="stylesheet" type="text/css"/>
     <!-- Theme style -->
     <link th:href="@{/css/adminlte.min.css}" media="all" rel="stylesheet" type="text/css"/>
     <!-- overlayScrollbars -->
@@ -52,10 +54,6 @@
     <link th:href="@{/css/summernote-bs4.css}" media="all" rel="stylesheet" type="text/css"/>
     <!-- Google Font: Source Sans Pro -->
     <link th:href="@{/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700}" media="all" rel="stylesheet" type="text/css"/>
+
 </head>
-<body>
-
-
-</body>
 </html>
-
