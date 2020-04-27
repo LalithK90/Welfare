@@ -1,118 +1,221 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/header :: headerFragment}">
-    <meta charset="UTF-8">
-    <title>Thymeleaf Springboot </title>
-</head>
-<body>
-<nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
-<nav th:replace="~{fragments/sidebar :: sidebarFragment}"></nav>
-<!--Header-->
-<div class="container-fluid bg-secondary form-Border">
-    <div class="row text-center formManagement border-info">
-        <div class="col">
-            <a class="btn btn-success" id="newGrievances" th:href="${'/grievances/add'}">
-                <i class="fa fa-grievances-plus" style="font-size: 18px;"></i> &nbsp; Add Grievances </a>
-        </div>
-        <div class="col">
-            <h4 class="text-info text-center">
-                <strong>
-                    Grievances Management
-                </strong>
-            </h4>
-        </div>
-        <div class="col"></div>
-    </div>
-</div>
-<div class="container-fluid bg-dark formBorder">
-    <div class="col-sm-12 flex-column ">
-        <!--if not empty list-->
-        <div class="row" id="grievancesListTable" th:if="${not #lists.isEmpty(grievancess)}">
-            <div class="col-sm-12">
-                <table class="table table-hover table-striped" id="myTable">
-                    <thead class="thead-inverse">
-                    <tr>
-                        <th>Index</th>
-                        <th>Grievances</th>
-                        <th>remark</th>
-                        <th>priority</th>
-                        <th>Modify</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="grievances, rowCount : ${grievancess}" scope="row">
-                        <th th:text="${rowCount.count}"></th>
-                        <th th:text="${grievances.name}"></th>
-                   <!--     <th th:text="${grievances.description}"></th>
-                        <th th:text="${grievances.participant}"></th>-->
-                        <th th:text="${grievances.remark}"></th>
-                        <th th:text="${grievances.priority}"></th>
-
-                        <th><a class="btn btn-success btn-sm" th:href="${'/grievances/' + grievances.id}" id="grievancesView"><i
-                                class="fa fa-folder-open"></i>&nbsp;View</a>
-                            <a class="btn btn-primary btn-sm" id="grievancesEdit"
-                               th:href="${'/grievances/edit/' + grievances.id}"><i
-                                    class="fa fa-edit"></i>&nbsp;Edit</a>
-                            <a class="btn btn-danger btn-sm" id="grievancesRemove"
-                               th:href="${'/grievances/remove/' + grievances.id}"
-                               th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
-                               th:onclick="if(!(confirm('Are you want to delete this civilStatus ?'))) return false"
-                            ><i
-                                    aria-hidden="true" class="fa fa-trash"></i>
-                                Delete</a>
-
-                        </th>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!--if empty list-->
-        <div class="row" id="grievancesNotList" th:if="${ #lists.isEmpty(grievancess)}">
-            <div class="col-sm-12">
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h3 class="text-center text-danger">
-                        <strong>There is no grievances upto know please add grievances to the system
-                            using add grievances button.
-                        </strong>
-                    </h3>
-                </div>
-            </div>
-            <script>
-                /*active boostrap alert - start*/
-                $(".alert").alert();
-                /*active boostrap alert - end*/
-            </script>
-        </div>
-        <!--Show saved grievances-->
-        <div class="row" th:if="${grievancesDetail!=null}">
-            <div class="col-sm-12">
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="container">
-                        <div th:replace="~{grievances/grievances-detail :: grievancesDetail}"></div>
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <!-- Header (null area) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">-</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">-</a></li>
+                            <li class="breadcrumb-item active">-</li>
+                        </ol>
                     </div>
                 </div>
             </div>
-            <script>
-                /*active boostrap alert - start*/
-                $(".alert").alert();
-                /*active boostrap alert - end*/
-            </script>
         </div>
+        <!-- Header (null area) -->
+        <!-- Form Header / Path -->
+        <section class="content">
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Add Grievances</h1>
+                        </div><!-- Form Header -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">
+                                    <a th:href="${'/grievances'}">
+                                        Grievances </a>
+                                </li>
+                            </ol>
+                        </div><!-- Form Path -->
+                    </div>
+                </div>
+            </div>
+            <div th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></div><!-- Small Box Set -->
+        </section>
+        <!-- Form Header/Path end-->
+        <!--- Contend content-header - Button Area -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card"><div class="card-body">
+                                    <h4>Grievances</h4>
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <a class="btn btn-success" id="newGrievances" style="width:100%" th:href="${'/grievances/add'}">
+                                                <i class="fa fa-grievances-plus" style="font-size: 18px;"></i> &nbsp; Add Grievances </a>
+                                        </div>
+                                        <div class="form-group">
+                                            <a class="btn btn-warning" id="newGrievances" style="width:100%" th:href="${'/grievances/add'}">
+                                                <i class="fa fa-grievances-plus" style="font-size: 18px;"></i> &nbsp; Edit Grievances </a>
+                                        </div>
+                                        <div class="form-group">
+                                           <button type="button" class="btn btn-primary" style="width:100%";data-toggle="modal" data-target="#modalScrollableBody">
+                                               <i class="fa fa-grievances-plus" style="font-size: 18px;"></i>  Read Circular</button>
+                                        </div>
 
-    </div>
-</div>
+                                    </form>
+                                </div></div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card"><div class="card-body">
+                                    <h4>Financial Years List </h4></div>
+                                    <!--if not empty list-->
+                                    <div class="card-body" id="grievancesListTable" th:if="${not #lists.isEmpty(grievancess)}">
+                                        <table class="table">
+                                            <thead class="thead-inverse">
+                                            <tr>
+                                                <th>Index</th>
+                                                <th>Subject</th>
+                                                <th>Grievances</th>
+                                                <th>priority</th>
+                                                <th>Modify</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="grievances, rowCount : ${grievancess}" scope="row">
+                                                <th th:text="${rowCount.count}"></th>
+                                                <th th:text="${grievances.name}"></th>
+                                                <!--     <th th:text="${grievances.description}"></th>
+                                                     <th th:text="${grievances.participant}"></th>-->
+                                                <th th:text="${grievances.remark}"></th>
+                                                <th th:text="${grievances.priority}"></th>
 
-<!--footer include-->
-<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
-<!--script include-->
-<script th:replace="~{fragments/script :: scriptFragment}"></script>
-<!--Subject(name) , Description , participant , Remark, priority-->
+                                                <th><a class="btn btn-success btn-sm" th:href="${'/grievances/' + grievances.id}" id="grievancesView"><i
+                                                        class="fa fa-folder-open"></i>&nbsp;View</a>
+                                                    <a class="btn btn-primary btn-sm" id="grievancesEdit"
+                                                       th:href="${'/grievances/edit/' + grievances.id}"><i
+                                                            class="fa fa-edit"></i>&nbsp;Edit</a>
+                                                    <a class="btn btn-danger btn-sm" id="grievancesRemove"
+                                                       th:href="${'/grievances/remove/' + grievances.id}"
+                                                       th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                                       th:onclick="if(!(confirm('Are you want to delete this grievances ?'))) return false"
+                                                    ><i
+                                                            aria-hidden="true" class="fa fa-trash"></i>
+                                                        Delete</a>
+
+                                                </th>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--if empty list-->
+                <div class="row" id="grievancesNotList" th:if="${ #lists.isEmpty(grievancess)}">
+                    <div class="col-sm-12">
+                <div class="alert alert-info" role="alert">
+
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="alert-heading">Info!</h4>
+                    <p>Please read the provided information.</p>
+                    <p> There is no any grievances upto now please so if you wish to add grievances, please press the <a th:href="${'/grievances/add'}" class="alert-link">Add grievances</a> button.
+                    </p></div>
+                </div>
+                </div>
+
+<!-- model Body  -->
+
+
+                <div class="modal fade" id="modalScrollableBody" tabindex="-1" role="dialog"
+                     aria-labelledby="modalScrollableBodyTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalScrollableBodyTitle">Grievances Circular</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas feugiat, urna ut pharetra ultricies, augue
+                                    tellus euismod turpis, vitae semper ipsum augue a velit. Pellentesque id finibus velit. Ut sagittis maximus maximus. In
+                                    aliquet enim sed turpis mollis ornare. Suspendisse elementum a magna eu luctus. Etiam tincidunt mattis mauris, non
+                                    lobortis nulla tempor in. Sed lacinia metus viverra, scelerisque enim sed, sollicitudin magna. Sed non augue sit amet
+                                    nisl tincidunt ultrices. Praesent nec lacus eget tortor ultricies pulvinar. Praesent euismod ut lorem sit amet
+                                    bibendum.</p>
+                                <p>Pellentesque vitae convallis magna. Morbi non elementum mi. Suspendisse at mollis arcu, eu tempus tellus.
+                                    Aenean fringilla eleifend nisl. Aliquam erat volutpat. Sed a tortor quis tortor convallis mattis. Nunc congue massa
+                                    vitae lectus dictum, a mattis metus dignissim.</p>
+                                <p>Nulla feugiat, lorem sit amet vehicula hendrerit, velit eros pellentesque est, at dictum elit risus id diam. In
+                                    ante lorem, blandit vel dui in, sagittis laoreet erat. Proin dictum sit amet urna ut placerat. Pellentesque laoreet,
+                                    dolor vitae facilisis feugiat, quam quam gravida elit, nec sagittis orci metus at leo. In scelerisque felis vel neque
+                                    lobortis ullamcorper. Praesent quis sagittis neque, nec eleifend neque. Suspendisse at consectetur eros. Mauris lectus
+                                    libero, molestie vel dapibus sit amet, luctus gravida ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+                                    libero neque, pretium quis malesuada eget, congue ac mauris.</p>
+                                <p>Aenean quis tristique libero. Vestibulum sagittis, sapien gravida lobortis posuere, diam arcu auctor libero, at
+                                    tempor mauris nulla vel odio. Phasellus semper eros rutrum mi scelerisque interdum. Maecenas euismod est sit amet justo
+                                    vestibulum bibendum. Etiam scelerisque sodales nisi nec efficitur. Pellentesque arcu mauris, accumsan eget mollis at,
+                                    ultrices id ante. Duis in mi eget nisi euismod gravida. Cras pharetra sollicitudin elit, vel eleifend felis dignissim
+                                    non. Integer leo ex, feugiat eu lorem egestas, mollis suscipit nulla. Duis quis tellus nulla. Maecenas risus ipsum,
+                                    fringilla at orci sit amet, mattis fringilla orci. Vivamus odio tellus, ornare eu leo id, pellentesque sodales
+                                    ante.</p>
+                                <p>Sed laoreet ut ligula eget fringilla. Suspendisse dapibus dui at ex dictum hendrerit. Vestibulum ante ipsum
+                                    primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi efficitur ac purus eget dignissim. Aliquam
+                                    ultrices, orci finibus sollicitudin tempus, elit metus scelerisque magna, a rhoncus justo nisl vitae lectus. Nam mollis
+                                    sed est ut ullamcorper. Curabitur consequat feugiat erat quis molestie. Fusce suscipit sem et nulla dignissim, id
+                                    malesuada felis laoreet. Cras leo ligula, vulputate id mi ac, gravida porta sem. Mauris ullamcorper lectus ac eleifend
+                                    elementum. Ut id velit consequat, facilisis leo vitae, volutpat nisi. Nunc hendrerit libero mi. Integer scelerisque
+                                    mattis neque placerat condimentum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
+                                    egestas. Nulla eu odio mi. Duis interdum vulputate turpis pretium congue.</p>
+                            </div>
+                            <div class="modal-footer">
+                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+ <!-- model Body  -->
+
+
+                    <script>
+                        /*active boostrap alert - start*/
+                        $(".alert").alert();
+                        /*active boostrap alert - end*/
+                    </script>
+                </div>
+
+
+
+
+            </div>
+            <!--- Add New Contend --->
+        </div>
+        <!--- Contend content-header - Button Area end-->
+        <!-- Main contend Area -->
+
+        <!-- Main contend Area -->
+    </div><!-- content-wrapper end -->
+    <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+    <!-- Scroll Up Button -->
+    <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+    <!-- Scroll Up Button end-->
+</div><!-- wrapper end -->
+<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
 </body>
 </html>

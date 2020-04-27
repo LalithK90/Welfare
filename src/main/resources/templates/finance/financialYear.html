@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav>
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside>
+    <!-- SIDE END SECTION -->
+    <!-- CONTENT START-->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">Employee Management</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Add Member</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Add Payment Type</h1>
+
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Add Payment Type</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+
+            <div class="row">
+                <!-- 4 small box col-lg-3 col-6-->
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>1867</h3>
+
+                            <p>Members</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>23<sup style="font-size: 20px"></sup></h3>
+
+                            <p>Section</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>30</h3>
+
+                            <p>Notices</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>4</h3>
+
+                            <p>Activity</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-pie-graph"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+
+
+
+        </section>
+
+        <!--- Add New Contend content-header - container-fluid--->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card bg-black"><div class="card-body ">
+                            Add Financial Year
+
+                        </div> </div></div></div></div></div>
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card"><div class="card-body">
+                                    <h4>Add Financial Years</h4>
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <a class="btn btn-success" id="newfinancialYear" style="width:100%" th:href="${'/financialYear/add'}">
+                                                <i class="fa fa-financialYears-plus" style="font-size: 18px;"></i> &nbsp; Add Financial Year </a>
+                                        </div>
+                                        <div class="form-group">
+                                            <a class="btn btn-warning" id="newfinancialYeara" style="width:100%" th:href="${'/financialYear'}">
+                                                <i class="fa fa-financialYears-plus" style="font-size: 18px;"></i> &nbsp; Edit Financial Year </a>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-primary" style="width:100%";data-toggle="modal" data-target="#modalScrollableBody">
+                                                <i class="fa fa-financialYears-plus" style="font-size: 18px;"></i>  Read Circular</button>
+                                        </div>
+
+                                    </form>
+                                </div></div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card"><div class="card-body">
+                                    <h4>Financial Years List </h4></div>
+                                    <!--if not empty list-->
+                                    <div class="card-body" id="financialYearsListTable" th:if="${not #lists.isEmpty(financialYears)}">
+                                        <table class="table">
+                                            <thead class="thead-inverse">
+                                            <tr>
+                                                <th>Index</th>
+                                                <th>Year</th>
+                                                <th>Description</th>
+                                                <th>Status</th>
+                                                <th>Modify</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="financialYears, rowCount : ${financialYears}" scope="row">
+                                                <th th:text="${rowCount.count}"></th>
+                                                <th th:text="${financialYears.financialYear}"></th>
+                                                <!--     <th th:text="${financialYears.description}"></th>
+                                                     <th th:text="${financialYears.participant}"></th>-->
+                                                <th th:text="${financialYears.description}"></th>
+                                                <th th:text="${financialYears.status.status}"></th>
+
+                                                <th><a class="btn btn-success btn-sm" th:href="${'/financialYear/' + financialYears.id}" id="financialYearsView"><i
+                                                        class="fa fa-folder-open"></i>&nbsp;View</a>
+                                                    <a class="btn btn-primary btn-sm" id="financialYearsEdit"
+                                                       th:href="${'/financialYear/edit/' + financialYears.id}"><i
+                                                            class="fa fa-edit"></i>&nbsp;Edit</a>
+                                                    <a class="btn btn-danger btn-sm" id="financialYearsRemove"
+                                                       th:href="${'/financialYear/remove/' + financialYears.id}"
+                                                       th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                                       th:onclick="if(!(confirm('Are you want to delete this financialYears ?'))) return false"
+                                                    ><i
+                                                            aria-hidden="true" class="fa fa-trash"></i>
+                                                        Delete</a>
+
+                                                </th>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+            <!--- Add New Contend --->
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- CONTENT END SECTION-->
+    <!--FOOTER SECTION-->
+    <!-- /.content-wrapper -->
+    <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer>
+    <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+</div>
+<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script>
+</body>
+</html>

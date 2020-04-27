@@ -10,6 +10,31 @@ public class Structure {
         return "structure/testV";
     }
 
+
+    @GetMapping("/testr")
+    public String templatee() {
+        return "structure/testr";
+    }
+
+    @GetMapping("/test")
+    public String templated() {
+        return "structure/test";
+    }
+
+    @GetMapping("/templateOriginal")
+    public String templatec() {
+        return "structure/templateOriginal";
+    }
+
+    @GetMapping("/main")
+    public String templateb() {
+        return "structure/main";
+    }
+
+    @GetMapping("/froms")
+    public String templatea() {
+        return "structure/froms";
+    }
 }
 
 

@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav>
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside>
+    <!-- SIDE END SECTION -->
+    <!-- CONTENT START-->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">Receiving & Expenses list</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Receiving & Expenses</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Receiving & Expenses</h1>
+
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Receiving & Expenses View</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+
+            <div class="row">
+                <!-- 4 small box col-lg-3 col-6-->
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>1867</h3>
+
+                            <p>Members</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>23<sup style="font-size: 20px"></sup></h3>
+
+                            <p>Section</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>30</h3>
+
+                            <p>Notices</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>4</h3>
+
+                            <p>Activity</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-pie-graph"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+
+
+
+        </section>
+
+        <!--- Add New Contend content-header - container-fluid--->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card bg-gradient-gray"><div class="card-body ">
+                            <div class="card-body row">
+                                <div class="col-md-6">
+                                    <label for="fromDate">From Date</label><input class="form-control " type="date" id="fromDate" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="toDate">To Date</label><input class="form-control " type="date" id="toDate" />
+                                </div>
+                                <div class="col-md-6"><br/><button class="btn-success" > Today Only</button></div>
+                                <div class="col-md-6"><br/><button class="btn-success" > Search Date Range</button></div>
+                            </div> </div></div></div></div></div>
+
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card"><div class="card-body"><h4>Receiving List</h4>
+                                        <hr> </div>
+                                        <div class="card-body">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th>
+                                                        EPF
+                                                    </th>
+                                                    <th>
+                                                        Name
+                                                    </th>
+                                                    <th>
+                                                        Amount
+                                                    </th>
+                                                    <th>
+                                                        Date
+                                                    </th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        5793
+                                                    </td>
+                                                    <td>
+                                                        W B Prasad
+                                                    </td>
+                                                    <td>
+                                                        250.00
+                                                    </td>
+                                                    <td>
+                                                        28-05-2020
+                                                    </td>
+
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+
+
+
+                                        </div></div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="card"><div class="card-body"><h4>Expenses List</h4>
+                                        <hr> </div>
+                                        <div class="card-body">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th>
+                                                        EPF
+                                                    </th>
+                                                    <th>
+                                                        Reason
+                                                    </th>
+                                                    <th>
+                                                        Amount
+                                                    </th>
+                                                    <th>
+                                                        Date
+                                                    </th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        5793
+                                                    </td>
+                                                    <td>
+                                                        Funeral fund
+                                                    </td>
+                                                    <td>
+                                                        Rs. 30000.00
+                                                    </td>
+                                                    <td>
+                                                        20-12-2020
+                                                    </td>
+
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="jumbotron">Last Payment Successfully Updated
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+                <!--- Add New Contend --->
+            </div>
+            <!-- /.content -->
+        </div>
+        <!-- CONTENT END SECTION-->
+        <!--FOOTER SECTION-->
+        <!-- /.content-wrapper -->
+        <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer>
+        <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
+            <i class="fas fa-chevron-up"></i>
+        </a>
+
+    </div>
+    <script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script>
+</body>
+</html>

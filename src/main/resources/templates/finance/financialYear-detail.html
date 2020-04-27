@@ -29,13 +29,14 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                           <h1 class="m-0 text-dark">  <span id="formHeader" th:text="${addStatus==false?'New Grievances':'Update Grievances'}"></span></h1>
+                            <h1 class="m-0 text-dark">Add Financial Year</h1>
                         </div><!-- Form Header -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item active">
-                                    <span id="formHeader" th:text="${addStatus==false?'New Grievances':'Update Grievances'}"></span>
+                                    <a th:href="${'/financialYear'}">
+                                        Financial Year </a>
                                 </li>
                             </ol>
                         </div><!-- Form Path -->
@@ -52,21 +53,21 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-3">
-                                <div class="card"><div class="card-body">
-                                    <h4>Grievances</h4>
+                                <div class="card">
+                                    <div class="card-body">
+                                    <h4>Financial Year</h4>
                                     <form role="form">
                                         <div class="form-group">
-                                            <a class="btn btn-success" id="newGrievances" style="width:100%" th:href="${'/grievances/add'}">
-                                                <i class="fa fa-grievances-plus" style="font-size: 18px;"></i> &nbsp; Add Grievances </a>
-
+                                            <a class="btn btn-success" id="newFinancial Year" style="width:100%" th:href="${'/financialYear/add'}">
+                                                <i class="fa fa-financialYear-plus" style="font-size: 18px;"></i> &nbsp; Add Financial Year </a>
                                         </div>
                                         <div class="form-group">
-                                            <a class="btn btn-warning" id="newGrievances" style="width:100%" th:href="${'/grievances'}">
-                                                <i class="fa fa-grievances-plus" style="font-size: 18px;"></i> &nbsp; View Grievances </a>
+                                            <a class="btn btn-warning" id="newFinancial Year" style="width:100%" th:href="${'/financialYear/add'}">
+                                                <i class="fa fa-financialYear-plus" style="font-size: 18px;"></i> &nbsp; Edit Financial Year </a>
                                         </div>
                                         <div class="form-group">
                                             <button type="button" class="btn btn-primary" style="width:100%";data-toggle="modal" data-target="#modalScrollableBody">
-                                                <i class="fa fa-grievances-plus" style="font-size: 18px;"></i>  Read Circular</button>
+                                                <i class="fa fa-financialYear-plus" style="font-size: 18px;"></i>  Read Circular</button>
                                         </div>
 
                                     </form>
@@ -74,91 +75,33 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="card"><div class="card-body">
-                                    <h4> <span id="formHeader" th:text="${addStatus==false?'New Grievances':'Update Grievances'}"></span> Form </h4></div>
+                                    <h4>Financial Years List </h4></div>
                                     <!--if not empty list-->
-                                    <div class="card-body">
-                                    <form th:action="${addStatus==false?'/grievances/save' :'/grievances/update'}" method="post"
-                                          th:object="${grievances}">
-
-                                            <!--/* id this comment not visualize */-->
-                                            <!--Id-->
-                                            <div class="form-group" th:if="${addStatus==true}">
-                                                <label for="id" class="form-label "> Id </label>
-                                              <input type="text" class="form-control" th:field="*{id}" id="id" readonly>
-                                            </div>
-                                            <div class="form-group">
-                                                <label th:for="${'name'}" class="form-label "> Name </label>
-                                                    <input type="text" class="form-control" th:field="*{name}" required>
-                                                    <p class="text-danger" th:if="${#fields.hasErrors('name')}"
-                                                       th:errors="*{name}">Error Name</p>
-                                            </div>
-                                            <!--Description-->
-                                            <div class="form-group">
-                                                <label th:for="${'description'}" class="form-label "> Description</label>
-
-                                                    <textarea class="form-control" th:field="*{description}" required></textarea>
-                                                    <p class="text-danger" th:if="${#fields.hasErrors('description')}"
-                                                       th:errors="*{description}">Error description</p>
-
-                                            </div>
-                                            <!--participant-->
-                                            <div class="form-group">
-                                                <label th:for="${'participant'}" class="form-label "> Participant </label>
-
-                                                    <input type="text" class="form-control" th:field="*{participant}">
-                                                    <p class="text-danger" th:if="${#fields.hasErrors('participant')}"
-                                                       th:errors="*{participant}">Error Participant</p>
-
-                                            </div>
-                                            <!--Remark-->
-                                            <div class="form-group">
-                                                <label th:for="${'remark'}" class="form-label "> Remark </label>
-
-                                                    <input type="text" class="form-control" th:field="*{remark}" required>
-                                                    <p class="text-danger" th:if="${#fields.hasErrors('remark')}"
-                                                       th:errors="*{remark}">Error Remark</p>
-
-                                            </div>
-                                            <!--priority-->
-                                            <div class="form-group">
-                                                <label th:for="${'priority'}" class="form-label "> Priority </label>
-
-                                                    <div class="custom-control" style="display: inline"
-                                                         th:each="priority, index : ${priorities}">
-                                                        <input type="radio" class="custom-control" required th:field="*{priority}"
-                                                               th:value="${priority}" th:id="${priority}+${index.index}" style="display: inline"/>
-                                                        <!-- <label class="custom-control-label" th:for="${#ids.prev('gender')}"-->
-                                                        <label class="" th:for="${priority}+${index.index}"
-                                                               th:text="${priority.priority}" style="display: inline"> radio
-                                                        </label>
+                                    <div class="card-body" th:fragment="financialYearDetail">
+                                        <!--/* id this comment not visualize */-->
+                                                <!--Id-->
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label "> Id </label>
+                                                    <div class="col-sm-10">
+                                                        <p class="display_detail" th:text="${financialYearDetail.id}"></p>
                                                     </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label "> Name </label>
+                                                    <div class="col-sm-10">
+                                                        <p class="display_detail" th:text="${financialYearDetail.financialYear}"></p>
+                                                    </div>
+                                                </div>
+                                     </div>
+                                 </div>
+                             </div>
 
-                                                    <!--  <input type="test" class="form-control" th:field="*{priority}" required>-->
-                                                    <p class="text-danger" th:if="${#fields.hasErrors('priority')}"
-                                                       th:errors="*{priority}">Error Priority</p>
-
-                                            </div>
-
-
-                                            <div class="form-group">
-
-                                                    <button type="submit" class="btn btn-primary">
-                                                        <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i> <span
-                                                            th:text="${addStatus==false?'Save' : 'Update'}"></span>
-                                                    </button>
-
-                                            </div>
-
-
-                                    </form>
-                                    </div>
-                            </div>
 
                         </div>
                     </div>
                 </div>
                 <!--if empty list-->
-               <!-- <div class="row" id="grievancesNotList" th:if="${ #lists.isEmpty(grievancess)}">
+                <!--<div class="row" id="financialYearNotList" th:if="${ #lists.isEmpty(financialYears)}">
                     <div class="col-sm-12">
                         <div class="alert alert-info" role="alert">
 
@@ -167,11 +110,11 @@
                             </button>
                             <h4 class="alert-heading">Info!</h4>
                             <p>Please read the provided information.</p>
-                            <p> There is no any grievances upto now please so if you wish to add grievances, please press the <a th:href="${'/grievances/add'}" class="alert-link">Add grievances</a> button.
+                            <p> There is no any financialYear upto now please so if you wish to add financialYear, please press the <a th:href="${'/financialYear/add'}" class="alert-link">Add financialYear</a> button.
                             </p></div>
                     </div>
-                </div>-->
-
+                </div>
+-->
                 <!-- model Body  -->
 
 
@@ -180,7 +123,7 @@
                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modalScrollableBodyTitle">Grievances Circular</h5>
+                                <h5 class="modal-title" id="modalScrollableBodyTitle">Financial Year Circular</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
@@ -245,15 +188,14 @@
     <!-- Main contend Area -->
 
     <!-- Main contend Area -->
-    </div><!-- content-wrapper end -->
-    <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
-    <!-- Scroll Up Button -->
-    <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
-        <i class="fas fa-chevron-up"></i>
-    </a>
-    <!-- Scroll Up Button end-->
+</div><!-- content-wrapper end -->
+<footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+<!-- Scroll Up Button -->
+<a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<!-- Scroll Up Button end-->
 </div><!-- wrapper end -->
 <script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
 </body>
 </html>
-
