@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum CollectionType {
     OPT("Optional"),
-    MEN("Mandatory");
+    MON("Mandatory");
 
     private final String collectionType;
 }

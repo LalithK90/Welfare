@@ -16,9 +16,9 @@ public class Structure {
         return "structure/testr";
     }
 
-    @GetMapping("/test")
+    @GetMapping("/runTest")
     public String templated() {
-        return "structure/test";
+        return "structure/runTest";
     }
 
     @GetMapping("/templateOriginal")
@@ -35,6 +35,7 @@ public class Structure {
     public String templatea() {
         return "structure/froms";
     }
+
 }
 
 

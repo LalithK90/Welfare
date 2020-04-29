@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class testController {
-    @GetMapping("/additionalPayment")
+/*    @GetMapping("/additionalPayment")
     public String template() {
         return "finance/additionalPayment";
-    }
+    }*/
 
     @GetMapping("/addPaymentType")
     public String templateOne() {
@@ -20,10 +20,10 @@ public class testController {
         return "finance/balance";
     }
 
-    @GetMapping("/financialYears1")
+ /*   @GetMapping("/financialYears1")
     public String templateTree() {
         return "financialYear";
-    }
+    }*/
 
     @GetMapping("/paymentsSection")
     public String templateFour() {

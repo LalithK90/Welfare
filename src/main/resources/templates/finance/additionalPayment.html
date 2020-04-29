@@ -46,68 +46,12 @@
                 </div><!-- /.container-fluid -->
             </div>
 
-            <div class="row">
-                <!-- 4 small box col-lg-3 col-6-->
-                <div class="col-lg-3 col-6">
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3>1867</h3>
 
-                            <p>Members</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-bag"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3>23<sup style="font-size: 20px"></sup></h3>
+                <!-- Small boxes (Stat box) -->
+                <div th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></div><!-- Small Box Set -->
+                <!-- /.row -->
+                <!-- Small boxes (Stat box) -->
 
-                            <p>Section</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h3>30</h3>
-
-                            <p>Notices</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-person-add"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-danger">
-                        <div class="inner">
-                            <h3>4</h3>
-
-                            <p>Activity</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-pie-graph"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-            </div>
 
 
 
@@ -167,17 +111,17 @@
                                             </div>
                                             <div class="form-group">
 
-                                                <label for="exampleInputEmail2">
+                                                <label for="exampleInputEmail3">
                                                     Additional Payment Reason
                                                 </label>
-                                                <input type="Text" class="form-control" id="exampleInputEmail2" />
+                                                <input type="Text" class="form-control" id="exampleInputEmail3" />
                                             </div>
                                             <div class="form-group">
 
-                                                <label for="exampleInputEmail2">
+                                                <label for="exampleInputEmail4">
                                                     Date WEF
                                                 </label>
-                                                <input type="date" class="form-control" id="exampleInputEmail2" />
+                                                <input type="date" class="form-control" id="exampleInputEmail4" />
                                             </div>
 
 
@@ -192,76 +136,42 @@
 
                                 <div class="card"><div class="card-body">
                                     <h4>Financial Years List </h4></div>
-                                    <div class="card-body">
+                                    <div class="card-body" id="financialYearsListTable" th:if="${not #lists.isEmpty(additionalPayments)}">
                                         <table class="table">
                                             <thead>
                                             <tr>
-                                                <th>
-                                                    #
-                                                </th>
-                                                <th>
-                                                    Financial Year
-                                                </th>
-                                                <th>
-                                                    Amount
-                                                </th>
-                                                <th>
-                                                    Reason
-                                                </th>
-                                                <th>
-                                                    WEF - Date
-                                                </th>
-                                                <th>
-                                                    Action
-                                                </th>
+                                                <th>#</th>
+                                                <th>Financial Year</th>
+                                                <th>Amount</th>
+                                                <th>Reason</th>
+                                                <th>WEF - Date</th>
+                                                <th>Action</th>
                                             </tr>
                                             </thead>
+
                                             <tbody>
-                                            <tr>
-                                                <td>
-                                                    1
-                                                </td>
-                                                <td>
-                                                    2020
-                                                </td>
-                                                <td>
-                                                    Rs. 200.00
-                                                </td>
-                                                <td>
-                                                    S/M Rupananda farewell ceremony
-                                                </td>
-                                                <td>
-                                                    2020-06-12
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-warning">EDIT</button>
+                                            <tr th:each="additionalPayments, rowCount : ${additionalPayments}" scope="row">
+                                                <td th:text="${rowCount.count}"></td>
+                                                <td th:text="${additionalPayments.financialYear}"></td>
+                                                <td th:text="${additionalPayments.amount}"></td>
+                                                <td th:text="${additionalPayments.reason}"></td>
+                                                <td th:text="${additionalPayments.dateWEF}"></td>
+                                                <td><a class="btn btn-success btn-sm" th:href="${'/additionalPayment/' + additionalPayments.id}" id="financialYearsView"><i
+                                                        class="fa fa-folder-open"></i>&nbsp;View</a>
+                                                    <a class="btn btn-primary btn-sm" id="financialYearsEdit"
+                                                       th:href="${'/additionalPayment/edit/' + additionalPayments.id}"><i
+                                                            class="fa fa-edit"></i>&nbsp;Edit</a>
+                                                    <a class="btn btn-danger btn-sm" id="financialYearsRemove"
+                                                       th:href="${'/additionalPayment/remove/' + additionalPayments.id}"
+                                                       th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                                       th:onclick="if(!(confirm('Are you want to delete this financialYears ?'))) return false"
+                                                    ><i
+                                                            aria-hidden="true" class="fa fa-trash"></i>
+                                                        Delete</a>
+
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    1
-                                                </td>
-                                                <td>
-                                                    2020
-                                                </td>
-                                                <td>
-                                                    Rs. 100.00
-                                                </td>
-                                                <td>
-                                                    Cleaning Staff Year end gift
-                                                </td>
-                                                <td>
-                                                    2020-11-01
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-warning">EDIT</button>
-                                                </td>
-                                            </tr>
-
-
-
-
-                                            </tbody>
+                                          </tbody>
                                         </table>
                                     </div>
                                 </div>

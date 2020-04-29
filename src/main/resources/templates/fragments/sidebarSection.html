@@ -25,74 +25,94 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
+                <li class="nav-item has-treeview menu-open">
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                  <i class="fas fa-sign-out-alt"></i>
+                                <p>Log Out</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="./index3.html" class="nav-link">
+                                <i class="fas fa-key"></i>
+                                <p>Password Change</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
-                            Grievances
+                            Dashboard
                             <span class="right badge badge-danger">New</span>
                         </p>
                     </a>
-                </li>
+                </li> <!--Dashboad-->
+
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
+                    <a href="/employee" class="nav-link">
+                        <i class="nav-icon fa-users"></i>
+                        <i class="fas fa-users"></i>
                         <p>
-                            Member Options
+                            Member Mgt
                             <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-info right">6</span>
+                            <span class="badge badge-info right"></span>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/employee/add" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Member Registration</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/employee" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Members View</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/employee" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Member Delete</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/designation" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Designation</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/workingPlace" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Working Place</p>
+                                <p>Group Mgt</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="/dependency" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Relationship</p>
+                                <p>Dependants</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/qualification" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Qualipication</p>
+                                <p>Qualification</p>
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li><!--Members Mgt-->
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
-                            Finance Section
+                            Account Mgt
                             <i class="fas fa-angle-left right"></i>
                             <span class="badge badge-light right">8</span>
                         </p>
@@ -147,12 +167,41 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li><!--Account Mgt-->
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
-                            User Management
+                            Notice Mgt
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Day Briefing</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Training Schedule</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Meetings</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li><!--Notice mgt-->
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            System Mgt
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -166,17 +215,29 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
+                                <p>View User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
                                 <p>Edit User</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Delete User</p>
+                                <p>Remove User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Privilege Mgt</p>
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li><!--System Mgt-->
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tree"></i>
@@ -189,58 +250,46 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Send Email</p>
+                                <p>Send Emails</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>View</p>
+                                <p>View Emails</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Buttons</p>
+                                <p>Edit Email</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Sliders</p>
+                                <p>Send SMS</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Modals & Alerts</p>
+                                <p>Edit SMS</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Navbar & Tabs</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Timeline</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Ribbons</p>
+                                <p>View SMS</p>
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li><!--Contact Mgt-->
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            Forms
+                            Welfare Mgt
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -248,34 +297,40 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>General Elements</p>
+                                <p>Grievances</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Advanced Elements</p>
+                                <p>Task Management</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Editors</p>
+                                <p>Org. Structure</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Validation</p>
+                                <p>E-Application</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Trainings Materials</p>
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li><!--Welfare Mgt-->
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
-                            Tables
+                            Report Mgt
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -283,23 +338,23 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Simple Tables</p>
+                                <p>Employee List</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>DataTables</p>
+                                <p>Account Reports</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>jsGrid</p>
+                                <p>Noties</p>
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li><!--Report Mgt-->
 
 
             </ul>

@@ -6,43 +6,11 @@
     <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
     <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
     <div class="content-wrapper"><!-- content-wrapper Start -->
-        <!-- Header (null area) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">-</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">-</a></li>
-                            <li class="breadcrumb-item active">-</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Header (null area) -->
-        <!-- Form Header / Path -->
-        <section class="content">
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Add Payment Type</h1>
-                        </div><!-- Form Header -->
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Add Payment Type</li>
-                            </ol>
-                        </div><!-- Form Path -->
-                    </div>
-                </div>
-            </div>
-            <div th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></div><!-- Small Box Set -->
-        </section>
-        <!-- Form Header/Path end-->
+     <!-- Form Header  Path -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+
+
         <!--- Contend content-header - Button Area -->
         <div class="content-header">
             <div class="container-fluid">
@@ -214,11 +182,6 @@
         <!-- Main contend Area -->
     </div><!-- content-wrapper end -->
     <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
-    <!-- Scroll Up Button -->
-    <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
-        <i class="fas fa-chevron-up"></i>
-    </a>
-    <!-- Scroll Up Button end-->
 </div><!-- wrapper end -->
 <script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
 </body>

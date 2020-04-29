@@ -165,14 +165,14 @@
                                             </thead>
                                             <tbody>
                                             <tr th:each="financialYears, rowCount : ${financialYears}" scope="row">
-                                                <th th:text="${rowCount.count}"></th>
-                                                <th th:text="${financialYears.financialYear}"></th>
+                                                <td th:text="${rowCount.count}"></td>
+                                                <td th:text="${financialYears.financialYear}"></td>
                                                 <!--     <th th:text="${financialYears.description}"></th>
                                                      <th th:text="${financialYears.participant}"></th>-->
-                                                <th th:text="${financialYears.description}"></th>
-                                                <th th:text="${financialYears.status.status}"></th>
+                                                <td th:text="${financialYears.description}"></td>
+                                                <td th:text="${financialYears.status.status}"></td>
 
-                                                <th><a class="btn btn-success btn-sm" th:href="${'/financialYear/' + financialYears.id}" id="financialYearsView"><i
+                                                <td><a class="btn btn-success btn-sm" th:href="${'/financialYear/' + financialYears.id}" id="financialYearsView"><i
                                                         class="fa fa-folder-open"></i>&nbsp;View</a>
                                                     <a class="btn btn-primary btn-sm" id="financialYearsEdit"
                                                        th:href="${'/financialYear/edit/' + financialYears.id}"><i
@@ -185,7 +185,7 @@
                                                             aria-hidden="true" class="fa fa-trash"></i>
                                                         Delete</a>
 
-                                                </th>
+                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>
