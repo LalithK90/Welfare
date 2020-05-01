@@ -25,7 +25,7 @@ public class testController {
         return "financialYear";
     }*/
 
-    @GetMapping("/paymentsSection")
+    @GetMapping("/paymentSection")
     public String templateFour() {
         return "finance/paymentSection";
     }
