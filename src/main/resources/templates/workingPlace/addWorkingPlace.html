@@ -60,9 +60,7 @@
                                                 <label th:for="${'province'}" class="form-label "> Province </label>
 
                                                     <select class="form-control" id="province">
-                                                        <option th:each="province : ${provinces}"
-                                                                th:text="${province.province}"
-                                                                th:value="${province}">
+                                                        <option th:each="province : ${provinces}" th:text="${province.province}" th:value="${province}">
 
                                                         </option>
                                                     </select>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+
+
+        <!--heading Area-->
+<div class="container-fluid bg-dark form-Border">
+    <div class="row text-center formManagement border-info">
+        <!--View List Button-->
+        <div class="col">
+            <a href="/category" class="btn btn-primary">
+                <i class="fa fa-list" style="font-size: 20px"></i>&nbsp;&nbsp;View List
+            </a>
+        </div>
+        <!--Category Name-->
+        <div class="col">
+            <h2 class="text-light text-center">
+                <strong>
+                    <p th:text="${categoryDetail.name}"></p>
+                </strong>
+            </h2>
+        </div>
+        <!--Home Button-->
+        <div class="col">
+            <a class="btn btn-primary" href="/home">
+                <i class="fa fa-home" style="font-size: 20px"></i> &nbsp;&nbsp;Home
+            </a>
+        </div>
+    </div>
+</div>
+<!--details-->
+<div th:fragment="categoryDetailsFragment" class="container-fluid bg-info formBorder">
+    <div class="col-sm-12 flex-column ">
+        <div class="row">
+            <div class="form-group col-md-12 col-sm-12 text-center flex-column ">
+                <!--id-->
+                <div class="form-row text-right">
+                    <div class="col-md-4">
+                        <label class="control-label" for="id">ID :</label>
+                    </div>
+                    <div class="col-md-4">
+                        <p id="id" th:text="${categoryDetail.id}" class="display_detail"></p>
+                    </div>
+                </div>
+                <!--Main Category-->
+                <div class="form-row text-right">
+                    <div class="col-md-4">
+                        <label class="control-label" for="mainCategory">Main Category :</label>
+                    </div>
+                    <div class="col-md-4">
+                        <p id="mainCategory" th:text="${categoryDetail.mainCategory.mainCategory}"
+                           class="display_detail"></p>
+                    </div>
+                </div>
+                <!--Name-->
+                <div class="form-row text-right">
+                    <div class="col-md-4">
+                        <label class="control-label" for="name">Name :</label>
+                    </div>
+                    <div class="col-md-4">
+                        <p id="name" th:text="${categoryDetail.name}"
+                           class="display_detail"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Back Button-->
+    <div class="form-group col-md-12 col-sm-12 text-center flex-column ">
+        <a href="/category">
+            <button class="btn btn-dark" type="button" tabindex="10">
+                <i class="fas fa-arrow-circle-left" style="font-size: 20px"></i>&nbsp; &nbsp;Back
+            </button>
+        </a>
+    </div>
+    <br/>
+</div>
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>First sud Header</h4>
+                                <form role="form">
+
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Secondary Header </h4></div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div><!-- content-wrapper end -->
+<footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+</div><!-- wrapper end -->
+<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
+</body>
+</html>

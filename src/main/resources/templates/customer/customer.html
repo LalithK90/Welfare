@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+
+        <!--heading Area-->
+<div class="container-fluid  form-Border">
+    <div class="row text-center formManagement border-info">
+        <!--New Customer Button-->
+        <div class="col">
+            <a class="btn btn-success" href="/customer/add" tabindex="1">
+                <i class="fas fa-plus" style="font-size: 20px"></i>&nbsp;&nbsp;New
+            </a>
+        </div>
+        <!--List Name-->
+        <div class="col">
+            <h2 class="text-white text-center">
+                <strong>
+                    Customer List
+                </strong>
+            </h2>
+        </div>
+        <!--Home Button-->
+        <div class="col">
+            <a href="/home" id="searchShow" class="btn btn-primary" tabindex="2">
+                <!--<i class="fa fa-user " style="font-size: 20px"></i>&nbsp;Add&nbsp;-->
+                <i class="fas fa-home" style="font-size: 20px"></i>&nbsp;&nbsp;Home
+            </a>
+        </div>
+    </div>
+</div>
+<!--Customers List-->
+<div class="container-fluid bg-primary text-center">
+    <!--Table view-->
+    <div class="col">
+        <div class="col" id="customerListPresent" th:if="${not #lists.isEmpty(customers)}">
+            <table class="table table-hover table-striped" id="myTable">
+                <thead>
+                <tr>
+                    <th> Index</th>
+                    <th> Name</th>
+                    <th> Code</th>
+                    <th> Mobile</th>
+                    <th> Address</th>
+                    <th> Modify</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="customer, rowCount : ${customers}">
+                    <th th:text="${rowCount.count}"></th>
+                    <th th:text="${customer.title}+${'. '}+${customer.name}"></th>
+                    <th th:text="${customer.code}"></th>
+                    <th th:text="${customer.mobile}"></th>
+                    <th th:text="${customer.address}"></th>
+                    <th>
+                        <a id="customerView" th:href="${'/customer/' + customer.id}" class="btn btn-primary btn-sm"><i
+                                class="fa fa-folder-open" style="font-size: 15px"></i>&nbsp;View</a>
+                        <a id="customerEdit" th:href="${'/customer/edit/' + customer.id}"
+                           class="btn btn-success btn-sm"><i class="fa fa-edit"
+                                                             style="font-size: 15px"></i>&nbsp;Edit</a>
+                        <a id="customerRemove" th:href="${'/customer/delete/' + customer.id}"
+                           class="btn btn-danger btn-sm">
+                            <!--th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" --> <i
+                                class="fa fa-trash" style="font-size: 15px"></i>
+                            Delete</a>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--Error-->
+    <div class="row" th:if="${ #lists.isEmpty(customers)}">
+        <div class="col-sm-12">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="text-center text-danger">
+                    <strong>There is no customer upto now please add customer to the system
+                        using "New" button.
+                    </strong>
+                </h3>
+            </div>
+        </div>
+        <script>
+            /*active boostrap alert - start*/
+            $(".alert").alert();
+            /*active boostrap alert - end*/
+        </script>
+    </div>
+    <!--Save customer-->
+    <div class="row" th:if="${customerDetail != null}">
+        <div class="col-sm-12">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <!--save customer include-->
+                <div th:replace="~{customer/customer-detail :: customerDetailsFragment}"></div>
+            </div>
+        </div>
+        <script>
+            /*active boostrap alert - start*/
+            $(".alert").alert();
+            /*active boostrap alert - end*/
+        </script>
+    </div>
+</div>
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4>First sud Header</h4>
+                                        <form role="form">
+
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4>Secondary Header </h4></div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- content-wrapper end -->
+    <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+</div><!-- wrapper end -->
+<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
+</body>
+</html>
