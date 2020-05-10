@@ -1,126 +1,186 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/header :: headerFragment}">
-    <meta charset="UTF-8">
-    <title>Thymeleaf Springboot </title>
-</head>
-<body>
-<nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
-<nav th:replace="~{fragments/sidebar :: sidebarFragment}"></nav>
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
 
-<!--Page header -->
-<div class="container-fluid bg-secondary form-Border">
-    <div class="row text-center formManagement border-info">
-        <div class="col">
-            <a class="btn btn-primary" href="/home">
-                <i class="fa fa-home" style="font-size: 20px"></i> &nbsp; Home
-            </a>
-        </div>
-        <div class="col">
-            <h4 class="text-light text-center">
-                <strong>
-                    <span id="formHeader" th:text="${addStatus==false?'New Grievances':'Update Grievances'}"></span>
-                </strong>
-            </h4>
-        </div>
-        <div class="col">
-            <a href="/grievances" class="btn btn-primary">
-                <i class="fa fa-list"></i>&nbsp; View List
-            </a>
-        </div>
-    </div>
-</div>
-<!--add form-->
-<div class="container-fluid">
-    <form th:action="${addStatus==false?'/grievances/save' :'/grievances/update'}" method="post"
-          th:object="${grievances}"
-          class="mt-3">
-        <div class="offset-3 col-6">
-            <!--/* id this comment not visualize */-->
-            <!--Id-->
-            <div class="form-group row" th:if="${addStatus==true}">
-                <label for="id" class="col-sm-2 col-form-label "> Id </label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{id}" id="id" readonly>
-                </div>
-            </div>
-            <!--Subject(name) , Description , participant , Remark, priority-->
-            <!--name-->
-            <div class="form-group row">
-                <label th:for="${'name'}" class="col-sm-2 col-form-label "> Name </label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{name}" required>
-                    <p class="text-danger" th:if="${#fields.hasErrors('name')}"
-                       th:errors="*{name}">Error Name</p>
-                </div>
-            </div>
-            <!--Description-->
-            <div class="form-group row">
-                <label th:for="${'description'}" class="col-sm-2 col-form-label "> Description</label>
-                <div class="col-sm-10">
-                    <textarea class="form-control" th:field="*{description}" required></textarea>
-                    <p class="text-danger" th:if="${#fields.hasErrors('description')}"
-                       th:errors="*{description}">Error description</p>
-                </div>
-            </div>
-            <!--participant-->
-            <div class="form-group row">
-                <label th:for="${'participant'}" class="col-sm-2 col-form-label "> Participant </label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{participant}">
-                    <p class="text-danger" th:if="${#fields.hasErrors('participant')}"
-                       th:errors="*{participant}">Error Participant</p>
-                </div>
-            </div>
-            <!--Remark-->
-            <div class="form-group row">
-                <label th:for="${'remark'}" class="col-sm-2 col-form-label "> Remark </label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{remark}" required>
-                    <p class="text-danger" th:if="${#fields.hasErrors('remark')}"
-                       th:errors="*{remark}">Error Remark</p>
-                </div>
-            </div>
-            <!--priority-->
-            <div class="form-group row">
-                <label th:for="${'priority'}" class="col-sm-2 col-form-label "> Priority </label>
-                <div class="col-sm-10">
-                    <div class="custom-control" style="display: inline"
-                         th:each="priority, index : ${priorities}">
-                        <input type="radio" class="custom-control" required th:field="*{priority}"
-                               th:value="${priority}" th:id="${priority}+${index.index}" style="display: inline"/>
-                        <!-- <label class="custom-control-label" th:for="${#ids.prev('gender')}"-->
-                        <label class="" th:for="${priority}+${index.index}"
-                               th:text="${priority.priority}" style="display: inline"> radio
-                        </label>
+
+
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card"><div class="card-body">
+                                    <h4>Grievances</h4>
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <h1 class="m-0 text-dark">  <span id="formHeader" th:text="${addStatus==false?'New Grievances':'Update Grievances'}"></span></h1>
+                                            <span id="formHeader" th:text="${addStatus==false?'New Grievances':'Update Grievances'}"></span>
+                                            <a class="btn btn-success" id="newGrievances" style="width:100%" th:href="${'/grievances/add'}">
+                                                <i class="fa fa-grievances-plus" style="font-size: 18px;"></i> &nbsp; Add Grievances </a>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <a class="btn btn-warning" id="newGrievances" style="width:100%" th:href="${'/grievances'}">
+                                                <i class="fa fa-grievances-plus" style="font-size: 18px;"></i> &nbsp; View Grievances </a>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-primary" style="width:100%";data-toggle="modal" data-target="#modalScrollableBody">
+                                                <i class="fa fa-grievances-plus" style="font-size: 18px;"></i>  Read Circular</button>
+                                        </div>
+
+                                    </form>
+                                </div></div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card"><div class="card-body">
+                                    <h4> <span id="formHeader" th:text="${addStatus==false?'New Grievances':'Update Grievances'}"></span> Form </h4></div>
+                                    <!--if not empty list-->
+                                    <div class="card-body">
+                                        <form th:action="${addStatus==false?'/grievances/save' :'/grievances/update'}" method="post"
+                                              th:object="${grievances}">
+
+                                            <!--/* id this comment not visualize */-->
+                                            <!--Id-->
+                                            <div class="form-group" th:if="${addStatus==true}">
+                                                <label for="id" class="form-label "> Id </label>
+                                                <input type="text" class="form-control" th:field="*{id}" id="id" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label th:for="${'name'}" class="form-label "> Name </label>
+                                                <input type="text" class="form-control" th:field="*{name}" required>
+                                                <p class="text-danger" th:if="${#fields.hasErrors('name')}"
+                                                   th:errors="*{name}">Error Name</p>
+                                            </div>
+                                            <!--Description-->
+                                            <div class="form-group">
+                                                <label th:for="${'description'}" class="form-label "> Description</label>
+
+                                                <textarea class="form-control" th:field="*{description}" required></textarea>
+                                                <p class="text-danger" th:if="${#fields.hasErrors('description')}"
+                                                   th:errors="*{description}">Error description</p>
+
+                                            </div>
+                                            <!--participant-->
+                                            <div class="form-group">
+                                                <label th:for="${'participant'}" class="form-label "> Participant </label>
+
+                                                <input type="text" class="form-control" th:field="*{participant}">
+                                                <p class="text-danger" th:if="${#fields.hasErrors('participant')}"
+                                                   th:errors="*{participant}">Error Participant</p>
+
+                                            </div>
+                                            <!--Remark-->
+                                            <div class="form-group">
+                                                <label th:for="${'remark'}" class="form-label "> Remark </label>
+
+                                                <input type="text" class="form-control" th:field="*{remark}" required>
+                                                <p class="text-danger" th:if="${#fields.hasErrors('remark')}"
+                                                   th:errors="*{remark}">Error Remark</p>
+
+                                            </div>
+                                            <!--priority-->
+                                            <div class="form-group">
+                                                <label th:for="${'priority'}" class="form-label "> Priority </label>
+
+                                                <div class="custom-control" style="display: inline"
+                                                     th:each="priority, index : ${priorities}">
+                                                    <input type="radio" class="custom-control" required th:field="*{priority}"
+                                                           th:value="${priority}" th:id="${priority}+${index.index}" style="display: inline"/>
+                                                    <!-- <label class="custom-control-label" th:for="${#ids.prev('gender')}"-->
+                                                    <label class="" th:for="${priority}+${index.index}"
+                                                           th:text="${priority.priority}" style="display: inline"> radio
+                                                    </label>
+                                                </div>
+
+                                                <!--  <input type="test" class="form-control" th:field="*{priority}" required>-->
+                                                <p class="text-danger" th:if="${#fields.hasErrors('priority')}"
+                                                   th:errors="*{priority}">Error Priority</p>
+
+                                            </div>
+
+
+                                            <div class="form-group">
+
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i> <span
+                                                        th:text="${addStatus==false?'Save' : 'Update'}"></span>
+                                                </button>
+
+                                            </div>
+
+
+                                        </form>
+                                    </div>
+                                    <div class="modal fade" id="modalScrollableBody" tabindex="-1" role="dialog"
+                                         aria-labelledby="modalScrollableBodyTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalScrollableBodyTitle">Grievances Circular</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas feugiat, urna ut pharetra ultricies, augue
+                                                        tellus euismod turpis, vitae semper ipsum augue a velit. Pellentesque id finibus velit. Ut sagittis maximus maximus. In
+                                                        aliquet enim sed turpis mollis ornare. Suspendisse elementum a magna eu luctus. Etiam tincidunt mattis mauris, non
+                                                        lobortis nulla tempor in. Sed lacinia metus viverra, scelerisque enim sed, sollicitudin magna. Sed non augue sit amet
+                                                        nisl tincidunt ultrices. Praesent nec lacus eget tortor ultricies pulvinar. Praesent euismod ut lorem sit amet
+                                                        bibendum.</p>
+                                                    <p>Pellentesque vitae convallis magna. Morbi non elementum mi. Suspendisse at mollis arcu, eu tempus tellus.
+                                                        Aenean fringilla eleifend nisl. Aliquam erat volutpat. Sed a tortor quis tortor convallis mattis. Nunc congue massa
+                                                        vitae lectus dictum, a mattis metus dignissim.</p>
+                                                    <p>Nulla feugiat, lorem sit amet vehicula hendrerit, velit eros pellentesque est, at dictum elit risus id diam. In
+                                                        ante lorem, blandit vel dui in, sagittis laoreet erat. Proin dictum sit amet urna ut placerat. Pellentesque laoreet,
+                                                        dolor vitae facilisis feugiat, quam quam gravida elit, nec sagittis orci metus at leo. In scelerisque felis vel neque
+                                                        lobortis ullamcorper. Praesent quis sagittis neque, nec eleifend neque. Suspendisse at consectetur eros. Mauris lectus
+                                                        libero, molestie vel dapibus sit amet, luctus gravida ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+                                                        libero neque, pretium quis malesuada eget, congue ac mauris.</p>
+                                                    <p>Aenean quis tristique libero. Vestibulum sagittis, sapien gravida lobortis posuere, diam arcu auctor libero, at
+                                                        tempor mauris nulla vel odio. Phasellus semper eros rutrum mi scelerisque interdum. Maecenas euismod est sit amet justo
+                                                        vestibulum bibendum. Etiam scelerisque sodales nisi nec efficitur. Pellentesque arcu mauris, accumsan eget mollis at,
+                                                        ultrices id ante. Duis in mi eget nisi euismod gravida. Cras pharetra sollicitudin elit, vel eleifend felis dignissim
+                                                        non. Integer leo ex, feugiat eu lorem egestas, mollis suscipit nulla. Duis quis tellus nulla. Maecenas risus ipsum,
+                                                        fringilla at orci sit amet, mattis fringilla orci. Vivamus odio tellus, ornare eu leo id, pellentesque sodales
+                                                        ante.</p>
+                                                    <p>Sed laoreet ut ligula eget fringilla. Suspendisse dapibus dui at ex dictum hendrerit. Vestibulum ante ipsum
+                                                        primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi efficitur ac purus eget dignissim. Aliquam
+                                                        ultrices, orci finibus sollicitudin tempus, elit metus scelerisque magna, a rhoncus justo nisl vitae lectus. Nam mollis
+                                                        sed est ut ullamcorper. Curabitur consequat feugiat erat quis molestie. Fusce suscipit sem et nulla dignissim, id
+                                                        malesuada felis laoreet. Cras leo ligula, vulputate id mi ac, gravida porta sem. Mauris ullamcorper lectus ac eleifend
+                                                        elementum. Ut id velit consequat, facilisis leo vitae, volutpat nisi. Nunc hendrerit libero mi. Integer scelerisque
+                                                        mattis neque placerat condimentum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
+                                                        egestas. Nulla eu odio mi. Duis interdum vulputate turpis pretium congue.</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
-
-                    <!--  <input type="test" class="form-control" th:field="*{priority}" required>-->
-                    <p class="text-danger" th:if="${#fields.hasErrors('priority')}"
-                       th:errors="*{priority}">Error Priority</p>
                 </div>
             </div>
-
-
-            <div class="form-group row">
-                <div class="offset-sm-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary">
-                        <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i> <span
-                            th:text="${addStatus==false?'Save' : 'Update'}"></span>
-                    </button>
-                </div>
-            </div>
-
         </div>
-    </form>
-</div>
-
-
-<!--footer include-->
-<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
-<!--script include-->
-<script th:replace="~{fragments/script :: scriptFragment}"></script>
-
-
+    </div><!-- content-wrapper end -->
+    <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+</div><!-- wrapper end -->
+<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
 </body>
 </html>

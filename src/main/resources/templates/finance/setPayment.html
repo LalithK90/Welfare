@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+
+
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card"><div class="card-body">
+                                    <h4>Set Payments</h4></div>
+                                    <div class="card-body">
+                                        <form role="form">
+                                            <div class="form-group">
+
+                                                <label for="example-select-custom" >Financial Year</label>
+                                                <select class="form-control custom-select" id="example-select-custom">
+                                                    <option selected>Custom select</option>
+                                                    <option>2019 - 2020</option>
+                                                    <option>2020 - 2021</option>
+                                                    <option>2021 - 2022</option>
+                                                </select>
+
+
+
+
+                                            </div>
+                                            <div class="form-group">
+
+                                                <label for="exampleInputEmail2">
+                                                    Registration Fee
+                                                </label>
+                                                <input type="Text" class="form-control" id="exampleInputEmail2" />
+                                            </div>
+                                            <div class="form-group">
+
+                                                <label for="exampleInputEmail2">
+                                                    Monthly Installment
+                                                </label>
+                                                <input type="Text" class="form-control" id="exampleInputEmail2" />
+                                            </div>
+                                            <div class="form-group">
+
+                                                <label for="exampleInputEmail2">
+                                                    Year Collection
+                                                </label>
+                                                <input type="Text" class="form-control" id="exampleInputEmail2" readonly />
+                                            </div>
+                                            <!--  <div class="form-group">
+
+
+                                                  <label>
+                                                      Add Status
+                                                  </label><br>
+                                                  <label for="1">Current Year</label> <input  type="radio" id="1"><br>
+                                                  <label for="1">Past Year</label> <input  type="radio" id="2"><br>
+                                                  <label for="3">Future Year</label> <input  type="radio" id="3"><br>
+
+                                              </div>-->
+
+
+
+                                            <button type="submit" class="btn btn-primary">
+                                                Save Financial Year
+                                            </button>
+                                        </form>
+                                    </div></div>
+                            </div>
+                            <div class="col-md-8">
+
+                                <div class="card"><div class="card-body">
+                                    <h4>Financial Years List </h4></div>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>
+                                                    #
+                                                </th>
+                                                <th>
+                                                    Financial Year
+                                                </th>
+                                                <th>
+                                                    Registration Fee
+                                                </th>
+                                                <th>
+                                                    Annual Installment
+                                                </th>
+                                                <th>
+                                                    Action
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    1
+                                                </td>
+                                                <td>
+                                                    2018
+                                                </td>
+                                                <td>
+                                                    Rs. 300.00
+                                                </td>
+                                                <td>
+                                                    Rs. 3000.00
+                                                </td>
+                                                <td>
+                                                    Edit
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    2
+                                                </td>
+                                                <td>
+                                                    2019
+                                                </td>
+                                                <td>
+                                                    Rs. 400.00
+                                                </td>
+                                                <td>
+                                                    Rs. 3000.00
+                                                </td>
+                                                <td>
+                                                    Edit
+                                                </td>
+                                            </tr>
+                                            <tr class="table-success">
+                                                <td>
+                                                    3
+                                                </td>
+                                                <td>
+                                                    2020
+                                                </td>
+                                                <td>
+                                                    Rs. 500.00
+                                                </td>
+                                                <td>
+                                                    Rs. 3000.00
+                                                </td>
+                                                <td>
+                                                    Edit
+                                                </td>
+                                            </tr>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- content-wrapper end -->
+    <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+</div><!-- wrapper end -->
+<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
+</body>
+</html>
+

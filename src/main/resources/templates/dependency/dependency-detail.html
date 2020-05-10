@@ -1,78 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/header :: headerFragment}">
-    <meta charset="UTF-8">
-    <title>Thymeleaf Springboot </title>
-</head>
-<body>
-<nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
-<nav th:replace="~{fragments/sidebar :: sidebarFragment}"></nav>
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
 
-<!--Page header -->
-<div class="container-fluid bg-secondary form-Border">
-    <div class="row text-center formManagement border-info">
-        <div class="col">
-            <a class="btn btn-primary" href="/home">
-                <i class="fa fa-home" style="font-size: 20px"></i> &nbsp; Home
-            </a>
-        </div>
-        <div class="col">
-            <h4 class="text-light text-center">
-             <!--   <strong>
-                    <span id="formHeader"
-                          th:text="${dependencyDetail.province.province}+${' '}+${dependencyDetail.name}"></span>
-                </strong>-->
-            </h4>
-        </div>
-        <div class="col">
-            <a href="/dependency" class="btn btn-primary">
-                <i class="fa fa-list"></i>&nbsp; View List
-            </a>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>First sud Header</h4>
+                                <form role="form">
+                                    <a href="/dependency">
+                                        <button class="btn btn-primary">
+
+                                            <i class="fa fa-step-backward mr-1"></i>Back
+                                        </button>
+                                    </a>
+                                    <a href="/dependency" class="btn btn-primary">
+                                        <i class="fa fa-list"></i>&nbsp; View List
+                                    </a>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-body"  th:fragment="dependencyDetail">
+                                <h4>Secondary Header </h4>
+                                   <!--/* id this comment not visualize */-->
+                                    <!--Id-->
+                                    <div class="form-group row">
+                                        <label class="form-label "> Id </label>
+                                        <p class="display_detail" th:text="${dependencyDetail.id}"></p>
+                                    </div>
+
+                                <div class="form-group row">
+                                    <label class="form-label "> Name </label>
+                                    <p class="display_detail" th:text="${dependencyDetail.name}"></p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
-<div class="container-fluid" th:fragment="dependencyDetail">
-    <div class="offset-3 col-6">
-        <!--/* id this comment not visualize */-->
-        <!--Id-->
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label "> Id </label>
-            <div class="col-sm-10">
-                <p class="display_detail" th:text="${dependencyDetail.id}"></p>
-            </div>
-        </div>
-        <!--Province-->
-       <!-- <div class="form-group row">
-            <label th:for="${'province'}" class="col-sm-2 col-form-label "> Province </label>
-            <div class="col-sm-10">
-                <p class="display_detail" th:text="${dependencyDetail.province.province}"></p>
-            </div>
-        </div>-->
-        <!--Dependancy name-->
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label "> Name </label>
-            <div class="col-sm-10">
-                <p class="display_detail" th:text="${dependencyDetail.name}"></p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="form-group row">
-    <div class="offset-sm-2 col-sm-10 text-center">
-        <a href="/dependency">
-            <button class="btn btn-primary">
-
-                <i class="fa fa-step-backward mr-1"></i>Back
-            </button>
-        </a>
-    </div>
-</div>
-<!--footer include-->
-<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
-<!--script include-->
-<script th:replace="~{fragments/script :: scriptFragment}"></script>
-
+</div><!-- content-wrapper end -->
+<footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+</div><!-- wrapper end -->
+<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
 </body>
 </html>

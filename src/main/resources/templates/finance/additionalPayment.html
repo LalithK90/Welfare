@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+
+
+
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card"><div class="card-body">
+                            <h4>Additional Payment Collection</h4></div>
+                            <div class="card-body">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label>Collection type</label>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" name="exampleRadios" id="exampleRadios1" value="optionOne" checked>
+                                            <label class="form-check-label" for="exampleRadios1">Optional Payment</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" name="exampleRadios" id="exampleRadios2" value="optionTwo">
+                                            <label class="form-check-label" for="exampleRadios2">Mandatory Payment</label>
+                                        </div></div>
+
+                                    <div class="form-group">
+
+                                        <label for="example-select-custom" >Financial Year</label>
+                                        <select class="form-control custom-select" id="example-select-custom">
+                                            <option selected>Custom select</option>
+                                            <option>2019 - 2020</option>
+                                            <option>2020 - 2021</option>
+                                            <option>2021 - 2022</option>
+                                        </select>
+
+
+
+
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="exampleInputEmail2">
+                                            Additional Payment Amount
+                                        </label>
+                                        <input type="Text" class="form-control" id="exampleInputEmail2" />
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="exampleInputEmail3">
+                                            Additional Payment Reason
+                                        </label>
+                                        <input type="Text" class="form-control" id="exampleInputEmail3" />
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="exampleInputEmail4">
+                                            Date WEF
+                                        </label>
+                                        <input type="date" class="form-control" id="exampleInputEmail4" />
+                                    </div>
+
+
+
+                                    <button type="submit" class="btn btn-primary">
+                                        Save Financial Year
+                                    </button>
+                                </form>
+                            </div></div>
+                    </div>
+                    <div class="col-md-8">
+
+                        <div class="card"><div class="card-body">
+                            <h4>Financial Years List </h4></div>
+                            <div class="card-body" id="financialYearsListTable" th:if="${not #lists.isEmpty(additionalPayments)}">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Financial Year</th>
+                                        <th>Amount</th>
+                                        <th>Reason</th>
+                                        <th>WEF - Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr th:each="additionalPayments, rowCount : ${additionalPayments}" scope="row">
+                                        <td th:text="${rowCount.count}"></td>
+                                        <td th:text="${additionalPayments.financialYear}"></td>
+                                        <td th:text="${additionalPayments.amount}"></td>
+                                        <td th:text="${additionalPayments.reason}"></td>
+                                        <td th:text="${additionalPayments.dateWEF}"></td>
+                                        <td><a class="btn btn-success btn-sm" th:href="${'/additionalPayment/' + additionalPayments.id}" id="financialYearsView"><i
+                                                class="fa fa-folder-open"></i>&nbsp;View</a>
+                                            <a class="btn btn-primary btn-sm" id="financialYearsEdit"
+                                               th:href="${'/additionalPayment/edit/' + additionalPayments.id}"><i
+                                                    class="fa fa-edit"></i>&nbsp;Edit</a>
+                                            <a class="btn btn-danger btn-sm" id="financialYearsRemove"
+                                               th:href="${'/additionalPayment/remove/' + additionalPayments.id}"
+                                               th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                               th:onclick="if(!(confirm('Are you want to delete this financialYears ?'))) return false"
+                                            ><i
+                                                    aria-hidden="true" class="fa fa-trash"></i>
+                                                Delete</a>
+
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div><!-- content-wrapper end -->
+<footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+</div><!-- wrapper end -->
+<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
+</body>
+</html>

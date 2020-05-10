@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+
+
+
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card"><div class="card-body">
+                                    <form role="form">
+                                        <h4>Individual Payment Section</h4>
+                                        <hr>
+                                        <div class="form-group">
+
+                                            <label for="exampleInputEmail1">
+                                                EPF No
+                                            </label>
+                                            <input type="email" class="form-control" id="exampleInputEmail1" />
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label for="exampleInputPassword1">
+                                                Name
+                                            </label>
+                                            <input type="text" class="form-control"/>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label for="exampleInputPassword1">
+                                                Location
+                                            </label>
+                                            <select class="form-control" id="exampleInputPassword1">
+                                                <option>BIA</option>
+                                                <option>RMA</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label for="exampleInputPassword1">
+                                                Section
+                                            </label>
+                                            <select> class="form-control" id="exampleInputPassword1">
+                                                <option>A Group</option>
+                                            </select>
+                                        </div>
+
+
+
+                                        <button type="submit" class="btn btn-primary">
+                                            Paid
+                                        </button>
+                                    </form>
+                                </div></div>
+                            </div>
+                            <div class="col-md-8">
+
+                                <div class="card"><div class="card-body"><h4>Bulk Payment Section</h4>
+                                    <hr> </div>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>
+                                                    EPF
+                                                </th>
+                                                <th>
+                                                    Name
+                                                </th>
+                                                <th>
+                                                    Due Payment
+                                                </th>
+                                                <th>
+                                                    Amount Paid
+                                                </th>
+                                                <th>
+                                                    Select
+                                                </th>
+                                                <th>
+                                                    Action
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    5793
+                                                </td>
+                                                <td>
+                                                    W B Prasad
+                                                </td>
+                                                <td>
+                                                    Rs. 2750.00
+                                                </td>
+                                                <td>
+                                                    <input type="text" value="250.00">
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>
+                                                    <button class="btn-success">Paid</button>
+                                                </td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- content-wrapper end -->
+    <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+</div><!-- wrapper end -->
+<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
+</body>
+</html>

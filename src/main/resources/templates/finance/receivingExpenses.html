@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <div class="card bg-gradient-gray"><div class="card-body ">
+                                    <div class="card-body row">
+                                        <div class="col-md-6">
+                                            <label for="fromDate">From Date</label><input class="form-control " type="date" id="fromDate" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="toDate">To Date</label><input class="form-control " type="date" id="toDate" />
+                                        </div>
+                                        <div class="col-md-6"><br/><button class="btn-success" > Today Only</button></div>
+                                        <div class="col-md-6"><br/><button class="btn-success" > Search Date Range</button></div>
+                                    </div> </div></div></div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card"><div class="card-body"><h4>Receiving List</h4>
+                                            <hr> </div>
+                                            <div class="card-body">
+                                                <table class="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>
+                                                            EPF
+                                                        </th>
+                                                        <th>
+                                                            Name
+                                                        </th>
+                                                        <th>
+                                                            Amount
+                                                        </th>
+                                                        <th>
+                                                            Date
+                                                        </th>
+
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            5793
+                                                        </td>
+                                                        <td>
+                                                            W B Prasad
+                                                        </td>
+                                                        <td>
+                                                            250.00
+                                                        </td>
+                                                        <td>
+                                                            28-05-2020
+                                                        </td>
+
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+
+
+
+                                            </div></div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="card"><div class="card-body"><h4>Expenses List</h4>
+                                            <hr> </div>
+                                            <div class="card-body">
+                                                <table class="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>
+                                                            EPF
+                                                        </th>
+                                                        <th>
+                                                            Reason
+                                                        </th>
+                                                        <th>
+                                                            Amount
+                                                        </th>
+                                                        <th>
+                                                            Date
+                                                        </th>
+
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            5793
+                                                        </td>
+                                                        <td>
+                                                            Funeral fund
+                                                        </td>
+                                                        <td>
+                                                            Rs. 30000.00
+                                                        </td>
+                                                        <td>
+                                                            20-12-2020
+                                                        </td>
+
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="jumbotron">Last Payment Successfully Updated
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- content-wrapper end -->
+        <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+    </div><!-- wrapper end -->
+    <script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
+</body>
+</html>

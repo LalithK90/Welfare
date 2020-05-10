@@ -72,5 +72,4 @@ public class GrievancesController implements AbstractController<Grievances, Inte
         return "redirect:/grievances";
     }
 
-
 }

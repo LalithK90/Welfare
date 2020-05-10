@@ -1,123 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/header :: headerFragment}">
-    <meta charset="UTF-8">
-    <title>Thymeleaf Springboot </title>
-</head>
-<body>
-<nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
-<nav th:replace="~{fragments/sidebar :: sidebarFragment}"></nav>
-<!--Header-->
-<div class="container-fluid bg-secondary form-Border">
-    <div class="row text-center formManagement border-info">
-        <div class="col">
-            <a class="btn btn-success" id="newDependency" th:href="${'/dependency/add'}">
-                <i class="fa fa-dependency-plus" style="font-size: 18px;"></i> &nbsp; Add Dependency </a>
-        </div>
-        <div class="col">
-            <h4 class="text-info text-center">
-                <strong>
-                    Dependency Management
-                </strong>
-            </h4>
-        </div>
-        <div class="col"></div>
-    </div>
-</div>
-<div class="container-fluid bg-dark formBorder">
-    <div class="col-sm-12 flex-column ">
-        <!--if not empty list-->
-        <div class="row" id="dependencyListTable" th:if="${not #lists.isEmpty(dependencys)}">
-            <div class="col-sm-12">
-                <table class="table table-hover table-striped" id="myTable">
-                    <thead class="thead-inverse">
-                    <tr>
-                        <th>Index</th>
-                        <th>Name</th>
-                        <th>Relationship</th>
-                        <th>Date of Birth</th>
-                        <th>NIC No</th>
-                        <th>Current Status</th>
-                        <th>Remark</th>
-                        <th>Modify</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="dependency, rowCount : ${dependencys}" scope="row">
-                        <th th:text="${rowCount.count}"></th>
-                        <th th:text="${dependency.name}"></th>
-                        <th th:text="${dependency.relationship.relationship}"></th>
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
 
-                        <th th:text="${dependency.dob}"></th>
-                        <th th:text="${dependency.nic}"></th>
-                        <th th:text="${dependency.currentStatus}"></th>
-                        <th th:text="${dependency.remark}"></th>
 
-                        <th><a class="btn btn-success btn-sm" th:href="${'/dependency/' + dependency.id}" id="dependencyView"><i
-                                class="fa fa-folder-open"></i>&nbsp;View</a>
-                            <a class="btn btn-primary btn-sm" id="dependencyEdit"
-                               th:href="${'/dependency/edit/' + dependency.id}"><i
-                                    class="fa fa-edit"></i>&nbsp;Edit</a>
-                            <a class="btn btn-danger btn-sm" id="dependencyRemove"
-                               th:href="${'/dependency/remove/' + dependency.id}"
-                               th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
-                               th:onclick="if(!(confirm('Are you want to delete this civilStatus ?'))) return false"
-                            ><i
-                                    aria-hidden="true" class="fa fa-trash"></i>
-                                Delete</a>
 
-                        </th>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!--if empty list-->
-        <div class="row" id="dependencyNotList" th:if="${ #lists.isEmpty(dependencys)}">
-            <div class="col-sm-12">
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h3 class="text-center text-danger">
-                        <strong>There is no dependency upto know please add dependency to the system
-                            using add dependency button.
-                        </strong>
-                    </h3>
-                </div>
-            </div>
-            <script>
-                /*active boostrap alert - start*/
-                $(".alert").alert();
-                /*active boostrap alert - end*/
-            </script>
-        </div>
-        <!--Show saved dependency-->
-        <div class="row" th:if="${dependencyDetail!=null}">
-            <div class="col-sm-12">
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="container">
-                        <div th:replace="~{dependency/dependency-detail :: dependencyDetail}"></div>
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4>First sud Header</h4>
+                                        <form role="form">
+                                            <a class="btn btn-success" id="newDependency" th:href="${'/dependency/add'}">
+                                                <i class="fa fa-dependency-plus" style="font-size: 18px;"></i> &nbsp; Add Dependency </a>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card">
+                                    <div class="card-body table-responsive" id="dependencyListTable" th:if="${not #lists.isEmpty(dependencys)}">
+                                        <h4>Secondary Header </h4>
+                                    <!--if not empty list-->
+                                    <table class="table table-hover table-striped" id="myTable">
+                                            <thead class="thead-inverse">
+                                            <tr>
+                                                <th>Index</th>
+                                                <th>Name</th>
+                                                <th>Relationship</th>
+                                                <th>Date of Birth</th>
+                                                <th>NIC No</th>
+                                                <th>Current Status</th>
+                                                <th>Remark</th>
+                                                <th>Modify</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="dependency, rowCount : ${dependencys}" scope="row">
+                                                <td th:text="${rowCount.count}"></td>
+                                                <td th:text="${dependency.name}"></td>
+                                                <td th:text="${dependency.relationship.relationship}"></td>
+                                                <td th:text="${dependency.dob}"></td>
+                                                <td th:text="${dependency.nic}"></td>
+                                                <td th:text="${dependency.currentStatus}"></td>
+                                                <td th:text="${dependency.remark}"></td>
+                                                <td><a class="btn btn-success btn-sm" th:href="${'/dependency/' + dependency.id}" id="dependencyView"><i
+                                                        class="fa fa-folder-open"></i>&nbsp;View</a>
+                                                    <a class="btn btn-primary btn-sm" id="dependencyEdit"
+                                                       th:href="${'/dependency/edit/' + dependency.id}"><i
+                                                            class="fa fa-edit"></i>&nbsp;Edit</a>
+                                                    <a class="btn btn-danger btn-sm" id="dependencyRemove"
+                                                       th:href="${'/dependency/remove/' + dependency.id}"
+                                                       th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                                       th:onclick="if(!(confirm('Are you want to delete this civilStatus ?'))) return false"
+                                                    ><i
+                                                            aria-hidden="true" class="fa fa-trash"></i>
+                                                        Delete</a>
+
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <!--if empty list-->
+                                        <div id="dependencyNotList" th:if="${ #lists.isEmpty(dependencys)}">
+                                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <h3 class="text-center text-danger">
+                                                    <strong>There is no dependency upto know please add dependency to the system
+                                                        using add dependency button.
+                                                    </strong>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <!--Show saved dependency-->
+                                        <div th:if="${dependencyDetail!=null}">
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <div class="container">
+                                                    <div th:replace="~{dependency/dependency-detail :: dependencyDetail}"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <script>
-                /*active boostrap alert - start*/
-                $(".alert").alert();
-                /*active boostrap alert - end*/
-            </script>
         </div>
 
-    </div>
-</div>
 
-<!--footer include-->
-<footer th:replace="~{fragments/footer1 :: footerFragment}"></footer>
-<!--script include-->
-<script th:replace="~{fragments/script :: scriptFragment}"></script>
 
+
+</div><!-- content-wrapper end -->
+<footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+</div><!-- wrapper end -->
+<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
 </body>
 </html>

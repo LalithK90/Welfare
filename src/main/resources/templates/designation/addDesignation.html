@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+
+
+
+
+
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>First sud Header</h4>
+                                <form role="form">
+                                    <span id="formHeader" th:text="${addStatus==false?'New Designation':'Update Designation'}"></span>
+                                    <a href="/designation" class="btn btn-primary"><i class="fa fa-list"></i>&nbsp; View List </a>
+
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Secondary Header </h4>
+
+                                <form th:action="${addStatus==false?'/designation/save' :'/designation/update'}" method="post"
+                                      th:object="${designation}">
+
+                                    <!--/* id this comment not visualize */-->
+                                    <!--Id-->
+                                    <div class="form-group" th:if="${addStatus==true}">
+                                        <label for="id" class="form-label "> Id </label>
+                                        <input type="text" class="form-control" th:field="*{id}" id="id" readonly>
+                                    </div>
+                                    <!--Name-->
+                                    <div class="form-group row">
+                                        <label th:for="${'name'}" class="form-label"> Designation </label>
+                                        <input type="text" class="form-control" th:field="*{name}" required>
+                                        <p class="text-danger" th:if="${#fields.hasErrors('name')}"
+                                           th:errors="*{name}">Error Name</p>
+                                    </div>
+                                    <!--shortName-->
+                                    <div class="form-group row">
+                                        <label th:for="${'shortName'}" class="col-form-label "> Short Designation Code</label>
+
+                                        <textarea class="form-control" th:field="*{shortName}" required></textarea>
+                                        <p class="text-danger" th:if="${#fields.hasErrors('shortName')}"
+                                           th:errors="*{shortName}">Error shortName</p>
+                                    </div>
+                                    <!--categoryType-->
+                                    <!--Enum test-->
+                                    <div class="form-group row">
+                                        <label th:for="${'categoryType'}" class="col-sm-4 col-form-label "> Category Type </label>
+                                        <select class="form-control" th:field="*{categoryType}">
+                                            <option th:each="categoryType : ${categoryTypes}"
+                                                    th:text="${categoryType.categoryType}"
+                                                    th:value="${categoryType}">
+
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <!--<div class="form-group row">
+                                        <label th:for="${'categoryType'}" class="form-label"> Category Type </label>
+
+                                        <input type="text" class="form-control" th:field="*{categoryType}">
+                                        <p class="text-danger" th:if="${#fields.hasErrors('categoryType')}"
+                                           th:errors="*{categoryType}">Error categoryType</p>
+                                    </div>-->
+                                    <!--salaryScale-->
+                                    <div class="form-group row">
+                                        <label th:for="${'salaryScale'}" class="col-sm-4 col-form-label "> Salary Scale  </label>
+                                        <select class="form-control" th:field="*{salaryScale}">
+                                            <option th:each="salaryScale : ${salaryScales}"
+                                                    th:text="${salaryScale.salaryScale}"
+                                                    th:value="${salaryScale}">
+
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <!--Remark-->
+                                    <div class="form-group row">
+                                        <label th:for="${'remark'}" class="form-label "> Remark </label>
+                                        <input type="text" class="form-control" th:field="*{remark}" required>
+                                        <p class="text-danger" th:if="${#fields.hasErrors('remark')}"
+                                           th:errors="*{remark}">Error Remark</p>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="offset-sm-2 col-sm-10">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i> <span
+                                                    th:text="${addStatus==false?'Save' : 'Update'}"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+
+                                </form>
+
+
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div><!-- content-wrapper end -->
+<footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+</div><!-- wrapper end -->
+<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
+</body>
+</html>
