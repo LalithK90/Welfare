@@ -32,7 +32,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4>Secondary Header </h4>
-                                <form th:action="${addStatus==false?'/employee/save' :'/employee/update'}" method="post" th:object="${employee}">
+                                <form th:action="${addStatus==true?'/employee/save' :'/employee/update'}" method="post" th:object="${employee}">
                                     <div class="row">
                                         <div class="col-md-6"><!--Left Side-->
                                             <!--ID -->
@@ -141,8 +141,8 @@
                                                         required>
                                                     <option value="">Please select</option>
                                                     <option th:each="designations : ${designation}"
-                                                            th:text="${designations.designation}"
-                                                            th:value="${designations}"
+                                                            th:text="${designations.name}"
+                                                            th:value="${designations.id}"
                                                             th:selected="${designations==employee.designation?'selected':'unselected'}"></option>
                                                 </select>
 
@@ -170,7 +170,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <img id="img" class="rounded" src="" th:src="${file.url}"
+                                                          <img id="img" class="rounded" src="" th:src="${file.url}"
                                                          style="height: 150px; width: 150px; border-radius: 10px" alt=""/>
                                                 </div>
                                                 <div class="form-group">
@@ -320,8 +320,8 @@
                                     </div>
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-primary">
-                                            <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i> <span
-                                                th:text="${addStatus==false?'Save' : 'Update'}"></span>
+                                            <i th:class="${addStatus==true?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i> <span
+                                                th:text="${addStatus==true?'Save' : 'Update'}"></span>
                                         </button>
                                     </div>
                                 </form>

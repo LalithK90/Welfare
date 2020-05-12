@@ -35,15 +35,42 @@ public class MakeAutoGenerateNumberService {
         else {
             newNumber = Integer.parseInt(currentYearLastTwoNumber + "0000");
         }
-        System.out.println("new number "+ newNumber);
+        System.out.println("new number " + newNumber);
         return newNumber;
     }
+
     // phone number length validator
     public String phoneNumberLengthValidator(String number) {
-        if ( number.length() == 9 ) {
+        if (number.length() == 9) {
             number = "0".concat(number);
         }
         return number;
     }
 
+    //make new NIC using old one
+    public String makeNewNIC(String oldNIC) {
+        String newNic = "";
+        String firstTwo = oldNIC.substring(0, 2);
+        if (oldNIC.length() < 12 && !firstTwo.equals("00")) {
+            int firstTwoValue = Integer.parseInt(firstTwo);
+            if (firstTwoValue < 99) {
+                newNic = "19".concat(oldNIC.substring(0, 5)).concat("0").concat(oldNIC.substring(5, 9));
+            }
+        } else {
+            newNic = oldNIC;
+        }
+        return newNic;
+    }
+
+    //make old nic number Using new number
+    public String makeOldNIC(String newNIC) {
+        String oldNic = "";
+        if (newNIC.length() > 10) {
+            String withOutYear = newNIC.substring(2);
+            oldNic = withOutYear.substring(0, 5).concat(newNIC.substring(7,12)).concat("V or X");
+        } else {
+            oldNic = newNIC;
+        }
+        return oldNic;
+    }
 }

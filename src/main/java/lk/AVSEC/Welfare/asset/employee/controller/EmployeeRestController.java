@@ -3,8 +3,8 @@ package lk.AVSEC.Welfare.asset.employee.controller;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import lk.AVSEC.Welfare.asset.designation.entity.Designation;
 import lk.AVSEC.Welfare.asset.employee.entity.Employee;
-import lk.AVSEC.Welfare.asset.employee.entity.Enum.Designation;
 import lk.AVSEC.Welfare.asset.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.MappingJacksonValue;
@@ -25,7 +25,7 @@ public class EmployeeRestController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping( value = "/getEmployee" )
+   /* @GetMapping( value = "/getEmployee" )
     public MappingJacksonValue getEmployeeByWorkingPlace(@RequestParam( "designation" ) String designation,
                                                          @RequestParam( "id" ) Integer id) {
         Employee employee = new Employee();
@@ -51,5 +51,5 @@ public class EmployeeRestController {
 
         return mappingJacksonValue;
     }
-
+*/
 }

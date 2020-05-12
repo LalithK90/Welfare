@@ -1,6 +1,12 @@
 package lk.AVSEC.Welfare.asset.employee.controller;
 
+import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.BloodGroup;
+import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.CivilStatus;
+import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Gender;
+import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Title;
 import lk.AVSEC.Welfare.asset.commonAsset.service.CommonService;
+import lk.AVSEC.Welfare.asset.designation.entity.Designation;
+import lk.AVSEC.Welfare.asset.designation.service.DesignationService;
 import lk.AVSEC.Welfare.asset.employee.entity.Employee;
 import lk.AVSEC.Welfare.asset.employee.entity.EmployeeFiles;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.EmployeeStatus;
@@ -18,11 +24,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @RequestMapping( "/employee" )
@@ -34,23 +38,30 @@ public class EmployeeController {
     private final DateTimeAgeService dateTimeAgeService;
     private final CommonService commonService;
     private final UserService userService;
+    private final DesignationService designationService;
 
     @Autowired
     public EmployeeController(EmployeeService employeeService, EmployeeFilesService employeeFilesService,
                               DateTimeAgeService dateTimeAgeService, CommonService commonService,
-                              UserService userService) {
+                              UserService userService, DesignationService designationService) {
         this.employeeService = employeeService;
         this.employeeFilesService = employeeFilesService;
 
         this.dateTimeAgeService = dateTimeAgeService;
         this.commonService = commonService;
         this.userService = userService;
+        this.designationService = designationService;
     }
 //----> Employee details management - start <----//
 
     // Common things for an employee add and update
     private String commonThings(Model model) {
-        commonService.commonEmployeeAndOffender(model);
+        model.addAttribute("title", Title.values());
+        model.addAttribute("gender", Gender.values());
+        model.addAttribute("civilStatus", CivilStatus.values());
+        model.addAttribute("employeeStatus", EmployeeStatus.values());
+        model.addAttribute("designation", designationService.findAll());
+        model.addAttribute("bloodGroup", BloodGroup.values());
         return "employee/addEmployee";
     }
 
@@ -67,6 +78,7 @@ public class EmployeeController {
     @RequestMapping
     public String employeePage(Model model) {
         model.addAttribute("employees", employeeService.findAll());
+        model.addAttribute("contendHeder", "ABC");
         return "employee/employee";
     }
 

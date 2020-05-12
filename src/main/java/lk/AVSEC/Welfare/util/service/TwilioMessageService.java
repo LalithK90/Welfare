@@ -13,7 +13,7 @@ public class TwilioMessageService {
     public static final String AUTH_TOKEN = "34381f51b977ee369654d66986be2ab0";
 
 
-    public void sendSMS(String number, String messageBody) {
+    public void sendSMS(String number, String messageBody) throws Exception{
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message message = Message
                 .creator(new PhoneNumber(number), new PhoneNumber("+19386666123"),
@@ -32,4 +32,5 @@ public class TwilioMessageService {
 
         System.out.println("Message "+message.getSid());
     }
+
 }

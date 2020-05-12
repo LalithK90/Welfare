@@ -34,10 +34,11 @@ public class CustomerController implements AbstractController<Customer, Integer>
         this.twilioMessageService = twilioMessageService;
     }
 
-    private String commonThings(Model model, Customer customer, Boolean addState) {
+    private String commonThings(Model model, Customer customer, Boolean addState, String header) {
         model.addAttribute("title", Title.values());
         model.addAttribute("customer", customer);
         model.addAttribute("addStatus", addState);
+        model.addAttribute("header", header);
         return "customer/addCustomer";
     }
 
@@ -47,25 +48,15 @@ public class CustomerController implements AbstractController<Customer, Integer>
         return "customer/customer";
     }
 
-    @Override
-    public String form(Model model) {
-        return null;
-    }
-
-    @Override
-    public String findById(Integer id, Model model) {
-        return null;
-    }
-
     @GetMapping("/add")
-    public String addForm(Model model) {
-        return commonThings(model, new Customer(), true);
+    public String form(Model model) {
+        return commonThings(model, new Customer(), true, "");
     }
 
     @PostMapping(value = {"/save", "/update"})
-    public String persist(Customer customer, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+    public String persist(Customer customer, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) throws Exception {
         if (bindingResult.hasErrors()) {
-            return commonThings(model, customer, true);
+            return commonThings(model, customer, true, "");
         }
 //phone number length validator
         if (customer.getMobile() != null) {
@@ -78,19 +69,18 @@ public class CustomerController implements AbstractController<Customer, Integer>
             if (customerService.lastCustomer() == null) {
                 System.out.println("last customer null");
                 //need to generate new one
-                customer.setCode("KMC"+makeAutoGenerateNumberService.numberAutoGen(null).toString());
+                customer.setCode("KMC" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
             } else {
-                System.out.println("last customer not null");
                 //if there is customer in db need to get that customer's code and increase its value
                 String previousCode = customerService.lastCustomer().getCode().substring(3);
-                customer.setCode("KMC"+makeAutoGenerateNumberService.numberAutoGen(previousCode).toString());
+                customer.setCode("KMC" + makeAutoGenerateNumberService.numberAutoGen(previousCode).toString());
             }
             //send welcome message and email
             if (customer.getEmail() != null) {
-              //  emailService.sendEmail(customer.getEmail(), "Welcome Message", "Welcome to Kmart Super...");
+                  emailService.sendEmail(customer.getEmail(), "Welcome Message", "Welcome to Kmart Super...");
             }
             if (customer.getMobile() != null) {
-            //    twilioMessageService.sendSMS(customer.getMobile(), "Welcome to Kmart Super");
+                    twilioMessageService.sendSMS(customer.getMobile(), "Welcome to Kmart Super");
             }
         }
 
@@ -100,7 +90,7 @@ public class CustomerController implements AbstractController<Customer, Integer>
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
-        return commonThings(model, customerService.findById(id), false);
+        return commonThings(model, customerService.findById(id), false, "");
     }
 
     @GetMapping("/delete/{id}")
@@ -110,7 +100,7 @@ public class CustomerController implements AbstractController<Customer, Integer>
     }
 
     @GetMapping("/{id}")
-    public String view(@PathVariable Integer id, Model model) {
+    public String findById(@PathVariable Integer id, Model model) {
         model.addAttribute("customerDetail", customerService.findById(id));
         return "customer/customer-detail";
     }

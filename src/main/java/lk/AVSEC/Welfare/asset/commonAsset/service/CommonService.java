@@ -1,5 +1,6 @@
 package lk.AVSEC.Welfare.asset.commonAsset.service;
 
+import lk.AVSEC.Welfare.asset.designation.entity.Designation;
 import lk.AVSEC.Welfare.asset.supplier.entity.Supplier;
 import lk.AVSEC.Welfare.asset.supplier.service.SupplierService;
 import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.BloodGroup;
@@ -7,9 +8,7 @@ import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.CivilStatus;
 import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Gender;
 import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Title;
 import lk.AVSEC.Welfare.asset.employee.controller.EmployeeRestController;
-import lk.AVSEC.Welfare.asset.employee.entity.Enum.Designation;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.EmployeeStatus;
-import lk.AVSEC.Welfare.asset.supplier.service.SupplierService;
 import lk.AVSEC.Welfare.util.service.MakeAutoGenerateNumberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,34 +23,9 @@ import java.util.stream.Collectors;
 public class CommonService {
     private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
     private final SupplierService supplierService;
-    //common things to employee and offender - start
-    public void commonUrlBuilder(Model model) {
-        model.addAttribute("addStatus", true);
-        model.addAttribute("designations", Designation.values());
-/*        model.addAttribute("provinces", Province.values());
-        model.addAttribute("districtUrl", MvcUriComponentsBuilder
-                .fromMethodName(WorkingPlaceRestController.class, "getDistrict", "")
-                .build()
-                .toString());
-        model.addAttribute("stationUrl", MvcUriComponentsBuilder
-                .fromMethodName(WorkingPlaceRestController.class, "getStation", "")
-                .build()
-                .toString());*/
-        Object[] arg = {"designation", "id"};
-        model.addAttribute("employeeUrl", MvcUriComponentsBuilder
-                .fromMethodName(EmployeeRestController.class, "getEmployeeByWorkingPlace", arg)
-                .build()
-                .toString());
-    }
 
-    public void commonEmployeeAndOffender(Model model) {
-        model.addAttribute("title", Title.values());
-        model.addAttribute("gender", Gender.values());
-        model.addAttribute("civilStatus", CivilStatus.values());
-        model.addAttribute("employeeStatus", EmployeeStatus.values());
-        model.addAttribute("designation", Designation.values());
-        model.addAttribute("bloodGroup", BloodGroup.values());
-    }
+
+
 
     //common things to employee and offender - end
     //common mobile number length employee,offender,guardian, petitioner - start
