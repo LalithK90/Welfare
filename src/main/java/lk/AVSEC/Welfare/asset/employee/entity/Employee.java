@@ -13,10 +13,7 @@ import lk.AVSEC.Welfare.asset.finance.entity.ExpensesFund;
 import lk.AVSEC.Welfare.asset.message.entity.EmailMessage;
 import lk.AVSEC.Welfare.asset.workingPlace.entity.WorkingPlace;
 import lk.AVSEC.Welfare.util.audit.AuditEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,6 +29,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonFilter("Employee")
+@ToString
 public class Employee extends AuditEntity {
 
     @Column(unique = true)
@@ -102,9 +100,8 @@ public class Employee extends AuditEntity {
     @ManyToMany(mappedBy = "employees")
     private List<EmailMessage> emailMessages;
 
-
     @Transient
-    private List<MultipartFile> files = new ArrayList<>();
+    private MultipartFile file;
 
     @Transient
     private List<String> removeImages = new ArrayList<>();
