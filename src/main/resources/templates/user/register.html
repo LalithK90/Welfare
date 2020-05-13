@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--Styles, meta data, and title are included-->
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title>Thymeleaf Springboot </title>
+</head>
+<body>
+<!--Nav bar is included-->
+<nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
+<form class="password-strength form p-4" action="/register/token" method="post">
+    <label>Email: <input id="myPassword" type="email" name="email" required class="form-control">
+    </label>
+    <button class="btn btn-success d-flex m-auto" type="submit">Submit
+    </button>
+
+</form>
+
+<!--footer is included-->
+<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+<!--script is included-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+</body>
+</html>

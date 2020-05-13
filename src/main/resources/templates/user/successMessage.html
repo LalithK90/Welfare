@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--Styles, meta data, and title are included-->
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title>Thymeleaf Springboot </title>
+</head>
+<body>
+<!--Nav bar is included-->
+<nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
+<p th:text="${successMessage}"></p>
+
+<!--footer is included-->
+<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+<!--script is included-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+</body>
+</html>
