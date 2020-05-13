@@ -31,7 +31,7 @@ public interface AbstractController<E, I> {
     /**
      * 5. Save and Update {} data using relevant entity belongs to model Attribute
      */
-    String persist(@Valid @ModelAttribute E e, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model);
+    String persist(@Valid @ModelAttribute E e, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) throws Exception;
 
     /**
      * 6. Remove One relevant things belongs provided entity {} id

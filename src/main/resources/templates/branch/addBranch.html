@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>First sud Header</h4>
+                                <form role="form">
+                                    <!--View List Button-->
+                                    <a href="/branch" class="btn btn-primary" tabindex="1">
+                                        <i class="fa fa-list" style="font-size: 20px"></i>&nbsp;&nbsp;View List
+                                    </a>
+                                    <!--Home Button-->
+                                    <a class="btn btn-primary" href="/home" tabindex="2">
+                                        <i class="fa fa-home" style="font-size: 20px"></i> &nbsp;&nbsp;Home
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-body"><!--Header Name-->
+                                <h4><span th:text="${addStatus==true?'Add New Branch':'Update Branch Details'}"></span> </h4>
+                                <form id="form" class="form-horizontal" th:action="${addStatus==true?'/branch/save':'/branch/update'}"
+                                      th:object="${branch}" method="POST" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <!--Left Side-->
+                                            <!--Id-->
+                                            <div class="form-group" id="idStatus" th:if="${addStatus==false}" >
+                                                <label class="control-label" for="id">ID :</label>
+                                                <input id="id" th:field="*{id}" class="form-control" type="text" readonly/>
+                                            </div>
+                                            <!--Name-->
+                                        <div class="form-group">
+                                                    <label class="control-label" for="name">Name :</label>
+                                                    <input id="name" th:field="*{name}" class="form-control" tabindex="4" type="text" required/>
+                                                    <span id="nameError" th:errors="*{name}"
+                                                          th:if="${#fields.hasErrors('name')}" class="error">Error Name</span>
+                                                </div>
+                                            </div>
+                                            <!--Land Number-->
+                                    <div class="form-group">
+                                                    <label class="control-label" for="land">Land No :</label>
+                                                    <input id="land" th:field="*{land}" class="form-control" tabindex="5" type="text" maxlength="10" min="9" required/>
+                                                    <span class="error" th:errors="*{land}"
+                                                          th:if="${#fields.hasErrors('land')}" id="mobileError">Error Land Number</span>
+                                            </div>
+                                            <!--Address-->
+                                    <div class="form-group">
+                                                    <label class="control-label" for="address">Address :</label>
+                                                    <textarea id="address" th:field="*{address}" class="form-control" tabindex="6" rows="4" style="font-size: medium"></textarea>
+                                                    <span class="error" th:errors="*{address}"
+                                                          th:if="${#fields.hasErrors('address')}" id="addressError">Error Address</span>
+                                            </div>
+                                            <!--Email-->
+                                    <div class="form-group">
+                                                    <label class="control-label" for="email">Email :</label>
+                                                    <input id="email" th:field="*{email}" class="form-control" tabindex="7" type="email" required/>
+                                                    <span id="emailError" th:errors="*{email}"
+                                                          th:if="${#fields.hasErrors('email')}" class="error">Error Email</span>
+                                            </div>
+
+                                            <!--Created by and created at-->
+                                            <div id="updateStatus" th:if="${addStatus==false}">
+                                                <!--Created By-->
+                                                <div class="form-group">
+                                                        <label class="control-label" for="createdBy">Created By :</label>
+                                                        <input id="createdBy" th:field="*{createdBy}" class="form-control" type="text" readonly/>
+                                                </div>
+                                                <!--Created At-->
+                                                <div class="form-group">
+                                                        <label class="control-label" for="createdAt">Created At :</label>
+                                                        <input id="createdAt" th:field="*{createdAt}" class="form-control" type="text" readonly/>
+                                                </div>
+                                        </div>
+                                        <!--Button-->
+                                        <div class="form-group">
+                                            <!--Back Button-->
+                                            <a class="btn btn-dark"  tabindex="8" href="/branch">
+                                                <i class="fas fa-arrow-circle-left" style="font-size: 20px"></i>&nbsp;&nbsp;Back
+                                            </a>
+                                            <!--Save Button-->
+                                            <button class="btn btn-success ml-5" type="submit" tabindex="9">
+                                                <i class="fa fa-save " style="font-size: 20px"></i>&nbsp;&nbsp;<span id="submit" th:text="${addStatus==true?'Save': 'Update'}"></span>
+                                            </button>
+                                            <!--Cancel Button-->
+                                            <button class="btn btn-warning ml-5" type="reset" tabindex="10">
+                                                <i class="far fa-times-circle" style="font-size: 20px"></i>&nbsp;&nbsp;Cancel
+                                            </button>
+                                        </div>
+                                        <!--Error-->
+                                        <div class="form-row">
+                                            <label id="errorLabel" th:if="${#fields.hasErrors('*')}" th:text="'Errors: '">Errors: </label>
+                                            <ul>
+                                                <li id="error" th:each="err: ${#fields.errors('*')}" th:text="${err}" class="error"></li>
+                                            </ul>
+                                        </div>
+
+                                </form>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div><!-- content-wrapper end -->
+<footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+</div><!-- wrapper end -->
+<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
+</body>
+</html>

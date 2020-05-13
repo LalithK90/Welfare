@@ -20,10 +20,10 @@ public class testController {
         return "finance/balance";
     }
 
- /*   @GetMapping("/financialYears1")
+    @GetMapping("/collectionView")
     public String templateTree() {
-        return "financialYear";
-    }*/
+        return "finance/collectionView";
+    }
 
     @GetMapping("/paymentSection")
     public String templateFour() {

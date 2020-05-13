@@ -20,8 +20,10 @@
                                         <div class="card-body">
                                             <h4>First sud Header</h4>
                                             <form role="form">
+<span id="formHeader" th:text="${addStatus==true?'New Role':'Update Role'}"></span>
 
-
+                                                <a class="btn btn-success" id="newUser" th:href="${'/role/add'}">
+                                                    <i class="fa fa-user-plus" style="font-size: 18px;"></i> &nbsp; Add User </a>
                                             </form>
                                         </div>
                                     </div>

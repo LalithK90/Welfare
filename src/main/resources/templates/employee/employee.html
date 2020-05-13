@@ -57,7 +57,7 @@
                                                 <td th:text="${employee.payRoleNumber}"></td>
                                                 <td th:text="${employee.callingName}"></td>
                                                 <td th:text="${employee.mobileOne}"></td>
-                                                <td th:text="${employee.designation.designation}"></td>
+                                                <td th:if="${employee.designation.name != null}" th:text="${employee.designation.name}"></td>
                                                 <td th:text="${employee.employeeStatus.employeeStatus}"></td>
                                                 <td>
                                                     <a id="employeeView" th:href="${'/employee/' + employee.id}" class="btn btn-success btn-sm"><i

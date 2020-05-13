@@ -6,7 +6,7 @@ import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.CivilStatus;
 import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Gender;
 import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Title;
 import lk.AVSEC.Welfare.asset.commonAsset.model.FileInfo;
-import lk.AVSEC.Welfare.asset.employee.entity.Enum.Designation;
+import lk.AVSEC.Welfare.asset.designation.entity.Designation;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.EmployeeStatus;
 import lk.AVSEC.Welfare.asset.finance.entity.ReceivingFund;
 import lk.AVSEC.Welfare.asset.finance.entity.ExpensesFund;
@@ -76,9 +76,6 @@ public class Employee extends AuditEntity {
     private BloodGroup bloodGroup;
 
     @Enumerated(EnumType.STRING)
-    private Designation designation;
-
-    @Enumerated(EnumType.STRING)
     private CivilStatus civilStatus;
 
     @Enumerated(EnumType.STRING)
@@ -92,6 +89,9 @@ public class Employee extends AuditEntity {
 
     @ManyToOne
     private WorkingPlace workingPlace;
+
+    @ManyToOne
+    private Designation designation;
 
     @OneToMany(mappedBy = "employee")
     private List<ExpensesFund> expensesFunds;

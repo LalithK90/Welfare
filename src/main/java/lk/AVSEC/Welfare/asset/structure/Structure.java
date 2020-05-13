@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class Structure {
-    @GetMapping("/testV")
+    @GetMapping("/dataTable")
     public String template(){
-        return "structure/testV";
+        return "structure/dataTable";
     }
 
 

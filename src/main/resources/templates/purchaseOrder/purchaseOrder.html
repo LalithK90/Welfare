@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+
+        <!--heading Area-->
+<div class="container-fluid bg-dark form-Border">
+    <div class="row text-center formManagement border-info">
+        <!-- New PR Button-->
+        <div class="col">
+            <a class="btn btn-success" href="/purchaseOrder/add" tabindex="1"><i class="fas fa-plus" style="font-size: 20px"></i>&nbsp;&nbsp;New</a>&nbsp;
+        </div>
+        <!-- List Name-->
+        <div class="col">
+            <h2 class="text-white text-center">
+                <strong>
+                    Purchase Request List
+                </strong>
+            </h2>
+        </div>
+        <!-- Home Button-->
+        <div class="col">
+            <a href="/home" id="searchShow" class="btn btn-purchaseOrderimary" tabindex="2">
+                <!--<i class="fa fa-user " style="font-size: 20px"></i>&nbsp;Add&nbsp;-->
+                <i class="fas fa-home" style="font-size: 20px"></i>&nbsp;&nbsp;Home
+                &nbsp;
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-dark formBorder text-center">
+    <!--Table view-->
+    <div class="col">
+        <div class="col" id="purchaseRequestListPresent" th:if="${not #lists.isEmpty(purchaseRequests)}">
+            <table class="table table-hover table-striped" id="myTable">
+                <thead>
+                    <tr>
+                        <th> Index</th>
+                        <th> Date</th>
+                        <th> Modify</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="purchaseOrder, rowCount : ${purchaseRequests}">
+                        <th th:text="${rowCount.count}"></th>
+                        <th th:text="${purchaseOrder.purchaseOrderDate}"></th>
+                        <th>
+                            <a id="purchaseRequestView" th:href="${'/purchaseOrder/view' + purchaseOrder.id}" class="btn btn-purchaseOrderimary btn-sm"><i class="fa fa-folder-open" style="font-size: 15px"></i>&nbsp;View</a>
+                            <a id="purchaseRequestEdit" th:href="${'/purchaseOrder/edit/' + purchaseOrder.id}" class="btn btn-success btn-sm"><i class="fa fa-edit" style="font-size: 15px"></i>&nbsp;Edit</a>
+                            <a id="purchaseRequestRemove" th:href="${'/purchaseOrder/delete/' + purchaseOrder.id}" class="btn btn-danger btn-sm">
+                                <!--th:if="${#authorization.expurchaseOrderession('hasRole(''ROLE_ADMIN'')')}"--><i class="fa fa-trash" style="font-size: 15px"></i> Delete</a>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--Error-->
+    <div class="row" th:if="${ #lists.isEmpty(purchaseRequests)}">
+        <div class="col-sm-12">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="text-center text-danger">
+                    <strong>There is no purchaseOrder upto now please add purchaseOrder to the system using "New" button.</strong>
+                </h3>
+            </div>
+        </div>
+        <script>
+            /*active boostrap alert - start*/
+            $(".alert").alert();
+            /*active boostrap alert - end*/
+        </script>
+    </div>
+</div>
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4>First sud Header</h4>
+                                        <form role="form">
+
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4>Secondary Header </h4></div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- content-wrapper end -->
+    <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+</div><!-- wrapper end -->
+<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
+</body>
+</html>
