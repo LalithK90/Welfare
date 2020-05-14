@@ -10,6 +10,7 @@ import lk.AVSEC.Welfare.asset.designation.service.DesignationService;
 import lk.AVSEC.Welfare.asset.employee.entity.Employee;
 import lk.AVSEC.Welfare.asset.employee.entity.EmployeeFiles;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.EmployeeStatus;
+import lk.AVSEC.Welfare.asset.employee.entity.Enum.Nationality;
 import lk.AVSEC.Welfare.asset.employee.service.EmployeeFilesService;
 import lk.AVSEC.Welfare.asset.employee.service.EmployeeService;
 import lk.AVSEC.Welfare.asset.userManagement.entity.User;
@@ -63,6 +64,7 @@ public class EmployeeController {
         model.addAttribute("employeeStatus", EmployeeStatus.values());
         model.addAttribute("designation", designationService.findAll());
         model.addAttribute("bloodGroup", BloodGroup.values());
+        model.addAttribute("Nationality", Nationality.values());
         return "employee/addEmployee";
     }
 
@@ -79,7 +81,7 @@ public class EmployeeController {
     @RequestMapping
     public String employeePage(Model model) {
         model.addAttribute("employees", employeeService.findAll());
-        model.addAttribute("contendHeder", "ABC");
+        model.addAttribute("contendHeader", "Employee Registration");
         return "employee/employee";
     }
 
@@ -98,7 +100,7 @@ public class EmployeeController {
     public String editEmployeeForm(@PathVariable("id") Integer id, Model model) {
         Employee employee = employeeService.findById(id);
         model.addAttribute("employee", employee);
-        model.addAttribute("newEmployee", employee.getPayRoleNumber());
+        model.addAttribute("newEmployee", employee.getEpf());
         model.addAttribute("addStatus", false);
         model.addAttribute("files", employeeFilesService.employeeFileDownloadLinks(employee));
         return commonThings(model);
@@ -138,22 +140,22 @@ public class EmployeeController {
                 }
             }
             //save employee images file
-                if (employee.getFile().getOriginalFilename() != null) {
-                    EmployeeFiles employeeFiles = employeeFilesService.findByName(employee.getFile().getOriginalFilename());
-                    if (employeeFiles != null) {
-                        // update new contents
-                        employeeFiles.setPic(employee.getFile().getBytes());
-                        // Save all to database
-                    } else {
-                        employeeFiles = new EmployeeFiles(employee.getFile().getOriginalFilename(),
-                                employee.getFile().getContentType(),
-                                employee.getFile().getBytes(),
-                                employee.getNic().concat("-" + LocalDateTime.now()),
-                                UUID.randomUUID().toString().concat("employee"));
-                        employeeFiles.setEmployee(employee);
-                    }
-                    employeeFilesService.persist(employeeFiles);
+            if (employee.getFile().getOriginalFilename() != null) {
+                EmployeeFiles employeeFiles = employeeFilesService.findByName(employee.getFile().getOriginalFilename());
+                if (employeeFiles != null) {
+                    // update new contents
+                    employeeFiles.setPic(employee.getFile().getBytes());
+                    // Save all to database
+                } else {
+                    employeeFiles = new EmployeeFiles(employee.getFile().getOriginalFilename(),
+                            employee.getFile().getContentType(),
+                            employee.getFile().getBytes(),
+                            employee.getNic().concat("-" + LocalDateTime.now()),
+                            UUID.randomUUID().toString().concat("employee"));
+                    employeeFiles.setEmployee(employee);
                 }
+                employeeFilesService.persist(employeeFiles);
+            }
             return "redirect:/employee";
 
         } catch (Exception e) {
@@ -192,6 +194,7 @@ public class EmployeeController {
         return "employeeWorkingPlace/addEmployeeWorkingPlace";
     }
 
+}
     //Send a searched employee to add working place
 /*
     @PostMapping( value = "/workingPlace" )
@@ -242,9 +245,9 @@ public class EmployeeController {
 */
 
 //----> EmployeeWorkingPlace - details management - end <----//
-
-}
 /*
+}
+
  try {
             List< FileModel > storedFile = new ArrayList< FileModel >();
 

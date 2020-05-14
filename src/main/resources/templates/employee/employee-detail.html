@@ -48,7 +48,7 @@
                                         </div>
                                         <div class="form-row text-right">
                                             <label class="control-label" for="payRoleNumber">Pay Role No :</label>
-                                            <p id="payRoleNumber" th:text="${employeeDetail.payRoleNumber}"
+                                            <p id="payRoleNumber" th:text="${employeeDetail.epf}"
                                                class="display_detail"></p>
                                         </div>
                                         <div class="form-row text-right">
@@ -183,20 +183,15 @@
                                                 <div class="row">
                                                     <div class="col" id="filesList" th:each="file, rowStat: ${files}">
                                                         <div class="col">
-                                                            <div class="alert alert-warning alert-dismissible fade show"
-                                                                 role="alert">
+                                                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                                                 <div class="card text-center">
                                                                     <div class="card-body">
-                                                                        <img id="img" class="rounded"
-                                                                             style="height: 150px; width: 150px; border-radius: 10px"
-                                                                             alt="Employee images"
-                                                                             th:src="${file.url}"/>
+                                                                        <img id="img" class="rounded" style="height: 150px; width: 150px; border-radius: 10px"
+                                                                             alt="Employee images" th:src="${file.url}"/>
                                                                     </div>
                                                                     <div class="card-footer bg-secondary text-light text-center">
                                                                         <p id="imgName" th:text="${file.filename}"></p>
-                                                                        <span> Uploaded Date :
-                                            <p id="imgCreateAt" th:text="${{file.createAt}}"></p>
-                                            </span>
+                                                                        <span> Uploaded Date : <p id="imgCreateAt" th:text="${{file.createAt}}"></p></span>
                                                                     </div>
                                                                 </div>
                                                             </div>

@@ -1,13 +1,12 @@
 package lk.AVSEC.Welfare.asset.employee.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.BloodGroup;
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.CivilStatus;
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Gender;
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Title;
+import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.*;
 import lk.AVSEC.Welfare.asset.commonAsset.model.FileInfo;
 import lk.AVSEC.Welfare.asset.designation.entity.Designation;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.EmployeeStatus;
+import lk.AVSEC.Welfare.asset.employee.entity.Enum.Nationality;
+import lk.AVSEC.Welfare.asset.employee.entity.Enum.UniformType;
 import lk.AVSEC.Welfare.asset.finance.entity.ReceivingFund;
 import lk.AVSEC.Welfare.asset.finance.entity.ExpensesFund;
 import lk.AVSEC.Welfare.asset.message.entity.EmailMessage;
@@ -33,12 +32,12 @@ import java.util.List;
 public class Employee extends AuditEntity {
 
     @Column(unique = true)
-    private String payRoleNumber;
+    private String epf;
 
     @Size(min = 5, message = "Your name cannot be accepted")
     private String name;
 
-    @Size(min = 5, message = "At least 5 characters should be included calling name")
+
     private String callingName;
 
     @Size(max = 12, min = 10, message = "NIC number is contained numbers between 9 and X/V or 12 ")
@@ -51,9 +50,43 @@ public class Employee extends AuditEntity {
     @Size(max = 10, message = "Mobile number length should be contained 10 and 9")
     private String mobileOne;
 
+    @Size(max = 10, message = "Mobile number length should be contained 10 and 9")
     private String mobileTwo;
 
+    @Size(max = 10, message = "Residence number length should be contained 10 and 9")
     private String land;
+
+    private String fullName;
+    private String nearestPoliceStation;
+
+    @Column(columnDefinition = "VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin NULL", length = 255)
+    private String temporaryAddress;
+
+    private String residenceNo;
+
+    @Size(max = 10, message = "Mobile number length should be contained 10 and 9")
+    private String officeNo;
+
+    @Size(max = 10, message = "Mobile number length should be contained 10 and 9")
+    private String emergencyContactNo;
+
+    private String position;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String appoimentDate;
+    private String intakeNo;
+
+    @Column(unique = true)
+    private String medicleNo;
+
+    @Enumerated(EnumType.STRING)
+    private Nationality nationality;
+
+    @Enumerated(EnumType.STRING)
+    private Religion religion;
+
+    @Enumerated(EnumType.STRING)
+    private UniformType uniformType;
 
     @Column(unique = true)
     private String email;
@@ -91,6 +124,8 @@ public class Employee extends AuditEntity {
     @ManyToOne
     private Designation designation;
 
+
+
     @OneToMany(mappedBy = "employee")
     private List<ExpensesFund> expensesFunds;
 
@@ -108,5 +143,7 @@ public class Employee extends AuditEntity {
 
     @Transient
     private List<FileInfo> fileInfos = new ArrayList<>();
+
+
 
 }

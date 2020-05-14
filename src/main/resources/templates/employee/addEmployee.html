@@ -19,14 +19,9 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h4>First sud Header</h4>
-                                        <!--<form role="form">-->
                                         <a class="btn btn-primary" href="/home"> <i class="fa fa-home"></i> Home
-                                        </a>
-                                        <a href="/employee" class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;
-                                            View List </a>
-
-                                        <!--
-                                                                                </form>-->
+                                        </a><a href="/employee" class="btn btn-primary"><i class="fa fa-list"></i>View
+                                        List </a>
                                     </div>
                                 </div>
                             </div>
@@ -51,10 +46,7 @@
                                                     </div>
                                                     <!--Tittle -->
                                                     <div class="form-group">
-
                                                         <label class="control-label" for="title">Title :</label>
-
-
                                                         <select id="title" th:field="*{title}" class="form-control"
                                                                 tabindex="3" required>
                                                             <option value="">Please select</option>
@@ -66,14 +58,19 @@
                                                     </div>
                                                     <!--Name-->
                                                     <div class="form-group">
-
                                                         <label class="control-label" for="name">Name :</label>
-
-
                                                         <input id="name" th:field="*{name}" class="form-control"
                                                                type="text" required/>
                                                         <span id="nameError" th:errors="*{name}"
                                                               th:if="${#fields.hasErrors('name')}" class="error">Error Name</span>
+                                                    </div>
+                                                    <!--Full Name-->
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="name">Full Name :</label>
+                                                        <input id="fullName" th:field="*{fullName}" class="form-control"
+                                                               type="text" required/>
+                                                        <span id="fullNameError" th:errors="*{fullName}"
+                                                              th:if="${#fields.hasErrors('fullName')}" class="error">Error Full Name</span>
                                                     </div>
                                                     <!--Calling Name-->
                                                     <div class="form-group">
@@ -89,9 +86,7 @@
                                                     </div>
                                                     <!--Nic-->
                                                     <div class="form-group">
-
                                                         <label class="control-label" for="nic">NIC No :</label>
-
                                                         <input id="nic" th:field="*{nic}" class="form-control"
                                                                tabindex="6" type="text"
                                                                maxlength="12"
@@ -99,13 +94,21 @@
                                                         <span class="error" id="nicError" th:errors="*{nic}"
                                                               th:if="${#fields.hasErrors('nic')}">Error
                                                                NIC Number</span>
-
+                                                    </div>
+                                                    <!--Nationality error-->
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="gender">Nationality :</label>
+                                                        <select id="nationality" th:field="*{nationality}" class="form-control" tabindex="7" required>
+                                                            <option value="">Please select</option>
+                                                            <option th:each="nationality : ${nationality}"
+                                                                    th:text="${nationality.nationality}"
+                                                                    th:value="${nationality}"
+                                                                    th:selected="${nationality==employee.nationality?'selected':'unselected'}"></option>
+                                                        </select>
                                                     </div>
                                                     <!--Gender-->
                                                     <div class="form-group">
-
                                                         <label class="control-label" for="gender">Gender :</label>
-
                                                         <select id="gender" th:field="*{gender}" class="form-control"
                                                                 tabindex="7" required>
                                                             <option value="">Please select</option>
@@ -114,11 +117,9 @@
                                                                     th:value="${genders}"
                                                                     th:selected="${genders==employee.gender?'selected':'unselected'}"></option>
                                                         </select>
-
                                                     </div>
                                                     <!--Date of birth-->
                                                     <div class="form-group">
-
                                                         <label class="control-label" for="dateOfBirth">Birth date
                                                             :</label>
                                                         <input id="dateOfBirth" th:field="*{dateOfBirth}"
@@ -127,16 +128,11 @@
                                                                required type="date"/>
                                                         <span th:errors="*{dateOfBirth}"
                                                               th:if="${#fields.hasErrors('dateOfBirth')}" class="error">Error Birthday</span>
-
                                                     </div>
                                                     <!--Blood group-->
                                                     <div class="form-group">
-
-                                                        <label class="control-label" for="bloodGroup">Blood Group
-                                                            :</label>
-
-                                                        <select id="bloodGroup" th:field="*{bloodGroup}"
-                                                                class="form-control" tabindex="9" required>
+                                                        <label class="control-label" for="bloodGroup">Blood Group :</label>
+                                                        <select id="bloodGroup" th:field="*{bloodGroup}" class="form-control" tabindex="9" required>
                                                             <option value="">Please select</option>
                                                             <option th:each="bloodGroups : ${bloodGroup}"
                                                                     th:text="${bloodGroups.bloodGroup}"
@@ -146,14 +142,11 @@
                                                                 select
                                                             </option>
                                                         </select>
-
                                                     </div>
                                                     <!--Designation-->
                                                     <div class="form-group">
-
                                                         <label class="control-label" for="designation">Designation
                                                             :</label>
-
                                                         <select id="designation" th:field="*{designation}"
                                                                 class="form-control" tabindex="10"
                                                                 required>
@@ -163,13 +156,17 @@
                                                                     th:value="${designations.id}"
                                                                     th:selected="${designations==employee.designation?'selected':'unselected'}"></option>
                                                         </select>
-
                                                     </div>
                                                     <!--Photos-->
                                                     <div class="form-group">
                                                         <label class="active ">Photos :</label>
+                                                        <input type="file" id="imgInp" name="file">
                                                         <div class="row">
-                                                            <div class="col" id="filesList" th:each="file, rowStat: ${files}">
+                                                            <img src="" alt="" id="blah">
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col" id="filesList"
+                                                                 th:each="file, rowStat: ${files}">
                                                                 <div class="col">
                                                                     <div class="alert alert-warning alert-dismissible fade show"
                                                                          role="alert">
@@ -181,7 +178,8 @@
                                                                                      th:src="${file.url}"/>
                                                                             </div>
                                                                             <div class="card-footer bg-secondary text-light text-center">
-                                                                                <p id="imgName" th:text="${file.filename}"></p>
+                                                                                <p id="imgName"
+                                                                                   th:text="${file.filename}"></p>
                                                                                 <span> Uploaded Date :
                                             <p id="imgCreateAt" th:text="${{file.createAt}}"></p>
                                             </span>
@@ -191,11 +189,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                       <!-- <button class="btn btn-success" type="submit" tabindex="21">
-                                                            <i class="fa fa-save " style="font-size: 20px"></i>&nbsp;
-                                                            &nbsp;<span id="submit"
-                                                                        th:text="${addStatus==true?'Save': 'Update'}"></span>
-                                                        </button>-->
                                                         <div class="form-row">
                                                             <label id="errorLabel" th:if="${#fields.hasErrors('*')}"
                                                                    th:text="'Errors: '">Errors: </label>
@@ -323,10 +316,8 @@
                                                     </div>
                                                     <!--Employee receivingExpensesStatus-->
                                                     <div class="form-group">
-
                                                         <label class="control-label" for="employeeStatus">Employee
                                                             Status :</label>
-
                                                         <select id="employeeStatus" th:field="*{employeeStatus}"
                                                                 class="form-control" tabindex="19"
                                                                 required>
@@ -336,22 +327,16 @@
                                                                     th:value="${employeeStatuss}"
                                                                     th:selected="${employeeStatuss==employee.employeeStatus?'selected':'unselected'}"></option>
                                                         </select>
-
                                                     </div>
                                                     <div class="form-group" id="updateStatus"
                                                          th:if="${addStatus==false}">
                                                         <label class="control-label" for="createdBy">Created By
                                                             :</label>
-
                                                         <input id="createdBy" th:field="*{createdBy}"
                                                                class="form-control" type="text"
                                                                readonly/>
-
                                                     </div>
-
-
                                                 </div>
-
                                             </div>
                                             <div class="card-footer">
                                                 <button type="submit" class="btn btn-primary">
@@ -378,11 +363,9 @@
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-
             reader.onload = function (e) {
                 $('#blah').attr('src', e.target.result);
             }
-
             reader.readAsDataURL(input.files[0]); // convert to base64 string
         }
     }

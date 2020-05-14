@@ -1,4 +1,4 @@
-package lk.AVSEC.Welfare.asset.commonAsset.model.Enum;
+package lk.AVSEC.Welfare.asset.employee.entity.Enum;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum Nationality {
     SL("Sri Lankan"),
-    OTR("Other");
+    OR("Other");
 
     private final String nationality;
 
