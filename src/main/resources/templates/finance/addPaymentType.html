@@ -40,7 +40,7 @@
                                             <label for="exampleInputPassword1" >
                                                 Payment Type
                                             </label><br>
-                                            <input type="radio" id="credit" class="form-text">
+                                            <input type="radio" id="credit">
                                             <label for="credit">Credit (බැර)</label><br>
                                             <input type="radio" id="debit">
                                             <label for="debit">Debit (හර)</label><br>
@@ -61,88 +61,40 @@
                                             <thead>
                                             <tr>
                                                 <th>
-                                                    #
+                                                    S/No
                                                 </th>
                                                 <th>
-                                                    Product
+                                                    Payment Name
                                                 </th>
                                                 <th>
-                                                    Payment Taken
+                                                    Payment Description
                                                 </th>
                                                 <th>
-                                                    Status
+                                                    Payment Type
                                                 </th>
                                             </tr>
                                             </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>
-                                                    1
-                                                </td>
-                                                <td>
-                                                    TB - Monthly
-                                                </td>
-                                                <td>
-                                                    01/04/2012
-                                                </td>
-                                                <td>
-                                                    Default
-                                                </td>
-                                            </tr>
-                                            <tr class="table-active">
-                                                <td>
-                                                    1
-                                                </td>
-                                                <td>
-                                                    TB - Monthly
-                                                </td>
-                                                <td>
-                                                    01/04/2012
-                                                </td>
-                                                <td>
-                                                    Approved
-                                                </td>
-                                            </tr>
-                                            <tr class="table-success">
-                                                <td>
-                                                    2
-                                                </td>
-                                                <td>
-                                                    TB - Monthly
-                                                </td>
-                                                <td>
-                                                    02/04/2012
-                                                </td>
-                                                <td>
-                                                    Declined
-                                                </td>
-                                            </tr>
-                                            <tr class="table-warning">
-                                                <td>
-                                                    3
-                                                </td>
-                                                <td>
-                                                    TB - Monthly
-                                                </td>
-                                                <td>
-                                                    03/04/2012
-                                                </td>
-                                                <td>
-                                                    Pending
-                                                </td>
-                                            </tr>
-                                            <tr class="table-danger">
-                                                <td>
-                                                    4
-                                                </td>
-                                                <td>
-                                                    TB - Monthly
-                                                </td>
-                                                <td>
-                                                    04/04/2012
-                                                </td>
-                                                <td>
-                                                    Call in to confirm
+                                           <tbody>
+                                            <tr th:each="addPaymentTypes, rowCount : ${addPaymentTypes}" scope="row">
+                                                <td th:text="${rowCount.count}"></td>
+                                                <td th:text="${addPaymentTypes.name}"></td>
+                                                <td th:text="${addPaymentTypes.description}"></td>
+                                                <td th:text="${addPaymentTypes.collectionType.collectionType}"></td>
+
+                                                <td><a class="btn btn-success btn-sm" th:href="${'/addPaymentType/' + addPaymentTypes.id}" id="addPaymentTypesView"><i
+                                                        class="fa fa-folder-open"></i>&nbsp;View</a>
+                                                    <a class="btn btn-primary btn-sm" id="addPaymentTypesEdit"
+                                                       th:href="${'/addPaymentType/edit/' + addPaymentTypes.id}"><i
+                                                            class="fa fa-edit"></i>&nbsp;Edit</a>
+                                                    <a class="btn btn-danger btn-sm" id="addPaymentTypesRemove"
+                                                       th:href="${'/addPaymentType/remove/' + financialYears.id}"
+                                                       th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                                       th:onclick="if(!(confirm('Are you want to delete this addPaymentTypes ?'))) return false"
+                                                    ><i
+                                                            aria-hidden="true" class="fa fa-trash"></i>
+                                                        Delete</a>
+                                                    <!--Description-->
+
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -150,6 +102,79 @@
                                     </div>
                                 </div>
                             </div>
+                           <!-- <div class="col-md-12">
+                            <div class="card-body">
+                                <form th:action="${addStatus==false?'/financialYear/save' :'/financialYear/update'}" method="post"
+                                      th:object="${addPaymentType}">
+
+                                    &lt;!&ndash;/* id this comment not visualize */&ndash;&gt;
+                                    &lt;!&ndash;Id&ndash;&gt;
+                                    <div class="form-group" th:if="${addStatus==true}">
+                                        <label for="id" class="form-label "> Id </label>
+                                        <input type="text" class="form-control" th:field="*{id}" id="id" readonly>
+                                    </div>
+                                    &lt;!&ndash;financialYears&ndash;&gt;
+                                    <div class="form-group">
+                                        <label th:for="${'addPaymentType.name'}" class="form-label "> Payment Name: </label>
+                                        <input type="text" class="form-control" th:field="*{addPaymentType.name}" required>
+                                        <p class="text-danger" th:if="${#fields.hasErrors('name')}"
+                                           th:errors="*{name}">Error financialYears</p>
+                                    </div>
+                                    &lt;!&ndash;Description&ndash;&gt;
+                                    <div class="form-group">
+                                        <label th:for="${'description'}" class="form-label "> Description</label>
+                                        <textarea class="form-control" th:field="*{description}" required></textarea>
+                                        <p class="text-danger" th:if="${#fields.hasErrors('description')}"
+                                           th:errors="*{description}">Error description</p>
+
+                                    </div>
+                                    &lt;!&ndash;participant&ndash;&gt;
+                                    <div class="form-group">
+                                        <label th:for="${'remark'}" class="form-label "> Remamrk </label>
+
+                                        <input type="text" class="form-control" th:field="*{remark}">
+                                        <p class="text-danger" th:if="${#fields.hasErrors('remark')}"
+                                           th:errors="*{remark}">Error remark</p>
+
+                                    </div>
+
+                                    &lt;!&ndash;priority&ndash;&gt;
+                                    <div class="form-group">
+                                        <label th:for="${'status'}" class="form-label "> Status </label>
+
+                                        <div class="custom-control" style="display: inline"
+                                             th:each="status, index : ${status}">
+
+                                            <input type="radio" class="custom-control" required th:field="*{status}"
+                                                   th:value="${status}" th:id="${status}+${index.index}" style="display: inline"/>
+                                            &lt;!&ndash; <label class="custom-control-label" th:for="${#ids.prev('gender')}"&ndash;&gt;
+                                            <label class="" th:for="${status}+${index.index}"
+                                                   th:text="${status.status}" style="display: inline"> radio
+                                            </label>
+                                        </div>
+
+                                        &lt;!&ndash;  <input type="test" class="form-control" th:field="*{priority}" required>&ndash;&gt;
+                                        <p class="text-danger" th:if="${#fields.hasErrors('status')}"
+                                           th:errors="*{status}">Error status</p>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <button type="submit" class="btn btn-primary">
+                                            <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i> <span
+                                                th:text="${addStatus==false?'Save' : 'Update'}"></span>
+                                        </button>
+
+                                    </div>
+
+
+                                </form>
+                            </div>
+                            </div>-->
+
+
                         </div>
                     </div>
                 </div>

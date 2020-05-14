@@ -1,19 +1,11 @@
 package lk.AVSEC.Welfare.asset.commonAsset.service;
 
-import lk.AVSEC.Welfare.asset.designation.entity.Designation;
-import lk.AVSEC.Welfare.asset.supplier.entity.Supplier;
-import lk.AVSEC.Welfare.asset.supplier.service.SupplierService;
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.BloodGroup;
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.CivilStatus;
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Gender;
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Title;
-import lk.AVSEC.Welfare.asset.employee.controller.EmployeeRestController;
-import lk.AVSEC.Welfare.asset.employee.entity.Enum.EmployeeStatus;
+import lk.AVSEC.Welfare.asset.kmart.supplier.entity.Supplier;
+import lk.AVSEC.Welfare.asset.kmart.supplier.service.SupplierService;
 import lk.AVSEC.Welfare.util.service.MakeAutoGenerateNumberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import java.util.ArrayList;
 import java.util.List;

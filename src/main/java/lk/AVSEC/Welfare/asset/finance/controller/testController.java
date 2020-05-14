@@ -10,7 +10,7 @@ public class testController {
         return "finance/additionalPayment";
     }*/
 
-    @GetMapping("/addPaymentType")
+   /* @GetMapping("/addPaymentType")
     public String templateOne() {
         return "finance/addPaymentType";
     }
@@ -48,7 +48,7 @@ public class testController {
     @GetMapping("/feeType")
     public String templateSeven() {
         return "finance/feeType";
-    }
+    }*/
 
 
 

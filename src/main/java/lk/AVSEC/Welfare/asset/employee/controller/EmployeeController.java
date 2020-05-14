@@ -1,9 +1,6 @@
 package lk.AVSEC.Welfare.asset.employee.controller;
 
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.BloodGroup;
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.CivilStatus;
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Gender;
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Title;
+import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.*;
 import lk.AVSEC.Welfare.asset.commonAsset.service.CommonService;
 import lk.AVSEC.Welfare.asset.designation.entity.Designation;
 import lk.AVSEC.Welfare.asset.designation.service.DesignationService;
@@ -11,6 +8,7 @@ import lk.AVSEC.Welfare.asset.employee.entity.Employee;
 import lk.AVSEC.Welfare.asset.employee.entity.EmployeeFiles;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.EmployeeStatus;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.Nationality;
+import lk.AVSEC.Welfare.asset.employee.entity.Enum.UniformType;
 import lk.AVSEC.Welfare.asset.employee.service.EmployeeFilesService;
 import lk.AVSEC.Welfare.asset.employee.service.EmployeeService;
 import lk.AVSEC.Welfare.asset.userManagement.entity.User;
@@ -64,7 +62,9 @@ public class EmployeeController {
         model.addAttribute("employeeStatus", EmployeeStatus.values());
         model.addAttribute("designation", designationService.findAll());
         model.addAttribute("bloodGroup", BloodGroup.values());
-        model.addAttribute("Nationality", Nationality.values());
+        model.addAttribute("nationality", Nationality.values());
+        model.addAttribute("religion", Religion.values());
+        model.addAttribute("uniformType", UniformType.values());
         return "employee/addEmployee";
     }
 
