@@ -10,14 +10,14 @@ public class testController {
         return "finance/additionalPayment";
     }*/
 
-    @GetMapping("/addPaymentType")
+    @GetMapping("/instrolmentType")
     public String templateOne() {
-        return "finance/addPaymentType";
+        return "finance/instrolmentType";
     }
 
-    @GetMapping("/balance")
+    @GetMapping("/instrolmentType/add")
     public String templateTwo() {
-        return "finance/balance";
+        return "finance/addInstrolmentType";
     }
 
     @GetMapping("/collectionView")

@@ -37,7 +37,7 @@ public class ConformationTokenController {
         String url = MvcUriComponentsBuilder.fromMethodName(ConformationTokenController.class,
                 "passwordEnterPage", "").build().toUriString();
 
-        emailService.sendEmail(email, "Email varification - Not reply",
+        emailService.sendEmail(email, "Email Verification (AVSEC-WMS) - Not reply",
                 "Please click below link to active your account \n\t".concat(url + conformationTokenService.createToken(conformationToken).getToken()).concat("\n  this link is valid only one day. "));
         model.addAttribute("successMessage", "Please check your email \n Your entered email is \t ".concat(email));
         return "user/successMessage";

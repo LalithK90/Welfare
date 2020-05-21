@@ -22,20 +22,20 @@
                                         <h4>First sud Header</h4>
                                         <form role="form">
                                             <div class="form-group">
-                                                <h1 class="m-0 text-dark">  <span id="formHeader" th:text="${addStatus==false?'New FinancialYear':'Update FinancialYear'}"></span></h1>
+                                                <h1 class="m-0 text-dark">  <span id="formHeader" th:text="${addStatus==false?'New InstrallmentType':'Update InstrallmentType'}"></span></h1>
                                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                                <span id="formHeader" th:text="${addStatus==false?'New FinancialYear':'Update FinancialYear'}"></span>
-                                                <a class="btn btn-success" id="newFinancialYear" style="width:100%" th:href="${'/financialYear/add'}">
-                                                    <i class="fa fa-financialYear-plus" style="font-size: 18px;"></i> &nbsp; Add Financial Year </a>
+                                                <span id="formHeader" th:text="${addStatus==false?'New InstrallmentType':'Update InstrallmentType'}"></span>
+                                                <a class="btn btn-success" id="newInstrallmentType" style="width:100%" th:href="${'/instrallmentType/add'}">
+                                                    <i class="fa fa-instrallmentType-plus" style="font-size: 18px;"></i> &nbsp; Add Instrallment Type </a>
 
                                             </div>
                                             <div class="form-group">
-                                                <a class="btn btn-warning" id="newFinancialYear" style="width:100%" th:href="${'/financialYear'}">
-                                                    <i class="fa fa-financialYear-plus" style="font-size: 18px;"></i> &nbsp; View Financial Year </a>
+                                                <a class="btn btn-warning" id="newInstrallmentType" style="width:100%" th:href="${'/instrallmentType'}">
+                                                    <i class="fa fa-instrallmentType plus" style="font-size: 18px;"></i> &nbsp; View Instrallment Type </a>
                                             </div>
                                             <div class="form-group">
                                                 <button type="button" class="btn btn-primary" style="width:100%";data-toggle="modal" data-target="#modalScrollableBody">
-                                                    <i class="fa fa-financialYear-plus" style="font-size: 18px;"></i>  Read Circular</button>
+                                                    <i class="fa fa-instrallmentType-plus" style="font-size: 18px;"></i>  Read Circular</button>
                                             </div>
 
                                         </form>
@@ -45,11 +45,11 @@
                             <div class="col-md-9">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4> <span id="formHeader" th:text="${addStatus==false?'New FinancialYear':'Update FinancialYear'}"></span> Form </h4></div>
+                                        <h4> <span id="formHeader" th:text="${addStatus==false?'New InstrallmentType':'Update InstrallmentType'}"></span> Form </h4></div>
                                     <!--if not empty list-->
                                     <div class="card-body">
-                                        <form th:action="${addStatus==false?'/financialYear/save' :'/financialYear/update'}" method="post"
-                                              th:object="${financialYear}">
+                                        <form th:action="${addStatus==false?'/instrallmentType/save' :'/instrallmentType/update'}" method="post"
+                                              th:object="${instrallmentType}">
 
                                             <!--/* id this comment not visualize */-->
                                             <!--Id-->
@@ -59,47 +59,44 @@
                                             </div>
                                             <!--financialYears-->
                                             <div class="form-group">
-                                                <label th:for="${'financialYear'}" class="form-label "> Financial Years </label>
-                                                <input type="text" class="form-control" th:field="*{financialYear}" required>
+                                                <label class="form-label"  Financial Years </label>
+                                                <input type="text" class="form-control" <*/ th:field="*{financialYear}" */> required>
                                                 <p class="text-danger" th:if="${#fields.hasErrors('financialYear')}"
                                                    th:errors="*{financialYear}">Error financialYears</p>
                                             </div>
-                                            <!--Description-->
+                                            <!--remark-->
                                             <div class="form-group">
-                                                <label th:for="${'description'}" class="form-label "> Description</label>
-                                                <textarea class="form-control" th:field="*{description}" required></textarea>
-                                                <p class="text-danger" th:if="${#fields.hasErrors('description')}"
-                                                   th:errors="*{description}">Error description</p>
-
-                                            </div>
-                                            <!--participant-->
-                                            <div class="form-group">
-                                                <label th:for="${'remark'}" class="form-label "> Remamrk </label>
-
-                                                <input type="text" class="form-control" th:field="*{remark}">
+                                                <label th:for="${'remark'}" class="form-label "> Remark</label>
+                                                <textarea class="form-control" th:field="*{remark}" required></textarea>
                                                 <p class="text-danger" th:if="${#fields.hasErrors('remark')}"
                                                    th:errors="*{remark}">Error remark</p>
 
                                             </div>
-
-                                            <!--priority-->
+                                            <!--amount-->
                                             <div class="form-group">
-                                                <label th:for="${'status'}" class="form-label "> Status </label>
+                                                <label th:for="${'amount'}" class="form-label "> Amount </label>
 
-                                                <div class="custom-control" style="display: inline"
-                                                     th:each="status, index : ${status}">
+                                                <input type="text" class="form-control" th:field="*{amount}">
+                                                <p class="text-danger" th:if="${#fields.hasErrors('amount')}"
+                                                   th:errors="*{amount}">Error amount</p>
 
-                                                    <input type="radio" class="custom-control" required th:field="*{status}"
-                                                           th:value="${status}" th:id="${status}+${index.index}" style="display: inline"/>
+                                            </div>
+
+                                            <!--collection Type-->
+                                            <div class="form-group">
+                                                <label th:for="${'collectionType'}" class="form-label "> CollectionType </label>
+                                                <div class="custom-control" style="display: inline" th:each="collectionType, index : ${collectionType}">
+                                                            <input type="radio" class="custom-control" required th:field="*{collectionType}"
+                                                           th:value="${collectionType}" th:id="${collectionType}+${index.index}" style="display: inline"/> Mandatory Payment
                                                     <!-- <label class="custom-control-label" th:for="${#ids.prev('gender')}"-->
-                                                    <label class="" th:for="${status}+${index.index}"
-                                                           th:text="${status.status}" style="display: inline"> radio
+                                                    <label class="" th:for="${collectionType}+${index.index}"
+                                                           th:text="${collectionType.collectionType}" style="display: inline"> Option Payment
                                                     </label>
                                                 </div>
 
                                                 <!--  <input type="test" class="form-control" th:field="*{priority}" required>-->
-                                                <p class="text-danger" th:if="${#fields.hasErrors('status')}"
-                                                   th:errors="*{status}">Error status</p>
+                                                <p class="text-danger" th:if="${#fields.hasErrors('collectionType')}"
+                                                   th:errors="*{collectionType}">Error collectionType</p>
 
                                             </div>
 
