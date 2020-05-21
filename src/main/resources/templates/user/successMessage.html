@@ -11,8 +11,9 @@
 <p th:text="${successMessage}"></p>
 
 <!--footer is included-->
-<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
-<!--script is included-->
-<script th:replace="~{fragments/script :: scriptFragment}"></script>
+</div><!-- content-wrapper end -->
+<footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+</div><!-- wrapper end -->
+<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
 </body>
 </html>

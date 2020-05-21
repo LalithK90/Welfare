@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -31,8 +32,9 @@ public class Qualification {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate completeDate;
-    /*@Enumerated(EnumType.STRING)
-    private Province province;*/
+
+    @ManyToOne
+    private Employee employee;
 
 
 /*    @OneToMany(mappedBy = "district")

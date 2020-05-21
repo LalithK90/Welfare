@@ -1,6 +1,5 @@
 package lk.AVSEC.Welfare.asset.userManagement.controller;
 
-
 import lk.AVSEC.Welfare.asset.userManagement.entity.ConformationToken;
 import lk.AVSEC.Welfare.asset.userManagement.service.ConformationTokenService;
 import lk.AVSEC.Welfare.util.service.EmailService;

@@ -1,7 +1,7 @@
 package lk.AVSEC.Welfare.asset.workingPlace.controller;
 
 import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Province;
-import lk.AVSEC.Welfare.asset.district.controller.DistrictRestController;
+import lk.AVSEC.Welfare.asset.district.controller.DistrictController;
 import lk.AVSEC.Welfare.asset.district.service.DistrictService;
 import lk.AVSEC.Welfare.asset.workingPlace.entity.Enum.AirportType;
 import lk.AVSEC.Welfare.asset.workingPlace.entity.Enum.ShortName;
@@ -42,7 +42,7 @@ public class WorkingPlaceController implements AbstractController<WorkingPlace, 
         /*End array*/
         /*district find url*/
         model.addAttribute("districtFindUrl", MvcUriComponentsBuilder
-                .fromMethodName(DistrictRestController.class, "getDistrictByProvince","")
+                .fromMethodName(DistrictController.class, "getDistrictByProvince","")
                 .build()
                 .toString());
         model.addAttribute("workingPlace", workingPlaceObject);

@@ -10,19 +10,12 @@
         <!-- Form Header  Path -->
         <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
 
-
-
-
-
-
-
-
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4>First sud Header</h4>
@@ -34,7 +27,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-10">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4>Secondary Header </h4>
@@ -43,7 +36,7 @@
                                             <thead>
                                             <tr>
                                                 <th> Index</th>
-                                                <th> Pay Role Number</th>
+                                                <th> EPF No</th>
                                                 <th> Name</th>
                                                 <th> Mobile</th>
                                                 <th> Designation</th>
@@ -54,8 +47,8 @@
                                             <tbody>
                                             <tr th:each="employee, rowCount : ${employees}">
                                                 <td th:text="${rowCount.count}"></td>
-                                                <td th:text="${employee.payRoleNumber}"></td>
-                                                <td th:text="${employee.callingName}"></td>
+                                                <td th:text="${employee.epf}"></td>
+                                                <td th:text="${employee.name}"></td>
                                                 <td th:text="${employee.mobileOne}"></td>
                                                 <td th:if="${employee.designation.name != null}" th:text="${employee.designation.name}"></td>
                                                 <td th:text="${employee.employeeStatus.employeeStatus}"></td>

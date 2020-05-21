@@ -24,16 +24,16 @@
                                                             <h4>Financial Year</h4>
                                                             <form role="form">
                                                                 <div class="form-group">
-                                                                    <a class="btn btn-success" id="newFinancial Year" style="width:100%" th:href="${'/financialYear/add'}">
-                                                                        <i class="fa fa-financialYear-plus" style="font-size: 18px;"></i> &nbsp; Add Financial Year </a>
+                                                                    <a class="btn btn-success" id="newFinancial Year" style="width:100%" th:href="${'/fundReceivingType/add'}">
+                                                                        <i class="fa fa-fundReceivingType-plus" style="font-size: 18px;"></i> &nbsp; Add Financial Year </a>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <a class="btn btn-warning" id="newFinancial Year" style="width:100%" th:href="${'/financialYear/add'}">
-                                                                        <i class="fa fa-financialYear-plus" style="font-size: 18px;"></i> &nbsp; Edit Financial Year </a>
+                                                                    <a class="btn btn-warning" id="newFinancial Year" style="width:100%" th:href="${'/fundReceivingType/add'}">
+                                                                        <i class="fa fa-fundReceivingType-plus" style="font-size: 18px;"></i> &nbsp; Edit Financial Year </a>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <button type="button" class="btn btn-primary" style="width:100%";data-toggle="modal" data-target="#modalScrollableBody">
-                                                                        <i class="fa fa-financialYear-plus" style="font-size: 18px;"></i>  Read Circular</button>
+                                                                        <i class="fa fa-fundReceivingType-plus" style="font-size: 18px;"></i>  Read Circular</button>
                                                                 </div>
 
                                                             </form>
@@ -56,7 +56,7 @@
                                                             <div class="form-group row">
                                                                 <label class="col-sm-2 col-form-label "> Financial Year </label>
                                                                 <div class="col-sm-10">
-                                                                    <p class="display_detail" th:text="${financialYearDetail.financialYear}"></p>
+                                                                    <p class="display_detail" th:text="${financialYearDetail.fundReceivingType}"></p>
                                                                 </div>
                                                             </div>
                                                             <!--Description-->
@@ -83,7 +83,7 @@
                                                                     </button>
                                                                     <h4 class="alert-heading">Info!</h4>
                                                                     <p>Please read the provided information.</p>
-                                                                    <p> There is no any financialYear upto now please so if you wish to add financialYear, please press the <a th:href="${'/financialYear/add'}" class="alert-link">Add financialYear</a> button.
+                                                                    <p> There is no any fundReceivingType upto now please so if you wish to add fundReceivingType, please press the <a th:href="${'/fundReceivingType/add'}" class="alert-link">Add fundReceivingType</a> button.
                                                                     </p></div>
                                                             </div>
                                                         </div>

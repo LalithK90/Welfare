@@ -2,15 +2,12 @@ package lk.AVSEC.Welfare.asset.designation.service;
 
 import lk.AVSEC.Welfare.asset.designation.dao.DesignationDao;
 import lk.AVSEC.Welfare.asset.designation.entity.Designation;
-import lk.AVSEC.Welfare.asset.grievances.dao.GrievancesDao;
-import lk.AVSEC.Welfare.asset.grievances.entity.Grievances;
 import lk.AVSEC.Welfare.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

@@ -1,8 +1,7 @@
 package lk.AVSEC.Welfare.asset.grievances.controller;
 
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Province;
 import lk.AVSEC.Welfare.asset.grievances.entity.Enum.Priority;
-import lk.AVSEC.Welfare.asset.grievances.entity.Grievances;
+import lk.AVSEC.Welfare.asset.grievances.entity.Grievance;
 
 import lk.AVSEC.Welfare.asset.grievances.service.GrievancesService;
 import lk.AVSEC.Welfare.util.interfaces.AbstractController;
@@ -17,7 +16,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/grievances")
-public class GrievancesController implements AbstractController<Grievances, Integer> {
+public class GrievancesController implements AbstractController<Grievance, Integer> {
 
     private final GrievancesService grievancesService;
 
@@ -26,11 +25,11 @@ public class GrievancesController implements AbstractController<Grievances, Inte
         this.grievancesService = grievancesService;
     }
 
-    private String commonThing(Model model, Boolean booleanValue, Grievances grievancesObject) {
+    private String commonThing(Model model, Boolean booleanValue, Grievance grievanceObject) {
 
         model.addAttribute("priorities", Priority.values());
         model.addAttribute("addStatus", booleanValue);
-        model.addAttribute("grievances", grievancesObject);
+        model.addAttribute("grievances", grievanceObject);
         return "grievances/addGrievances";
     }
 
@@ -42,7 +41,7 @@ public class GrievancesController implements AbstractController<Grievances, Inte
 
     @GetMapping("/add")
     public String form(Model model) {
-        return commonThing(model, false, new Grievances());
+        return commonThing(model, false, new Grievance());
     }
 
     @GetMapping("/{id}")
@@ -57,12 +56,12 @@ public class GrievancesController implements AbstractController<Grievances, Inte
     }
 
     @PostMapping(value = {"/save", "/update"})
-    public String persist(@Valid @ModelAttribute Grievances grievances, BindingResult bindingResult,
+    public String persist(@Valid @ModelAttribute Grievance grievance, BindingResult bindingResult,
                           RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
-            return commonThing(model, false, grievances);
+            return commonThing(model, false, grievance);
         }
-        redirectAttributes.addFlashAttribute("grievancesDetail", grievancesService.persist(grievances));
+        redirectAttributes.addFlashAttribute("grievancesDetail", grievancesService.persist(grievance));
         return "redirect:/grievances";
     }
 
