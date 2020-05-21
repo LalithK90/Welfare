@@ -25,17 +25,17 @@
                                         <div class="form-group">
                                             <h1 class="m-0 text-dark">  <span id="formHeader" th:text="${addStatus==false?'New Grievances':'Update Grievances'}"></span></h1>
                                             <span id="formHeader" th:text="${addStatus==false?'New Grievances':'Update Grievances'}"></span>
-                                            <a class="btn btn-success" id="newGrievances" style="width:100%" th:href="${'/grievances/add'}">
-                                                <i class="fa fa-grievances-plus" style="font-size: 18px;"></i> &nbsp; Add Grievances </a>
+                                            <a class="btn btn-success" id="newGrievances" style="width:100%" th:href="${'/grievance/add'}">
+                                                <i class="fa fa-grievance-plus" style="font-size: 18px;"></i> &nbsp; Add Grievances </a>
 
                                         </div>
                                         <div class="form-group">
-                                            <a class="btn btn-warning" id="newGrievances" style="width:100%" th:href="${'/grievances'}">
-                                                <i class="fa fa-grievances-plus" style="font-size: 18px;"></i> &nbsp; View Grievances </a>
+                                            <a class="btn btn-warning" id="newGrievances" style="width:100%" th:href="${'/grievance'}">
+                                                <i class="fa fa-grievance-plus" style="font-size: 18px;"></i> &nbsp; View Grievances </a>
                                         </div>
                                         <div class="form-group">
                                             <button type="button" class="btn btn-primary" style="width:100%";data-toggle="modal" data-target="#modalScrollableBody">
-                                                <i class="fa fa-grievances-plus" style="font-size: 18px;"></i>  Read Circular</button>
+                                                <i class="fa fa-grievance-plus" style="font-size: 18px;"></i>  Read Circular</button>
                                         </div>
 
                                     </form>
@@ -46,8 +46,8 @@
                                     <h4> <span id="formHeader" th:text="${addStatus==false?'New Grievances':'Update Grievances'}"></span> Form </h4></div>
                                     <!--if not empty list-->
                                     <div class="card-body">
-                                        <form th:action="${addStatus==false?'/grievances/save' :'/grievances/update'}" method="post"
-                                              th:object="${grievances}">
+                                        <form th:action="${addStatus==false?'/grievance/save' :'/grievance/update'}" method="post"
+                                              th:object="${grievance}">
 
                                             <!--/* id this comment not visualize */-->
                                             <!--Id-->

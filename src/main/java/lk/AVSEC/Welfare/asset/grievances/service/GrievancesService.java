@@ -1,7 +1,7 @@
 package lk.AVSEC.Welfare.asset.grievances.service;
 
 import lk.AVSEC.Welfare.asset.grievances.dao.GrievancesDao;
-import lk.AVSEC.Welfare.asset.grievances.entity.Grievances;
+import lk.AVSEC.Welfare.asset.grievances.entity.Grievance;
 import lk.AVSEC.Welfare.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;
@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 // spring transactional annotation need to tell spring to this method work through the project
 @CacheConfig(cacheNames = "grievances")
-public class GrievancesService implements AbstractService<Grievances, Integer> {
+public class GrievancesService implements AbstractService<Grievance, Integer> {
 
     private final GrievancesDao grievancesDao;
 
@@ -26,21 +26,21 @@ public class GrievancesService implements AbstractService<Grievances, Integer> {
     }
 
     @Cacheable
-    public List<Grievances> findAll() {
+    public List<Grievance> findAll() {
 
         return grievancesDao.findAll();
     }
 
     @Cacheable
-    public Grievances findById(Integer id) {
+    public Grievance findById(Integer id) {
         return grievancesDao.getOne(id);
     }
 
     @Caching(evict = {@CacheEvict(value = "grievances", allEntries = true)},
-            put = {@CachePut(value = "grievances", key = "#grievances.id")})
+            put = {@CachePut(value = "grievances", key = "#grievance.id")})
     @Transactional
-    public Grievances persist(Grievances grievances) {
-        return grievancesDao.save(grievances);
+    public Grievance persist(Grievance grievance) {
+        return grievancesDao.save(grievance);
     }
 
     @CacheEvict(allEntries = true)
@@ -50,17 +50,17 @@ public class GrievancesService implements AbstractService<Grievances, Integer> {
     }
 
     @Cacheable
-    public List<Grievances> search(Grievances grievances) {
+    public List<Grievance> search(Grievance grievance) {
         ExampleMatcher matcher = ExampleMatcher
                 .matching()
                 .withIgnoreCase()
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
-        Example<Grievances> grievancesExample = Example.of(grievances, matcher);
+        Example<Grievance> grievancesExample = Example.of(grievance, matcher);
         return grievancesDao.findAll(grievancesExample);
     }
 
-    public boolean isGrievancesPresent(Grievances grievances) {
-        return grievancesDao.equals(grievances);
+    public boolean isGrievancesPresent(Grievance grievance) {
+        return grievancesDao.equals(grievance);
     }
 
 

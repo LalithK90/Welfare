@@ -25,17 +25,17 @@
                                                 <h1 class="m-0 text-dark">  <span id="formHeader" th:text="${addStatus==false?'New FinancialYear':'Update FinancialYear'}"></span></h1>
                                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                                 <span id="formHeader" th:text="${addStatus==false?'New FinancialYear':'Update FinancialYear'}"></span>
-                                                <a class="btn btn-success" id="newFinancialYear" style="width:100%" th:href="${'/financialYear/add'}">
-                                                    <i class="fa fa-financialYear-plus" style="font-size: 18px;"></i> &nbsp; Add Financial Year </a>
+                                                <a class="btn btn-success" id="newFinancialYear" style="width:100%" th:href="${'/fundReceivingType/add'}">
+                                                    <i class="fa fa-fundReceivingType-plus" style="font-size: 18px;"></i> &nbsp; Add Financial Year </a>
 
                                             </div>
                                             <div class="form-group">
-                                                <a class="btn btn-warning" id="newFinancialYear" style="width:100%" th:href="${'/financialYear'}">
-                                                    <i class="fa fa-financialYear-plus" style="font-size: 18px;"></i> &nbsp; View Financial Year </a>
+                                                <a class="btn btn-warning" id="newFinancialYear" style="width:100%" th:href="${'/fundReceivingType'}">
+                                                    <i class="fa fa-fundReceivingType-plus" style="font-size: 18px;"></i> &nbsp; View Financial Year </a>
                                             </div>
                                             <div class="form-group">
                                                 <button type="button" class="btn btn-primary" style="width:100%";data-toggle="modal" data-target="#modalScrollableBody">
-                                                    <i class="fa fa-financialYear-plus" style="font-size: 18px;"></i>  Read Circular</button>
+                                                    <i class="fa fa-fundReceivingType-plus" style="font-size: 18px;"></i>  Read Circular</button>
                                             </div>
 
                                         </form>
@@ -48,8 +48,8 @@
                                         <h4> <span id="formHeader" th:text="${addStatus==false?'New FinancialYear':'Update FinancialYear'}"></span> Form </h4></div>
                                     <!--if not empty list-->
                                     <div class="card-body">
-                                        <form th:action="${addStatus==false?'/financialYear/save' :'/financialYear/update'}" method="post"
-                                              th:object="${financialYear}">
+                                        <form th:action="${addStatus==false?'/fundReceivingType/save' :'/fundReceivingType/update'}" method="post"
+                                              th:object="${fundReceivingType}">
 
                                             <!--/* id this comment not visualize */-->
                                             <!--Id-->
@@ -59,10 +59,10 @@
                                             </div>
                                             <!--financialYears-->
                                             <div class="form-group">
-                                                <label th:for="${'financialYear'}" class="form-label "> Financial Years </label>
-                                                <input type="text" class="form-control" th:field="*{financialYear}" required>
-                                                <p class="text-danger" th:if="${#fields.hasErrors('financialYear')}"
-                                                   th:errors="*{financialYear}">Error financialYears</p>
+                                                <label th:for="${'fundReceivingType'}" class="form-label "> Financial Years </label>
+                                                <input type="text" class="form-control" th:field="*{fundReceivingType}" required>
+                                                <p class="text-danger" th:if="${#fields.hasErrors('fundReceivingType')}"
+                                                   th:errors="*{fundReceivingType}">Error financialYears</p>
                                             </div>
                                             <!--Description-->
                                             <div class="form-group">

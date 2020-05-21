@@ -20,28 +20,23 @@ public class ExpensesFundService implements AbstractService<ExpensesFund, Intege
         this.expensesFundDao = expensesFundDao;
     }
 
-    @Override
     public List<ExpensesFund> findAll() {
         return expensesFundDao.findAll();
     }
 
-    @Override
     public ExpensesFund findById(Integer id) {
         return expensesFundDao.getOne(id);
     }
 
-    @Override
     public ExpensesFund persist(ExpensesFund expensesFund) {
         return expensesFundDao.save(expensesFund);
     }
 
-    @Override
     public boolean delete(Integer id) {
         expensesFundDao.deleteById(id);
         return true;
     }
 
-    @Override
     public List<ExpensesFund> search(ExpensesFund expensesFund) {
         ExampleMatcher matcher = ExampleMatcher
                 .matching()

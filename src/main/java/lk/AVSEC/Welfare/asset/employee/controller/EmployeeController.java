@@ -2,7 +2,10 @@ package lk.AVSEC.Welfare.asset.employee.controller;
 
 import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.*;
 import lk.AVSEC.Welfare.asset.commonAsset.service.CommonService;
-import lk.AVSEC.Welfare.asset.designation.entity.Designation;
+import lk.AVSEC.Welfare.asset.dependent.entity.Dependent;
+import lk.AVSEC.Welfare.asset.dependent.entity.Enum.CurrentStatus;
+import lk.AVSEC.Welfare.asset.dependent.entity.Enum.Relationship;
+import lk.AVSEC.Welfare.asset.dependent.service.DependentService;
 import lk.AVSEC.Welfare.asset.designation.service.DesignationService;
 import lk.AVSEC.Welfare.asset.employee.entity.Employee;
 import lk.AVSEC.Welfare.asset.employee.entity.EmployeeFiles;
@@ -22,12 +25,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
-
 
 
 @Controller
@@ -39,11 +42,12 @@ public class EmployeeController {
     private final CommonService commonService;
     private final UserService userService;
     private final DesignationService designationService;
+    private final DependentService dependentService;
 
     @Autowired
     public EmployeeController(EmployeeService employeeService, EmployeeFilesService employeeFilesService,
                               DateTimeAgeService dateTimeAgeService, CommonService commonService,
-                              UserService userService, DesignationService designationService) {
+                              UserService userService, DesignationService designationService, DependentService dependentService) {
         this.employeeService = employeeService;
         this.employeeFilesService = employeeFilesService;
 
@@ -51,6 +55,7 @@ public class EmployeeController {
         this.commonService = commonService;
         this.userService = userService;
         this.designationService = designationService;
+        this.dependentService = dependentService;
     }
 //----> Employee details management - start <----//
 
@@ -65,6 +70,8 @@ public class EmployeeController {
         model.addAttribute("nationality", Nationality.values());
         model.addAttribute("religion", Religion.values());
         model.addAttribute("uniformType", UniformType.values());
+        model.addAttribute("relationship", Relationship.values());
+        model.addAttribute("currentStatus", CurrentStatus.values());
         return "employee/addEmployee";
     }
 
@@ -118,6 +125,7 @@ public class EmployeeController {
     @PostMapping(value = {"/save", "/update"})
     public String addEmployee(@Valid @ModelAttribute Employee employee, BindingResult result, Model model
     ) {
+        System.out.println("came employee" + employee.toString());
         if (result.hasErrors()) {
             model.addAttribute("addStatus", true);
             model.addAttribute("employee", employee);
@@ -127,9 +135,22 @@ public class EmployeeController {
             employee.setMobileOne(commonService.commonMobileNumberLengthValidator(employee.getMobileOne()));
             employee.setMobileTwo(commonService.commonMobileNumberLengthValidator(employee.getMobileTwo()));
             employee.setLand(commonService.commonMobileNumberLengthValidator(employee.getLand()));
-            //after save employee files and save employee
-            employeeService.persist(employee);
+            System.out.println("dependent length " + employee.getDependents().size());
 
+            int i = employee.getDependents().size();
+            if (i != 0) {
+                for (int k = 0; k < i; k++) {
+                    if (employee.getDependents().get(k).getId() == null) {
+                        Dependent dependent = employee.getDependents().get(k);
+                        employee.getDependents().add(k, dependent);
+                        System.out.println("id not " + k + " name employee id " + employee.getDependents().get(k).getEmployee().getId());
+                    }
+                }
+            }
+            //remove current
+            System.out.println("dependent count " + employee.getDependents().size());
+            //after save employee files and save employee
+          Employee employeeSaved =  employeeService.persist(employee);
             //if employee state is not working he or she cannot access to the system
             if (!employee.getEmployeeStatus().equals(EmployeeStatus.WORKING)) {
                 User user = userService.findUserByEmployee(employeeService.findByNic(employee.getNic()));
@@ -156,13 +177,19 @@ public class EmployeeController {
                 }
                 employeeFilesService.persist(employeeFiles);
             }
+            employee = employeeSaved;
             return "redirect:/employee";
 
         } catch (Exception e) {
             ObjectError error = new ObjectError("employee",
                     "There is already in the system. <br>System message -->" + e.toString());
             result.addError(error);
-            model.addAttribute("addStatus", true);
+            if (employee.getId() != null) {
+                model.addAttribute("addStatus", true);
+                System.out.println("id is null");
+            } else {
+                model.addAttribute("addStatus", false);
+            }
             model.addAttribute("employee", employee);
             return commonThings(model);
         }
@@ -187,15 +214,15 @@ public class EmployeeController {
 //----> EmployeeWorkingPlace - details management - start <----//
 
     //Send form to add working place before find employee
-    @GetMapping(value = "/workingPlace")
+/*    @GetMapping(value = "/workingPlace")
     public String addEmployeeWorkingPlaceForm(Model model) {
         model.addAttribute("employee", new Employee());
         model.addAttribute("employeeDetailShow", false);
         return "employeeWorkingPlace/addEmployeeWorkingPlace";
-    }
+    }*/
 
 }
-    //Send a searched employee to add working place
+//Send a searched employee to add working place
 /*
     @PostMapping( value = "/workingPlace" )
     public String addWorkingPlaceEmployeeDetails(@ModelAttribute( "employee" ) Employee employee, Model model) {

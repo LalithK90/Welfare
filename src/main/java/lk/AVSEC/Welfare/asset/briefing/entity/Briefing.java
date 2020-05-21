@@ -1,7 +1,6 @@
 package lk.AVSEC.Welfare.asset.briefing.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import lk.AVSEC.Welfare.asset.dependency.entity.Enum.Relationship;
 import lk.AVSEC.Welfare.asset.grievances.entity.Enum.Priority;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +9,6 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity

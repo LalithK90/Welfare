@@ -113,7 +113,7 @@
                                     <tbody>
                                     <tr th:each="additionalPayments, rowCount : ${additionalPayments}" scope="row">
                                         <td th:text="${rowCount.count}"></td>
-                                        <td th:text="${additionalPayments.financialYear}"></td>
+                                        <td th:text="${additionalPayments.fundReceivingType}"></td>
                                         <td th:text="${additionalPayments.amount}"></td>
                                         <td th:text="${additionalPayments.reason}"></td>
                                         <td th:text="${additionalPayments.dateWEF}"></td>

@@ -91,7 +91,7 @@ Contact Management
 Payment Management
 ##################################################################
     Individual Payment mark by month vice and it can be more than one month
-    Payment collector system update by pending receivingExpensesStatus until handover to treasure
+    Payment collector system update by pending expensesStatus until handover to treasure
     receiving -Collection/Donation/ Offering/expensesFund/Credit/Welfare/Donation/Funeral/
     Expenses
 
@@ -125,7 +125,7 @@ Training/Meeting Schedule
 ##################################################################
 Grievances
 ##################################################################
-    -Member will submit grievances thorough special category
+    -Member will submit grievance thorough special category
     -Transfer, Leave, Complain, Appointment, Other
     -Sender,Combo list(Above Matter) TextArea(Short Description)
 

@@ -3,16 +3,19 @@ package lk.AVSEC.Welfare.asset.employee.entity;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.*;
 import lk.AVSEC.Welfare.asset.commonAsset.model.FileInfo;
+import lk.AVSEC.Welfare.asset.dependent.entity.Dependent;
 import lk.AVSEC.Welfare.asset.designation.entity.Designation;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.EmployeeStatus;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.Nationality;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.UniformType;
-import lk.AVSEC.Welfare.asset.finance.entity.ReceivingFund;
+import lk.AVSEC.Welfare.asset.finance.entity.Instalment;
 import lk.AVSEC.Welfare.asset.finance.entity.ExpensesFund;
 import lk.AVSEC.Welfare.asset.message.entity.EmailMessage;
 import lk.AVSEC.Welfare.asset.workingPlace.entity.WorkingPlace;
 import lk.AVSEC.Welfare.util.audit.AuditEntity;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,7 +31,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonFilter("Employee")
-@ToString
 public class Employee extends AuditEntity {
 
     @Column(unique = true)
@@ -124,16 +126,22 @@ public class Employee extends AuditEntity {
     @ManyToOne
     private Designation designation;
 
-
-
     @OneToMany(mappedBy = "employee")
     private List<ExpensesFund> expensesFunds;
 
     @OneToMany(mappedBy = "employee")
-    private List<ReceivingFund> receivingFunds;
+    private List<Instalment> instalments;
+
+    @OneToMany(mappedBy = "employee")
+    private List<Qualification> qualifications;
+
+    @OneToMany(mappedBy = "employee",cascade = {CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.DETACH})
+    private List<Dependent> dependents;
 
     @ManyToMany(mappedBy = "employees")
     private List<EmailMessage> emailMessages;
+
+
 
     @Transient
     private MultipartFile file;

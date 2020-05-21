@@ -21,11 +21,18 @@ $(document).ready(function () {
     });
     /*//--------------- data table short using - data table plugin ------- start //*/
 
+    /*When edit employee if there is a nic number need to select relevant gender*/
+    if ($("#nic").val() !== null || $("#nic").val() === undefined){
+        $("input:radio[name=gender]").filter(`[value=${calculateGender($("#nic").val())}]`).prop('checked',true);
+    }
+
     /* Patient and employee Nic Validation - start*/
     $("#nic").bind('keyup', function () {
         let nic = $(this).val();
         $("#dateOfBirth").val(calculateDateOfBirth(nic));
-        $("#gender").val(calculateGender(nic));
+//access our front-end gender*/
+        $("input:radio[name=gender]").filter(`[value=${calculateGender(nic)}]`).prop('checked',true);
+
     });
     /* Patient and employee Nic Validation - end*/
     //input type date can not be selected future date
@@ -635,13 +642,17 @@ $(".reveal").on('click', function () {
 /* -------headerDate-------*/
 var today = new Date();
 var dd = today.getDate();
-var mm = today.getMonth()+1;
+var mm = today.getMonth() + 1;
 var yyyy = today.getFullYear();
-if(dd<10){  dd='0'+dd;}
-if(mm<10){ mm='0'+mm;}
-today = mm+'-'+dd+'-'+yyyy;
+if (dd < 10) {
+    dd = '0' + dd;
+}
+if (mm < 10) {
+    mm = '0' + mm;
+}
+today = mm + '-' + dd + '-' + yyyy;
 console.log(today);
-document.getElementById("headerDate").innerText=today;
+document.getElementById("headerDate").innerText = today;
 
 /*
 console.log(today);

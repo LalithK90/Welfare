@@ -31,7 +31,9 @@
                                         <h4>Secondary Header </h4>
                                         <form th:action="${addStatus==true?'/employee/save' :'/employee/update'}"
                                               method="post" th:object="${employee}" enctype="multipart/form-data">
+                                            <!--Employee personal data-->
                                             <div class="row">
+                                                <!--left side-->
                                                 <div class="col-md-6"><!--Left Side-->
                                                     <!--ID -->
                                                     <div id="idStatus" th:if="${addStatus==false}"
@@ -47,22 +49,29 @@
                                                     <!--Tittle -->
                                                     <div class="form-group">
                                                         <label class="control-label" for="title">Title :</label>
-                                                        <select id="title" th:field="*{title}" class="form-control"
-                                                                tabindex="1" required>
-                                                            <option value="">Please select</option>
-                                                            <option th:each="titles : ${title}"
-                                                                    th:text="${titles.title}"
-                                                                    th:value="${titles}"
-                                                                    th:selected="${titles==employee.title?'selected':'unselected'}"></option>
-                                                        </select>
+
                                                     </div>
+                                                    <!--test Css-->
+
+
                                                     <!--Name-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="name">Name :</label>
-                                                        <input id="name" th:field="*{name}" class="form-control"
-                                                               type="text" tabindex="2" required/>
-                                                        <span id="nameError" th:errors="*{name}"
-                                                              th:if="${#fields.hasErrors('name')}" class="error">Error Name</span>
+                                                        <div class="form-row">
+                                                            <select id="title" th:field="*{title}"
+                                                                    class="form-control col-2"
+                                                                    tabindex="1" required>
+                                                                <option th:each="titles : ${title}"
+                                                                        th:text="${titles.title}"
+                                                                        th:value="${titles}"
+                                                                        th:selected="${titles==employee.title?'selected':'unselected'}"></option>
+                                                            </select>
+                                                            <input id="name" th:field="*{name}"
+                                                                   class="form-control col-10"
+                                                                   type="text" tabindex="2" required/>
+                                                            <span id="nameError" th:errors="*{name}"
+                                                                  th:if="${#fields.hasErrors('name')}" class="error">Error Name</span>
+                                                        </div>
                                                     </div>
                                                     <!--Full Name-->
                                                     <div class="form-group">
@@ -97,8 +106,10 @@
                                                     </div>
                                                     <!--Nationality error-->
                                                     <div class="form-group">
-                                                        <label class="control-label" for="gender">Nationality :</label>
-                                                        <select id="nationality" th:field="*{nationality}" class="form-control" tabindex="6" required>
+                                                        <label class="control-label" th:for="nationality">Nationality
+                                                            :</label>
+                                                        <select id="nationality" th:field="*{nationality}"
+                                                                class="form-control" tabindex="6" required>
                                                             <option value="">Please select</option>
                                                             <option th:each="nationalitys : ${nationality}"
                                                                     th:text="${nationalitys.nationality}"
@@ -108,16 +119,25 @@
                                                     </div>
                                                     <!--Gender-->
                                                     <div class="form-group">
-                                                        <label class="control-label" for="gender">Gender :</label>
-                                                        <select id="gender" th:field="*{gender}" class="form-control"
-                                                                tabindex="7" required>
-                                                            <option value="">Please select</option>
-                                                            <option th:each="genders : ${gender}"
-                                                                    th:text="${genders.gender}"
-                                                                    th:value="${genders}"
-                                                                    th:selected="${genders==employee.gender?'selected':'unselected'}"></option>
-                                                        </select>
+                                                        <label th:for="${gender}">Gender:</label>
+                                                        <!--Radio button-->
+                                                        <div class="col">
+                                                            <div class="custom-control custom-checkbox custom-control-inline "
+                                                                 th:each="genders,index : ${gender}">
+                                                                <input class="custom-control-input gender" required
+                                                                       th:name="${'gender'}"
+                                                                       th:value="${genders}"
+                                                                       th:id="${index.index}+${genders}" type="radio"
+                                                                       th:checked="${genders==gender}"/>
+                                                                <label class="custom-control-label"
+                                                                       th:for="${index.index}+${genders}"
+                                                                       th:text="${genders.gender}"> radio
+                                                                </label>
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                    <!--/*  Hello */-->
+
                                                     <!--Date of birth-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="dateOfBirth">Birth date
@@ -125,14 +145,15 @@
                                                         <input id="dateOfBirth" th:field="*{dateOfBirth}"
                                                                class="form-control" tabindex="8"
                                                                placeholder="Ex: 1990 - 01 - 20"
-                                                               required type="date"/>
+                                                               required type="date" readonly/>
                                                         <span th:errors="*{dateOfBirth}"
                                                               th:if="${#fields.hasErrors('dateOfBirth')}" class="error">Error Birthday</span>
                                                     </div>
                                                     <!--religion-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="religion">Religion :</label>
-                                                        <select id="religion" th:field="*{religion}" class="form-control" tabindex="9" required>
+                                                        <select id="religion" th:field="*{religion}"
+                                                                class="form-control" tabindex="9" required>
                                                             <option value="">Please select</option>
                                                             <option th:each="religions : ${religion}"
                                                                     th:text="${religions.religion}"
@@ -145,8 +166,10 @@
                                                     </div>
                                                     <!--Blood group-->
                                                     <div class="form-group">
-                                                        <label class="control-label" for="bloodGroup">Blood Group :</label>
-                                                        <select id="bloodGroup" th:field="*{bloodGroup}" class="form-control" tabindex="10" required>
+                                                        <label class="control-label" for="bloodGroup">Blood Group
+                                                            :</label>
+                                                        <select id="bloodGroup" th:field="*{bloodGroup}"
+                                                                class="form-control" tabindex="10" required>
                                                             <option value="">Please select</option>
                                                             <option th:each="bloodGroups : ${bloodGroup}"
                                                                     th:text="${bloodGroups.bloodGroup}"
@@ -159,8 +182,10 @@
                                                     </div>
                                                     <!--uniformType-->
                                                     <div class="form-group">
-                                                        <label class="control-label" for="uniformType">Uniform Type :</label>
-                                                        <select id="uniformType" th:field="*{uniformType}" class="form-control" tabindex="11" required>
+                                                        <label class="control-label" for="uniformType">Uniform Type
+                                                            :</label>
+                                                        <select id="uniformType" th:field="*{uniformType}"
+                                                                class="form-control" tabindex="11" required>
                                                             <option value="">Please select</option>
                                                             <option th:each="uniformTypes : ${uniformType}"
                                                                     th:text="${uniformTypes.uniformType}"
@@ -177,7 +202,7 @@
                                                             :</label>
                                                         <select id="designation" th:field="*{designation}"
                                                                 class="form-control" tabindex="12"
-                                                                required>
+                                                        >
                                                             <option value="">Please select</option>
                                                             <option th:each="designations : ${designation}"
                                                                     th:text="${designations.name}"
@@ -185,49 +210,52 @@
                                                                     th:selected="${designations==employee.designation?'selected':'unselected'}"></option>
                                                         </select>
                                                     </div>
-                                                    <!--Photos-->
+                                                    <!--position-->
                                                     <div class="form-group">
-                                                        <label class="active ">Photos :</label>
-                                                        <input type="file" id="imgInp" name="file" tabindex="13">
-                                                        <div class="row">
-                                                            <img src="" alt="" id="blah">
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col" id="filesList"
-                                                                 th:each="file, rowStat: ${files}">
-                                                                <div class="col">
-                                                                    <div class="alert alert-warning alert-dismissible fade show"
-                                                                         role="alert">
-                                                                        <div class="card text-center">
-                                                                            <div class="card-body">
-                                                                                <img id="img" class="rounded"
-                                                                                     style="height: 150px; width: 150px; border-radius: 10px"
-                                                                                     alt="Employee images"
-                                                                                     th:src="${file.url}"/>
-                                                                            </div>
-                                                                            <div class="card-footer bg-secondary text-light text-center">
-                                                                                <p id="imgName"
-                                                                                   th:text="${file.filename}"></p>
-                                                                                <span> Uploaded Date :
-                                            <p id="imgCreateAt" th:text="${{file.createAt}}"></p>
-                                            </span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-row">
-                                                            <label id="errorLabel" th:if="${#fields.hasErrors('*')}"
-                                                                   th:text="'Errors: '">Errors: </label>
-                                                            <ul>
-                                                                <li id="error" th:each="err: ${#fields.errors('*')}"
-                                                                    th:text="${err}" class="error"></li>
-                                                            </ul>
-                                                        </div>
+                                                        <label class="control-label" for="position">Position :</label>
+                                                        <input id="position" th:field="*{position}" class="form-control"
+                                                               tabindex="24" type="text"/>
+                                                        <span id="positionError" th:errors="*{position}"
+                                                              th:if="${#fields.hasErrors('position')}" class="error">Error Position</span>
                                                     </div>
-                                                </div>
+                                                    <!--intakeNo-->
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="intakeNo">Intake No :</label>
+                                                        <input id="intakeNo" th:field="*{intakeNo}" class="form-control"
+                                                               tabindex="25" type="text"/>
+                                                        <span id="intakeNoError" th:errors="*{intakeNo}"
+                                                              th:if="${#fields.hasErrors('intakeNo')}" class="error">Error IntakeNo</span>
+                                                    </div>
+                                                    <!--Email-->
+                                                    <div class="form-group">
 
+                                                        <label class="control-label" for="email">Email :</label>
+
+                                                        <input id="email" th:field="*{email}" class="form-control"
+                                                               tabindex="26" type="email"
+                                                               required/>
+                                                        <span class="error" th:errors="*{email}"
+                                                              th:if="${#fields.hasErrors('email')}" id="emailError">Error Email</span>
+
+                                                    </div>
+                                                    <!--Office email-->
+                                                    <div class="form-group">
+
+                                                        <label class="control-label" for="officeEmail">Office Email
+                                                            :</label>
+
+                                                        <input id="officeEmail" th:field="*{officeEmail}"
+                                                               class="form-control" tabindex="27"
+                                                               type="email"/>
+                                                        <span class="error" th:errors="*{officeEmail}"
+                                                              th:if="${#fields.hasErrors('officeEmail')}"
+                                                              id="officeEmailError">Error Office Email</span>
+
+                                                    </div>
+
+
+                                                </div>
+                                                <!--right side-->
                                                 <div class="col-md-6"><!--Right Side-->
                                                     <div class="form-group">
 
@@ -260,13 +288,15 @@
                                                     <!--Temporary Address-->
                                                     <div class="form-group">
 
-                                                        <label class="control-label" for="address">Temporary Address :</label>
+                                                        <label class="control-label" for="address">Temporary Address
+                                                            :</label>
 
                                                         <textarea id="temporaryAddress" th:field="*{temporaryAddress}"
                                                                   class="form-control" tabindex="16"
-                                                                  ></textarea>
+                                                        ></textarea>
                                                         <span class="error" th:errors="*{temporaryAddress}"
-                                                              th:if="${#fields.hasErrors('temporaryAddress')}" id="temporaryAddressError">Error temporaryAddress</span>
+                                                              th:if="${#fields.hasErrors('temporaryAddress')}"
+                                                              id="temporaryAddressError">Error temporaryAddress</span>
 
                                                     </div>
                                                     <!--Mobile Number One-->
@@ -316,86 +346,56 @@
                                                     <!--Office Number-->
                                                     <div class="form-group">
 
-                                                        <label class="control-label" for="land">Office Contact No :</label>
+                                                        <label class="control-label" for="land">Office Contact No
+                                                            :</label>
 
-                                                        <input id="officeNo" th:field="*{officeNo}" class="form-control land"
+                                                        <input id="officeNo" th:field="*{officeNo}"
+                                                               class="form-control land"
                                                                type="text" tabindex="20"
                                                                maxlength="10"
                                                                min="9"/>
                                                         <span class="error" th:errors="*{officeNo}"
-                                                              th:if="${#fields.hasErrors('officeNo')}" id="officeNoError">Error Office Number</span>
+                                                              th:if="${#fields.hasErrors('officeNo')}"
+                                                              id="officeNoError">Error Office Number</span>
 
                                                     </div>
                                                     <!--emergencyContactNo-->
                                                     <div class="form-group">
 
-                                                        <label class="control-label" for="land">Emergency Contact No :</label>
+                                                        <label class="control-label" for="land">Emergency Contact No
+                                                            :</label>
 
-                                                        <input id="emergencyContactNo" th:field="*{emergencyContactNo}" class="form-control land"
+                                                        <input id="emergencyContactNo" th:field="*{emergencyContactNo}"
+                                                               class="form-control land"
                                                                type="text" tabindex="21"
                                                                maxlength="10"
                                                                min="9"/>
                                                         <span class="error" th:errors="*{emergencyContactNo}"
-                                                              th:if="${#fields.hasErrors('emergencyContactNo')}" id="emergencyContactNoError">Error EmergencyNumber</span>
+                                                              th:if="${#fields.hasErrors('emergencyContactNo')}"
+                                                              id="emergencyContactNoError">Error EmergencyNumber</span>
 
                                                     </div>
                                                     <!--nearestPoliceStation-->
                                                     <div class="form-group">
-                                                        <label class="control-label" for="nearestPoliceStation">Nearest Police Station :</label>
-                                                        <input id="nearestPoliceStation" th:field="*{fullName}" class="form-control"
-                                                               tabindex="22" type="text" />
-                                                        <span id="nearestPoliceStationError" th:errors="*{nearestPoliceStation}"
-                                                              th:if="${#fields.hasErrors('nearestPoliceStation')}" class="error">Error Nearest Police Station</span>
+                                                        <label class="control-label" for="nearestPoliceStation">Nearest
+                                                            Police Station :</label>
+                                                        <input id="nearestPoliceStation" th:field="*{fullName}"
+                                                               class="form-control"
+                                                               tabindex="22" type="text"/>
+                                                        <span id="nearestPoliceStationError"
+                                                              th:errors="*{nearestPoliceStation}"
+                                                              th:if="${#fields.hasErrors('nearestPoliceStation')}"
+                                                              class="error">Error Nearest Police Station</span>
                                                     </div>
                                                     <!--medicleNo-->
                                                     <div class="form-group">
-                                                        <label class="control-label" for="medicleNo">Medicle No :</label>
-                                                        <input id="medicleNo" th:field="*{medicleNo}" class="form-control"
+                                                        <label class="control-label" for="medicleNo">Medicle No
+                                                            :</label>
+                                                        <input id="medicleNo" th:field="*{medicleNo}"
+                                                               class="form-control"
                                                                tabindex="23" type="text" required/>
                                                         <span id="medicleNoError" th:errors="*{medicleNo}"
                                                               th:if="${#fields.hasErrors('medicleNo')}" class="error">Error Medicle No</span>
-                                                    </div>
-                                                    <!--position-->
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="position">Position :</label>
-                                                        <input id="position" th:field="*{position}" class="form-control"
-                                                               tabindex="24" type="text" />
-                                                        <span id="positionError" th:errors="*{position}"
-                                                              th:if="${#fields.hasErrors('position')}" class="error">Error Position</span>
-                                                    </div>
-                                                    <!--intakeNo-->
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="intakeNo">Intake No :</label>
-                                                        <input id="intakeNo" th:field="*{intakeNo}" class="form-control"
-                                                               tabindex="25" type="text" />
-                                                        <span id="intakeNoError" th:errors="*{intakeNo}"
-                                                              th:if="${#fields.hasErrors('intakeNo')}" class="error">Error IntakeNo</span>
-                                                    </div>
-                                                    <!--Email-->
-                                                    <div class="form-group">
-
-                                                        <label class="control-label" for="email">Email :</label>
-
-                                                        <input id="email" th:field="*{email}" class="form-control"
-                                                               tabindex="26" type="email"
-                                                               required/>
-                                                        <span class="error" th:errors="*{email}"
-                                                              th:if="${#fields.hasErrors('email')}" id="emailError">Error Email</span>
-
-                                                    </div>
-                                                    <!--Office email-->
-                                                    <div class="form-group">
-
-                                                        <label class="control-label" for="officeEmail">Office Email
-                                                            :</label>
-
-                                                        <input id="officeEmail" th:field="*{officeEmail}"
-                                                               class="form-control" tabindex="27"
-                                                               type="email"/>
-                                                        <span class="error" th:errors="*{officeEmail}"
-                                                              th:if="${#fields.hasErrors('officeEmail')}"
-                                                              id="officeEmailError">Error Office Email</span>
-
                                                     </div>
                                                     <!--Date of assignment-->
                                                     <div class="form-group">
@@ -415,7 +415,8 @@
                                                     <!--Date of Appointment-->
                                                     <div class="form-group">
 
-                                                        <label class="control-label" for="appoimentDate">Date of Appointment :</label>
+                                                        <label class="control-label" for="appoimentDate">Date of
+                                                            Appointment :</label>
 
                                                         <input id="appoimentDate" th:field="*{{appoimentDate}}"
                                                                type="date"
@@ -426,7 +427,7 @@
                                                               id="appoimentDateError">Error Date Of Appointment</span>
 
                                                     </div>
-                                                    <!--Employee receivingExpensesStatus-->
+                                                    <!--Employee Status-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="employeeStatus">Employee
                                                             Status :</label>
@@ -440,6 +441,49 @@
                                                                     th:selected="${employeeStatuss==employee.employeeStatus?'selected':'unselected'}"></option>
                                                         </select>
                                                     </div>
+
+                                                    <!--Photos-->
+                                                    <div class="form-group">
+                                                        <label class="active ">Photos :</label>
+                                                        <input type="file" id="imgInp" name="file" tabindex="13">
+                                                        <div class="row">
+                                                            <img src="" alt="" id="blah">
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col" id="filesList"
+                                                                 th:each="file, rowStat: ${files}">
+                                                                <div class="col">
+                                                                    <div class="alert alert-warning alert-dismissible fade show"
+                                                                         role="alert">
+                                                                        <div class="card text-center">
+                                                                            <div class="card-body">
+                                                                                <img id="img" class="rounded"
+                                                                                     style="height: 150px; width: 150px; border-radius: 10px"
+                                                                                     alt="Employee images"
+                                                                                     th:src="${file.url}"/>
+                                                                            </div>
+                                                                            <div class="card-footer bg-secondary text-light text-center">
+                                                                                <p id="imgName"
+                                                                                   th:text="${file.filename}"></p>
+                                                                                <span> Uploaded Date :
+                                            <p id="imgCreateAt" th:text="${{file.createAt}}"></p>
+                                            </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row">
+                                                            <label id="errorLabel" th:if="${#fields.hasErrors('*')}"
+                                                                   th:text="'Errors: '">Errors: </label>
+                                                            <ul>
+                                                                <li id="error" th:each="err: ${#fields.errors('*')}"
+                                                                    th:text="${err}" class="error"></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="form-group" id="updateStatus"
                                                          th:if="${addStatus==false}">
                                                         <label class="control-label" for="createdBy">Created By
@@ -447,6 +491,180 @@
                                                         <input id="createdBy" th:field="*{createdBy}"
                                                                class="form-control" type="text"
                                                                readonly/>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <!--Dependent detail start-->
+                                            <div class="row">
+                                                <button class="btn btn-primary">Add Dependent</button>
+                                            </div>
+                                            <div class="row" th:each="dependent, status : ${employee.dependents}">
+                                                <!--depended left side-->
+                                                <div class="col-md-6">
+                                                    <!--Id-->
+                                                    <div class="form-group " th:if="${addStatus==false}">
+                                                        <label for="id" class="form-label "> Id </label>
+
+                                                        <input type="text" class="form-control"
+                                                               th:field="*{dependents[__${status.index}__].id}"
+                                                               readonly>
+                                                        <input type="text" th:field="*{dependents[__${status.index}__].employee}" hidden>
+                                                    </div>
+                                                    <!--Name-->
+                                                    <div class="form-group ">
+                                                        <label th:for="${'name'}" class="form-label "> Name </label>
+
+                                                        <input type="text" class="form-control"
+                                                               th:field="*{dependents[__${status.index}__].name}"
+                                                               required>
+
+                                                    </div>
+                                                    <!--relationship-->
+                                                    <div class="form-group ">
+                                                        <label th:for="${'relationship'}" class="form-label ">
+                                                            relationship </label>
+
+                                                        <select class="form-control"
+                                                                th:field="*{dependents[__${status.index}__].relationship}">
+                                                            <option th:each="relationship : ${relationship}"
+                                                                    th:text="${relationship.relationship}"
+                                                                    th:value="${relationship}">
+
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <!--Date of Birth-->
+                                                    <div class="form-group ">
+                                                        <label th:for="${'dob'}" class="form-label "> Date of
+                                                            Birth </label>
+                                                        <input type="date" class="form-control"
+                                                               th:field="*{dependents[__${status.index}__].dob}">
+
+                                                    </div>
+                                                </div>
+                                                <!--depended right side-->
+                                                <div class="col-md-6"><!--nic-->
+                                                    <div class="form-group ">
+                                                        <label th:for="${'nic'}" class="form-label "> NIC
+                                                            No </label>
+
+                                                        <input type="text" class="form-control"
+                                                               th:field="*{dependents[__${status.index}__].nic}"
+                                                               required>
+
+                                                    </div>
+                                                    <!--currentStatus-->
+                                                    <div class="form-group ">
+                                                        <label th:for="${'currentStatus'}" class="form-label ">
+                                                            Current Status
+                                                            No </label>
+                                                        <select class="form-control"
+                                                                th:field="*{dependents[__${status.index}__].currentStatus}">
+                                                            <option th:each="currentStatus : ${currentStatus}"
+                                                                    th:text="${currentStatus.currentStatus}"
+                                                                    th:value="${currentStatus}">
+
+                                                            </option>
+
+                                                        </select>
+
+
+                                                    </div>
+                                                    <!--Remark-->
+                                                    <div class="form-group ">
+                                                        <label th:for="${'Remark'}" class="form-label">
+                                                            Remark </label>
+
+                                                        <input type="text" class="form-control"
+                                                               th:field="*{dependents[__${status.index}__].remark}"
+                                                               required>
+
+                                                    </div>
+                                                    <!--addStatusUser-->
+                                                    <div class="form-group"
+                                                         th:if="${addStatus==false}">
+                                                        <label class="control-label" for="createdBy">Created By
+                                                            :</label>
+                                                        <input id="createdBy"
+                                                               th:field="*{dependents[__${status.index}__].createdBy}"
+                                                               class="form-control" type="text"
+                                                               readonly/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--tO ADD NORMAL employee dependent-->
+                                            <hr>
+                                            <hr>
+                                            <hr>
+                                            <hr>
+                                            <hr>
+                                            <div class="row" >
+                                                <!--depended left side-->
+                                                <div class="col-md-6">
+                                                    <!--Name-->
+                                                    <div class="form-group ">
+                                                        <label th:for="${'name'}" class="form-label "> Name </label>
+
+                                                        <input type="text" class="form-control"
+                                                               th:name="${'dependents[1].name'}"
+                                                               required>
+
+                                                    </div>
+                                                    <!--relationship-->
+                                                    <div class="form-group ">
+                                                        <label th:for="${'relationship'}" class="form-label ">
+                                                            relationship </label>
+                                                        <select class="form-control"
+                                                                th:name="${'dependents[1].relationship'}">
+                                                            <option th:each="relationship : ${relationship}"
+                                                                    th:text="${relationship.relationship}"
+                                                                    th:value="${relationship}">
+
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <!--Date of Birth-->
+                                                    <div class="form-group ">
+                                                        <label th:for="${'dob'}" class="form-label "> Date of
+                                                            Birth </label>
+                                                        <input type="date" class="form-control"
+                                                               th:name="${'dependents[1].dob'}">
+
+                                                    </div>
+                                                </div>
+                                                <!--depended right side-->
+                                                <div class="col-md-6"><!--nic-->
+                                                    <div class="form-group ">
+                                                        <label th:for="${'nic'}" class="form-label "> NIC
+                                                            No </label>
+                                                        <input type="text" class="form-control"
+                                                               th:name="${'dependents[1].nic'}"
+                                                               required>
+                                                    </div>
+                                                    <!--currentStatus-->
+                                                    <div class="form-group ">
+                                                        <label th:for="${'currentStatus'}" class="form-label ">
+                                                            Current Status
+                                                            No </label>
+                                                        <select class="form-control"
+                                                                th:name="${'dependents[1].currentStatus'}">
+                                                            <option th:each="currentStatus : ${currentStatus}"
+                                                                    th:text="${currentStatus.currentStatus}"
+                                                                    th:value="${currentStatus}">
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <!--Remark-->
+                                                    <div class="form-group ">
+                                                        <label th:for="${'Remark'}" class="form-label">
+                                                            Remark </label>
+
+                                                        <input type="text" class="form-control"
+                                                               th:name="${'dependents[1].remark'}"
+                                                               required>
+
                                                     </div>
                                                 </div>
                                             </div>
