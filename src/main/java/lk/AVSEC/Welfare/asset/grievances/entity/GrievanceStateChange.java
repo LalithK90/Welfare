@@ -19,7 +19,9 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 public class GrievanceStateChange extends AuditEntity {
 
-    private String comment;
+    private String remark;
+
+    private String commentedBy;
 
     @ManyToOne
     private Grievance grievance;

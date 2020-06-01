@@ -12,6 +12,7 @@
 
 
 
+
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row">
@@ -22,12 +23,15 @@
                                     <h4>Grievances</h4>
                                     <form role="form">
                                         <div class="form-group">
+                                            <h1 class="m-0 text-dark">  <span id="formHeader" th:text="${addStatus==false?'New Grievances':'Update Grievances'}"></span></h1>
+                                            <span id="formHeader" th:text="${addStatus==false?'New Grievances':'Update Grievances'}"></span>
                                             <a class="btn btn-success" id="newGrievances" style="width:100%" th:href="${'/grievances/add'}">
                                                 <i class="fa fa-grievance-plus" style="font-size: 18px;"></i> &nbsp; Add Grievances </a>
+
                                         </div>
                                         <div class="form-group">
-                                            <a class="btn btn-warning" id="newGrievances" style="width:100%" th:href="${'/grievances/add'}">
-                                                <i class="fa fa-grievance-plus" style="font-size: 18px;"></i> &nbsp; Edit Grievances </a>
+                                            <a class="btn btn-warning" id="newGrievances" style="width:100%" th:href="${'/grievances'}">
+                                                <i class="fa fa-grievance-plus" style="font-size: 18px;"></i> &nbsp; View Grievances </a>
                                         </div>
                                         <div class="form-group">
                                             <button type="button" class="btn btn-primary" style="width:100%";data-toggle="modal" data-target="#modalScrollableBody">
@@ -38,101 +42,58 @@
                                 </div></div>
                             </div>
                             <div class="col-md-9">
-
-
-                                    <div class="accordion" id="accordion">
-                                        <div class="card">
-                                            <div class="card-header" id="headingOne">
-                                                <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                                                        aria-controls="collapseOne">User Grievances - Pending</button>
-                                            </div>
-                                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                                <div class="card-body">None</div>
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <div class="card-header" id="headingTwo">
-                                                <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
-                                                        aria-expanded="false" aria-controls="collapseTwo">User Grievances - Finish </button>
-                                            </div>
-                                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                                <div class="card-body">None</div>
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <div class="card-header" id="headingThree">
-                                                <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
-                                                        aria-expanded="false" aria-controls="collapseThree">My Grievances - Pending </button>
-                                            </div>
-                                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                                <div class="card-body">None</div>
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <div class="card-header" id="headingFour">
-                                                <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour"
-                                                        aria-expanded="false" aria-controls="collapseFour">My Grievances - Finish </button>
-                                            </div>
-                                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                                                <div class="card-body">None</div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
+                                <div class="card"><div class="card-body">
+                                    <h4> <span id="formHeader" th:text="${addStatus==false?'New Grievances':'Update Grievances'}"></span> Form </h4></div>
                                     <!--if not empty list-->
-                                   <!-- <div class="card-body" id="grievancesListTable" th:if="${not #lists.isEmpty(grievancess)}">
-                                        <table class="table">
-                                            <thead class="thead-inverse">
-                                            <tr>
-                                                <th>Index</th>
-                                                <th>Subject</th>
-                                                <th>Grievances</th>
-                                                <th>priority</th>
-                                                <th>Modify</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr th:each="grievance, rowCount : ${grievancess}" scope="row">
-                                                <th th:text="${rowCount.count}"></th>
-                                                <th th:text="${grievance.name}"></th>
-                                                &lt;!&ndash;     <th th:text="${grievance.description}"></th>
-                                                     <th th:text="${grievance.participant}"></th>&ndash;&gt;
-                                                <th th:text="${grievances.remark}"></th>
-                                                <th th:text="${grievances.priority}"></th>
+                                    <div class="card-body">
+                                        <form th:action="${addStatus==false?'/grievances/save' :'/grievances/update'}" method="post"
+                                              th:object="${grievances}">
 
-                                                <th><a class="btn btn-success btn-sm" th:href="${'/grievances/' + grievances.id}" id="grievancesView"><i
-                                                        class="fa fa-folder-open"></i>&nbsp;View</a>
-                                                    <a class="btn btn-primary btn-sm" id="grievancesEdit"
-                                                       th:href="${'/grievances/edit/' + grievance.id}"><i
-                                                            class="fa fa-edit"></i>&nbsp;Edit</a>
-                                                    <a class="btn btn-danger btn-sm" id="grievancesRemove"
-                                                       th:href="${'/grievances/remove/' + grievance.id}"
-                                                       th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
-                                                       th:onclick="if(!(confirm('Are you want to delete this grievances ?'))) return false"
-                                                    ><i
-                                                            aria-hidden="true" class="fa fa-trash"></i>
-                                                        Delete</a>
+                                            <!--/* id this comment not visualize */-->
+                                            <!--Id-->
+                                            <div class="form-group" th:if="${addStatus==true}">
+                                                <label for="id" class="form-label "> Id </label>
+                                                <input type="text" class="form-control" th:field="*{id}" id="id" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label th:for="${'name'}" class="form-label "> Name </label>
+                                                <input type="text" class="form-control" th:field="*{name}" required>
+                                                <p class="text-danger" th:if="${#fields.hasErrors('name')}"
+                                                   th:errors="*{name}">Error Name</p>
+                                            </div>
+                                            <!--Description-->
+                                            <div class="form-group">
+                                                <label th:for="${'description'}" class="form-label "> Description</label>
 
-                                                </th>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>-->
-                                    <!--if empty list-->
-                                   <!-- <div class="row" id="grievancesNotList" th:if="${ #lists.isEmpty(grievancess)}">
+                                                <textarea class="form-control" th:field="*{description}" required></textarea>
+                                                <p class="text-danger" th:if="${#fields.hasErrors('description')}"
+                                                   th:errors="*{description}">Error description</p>
 
-                                        <div class="alert alert-info" role="alert">
+                                            </div>
+                                            <!--participant-->
+                                            <div class="form-group">
+                                                <label th:for="${'participant'}" class="form-label "> Participant </label>
 
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                            <h4 class="alert-heading">Info!</h4>
-                                            <p>Please read the provided information.</p>
-                                            <p> There is no any grievance upto now please so if you wish to add grievance, please press the <a th:href="${'/grievance/add'}" class="alert-link">Add grievance</a> button.
-                                            </p></div>
-                                    </div>-->
-                                    <!-- model Body  -->
+                                            <!--    <input type="text" class="form-control" th:field="*{participant}">
+                                                <p class="text-danger" th:if="${#fields.hasErrors('participant')}"
+                                                   th:errors="*{participant}">Error Participant</p>-->
+
+                                            </div>
+
+
+
+                                            <div class="form-group">
+
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i> <span
+                                                        th:text="${addStatus==false?'Save' : 'Update'}"></span>
+                                                </button>
+
+                                            </div>
+
+
+                                        </form>
+                                    </div>
                                     <div class="modal fade" id="modalScrollableBody" tabindex="-1" role="dialog"
                                          aria-labelledby="modalScrollableBodyTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -181,7 +142,9 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -194,4 +157,3 @@
 <script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
 </body>
 </html>
-

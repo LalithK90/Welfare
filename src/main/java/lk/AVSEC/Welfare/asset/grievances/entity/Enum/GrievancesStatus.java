@@ -7,10 +7,10 @@ import org.apache.poi.hssf.util.HSSFColor;
 @Getter
 @AllArgsConstructor
 public enum GrievancesStatus {
-    INITIAL("Initial State"),
-    SE("Secretory"),
-    PR("President"),
-    CH("Chairman");
+    HOSS("Head of Security Services"),
+    DHOSS("Deputy Head of Security Services"),
+    PRE("President"),
+    SCTY("Secretory");
 
     private final String grievancesStatus;
 }

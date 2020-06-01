@@ -5,6 +5,7 @@ import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.*;
 import lk.AVSEC.Welfare.asset.commonAsset.model.FileInfo;
 import lk.AVSEC.Welfare.asset.dependent.entity.Dependent;
 import lk.AVSEC.Welfare.asset.designation.entity.Designation;
+import lk.AVSEC.Welfare.asset.employee.entity.Enum.BoardOfDirectors;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.EmployeeStatus;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.Nationality;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.UniformType;
@@ -114,6 +115,9 @@ public class Employee extends AuditEntity {
     @Enumerated(EnumType.STRING)
     private EmployeeStatus employeeStatus;
 
+    @Enumerated(EnumType.STRING)
+    private BoardOfDirectors boardOfDirectors;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
@@ -135,13 +139,11 @@ public class Employee extends AuditEntity {
     @OneToMany(mappedBy = "employee")
     private List<Qualification> qualifications;
 
-    @OneToMany(mappedBy = "employee",cascade = {CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.DETACH})
+    @OneToMany(mappedBy = "employee", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})
     private List<Dependent> dependents;
 
     @ManyToMany(mappedBy = "employees")
     private List<EmailMessage> emailMessages;
-
-
 
     @Transient
     private MultipartFile file;
@@ -151,7 +153,6 @@ public class Employee extends AuditEntity {
 
     @Transient
     private List<FileInfo> fileInfos = new ArrayList<>();
-
 
 
 }

@@ -1,6 +1,8 @@
 package lk.AVSEC.Welfare.asset.grievances.service;
 
 import lk.AVSEC.Welfare.asset.grievances.dao.GrievancesDao;
+import lk.AVSEC.Welfare.asset.grievances.entity.Enum.GrievancesStatus;
+import lk.AVSEC.Welfare.asset.grievances.entity.Enum.SolutionType;
 import lk.AVSEC.Welfare.asset.grievances.entity.Grievance;
 import lk.AVSEC.Welfare.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -40,6 +43,11 @@ public class GrievancesService implements AbstractService<Grievance, Integer> {
             put = {@CachePut(value = "grievances", key = "#grievance.id")})
     @Transactional
     public Grievance persist(Grievance grievance) {
+        if (grievance.getId() == null) {
+            grievance.setSolutionType(SolutionType.PR);
+            grievance.setGrievancesStatus(GrievancesStatus.SCTY);
+        }
+
         return grievancesDao.save(grievance);
     }
 
@@ -63,8 +71,12 @@ public class GrievancesService implements AbstractService<Grievance, Integer> {
         return grievancesDao.equals(grievance);
     }
 
+    public List<Grievance> findBySolutionTypeAndCreatedByAndCreatedAtBetween(SolutionType pr, String userName, LocalDateTime form, LocalDateTime to) {
+       return grievancesDao.findBySolutionTypeAndCreatedByAndCreatedAtBetween(pr, userName, form, to);
+    }
 
-/*    public List<Grievances> findByProvince(Province province) {
-        return grievancesDao.findByProvince(province);
-    }*/
+    public List<Grievance> findBySolutionTypeAndGrievancesStatusAndCreatedAtBetween(SolutionType cl, GrievancesStatus grievancesStatus, LocalDateTime form, LocalDateTime to) {
+    return grievancesDao.findBySolutionTypeAndGrievancesStatusAndCreatedAtBetween(cl,grievancesStatus,form,to);
+    }
+
 }

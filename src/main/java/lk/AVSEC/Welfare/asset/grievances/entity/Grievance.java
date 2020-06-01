@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.AVSEC.Welfare.asset.employee.entity.Employee;
 import lk.AVSEC.Welfare.asset.grievances.entity.Enum.GrievancesStatus;
 import lk.AVSEC.Welfare.asset.grievances.entity.Enum.Priority;
+import lk.AVSEC.Welfare.asset.grievances.entity.Enum.SolutionType;
 import lk.AVSEC.Welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,17 +15,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonFilter("Grievances")
+@JsonFilter("Grievance")
 public class Grievance extends AuditEntity {
-
-    // @Size(min = 2, max = 60, message = "Your name length should be 13")
-    private String name;
 
     private String description;
 
@@ -34,8 +33,13 @@ public class Grievance extends AuditEntity {
     @Enumerated(EnumType.STRING)
     private GrievancesStatus grievancesStatus;
 
+    @Enumerated(EnumType.STRING)
+    private SolutionType solutionType;
+
+    @OneToMany(mappedBy = "grievance", cascade = {CascadeType.PERSIST,CascadeType.DETACH})
+    private List<GrievanceStateChange> grievanceStateChange;
+
+    @Transient
     private String remark;
 
-    @ManyToOne
-    private Employee employee;
 }
