@@ -135,9 +135,9 @@ public class EmployeeController {
             employee.setMobileOne(commonService.commonMobileNumberLengthValidator(employee.getMobileOne()));
             employee.setMobileTwo(commonService.commonMobileNumberLengthValidator(employee.getMobileTwo()));
             employee.setLand(commonService.commonMobileNumberLengthValidator(employee.getLand()));
-            System.out.println("dependent length " + employee.getDependents().size());
+           // System.out.println("dependent length " + employee.getDependents().size());
 
-            int i = employee.getDependents().size();
+            /*int i = employee.getDependents().size();
             if (i != 0) {
                 for (int k = 0; k < i; k++) {
                     if (employee.getDependents().get(k).getId() == null) {
@@ -146,9 +146,9 @@ public class EmployeeController {
                         System.out.println("id not " + k + " name employee id " + employee.getDependents().get(k).getEmployee().getId());
                     }
                 }
-            }
+            }*/
             //remove current
-            System.out.println("dependent count " + employee.getDependents().size());
+          //  System.out.println("dependent count " + employee.getDependents().size());
             //after save employee files and save employee
           Employee employeeSaved =  employeeService.persist(employee);
             //if employee state is not working he or she cannot access to the system

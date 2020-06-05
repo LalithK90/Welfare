@@ -10,6 +10,7 @@ MBR - Member
 OTR - Other
 admin - Admin
 
+
 POST http://localhost/district/save                         admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
 POST http://localhost/district/update                       admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
 GET http://localhost/district                               admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
@@ -18,6 +19,8 @@ GET http://localhost/district/{{id}}                        admin / President / 
 GET http://localhost/district/edit/{{id}}                   admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
 GET http://localhost/district/delete/{{id}}                 admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
 GET http://localhost/district/getDistrict/{{province}}      admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+
+
 GET http://localhost/briefing                               admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
 POST http://localhost/dependent/save                        admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
 POST http://localhost/dependent/update                      admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member

@@ -9,8 +9,5 @@ import java.util.List;
 
 @Repository
 public interface DependentDao extends JpaRepository<Dependent, Integer> {
-    List<Dependent> findByEmployee(Employee employee);
-/*//select * from district where province = ?1
-    List<Qualification> findByProvince(Province province);*/
-
+    Dependent findByNic(String nic);
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.*;
 import lk.AVSEC.Welfare.asset.commonAsset.model.FileInfo;
 import lk.AVSEC.Welfare.asset.dependent.entity.Dependent;
+import lk.AVSEC.Welfare.asset.dependent.entity.DependentEmployee;
 import lk.AVSEC.Welfare.asset.designation.entity.Designation;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.BoardOfDirectors;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.EmployeeStatus;
@@ -139,11 +140,11 @@ public class Employee extends AuditEntity {
     @OneToMany(mappedBy = "employee")
     private List<Qualification> qualifications;
 
-    @OneToMany(mappedBy = "employee", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})
-    private List<Dependent> dependents;
-
     @ManyToMany(mappedBy = "employees")
     private List<EmailMessage> emailMessages;
+
+    @OneToMany(mappedBy = "employeeOne")
+    private List<DependentEmployee> dependentEmployees;
 
     @Transient
     private MultipartFile file;

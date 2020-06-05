@@ -11,7 +11,6 @@
         <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
 
 
-
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row">
@@ -23,7 +22,8 @@
                                         <h4>First sud Header</h4>
                                         <form role="form">
                                             <a class="btn btn-success" id="newDependency" th:href="${'/dependent/add'}">
-                                                <i class="fa fa-dependent-plus" style="font-size: 18px;"></i> &nbsp; Add Dependency </a>
+                                                <i class="fa fa-dependent-plus" style="font-size: 18px;"></i> &nbsp; Add
+                                                Dependency </a>
 
                                         </form>
                                     </div>
@@ -31,56 +31,65 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="card">
-                                    <div class="card-body table-responsive" id="dependentListTable" th:if="${not #lists.isEmpty(dependents)}">
+                                    <div class="card-body table-responsive" id="dependentListTable"
+                                         th:if="${not #lists.isEmpty(dependents)}">
                                         <h4>Secondary Header </h4>
-                                    <!--if not empty list-->
-                                    <table class="table table-hover table-striped" id="myTable">
+                                        <!--if not empty list-->
+                                        <table class="table table-hover table-striped" id="myTable">
                                             <thead class="thead-inverse">
                                             <tr>
                                                 <th>Index</th>
                                                 <th>Name</th>
                                                 <th>Relationship</th>
-                                                <th>Date of Birth</th>
                                                 <th>NIC No</th>
                                                 <th>Current Status</th>
-                                                <th>Remark</th>
                                                 <th>Modify</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="dependent, rowCount : ${dependents}" scope="row">
+                                            <tr th:each="dependents, rowCount : ${dependents}" scope="row">
                                                 <td th:text="${rowCount.count}"></td>
-                                                <td th:text="${dependent.name}"></td>
-                                                <td th:text="${dependent.relationship.relationship}"></td>
-                                                <td th:text="${dependent.dob}"></td>
-                                                <td th:text="${dependent.nic}"></td>
-                                                <td th:text="${dependent.currentStatus}"></td>
-                                                <td th:text="${dependent.remark}"></td>
-                                                <td><a class="btn btn-success btn-sm" th:href="${'/dependent/' + dependent.id}" id="dependentView"><i
-                                                        class="fa fa-folder-open"></i>&nbsp;View</a>
-                                                    <a class="btn btn-primary btn-sm" id="dependentEdit"
-                                                       th:href="${'/dependent/edit/' + dependent.id}"><i
-                                                            class="fa fa-edit"></i>&nbsp;Edit</a>
-                                                    <a class="btn btn-danger btn-sm" id="dependentRemove"
-                                                       th:href="${'/dependent/remove/' + dependent.id}"
-                                                       th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
-                                                       th:onclick="if(!(confirm('Are you want to delete this civilStatus ?'))) return false"
-                                                    ><i
-                                                            aria-hidden="true" class="fa fa-trash"></i>
-                                                        Delete</a>
+                                                <td th:if="${dependents.dependent!=null}"
+                                                    th:text="${dependents.dependent.name}"></td>
+                                                <td th:if="${dependents.employeeTwo != null}"
+                                                    th:text="${dependents.employeeTwo.name}"></td>
+                                                <td th:text="${dependents.relationship.relationship}"></td>
+                                                <td th:if="${dependents.dependent != null}"
+                                                    th:text="${dependents.dependent.nic}"></td>
+                                                <td th:if="${dependents.employeeTwo != null}"
+                                                    th:text="${dependents.employeeTwo.nic}"></td>
+                                                <td th:if="${dependents.dependent != null}"
+                                                    th:text="${dependents.dependent.currentStatus.currentStatus}"></td>
+                                                <td th:if="${dependents.employeeTwo != null}"
+                                                    th:text="${dependents.employeeTwo.employeeStatus.employeeStatus}"></td>
 
-                                                </td>
+                                                <td>
+                                                     <a class="btn btn-success btn-sm"
+                                                        th:href="${'/dependent/' + dependents.id}" id="dependentView"><i
+                                                             class="fa fa-folder-open"></i>&nbsp;View</a>
+                                                     <a class="btn btn-primary btn-sm" id="dependentEdit"
+                                                        th:href="${'/dependent/edit/' + dependents.id}"><i
+                                                             class="fa fa-edit"></i>&nbsp;Edit</a>
+                                                     <a class="btn btn-danger btn-sm" id="dependentRemove"
+                                                        th:href="${'/dependent/remove/' + dependents.id}"
+                                                        th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                                        th:onclick="if(!(confirm('Are you want to delete this civilStatus ?'))) return false"><i
+                                                             aria-hidden="true" class="fa fa-trash"></i> Delete</a>
+
+                                                 </td>
                                             </tr>
                                             </tbody>
                                         </table>
                                         <!--if empty list-->
                                         <div id="dependentNotList" th:if="${ #lists.isEmpty(dependents)}">
                                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                                 <h3 class="text-center text-danger">
-                                                    <strong>There is no dependent upto know please add dependent to the system
+                                                    <strong>There is no dependent upto know please add dependent to the
+                                                        system
                                                         using add dependent button.
                                                     </strong>
                                                 </h3>
@@ -89,7 +98,8 @@
                                         <!--Show saved dependent-->
                                         <div th:if="${dependentDetail!=null}">
                                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                                 <div class="container">
@@ -108,10 +118,8 @@
         </div>
 
 
-
-
-</div><!-- content-wrapper end -->
-<footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+    </div><!-- content-wrapper end -->
+    <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
 </div><!-- wrapper end -->
 <script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
 </body>

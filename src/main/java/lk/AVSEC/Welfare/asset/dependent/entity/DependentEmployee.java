@@ -21,29 +21,20 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonFilter("Dependent")
-public class Dependent extends AuditEntity {
+@JsonFilter("DependentEmployee")
+public class DependentEmployee extends AuditEntity {
 
-    @Size(min = 2, max = 60, message = "Your name length should be 13")
-    private String name;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dob;
-
-    private String nic;
-
-    @Enumerated(EnumType.STRING)
-    private CurrentStatus currentStatus;
-
-    private String remark;
-
-    @OneToMany(mappedBy = "dependent")
-    private List<DependentEmployee> dependentEmployees;
-
-    @Transient
     @Enumerated(EnumType.STRING)
     private Relationship relationship;
 
-    @Transient
-    private String epfNumber;
+    @ManyToOne
+    private Employee employeeOne;
+
+    @ManyToOne
+    private Employee employeeTwo;
+
+    @ManyToOne
+    private Dependent dependent;
+
 }
