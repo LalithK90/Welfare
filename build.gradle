@@ -1,35 +1,38 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.4.RELEASE'
+	id 'org.springframework.boot' version '2.7.1.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
 }
-
+group = 'lk.w3Academy'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
 
 configurations {
 	developmentOnly
 	runtimeClasspath {
 		extendsFrom developmentOnly
 	}
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
 }
 
 repositories {
-	mavenCentral()
-}
-
-springBoot {
-	buildInfo {
-		properties {
-			group = 'lk.w3Academy'
-			version = '0.0.1-SNAPSHOT'
-			sourceCompatibility = '11'
-		}
+	jcenter()
+	maven {
+		url "https://maven.springframework.org/release"
+	}
+	maven {
+		url "https://maven.restlet.com"
 	}
 }
+
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
