@@ -72,6 +72,8 @@ public class EmployeeController {
         model.addAttribute("uniformType", UniformType.values());
         model.addAttribute("relationship", Relationship.values());
         model.addAttribute("currentStatus", CurrentStatus.values());
+
+
         return "employee/addEmployee";
     }
 
@@ -87,8 +89,10 @@ public class EmployeeController {
     //Send all employee data
     @RequestMapping
     public String employeePage(Model model) {
+      /*  Employee employee = employeeService.findById(id);*/
         model.addAttribute("employees", employeeService.findAll());
-        model.addAttribute("contendHeader", "Employee Registration");
+        model.addAttribute("contendHeader", "Employee");
+       /* model.addAttribute("files", employeeFilesService.employeeFileDownloadLinks(employee));*/
         return "employee/employee";
     }
 
@@ -98,6 +102,7 @@ public class EmployeeController {
         Employee employee = employeeService.findById(id);
         model.addAttribute("employeeDetail", employee);
         model.addAttribute("addStatus", false);
+        model.addAttribute("contendHeader", "Employee View Details");
         model.addAttribute("files", employeeFilesService.employeeFileDownloadLinks(employee));
         return "employee/employee-detail";
     }
@@ -109,6 +114,7 @@ public class EmployeeController {
         model.addAttribute("employee", employee);
         model.addAttribute("newEmployee", employee.getEpf());
         model.addAttribute("addStatus", false);
+        model.addAttribute("contendHeader", "Employee Edit Details");
         model.addAttribute("files", employeeFilesService.employeeFileDownloadLinks(employee));
         return commonThings(model);
     }
@@ -118,6 +124,7 @@ public class EmployeeController {
     public String employeeAddForm(Model model) {
         model.addAttribute("addStatus", true);
         model.addAttribute("employee", new Employee());
+        model.addAttribute("contendHeader", "Employee Add Members");
         return commonThings(model);
     }
 

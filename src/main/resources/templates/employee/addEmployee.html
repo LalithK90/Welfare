@@ -128,8 +128,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!--/*  Hello */-->
-
                                                     <!--Date of birth-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="dateOfBirth">Birth date
@@ -248,9 +246,10 @@
 
                                                 </div>
                                                 <!--right side-->
-                                                <div class="col-md-6"><!--Right Side-->
-                                                    <div class="form-group">
+                                                <div class="col-md-6">
 
+                                                    <!-- Civil State-->
+                                                    <div class="form-group">
                                                         <label class="control-label" for="civilStatus">Civil State
                                                             :</label>
 
@@ -433,7 +432,6 @@
                                                                     th:selected="${employeeStatuss==employee.employeeStatus?'selected':'unselected'}"></option>
                                                         </select>
                                                     </div>
-
                                                     <!--Photos-->
                                                     <div class="form-group">
                                                         <label class="active ">Photos :</label>
@@ -475,7 +473,6 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-
                                                     <div class="form-group" id="updateStatus"
                                                          th:if="${addStatus==false}">
                                                         <label class="control-label" for="createdBy">Created By
@@ -485,8 +482,34 @@
                                                                readonly/>
                                                     </div>
                                                     <hr>
+
                                                 </div>
                                             </div>
+
+
+                                            <h2 class="text-muted mt-5 mb-3">Colspan</h2>
+                                            <div class="accordion" id="accordion">
+                                                <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
+                                                                aria-controls="collapseOne">Dependance One</button>
+                                                    </div>
+                                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                                        <div class="card-body">Dependance gose here.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-header" id="headingTwo">
+                                                        <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                                                                aria-expanded="false" aria-controls="collapseTwo">Education Two</button>
+                                                    </div>
+                                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                                        <div class="card-body">Education Qulification</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
                                             <div class="card-footer">
                                                 <button type="submit" class="btn btn-primary">
                                                     <i th:class="${addStatus==true?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i>

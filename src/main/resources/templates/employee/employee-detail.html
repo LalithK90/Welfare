@@ -15,204 +15,383 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-9">
                                 <div class="card">
-                                    <div class="card-body">
-                                        <div th:fragment="employeeDetailsFragment"
-                                             class="container-fluid bg-dark formBorder">
-                                            <h4>First sud Header</h4>
-                                            <form role="form">
-                                                <p th:text="${employeeDetail.title.title} +${' '} +${employeeDetail.name}"></p>
-                                                <a href="/employee" class="btn btn-primary">
-                                                    <i class="fa fa-list"></i>&nbsp; View List
-                                                </a>
-                                                <a href="/employee">
-                                                    <button class="btn btn-success" type="button" tabindex="10">
-                                                        <i class="fa fa-backward " style="font-size: 20px"></i>&nbsp;
-                                                        &nbsp;Back
-                                                    </button>
-                                                </a>
+                                    <div class="card-header">
+                                        <h3 id="name"
+                                            th:text="${employeeDetail.title.title} +${' '} +${employeeDetail.name}"
+                                            class="display_detail"></h3>
+                                        <h3 id="designation" th:if="${employeeDetail.designation !=null}"
+                                            th:text="${employeeDetail.designation.name}"
+                                            class="display_detail">
+                                        </h3>
 
-                                            </form>
+                                        <div class="left-arrow left-container align-content-center">
+                                            <a href="/employee" class="btn btn-primary"> <i class="fa fa-list"></i>&nbsp; View List </a>
+
+                                            <a th:href="${'/employee/' + employeeDetail.id}"  class="btn btn-success" tabindex=""><i class="fa fa-backward"></i>&nbsp;Back </a>
+                                            <a th:href="${'/employee/' + employeeDetail.id}"  class="btn btn-success" tabindex=""><i class="fa fa-forward"></i>&nbsp;Next </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-3">
                                 <div class="card">
-                                    <div class="card-body">
-                                        <h4>Secondary Header </h4>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="id">ID :</label>
-                                            <p id="id" th:text="${employeeDetail.id}" class="display_detail"></p>
+                                    <div class="card-header">
+                                        <center><img id="img" class="rounded"
+                                                     style="height: 150px; width: 150px; border-radius: 10px"
+                                                     alt="Employee images"
+                                                     th:src="${files.url}"/></center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div id="card-116170">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <a class="card-link" data-toggle="collapse" data-parent="#card-116170"
+                                               href="#card-element-246373">Personal Details</a>
                                         </div>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="payRoleNumber">Pay Role No :</label>
-                                            <p id="payRoleNumber" th:text="${employeeDetail.epf}"
-                                               class="display_detail"></p>
-                                        </div>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="departmentIdNumber">Depart Id No :</label>
-                                            <p id="departmentIdNumber" th:text="${employeeDetail.departmentIdNumber}"
-                                               class="display_detail"></p></div>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="name">Name :</label>
-                                            <p id="name"
-                                               th:text="${employeeDetail.title.title} +${' '} +${employeeDetail.name}"
-                                               class="display_detail"></p>
-                                        </div>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="callingName">Calling Name :</label>
-                                            <p id="callingName" th:text="${employeeDetail.callingName}"
-                                               class="display_detail"></p>
-                                        </div>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="nic">NIC No :</label>
-                                            <p id="nic" th:text="${employeeDetail.nic}" class="display_detail"></p>
-                                        </div>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="gender">Gender :</label>
-                                            <p id="gender" th:text="${employeeDetail.gender.gender}"
-                                               class="display_detail"></p>
-                                        </div>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="dateOfBirth">Birth date :</label>
-                                            <p id="dateOfBirth" th:text="${employeeDetail.dateOfBirth}"
-                                               class="display_detail">Error Birthday</p>
-                                        </div>
-                                        <div class="form-row text-right">
-
-                                            <label class="control-label" for="bloodGroup">Blood Group :</label>
-                                        </div>
-                                        <div class="form-row text-right">
-                                            <p id="bloodGroup" th:text="${employeeDetail.bloodGroup.bloodGroup}"
-                                               class="display_detail">
-                                            </p>
-
-                                        </div>
-                                        <div class="form-row text-right">
-
-                                            <label class="control-label" for="designation">Designation :</label>
-
-                                            <p id="designation" th:text="${employeeDetail.designation.name}"
-                                               class="display_detail">
-                                            </p>
-                                        </div>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="civilStatus">Civil State :</label>
-                                        </div>
-                                        <div class="form-row text-right">
-                                            <p id="civilStatus" th:text="${employeeDetail.civilStatus.civilStatus}"
-                                               class="display_detail"></p>
-
-                                        </div>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="employeeStatus">Employee Status :</label>
-                                            <p id="employeeStatus"
-                                               th:text="${employeeDetail.employeeStatus.employeeStatus}"
-                                               class="display_detail"></p>
-                                        </div>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="address">Address :</label>
-                                            <p id="address" class="display_detail "
-                                               th:utext="${employeeDetail.address}"></p>
-                                        </div>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="mobileOne">Mobile One No :</label>
-                                            <p id="mobileOne" th:text="${employeeDetail.mobileOne}"
-                                               class="display_detail"></p>
-                                        </div>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="mobileTwo">Mobile Two No :</label>
-                                            <p id="mobileTwo" th:text="${employeeDetail.mobileTwo}"
-                                               class="display_detail"></p>
-                                        </div>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="land">Land No :</label>
-                                            <p id="land" th:text="${employeeDetail.land}" class="display_detail"></p>
-                                        </div>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="email">Email :</label>
-                                            <p id="email" th:text="${employeeDetail.email}" class="display_detail"></p>
-                                        </div>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="officeEmail">Office Email :</label>
-                                            <p id="officeEmail" th:text="${employeeDetail.officeEmail}"
-                                               class="display_detail"></p>
-                                        </div>
-                                        <!--<div class="form-row text-right">
-                                            <label class="control-label" for="workingPlace">Working Place :</label>
-                                            <p id="workingPlace" th:text="${employeeDetail.workingPlace.name}" class="display_detail"></p>
-                                        </div>-->
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="dateOfAssignment">Date Of Assignment
-                                                :</label>
-                                            <p id="dateOfAssignment" th:text="${{employeeDetail.dateOfAssignment}}"
-                                               class="display_detail"></p>
-                                        </div>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="createdBy">Created By :</label>
-                                            <p id="createdBy" th:text="${employeeDetail.createdBy}"
-                                               class="display_detail"></p>
-                                        </div>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="createdAt">Created At :</label>
-                                            <p id="createdAt"
-                                               th:text="${#temporals.format(employeeDetail.createdAt, 'dd-MM-yyyy HH:mm')}"
-                                               class="display_detail"></p>
-                                        </div>
-                                        <div class="form-row text-right">
-                                            <label class="control-label" for="updatedBy">Updated By :</label>
-                                            <p id="updatedBy" th:text="${employeeDetail.updatedBy}"
-                                               class="display_detail"></p>
-                                        </div>
-                                        <div class="form-row text-right">
-
-                                            <label class="control-label" for="updatedAt">Updated At :</label>
-
-                                            <p id="updatedAt" th:text="${{employeeDetail.updatedAt}}"
-                                               class="display_detail"></p>
-
-                                        </div>
-                                        <!--images-->
-                                        <div class="form-group text-left flex-column ">
-                                            <div class="col" id="photoDetails">
-                                                <div>
-                                                    <label class="control-label ">Photo Details : </label>
+                                        <div id="card-element-246373" class="collapse">
+                                            <div class="card-body">
+                                                <!--Name-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="name">Name :</label>
+                                                    <p id="name"
+                                                       th:text="${employeeDetail.title.title} +${' '} +${employeeDetail.name}"
+                                                       class="display_detail"></p>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col" id="filesList" th:each="file, rowStat: ${files}">
-                                                        <div class="col">
-                                                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                                                <div class="card text-center">
-                                                                    <div class="card-body">
-                                                                        <img id="img" class="rounded" style="height: 150px; width: 150px; border-radius: 10px"
-                                                                             alt="Employee images" th:src="${file.url}"/>
-                                                                    </div>
-                                                                    <div class="card-footer bg-secondary text-light text-center">
-                                                                        <p id="imgName" th:text="${file.filename}"></p>
-                                                                        <span> Uploaded Date : <p id="imgCreateAt" th:text="${{file.createAt}}"></p></span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <!--Calling Name-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="callingName">Calling Name
+                                                        :</label>
+                                                    <p id="callingName" th:text="${employeeDetail.callingName}"
+                                                       class="display_detail"></p>
+                                                </div>
+                                                <!--NIC No-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="nic">NIC No :</label>
+                                                    <p id="nic" th:text="${employeeDetail.nic}"
+                                                       class="display_detail"></p>
+                                                </div>
+                                                <!--Gender-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="gender">Gender :</label>
+                                                    <p id="gender" th:text="${employeeDetail.gender.gender}"
+                                                       class="display_detail"></p>
+                                                </div>
+                                                <!--Birth date-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="dateOfBirth">Birth date :</label>
+                                                    <p id="dateOfBirth" th:text="${employeeDetail.dateOfBirth}"
+                                                       class="display_detail">Error Birthday</p>
+                                                </div>
+                                                <!--Blood Group-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="bloodGroup">Blood Group :</label>
+                                                    <p id="bloodGroup" th:text="${employeeDetail.bloodGroup.bloodGroup}"
+                                                       class="display_detail">
+                                                    </p>
+
+                                                </div>
+                                                <!--Civil State-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="civilStatus">Civil State :</label>
+                                                    <p id="civilStatus"
+                                                       th:text="${employeeDetail.civilStatus.civilStatus}"
+                                                       class="display_detail"></p>
+
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <a class="collapsed card-link" data-toggle="collapse"
+                                               data-parent="#card-116170" href="#card-element-510343">Contact
+                                                Details</a>
+                                        </div>
+                                        <div id="card-element-510343" class="collapse">
+                                            <div class="card-body">
+                                                <!--Address-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="address">Address :</label>
+                                                    <p id="address" class="display_detail "
+                                                       th:utext="${employeeDetail.address}"></p>
+                                                </div>
+                                                <!--Mobile One No-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="mobileOne">Mobile One No :</label>
+                                                    <p id="mobileOne" th:text="${employeeDetail.mobileOne}"
+                                                       class="display_detail"></p>
+                                                </div>
+                                                <!--Mobile Two No-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="mobileTwo">Mobile Two No :</label>
+                                                    <p id="mobileTwo" th:text="${employeeDetail.mobileTwo}"
+                                                       class="display_detail"></p>
+                                                </div>
+                                                <!--Land No-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="land">Land No :</label>
+                                                    <p id="land" th:text="${employeeDetail.land}"
+                                                       class="display_detail"></p>
+                                                </div>
+                                                <!--Email-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="email">Email :</label>
+                                                    <p id="email" th:text="${employeeDetail.email}"
+                                                       class="display_detail"></p>
+                                                </div>
+                                                <!--Office Email-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="officeEmail">Office Email
+                                                        :</label>
+                                                    <p id="officeEmail" th:text="${employeeDetail.officeEmail}"
+                                                       class="display_detail"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="card-987460">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <a class="card-link" data-toggle="collapse" data-parent="#card-987460"
+                                               href="#card-element-845498">Employee Details</a>
+                                        </div>
+                                        <div id="card-element-845498" class="collapse">
+                                            <div class="card-body">
+                                                <!--EPF No-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="payRoleNumber">EPF No :</label>
+                                                    <p id="payRoleNumber" th:text="${employeeDetail.epf}"
+                                                       class="display_detail"></p>
+                                                </div>
+                                                <!--Designation-->
+                                                <div class="form-row text-right">
+
+                                                    <label class="control-label" for="designation">Designation :</label>
+
+                                                    <p id="designation" th:if="${employeeDetail.designation !=null}"
+                                                       th:text="${employeeDetail.designation.name}"
+                                                       class="display_detail">
+                                                    </p>
+                                                </div>
+                                                <!--Employee Status-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="employeeStatus">Employee Status
+                                                        :</label>
+                                                    <p id="employeeStatus"
+                                                       th:text="${employeeDetail.employeeStatus.employeeStatus}"
+                                                       class="display_detail"></p>
+                                                </div>
+                                                <!--Working Place-->
+                                                <!--<div class="form-row text-right">
+                                                    <label class="control-label" for="workingPlace">Working Place :</label>
+                                                    <p id="workingPlace" th:text="${employeeDetail.workingPlace.name}" class="display_detail"></p>
+                                                </div>-->
+                                                <!--Date Of Assignment-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="dateOfAssignment">Date Of
+                                                        Assignment
+                                                        :</label>
+                                                    <p id="dateOfAssignment"
+                                                       th:text="${{employeeDetail.dateOfAssignment}}"
+                                                       class="display_detail"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <a class="collapsed card-link" data-toggle="collapse"
+                                               data-parent="#card-987460" href="#card-element-475526">System Details</a>
+                                        </div>
+                                        <div id="card-element-475526" class="collapse">
+                                            <div class="card-body">
+                                                <!--ID-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="id">ID :</label>
+                                                    <p id="id" th:text="${employeeDetail.id}"
+                                                       class="display_detail"></p>
+                                                </div>
+                                                <!--Created By-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="createdBy">Created By :</label>
+                                                    <p id="createdBy" th:text="${employeeDetail.createdBy}"
+                                                       class="display_detail"></p>
+                                                </div>
+                                                <!--Created At-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="createdAt">Created At :</label>
+                                                    <p id="createdAt"
+                                                       th:text="${#temporals.format(employeeDetail.createdAt, 'dd-MM-yyyy HH:mm')}"
+                                                       class="display_detail"></p>
+                                                </div>
+                                                <!--Updated By-->
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="updatedBy">Updated By :</label>
+                                                    <p id="updatedBy" th:text="${employeeDetail.updatedBy}"
+                                                       class="display_detail"></p>
+                                                </div>
+                                                <!--Updated At-->
+                                                <div class="form-row text-right">
+
+                                                    <label class="control-label" for="updatedAt">Updated At :</label>
+
+                                                    <p id="updatedAt" th:text="${{employeeDetail.updatedAt}}"
+                                                       class="display_detail"></p>
+
+                                                </div>
+
+                                                <div class="form-row text-right">
+                                                    <label class="control-label" for="updatedAt">Photo Name :</label><p id="imgName" th:text="${files.filename}"></p> </br>
+                                                    <label class="control-label" for="updatedAt"> Photo Uploaded Date :</label> <p id="imgCreateAt" th:text="${{files.createAt}}"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="accordion" id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#collapseOne" aria-expanded="false"
+                                            aria-controls="collapseOne">Dependance One
+                                    </button>
+                                </div>
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                     data-parent="#accordion">
+                                    <div class="card-body">
+
+
+                                        <table class="table table-striped table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>
+                                                    S/No
+                                                </th>
+                                                <th>
+                                                    Relationship
+                                                </th>
+                                                <th>
+                                                    Name
+                                                </th>
+                                                <th>
+                                                    NIC
+                                                </th>
+                                                <th>
+                                                    Status
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    1
+                                                </td>
+                                                <td>
+                                                    Father
+                                                </td>
+                                                <td>
+                                                    W P Patison
+                                                </td>
+                                                <td>
+                                                    852660539V
+                                                </td>
+                                                <td>
+                                                    Active
+                                                </td>
+                                            </tr>
+
+
+                                            </tbody>
+                                        </table>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#collapseTwo"
+                                            aria-expanded="false" aria-controls="collapseTwo">Education Two
+                                    </button>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                     data-parent="#accordion">
+                                    <div class="card-body">
+                                        <table class="table table-striped table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>
+                                                    S/No
+                                                </th>
+                                                <th>
+                                                    Course/ Certificate Name
+                                                </th>
+                                                <th>
+                                                    Institute NAme
+                                                </th>
+                                                <th>
+                                                    Status
+                                                </th>
+                                                <th>
+                                                    Valid from
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    1
+                                                </td>
+                                                <td>
+                                                    Diploma in Aviation
+                                                </td>
+                                                <td>
+                                                    Civil Aviation Training Centre
+                                                </td>
+                                                <td>
+                                                    B+ Pass
+                                                </td>
+                                                <td>
+                                                    22-06-2019
+                                                </td>
+                                            </tr>
+
+
+                                            </tbody>
+                                        </table>
+
 
 
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div th:fragment="employeeDetailsFragment" class="container-fluid formBorder">
+                            <a href="/employee" class="btn btn-primary"> <i class="fa fa-list"></i>&nbsp; View List </a>
+                            <a href="/employee"  class="btn btn-success" tabindex=""><i class="fa fa-backward"></i>&nbsp;Back </a>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div><!-- content-wrapper end -->
-    <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
-</div><!-- wrapper end -->
-<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
+
+        <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+    </div><!-- wrapper end -->
+    <script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
 </body>
 </html>

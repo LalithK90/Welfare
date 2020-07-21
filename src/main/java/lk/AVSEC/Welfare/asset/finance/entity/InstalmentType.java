@@ -1,6 +1,7 @@
 package lk.AVSEC.Welfare.asset.finance.entity;
 
 import lk.AVSEC.Welfare.asset.finance.entity.Enum.CollectionType;
+import lk.AVSEC.Welfare.asset.finance.entity.Enum.ExpenseOrReceived;
 import lk.AVSEC.Welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,10 +19,12 @@ import java.util.List;
 @NoArgsConstructor
 public class InstalmentType extends AuditEntity {
 
-    @Column(nullable = false)
+    private String name;
+
     private String year;
 
-    private String remark;
+    @Enumerated(EnumType.STRING)
+    private ExpenseOrReceived expenseOrReceived;
 
     @Enumerated(EnumType.STRING)
     private CollectionType collectionType;

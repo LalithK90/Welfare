@@ -23,17 +23,16 @@ import java.time.LocalDate;
 public class Promotion extends AuditEntity {
 
 
-
-  @Size(min = 2, max = 60, message = "Your name length should be 13")
+    @Size(min = 2, max = 60, message = "Your name length should be 13")
     private String name;
-
 
 
     private String remark;
 
-   @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate withEffect;
 
-
+    @ManyToOne
+    private Employee employee;
 
 }

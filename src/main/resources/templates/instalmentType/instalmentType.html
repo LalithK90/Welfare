@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4>First sud Header</h4>
+                                        <form role="form">
+
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4>Secondary Header </h4>
+                                    </div>
+                                    <div class="container-fluid">
+                                        <table class="table table-striped table-inverse table-responsive" id="myTable">
+                                            <thead class="thead-inverse">
+                                            <tr>
+                                                <th>Index</th>
+                                                <th>Name</th>
+                                                <th>Year</th>
+                                                <th>Expense Or Received</th>
+                                                <th>Collection Type</th>
+                                                <th>Amount</th>
+                                                <th>Modify</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="instalmentType, index : ${instalmentTypeis}">
+                                                <td th:text="${index.count}"></td>
+                                                <td th:text="${instalmentType.name}"></td>
+                                                <td th:text="${instalmentType.year}"></td>
+                                                <td th:text="${instalmentType.expenseOrReceived.expenseOrReceived}"></td>
+                                                <td th:text="${instalmentType.collectionType.collectionType}"></td>
+                                                <td th:text="${instalmentType.amount}"></td>
+                                                <td>
+                                                    <a class="btn btn-primary btn-sm" id="dependentEdit"
+                                                       th:href="${'/instalmentType/edit/' + instalmentType.id}"><i
+                                                            class="fa fa-edit"></i>&nbsp;Edit</a>
+                                      <!--              <a class="btn btn-danger btn-sm" id="dependentRemove"
+                                                       th:href="${'/instalmentType/delete/' + instalmentType.id}"
+                                                       th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                                       th:onclick="if(!(confirm('Are you want to delete this civilStatus ?'))) return false"><i
+                                                            aria-hidden="true" class="fa fa-trash"></i> Delete</a>-->
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- content-wrapper end -->
+    <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+</div><!-- wrapper end -->
+<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
+</body>
+</html>

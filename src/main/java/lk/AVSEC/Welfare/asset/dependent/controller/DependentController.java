@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/dependent")
 public class DependentController implements AbstractController<Dependent, Integer> {
-//todo -> need to dependentEmployee view and edit
+    //todo -> need to dependentEmployee view and edit
     private final DependentService dependentService;
     private final DependentEmployeeService dependentEmployeeService;
     private final UserService userService;
@@ -71,7 +71,9 @@ public class DependentController implements AbstractController<Dependent, Intege
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
-        return commonThing(model, true, dependentService.findById(id));
+        Dependent dependent = dependentService.findById(id);
+        Employee employee = userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getEmployee();
+        return commonThing(model, true, dependentEmployeeService.findByDependentAndEmployee(dependent, employee));
     }
 
     @PostMapping(value = {"/save", "/update"})
@@ -101,6 +103,9 @@ public class DependentController implements AbstractController<Dependent, Intege
         //relationship if wife husband -> employeeOne or employeeTwo
         if (dependent.getRelationship().equals(Relationship.HUS) || dependent.getRelationship().equals(Relationship.WIF) && !dependent.getEpfNumber().isEmpty()) {
             dependentEmployee.setEmployeeTwo(employeeService.findByEpf(dependent.getEpfNumber()));
+        }
+        if (dependent.getRelationship().equals(Relationship.HUS) || dependent.getRelationship().equals(Relationship.WIF) && dependent.getEpfNumber().isEmpty()) {
+            return "redirect:/dependent";
         }
 
         dependentEmployee.setRelationship(dependent.getRelationship());

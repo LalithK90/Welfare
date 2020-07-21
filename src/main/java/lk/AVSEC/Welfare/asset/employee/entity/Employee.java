@@ -138,6 +138,9 @@ public class Employee extends AuditEntity {
     private List<Instalment> instalments;
 
     @OneToMany(mappedBy = "employee")
+    private List<Promotion> promotions;
+
+    @OneToMany(mappedBy = "employee")
     private List<Qualification> qualifications;
 
     @ManyToMany(mappedBy = "employees")

@@ -48,6 +48,7 @@
                                                     relationship </label>
                                                 <select class="form-control" onchange="relationShipChange()"
                                                         th:field="*{relationship}">
+                                                    <option value="" selected>Please Select</option>
                                                     <option th:each="relationship : ${relationship}"
                                                             th:text="${relationship.relationship}"
                                                             th:value="${relationship}">
@@ -146,12 +147,8 @@
                                                     <span
                                                             th:text="${addStatus==false?'Save' : 'Update'}"></span>
                                                 </button>
-
                                             </div>
-
-
                                         </form>
-
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +161,7 @@
     <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
 </div><!-- wrapper end -->
 <script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
-<script>
+<script th:if="${addStatus==false}">
 
     $("#showWorkingPlace").css("display", "none");
     $("#showUnEmployee").css("display", "none");
