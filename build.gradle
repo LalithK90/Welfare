@@ -1,38 +1,35 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.1.RELEASE'
+	id 'org.springframework.boot' version '2.2.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
 }
-group = 'lk.w3Academy'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+
 
 configurations {
 	developmentOnly
 	runtimeClasspath {
 		extendsFrom developmentOnly
 	}
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
 }
 
 repositories {
-	jcenter()
-	maven {
-		url "https://maven.springframework.org/release"
-	}
-	maven {
-		url "https://maven.restlet.com"
-	}
+	mavenCentral()
 }
 
+springBoot {
+	buildInfo {
+		properties {
+			group = 'lk.w3Academy'
+			version = '0.0.1-SNAPSHOT'
+			sourceCompatibility = '11'
+		}
+	}
+}
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
@@ -57,7 +54,7 @@ dependencies {
 // https://mvnrepository.com/artifact/org.webjars/popper.js
 	compile group: 'org.webjars', name: 'popper.js', version: '1.15.0'
 // https://mvnrepository.com/artifact/org.webjars/jquery
-	compile group: 'org.webjars', name: 'jquery', version: '3.5.1'
+	compile group: 'org.webjars', name: 'jquery', version: '3.4.1'
 // https://mvnrepository.com/artifact/org.webjars/jquery-ui
 	compile group: 'org.webjars', name: 'jquery-ui', version: '1.12.1'
 // https://mvnrepository.com/artifact/org.webjars/font-awesome
