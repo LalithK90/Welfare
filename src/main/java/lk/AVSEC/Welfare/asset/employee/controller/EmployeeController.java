@@ -72,11 +72,8 @@ public class EmployeeController {
         model.addAttribute("uniformType", UniformType.values());
         model.addAttribute("relationship", Relationship.values());
         model.addAttribute("currentStatus", CurrentStatus.values());
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
         return "employee/addEmployee";
     }
 
@@ -94,12 +91,8 @@ public class EmployeeController {
     public String employeePage(Model model) {
       /*  Employee employee = employeeService.findById(id);*/
         model.addAttribute("employees", employeeService.findAll());
-<<<<<<< HEAD
-        model.addAttribute("contendHeader", "Employee Registration");
-=======
         model.addAttribute("contendHeader", "Employee");
        /* model.addAttribute("files", employeeFilesService.employeeFileDownloadLinks(employee));*/
->>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
         return "employee/employee";
     }
 
@@ -149,15 +142,9 @@ public class EmployeeController {
             employee.setMobileOne(commonService.commonMobileNumberLengthValidator(employee.getMobileOne()));
             employee.setMobileTwo(commonService.commonMobileNumberLengthValidator(employee.getMobileTwo()));
             employee.setLand(commonService.commonMobileNumberLengthValidator(employee.getLand()));
-<<<<<<< HEAD
-            System.out.println("dependent length " + employee.getDependents().size());
-
-            int i = employee.getDependents().size();
-=======
            // System.out.println("dependent length " + employee.getDependents().size());
 
             /*int i = employee.getDependents().size();
->>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
             if (i != 0) {
                 for (int k = 0; k < i; k++) {
                     if (employee.getDependents().get(k).getId() == null) {
@@ -166,15 +153,9 @@ public class EmployeeController {
                         System.out.println("id not " + k + " name employee id " + employee.getDependents().get(k).getEmployee().getId());
                     }
                 }
-<<<<<<< HEAD
-            }
-            //remove current
-            System.out.println("dependent count " + employee.getDependents().size());
-=======
             }*/
             //remove current
           //  System.out.println("dependent count " + employee.getDependents().size());
->>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
             //after save employee files and save employee
           Employee employeeSaved =  employeeService.persist(employee);
             //if employee state is not working he or she cannot access to the system

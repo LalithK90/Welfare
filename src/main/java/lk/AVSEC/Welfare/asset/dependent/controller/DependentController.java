@@ -1,13 +1,6 @@
 package lk.AVSEC.Welfare.asset.dependent.controller;
 
 import lk.AVSEC.Welfare.asset.dependent.entity.Dependent;
-<<<<<<< HEAD
-import lk.AVSEC.Welfare.asset.dependent.entity.Enum.CurrentStatus;
-import lk.AVSEC.Welfare.asset.dependent.entity.Enum.Relationship;
-import lk.AVSEC.Welfare.asset.dependent.service.DependentService;
-import lk.AVSEC.Welfare.util.interfaces.AbstractController;
-import org.springframework.beans.factory.annotation.Autowired;
-=======
 import lk.AVSEC.Welfare.asset.dependent.entity.DependentEmployee;
 import lk.AVSEC.Welfare.asset.dependent.entity.Enum.CurrentStatus;
 import lk.AVSEC.Welfare.asset.dependent.entity.Enum.Relationship;
@@ -19,7 +12,6 @@ import lk.AVSEC.Welfare.asset.userManagement.service.UserService;
 import lk.AVSEC.Welfare.util.interfaces.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
->>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,28 +19,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
 
 @Controller
 @RequestMapping("/dependent")
 public class DependentController implements AbstractController<Dependent, Integer> {
-<<<<<<< HEAD
-
-    private final DependentService dependentService;
-
-    @Autowired
-    public DependentController(DependentService dependentService) {
-        this.dependentService = dependentService;
-    }
-
-    private String commonThing(Model model, Boolean booleanValue, Dependent dependentObject) {
-       model.addAttribute("relationship", Relationship.values());
-        model.addAttribute("currentStatus", CurrentStatus.values());
-      //  model.addAttribute("dependents", Province.values());
-=======
     //todo -> need to dependentEmployee view and edit
     private final DependentService dependentService;
     private final DependentEmployeeService dependentEmployeeService;
@@ -68,7 +43,6 @@ public class DependentController implements AbstractController<Dependent, Intege
         model.addAttribute("relationship", Relationship.values());
         model.addAttribute("currentStatus", CurrentStatus.values());
         //  model.addAttribute("dependents", Province.values());
->>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
         model.addAttribute("addStatus", booleanValue);
         model.addAttribute("dependent", dependentObject);
 
@@ -77,14 +51,10 @@ public class DependentController implements AbstractController<Dependent, Intege
 
     @GetMapping
     public String findAll(Model model) {
-<<<<<<< HEAD
-        model.addAttribute("dependents", dependentService.findAll());
-=======
         model.addAttribute("dependents", dependentEmployeeService.findAll()
                 .stream()
                 .distinct()
                 .collect(Collectors.toList()));
->>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
         return "dependent/dependent";
     }
 
@@ -95,34 +65,20 @@ public class DependentController implements AbstractController<Dependent, Intege
 
     @GetMapping("/{id}")
     public String findById(@PathVariable Integer id, Model model) {
-<<<<<<< HEAD
-        model.addAttribute("dependentDetail", dependentService.findById(id));
-=======
         model.addAttribute("dependentDetail", dependentEmployeeService.findById(id));
->>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
         return "dependent/dependent-detail";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
-<<<<<<< HEAD
-        return commonThing(model, true, dependentService.findById(id));
-=======
         Dependent dependent = dependentService.findById(id);
         Employee employee = userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getEmployee();
         return commonThing(model, true, dependentEmployeeService.findByDependentAndEmployee(dependent, employee));
->>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
     }
 
     @PostMapping(value = {"/save", "/update"})
     public String persist(@Valid @ModelAttribute Dependent dependent, BindingResult bindingResult,
                           RedirectAttributes redirectAttributes, Model model) {
-<<<<<<< HEAD
-        if (bindingResult.hasErrors()) {
-            return commonThing(model, false, dependent);
-        }
-        redirectAttributes.addFlashAttribute("dependentDetail", dependentService.persist(dependent));
-=======
         Employee employee = userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getEmployee();
 
         if (bindingResult.hasErrors()) {
@@ -158,7 +114,6 @@ public class DependentController implements AbstractController<Dependent, Intege
         dependentEmployee.setDependent(dependent);
 
         redirectAttributes.addFlashAttribute("dependentDetail", dependentEmployeeService.persist(dependentEmployee));
->>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
         return "redirect:/dependent";
     }
 

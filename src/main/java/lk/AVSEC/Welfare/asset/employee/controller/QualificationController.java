@@ -1,4 +1,4 @@
-package lk.AVSEC.Welfare.asset.qualification.controller;
+package lk.AVSEC.Welfare.asset.employee.controller;
 
 import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Province;
 import lk.AVSEC.Welfare.asset.employee.entity.Employee;

@@ -1,18 +1,13 @@
 package lk.AVSEC.Welfare.asset.grievances.controller;
 
-<<<<<<< HEAD
-import lk.AVSEC.Welfare.asset.grievances.entity.Enum.Priority;
-import lk.AVSEC.Welfare.asset.grievances.entity.Grievance;
-=======
->>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
 
 import lk.AVSEC.Welfare.asset.employee.entity.Employee;
-import lk.AVSEC.Welfare.asset.grievanceStateChangeStateChange.service.GrievanceStateChangeService;
 import lk.AVSEC.Welfare.asset.grievances.entity.Enum.GrievancesStatus;
 import lk.AVSEC.Welfare.asset.grievances.entity.Enum.Priority;
 import lk.AVSEC.Welfare.asset.grievances.entity.Enum.SolutionType;
 import lk.AVSEC.Welfare.asset.grievances.entity.Grievance;
 import lk.AVSEC.Welfare.asset.grievances.entity.GrievanceStateChange;
+import lk.AVSEC.Welfare.asset.grievances.service.GrievanceStateChangeService;
 import lk.AVSEC.Welfare.asset.grievances.service.GrievancesService;
 import lk.AVSEC.Welfare.asset.userManagement.service.UserService;
 import lk.AVSEC.Welfare.util.interfaces.AbstractController;
@@ -32,11 +27,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/grievances")
 public class GrievancesController implements AbstractController<Grievance, Integer> {
-<<<<<<< HEAD
-
-=======
 //todo there is something to change
->>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
     private final GrievancesService grievancesService;
     private final UserService userService;
     private final DateTimeAgeService dateTimeAgeService;
@@ -108,10 +99,7 @@ public class GrievancesController implements AbstractController<Grievance, Integ
     @GetMapping("/add")
     public String form(Model model) {
         return commonThing(model, false, new Grievance());
-<<<<<<< HEAD
-=======
 
->>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
     }
 
     @GetMapping("/{id}")
@@ -130,8 +118,6 @@ public class GrievancesController implements AbstractController<Grievance, Integ
                           RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
             return commonThing(model, false, grievance);
-<<<<<<< HEAD
-=======
         }
         if (grievance.getRemark() != null && grievance.getId() != null) {
 
@@ -141,7 +127,6 @@ public class GrievancesController implements AbstractController<Grievance, Integ
             grievanceStateChange.setCommentedBy(userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getEmployee().getCallingName());
 
             grievanceStateChangeService.persist(grievanceStateChange);
->>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
         }
         redirectAttributes.addFlashAttribute("grievancesDetail", grievancesService.persist(grievance));
         return "redirect:/grievances";
