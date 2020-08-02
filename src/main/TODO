@@ -1,0 +1,101 @@
+HOSS - Head of Security Services
+DHOSS - Deputy Head of Security Services
+PRE - President
+VPRE - Vice President
+SCTY - Secretory
+VSCTY - Vice Secretory
+TRS - Treasure
+AGT - Agent
+MBR - Member
+OTR - Other
+admin - Admin
+
+
+POST http://localhost/district/save                         admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/district/update                       admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/district                               admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/district/add                           admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/district/{{id}}                        admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/district/edit/{{id}}                   admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/district/delete/{{id}}                 admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/district/getDistrict/{{province}}      admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+
+
+GET http://localhost/briefing                               admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/dependent/save                        admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/dependent/update                      admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/dependent                              admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/dependent/add                          admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/dependent/{{id}}                       admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/dependent/edit/{{id}}                  admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/dependent/delete/{{id}}                admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/designation/save                      admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/designation/update                    admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/designation                            admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/designation/add                        admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/designation/{{id}}                     admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/designation/edit/{{id}}                admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/designation/delete/{{id}}              admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/district/save                         admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/district/update                       admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/district                               admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/district/add                           admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/district/{{id}}                        admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/district/edit/{{id}}                   admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/district/delete/{{id}}                 admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/district/getDistrict/{{province}}      admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/emailMessage/add                      admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/emailMessage                           admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/emailMessage/{{id}}                    admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/emailMessage/add                       admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/employee/{{id}}                        admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/grievances/save                       admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/grievances/update                     admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/grievances                             admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/grievances/add                         admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/grievances/{{id}}                      admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/grievances/edit/{{id}}                 admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/grievances/delete/{{id}}               admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/grievances/action/{{id}}               admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/promotion/{{id}}                       admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/qualification/save                    admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/qualification/update                  admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/qualification                          admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/qualification/add                      admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/qualification/{{id}}                   admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/qualification/edit/{{id}}              admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/qualification/delete/{{id}}            admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/register/token                        admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/register                               admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/register/active/{{token}}              admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/role/add                              admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/role/update                           admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/role/{{id}}                            admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/role/edit/{{id}}                       admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/role/add                               admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/role/remove/{{id}}                     admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/role/search                            admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/role                                   admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/user/workingPlace                     admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/user/add                              admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/user/update                           admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/user                                   admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/user/{{id}}                            admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/user/edit/{{id}}                       admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/user/add                               admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/user/remove/{{id}}                     admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/user/search                            admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/workingPlace/save                     admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/workingPlace/update                   admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/workingPlace                           admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/workingPlace/add                       admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/workingPlace/{{id}}                    admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/workingPlace/edit/{{id}}               admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/workingPlace/delete/{{id}}             admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/briefing/save                         admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+POST http://localhost/briefing/update                       admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/briefing                               admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/briefing/add                           admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/briefing/{{id}}                        admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/briefing/edit/{{id}}                   admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+GET http://localhost/briefing/delete/{{id}}                 admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member

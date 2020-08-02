@@ -1,10 +1,13 @@
 package lk.AVSEC.Welfare.asset.employee.controller;
 
 import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Province;
+import lk.AVSEC.Welfare.asset.employee.entity.Employee;
 import lk.AVSEC.Welfare.asset.employee.entity.Promotion;
 import lk.AVSEC.Welfare.asset.employee.service.PromotionService;
+import lk.AVSEC.Welfare.asset.userManagement.service.UserService;
 import lk.AVSEC.Welfare.util.interfaces.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,10 +21,12 @@ import javax.validation.Valid;
 public class PromotionController implements AbstractController<Promotion, Integer> {
 
     private final PromotionService promotionService;
+    private final UserService userService;
 
     @Autowired
-    public PromotionController(PromotionService promotionService) {
+    public PromotionController(PromotionService promotionService, UserService userService) {
         this.promotionService = promotionService;
+        this.userService = userService;
     }
 
     private String commonThing(Model model, Boolean booleanValue, Promotion promotionObject) {
@@ -59,7 +64,10 @@ public class PromotionController implements AbstractController<Promotion, Intege
                           RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
             return commonThing(model, false, promotion);
+
         }
+        Employee employee = userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getEmployee();
+        promotion.setEmployee(employee);
         redirectAttributes.addFlashAttribute("promotionDetail", promotionService.persist(promotion));
         return "redirect:/promotion";
     }

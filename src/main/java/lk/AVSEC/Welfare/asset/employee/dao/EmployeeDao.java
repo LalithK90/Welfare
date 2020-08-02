@@ -10,4 +10,6 @@ public interface EmployeeDao extends JpaRepository<Employee, Integer> {
     Employee findFirstByOrderByIdDesc();
 
     Employee findByNic(String nic);
+
+    Employee findByEpf(String epf);
 }

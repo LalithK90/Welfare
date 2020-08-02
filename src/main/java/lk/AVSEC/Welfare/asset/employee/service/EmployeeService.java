@@ -3,6 +3,7 @@ package lk.AVSEC.Welfare.asset.employee.service;
 import lk.AVSEC.Welfare.asset.dependent.service.DependentService;
 import lk.AVSEC.Welfare.asset.employee.dao.EmployeeDao;
 import lk.AVSEC.Welfare.asset.employee.entity.Employee;
+import lk.AVSEC.Welfare.asset.employee.entity.Enum.BoardOfDirectors;
 import lk.AVSEC.Welfare.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;
@@ -39,6 +40,9 @@ public class EmployeeService implements AbstractService<Employee, Integer> {
             put = {@CachePut(value = "employee", key = "#employee.id")})
     @Transactional
     public Employee persist(Employee employee) {
+        if (employee.getBoardOfDirectors() == null) {
+            employee.setBoardOfDirectors(BoardOfDirectors.MBR);
+        }
         return employeeDao.save(employee);
     }
 
@@ -70,5 +74,9 @@ public class EmployeeService implements AbstractService<Employee, Integer> {
     @Cacheable
     public Employee findByNic(String nic) {
         return employeeDao.findByNic(nic);
+    }
+
+    public Employee findByEpf(String epf){
+        return employeeDao.findByEpf(epf);
     }
 }

@@ -4,7 +4,12 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.*;
 import lk.AVSEC.Welfare.asset.commonAsset.model.FileInfo;
 import lk.AVSEC.Welfare.asset.dependent.entity.Dependent;
+<<<<<<< HEAD
+=======
+import lk.AVSEC.Welfare.asset.dependent.entity.DependentEmployee;
+>>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
 import lk.AVSEC.Welfare.asset.designation.entity.Designation;
+import lk.AVSEC.Welfare.asset.employee.entity.Enum.BoardOfDirectors;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.EmployeeStatus;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.Nationality;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.UniformType;
@@ -114,6 +119,9 @@ public class Employee extends AuditEntity {
     @Enumerated(EnumType.STRING)
     private EmployeeStatus employeeStatus;
 
+    @Enumerated(EnumType.STRING)
+    private BoardOfDirectors boardOfDirectors;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
@@ -133,14 +141,23 @@ public class Employee extends AuditEntity {
     private List<Instalment> instalments;
 
     @OneToMany(mappedBy = "employee")
+<<<<<<< HEAD
     private List<Qualification> qualifications;
 
     @OneToMany(mappedBy = "employee",cascade = {CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.DETACH})
     private List<Dependent> dependents;
+=======
+    private List<Promotion> promotions;
+
+    @OneToMany(mappedBy = "employee")
+    private List<Qualification> qualifications;
+>>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
 
     @ManyToMany(mappedBy = "employees")
     private List<EmailMessage> emailMessages;
 
+    @OneToMany(mappedBy = "employeeOne")
+    private List<DependentEmployee> dependentEmployees;
 
 
     @Transient
@@ -153,5 +170,8 @@ public class Employee extends AuditEntity {
     private List<FileInfo> fileInfos = new ArrayList<>();
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
 }
