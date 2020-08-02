@@ -14,18 +14,20 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonFilter("Dependent")
+@JsonFilter("Dependency")
 public class Dependent extends AuditEntity {
 
     @Size(min = 2, max = 60, message = "Your name length should be 13")
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    private Relationship relationship;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dob;
@@ -37,13 +39,6 @@ public class Dependent extends AuditEntity {
 
     private String remark;
 
-    @OneToMany(mappedBy = "dependent")
-    private List<DependentEmployee> dependentEmployees;
-
-    @Transient
-    @Enumerated(EnumType.STRING)
-    private Relationship relationship;
-
-    @Transient
-    private String epfNumber;
+    @ManyToOne
+    private Employee employee;
 }

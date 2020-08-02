@@ -41,6 +41,12 @@ public class DependentService implements AbstractService<Dependent, Integer> {
         return null;
     }
 
+<<<<<<< HEAD
+    public List<Dependent> findByEmployee(Employee employee) {
+        List<Dependent> dependents = dependentDao.findByEmployee(employee);
+        System.out.println("length  "+dependents.size());
+        return dependents;
+=======
 /*    public List<Dependent> findByEmployee(Employee employee) {
         List<Dependent> dependents = dependentDao.findByEmployee(employee);
         System.out.println("length  "+dependents.size());
@@ -49,6 +55,7 @@ public class DependentService implements AbstractService<Dependent, Integer> {
 
     public Dependent findByNic(String nic) {
         return dependentDao.findByNic(nic);
+>>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
     }
 
 

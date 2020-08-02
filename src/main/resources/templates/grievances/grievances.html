@@ -22,11 +22,19 @@
                                     <h4>Grievances</h4>
                                     <form role="form">
                                         <div class="form-group">
+<<<<<<< HEAD
+                                            <a class="btn btn-success" id="newGrievances" style="width:100%" th:href="${'/grievance/add'}">
+                                                <i class="fa fa-grievance-plus" style="font-size: 18px;"></i> &nbsp; Add Grievances </a>
+                                        </div>
+                                        <div class="form-group">
+                                            <a class="btn btn-warning" id="newGrievances" style="width:100%" th:href="${'/grievance/add'}">
+=======
                                             <a class="btn btn-success" id="newGrievances" style="width:100%" th:href="${'/grievances/add'}">
                                                 <i class="fa fa-grievance-plus" style="font-size: 18px;"></i> &nbsp; Add Grievances </a>
                                         </div>
                                         <div class="form-group">
                                             <a class="btn btn-warning" id="newGrievances" style="width:100%" th:href="${'/grievances/add'}">
+>>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
                                                 <i class="fa fa-grievance-plus" style="font-size: 18px;"></i> &nbsp; Edit Grievances </a>
                                         </div>
                                         <div class="form-group">
@@ -96,20 +104,34 @@
                                             <tr th:each="grievance, rowCount : ${grievancess}" scope="row">
                                                 <th th:text="${rowCount.count}"></th>
                                                 <th th:text="${grievance.name}"></th>
+<<<<<<< HEAD
+                                                <!--     <th th:text="${grievance.description}"></th>
+                                                     <th th:text="${grievance.participant}"></th>-->
+                                                <th th:text="${grievance.remark}"></th>
+                                                <th th:text="${grievance.priority}"></th>
+=======
                                                 &lt;!&ndash;     <th th:text="${grievance.description}"></th>
                                                      <th th:text="${grievance.participant}"></th>&ndash;&gt;
                                                 <th th:text="${grievances.remark}"></th>
                                                 <th th:text="${grievances.priority}"></th>
+>>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
 
-                                                <th><a class="btn btn-success btn-sm" th:href="${'/grievances/' + grievances.id}" id="grievancesView"><i
+                                                <th><a class="btn btn-success btn-sm" th:href="${'/grievance/' + grievance.id}" id="grievancesView"><i
                                                         class="fa fa-folder-open"></i>&nbsp;View</a>
                                                     <a class="btn btn-primary btn-sm" id="grievancesEdit"
+<<<<<<< HEAD
+                                                       th:href="${'/grievance/edit/' + grievance.id}"><i
+                                                            class="fa fa-edit"></i>&nbsp;Edit</a>
+                                                    <a class="btn btn-danger btn-sm" id="grievancesRemove"
+                                                       th:href="${'/grievance/remove/' + grievance.id}"
+=======
                                                        th:href="${'/grievances/edit/' + grievance.id}"><i
                                                             class="fa fa-edit"></i>&nbsp;Edit</a>
                                                     <a class="btn btn-danger btn-sm" id="grievancesRemove"
                                                        th:href="${'/grievances/remove/' + grievance.id}"
+>>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
                                                        th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
-                                                       th:onclick="if(!(confirm('Are you want to delete this grievances ?'))) return false"
+                                                       th:onclick="if(!(confirm('Are you want to delete this grievance ?'))) return false"
                                                     ><i
                                                             aria-hidden="true" class="fa fa-trash"></i>
                                                         Delete</a>

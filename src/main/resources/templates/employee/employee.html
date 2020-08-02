@@ -8,14 +8,68 @@
     <div class="content-wrapper"><!-- content-wrapper Start -->
         <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
         <!-- Form Header  Path -->
+<<<<<<< HEAD
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+=======
         <!--<section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section>-->
         <!-- Small Box Set -->
+>>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
 
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
+<<<<<<< HEAD
+                            <div class="col-md-2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4>First sud Header</h4>
+                                        <form role="form">
+                                            <a class="btn btn-success" id="newBriefing" th:href="${'/employee/add'}">
+                                                <i class="fa fa-briefing-plus"></i>  Add Employee </a>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4>Secondary Header </h4>
+                                    <div class="card-body">
+                                        <table id="example2" class="table table-hover table-dark">
+                                            <thead>
+                                            <tr>
+                                                <th> Index</th>
+                                                <th> EPF No</th>
+                                                <th> Name</th>
+                                                <th> Mobile</th>
+                                                <th> Designation</th>
+                                                <th> Status</th>
+                                                <th> Modify</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="employee, rowCount : ${employees}">
+                                                <td th:text="${rowCount.count}"></td>
+                                                <td th:text="${employee.epf}"></td>
+                                                <td th:text="${employee.name}"></td>
+                                                <td th:text="${employee.mobileOne}"></td>
+                                                <td th:if="${employee.designation.name != null}" th:text="${employee.designation.name}"></td>
+                                                <td th:text="${employee.employeeStatus.employeeStatus}"></td>
+                                                <td>
+                                                    <a id="employeeView" th:href="${'/employee/' + employee.id}" class="btn btn-success btn-sm"><i
+                                                            class="fa fa-folder-open"></i>&nbsp;View</a>
+                                                    <a id="employeeEdit" th:href="${'/employee/edit/' + employee.id}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+                                                    <a id="employeeRemove" th:href="${'/employee/remove/' + employee.id}"
+                                                       th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>
+                                                        Delete</a>
+                                                </td>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+=======
                            <!-- /employee/add-->
                             <div class="col-12 col-sm-6 col-md-3">
                                 <a th:href="${'/employee/add'}">
@@ -31,6 +85,7 @@
                                     <div class="info-box bg-info" data-toggle="modal" data-target="#modal">
                                         <span class="info-box-icon"><i class="fas fa-folder-open"></i></span>
                                         View <br/>Employee
+>>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
                                     </div>
                                 <!--</a>--></div>
                             <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">

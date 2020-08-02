@@ -37,6 +37,37 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="card">
+<<<<<<< HEAD
+                                    <div class="card-body">
+                                        <h4>Secondary Header </h4>
+                                        <div class="form-row text-right">
+                                            <label class="control-label" for="id">ID :</label>
+                                            <p id="id" th:text="${employeeDetail.id}" class="display_detail"></p>
+                                        </div>
+                                        <div class="form-row text-right">
+                                            <label class="control-label" for="payRoleNumber">Pay Role No :</label>
+                                            <p id="payRoleNumber" th:text="${employeeDetail.epf}"
+                                               class="display_detail"></p>
+                                        </div>
+                                        <div class="form-row text-right">
+                                            <label class="control-label" for="departmentIdNumber">Depart Id No :</label>
+                                            <p id="departmentIdNumber" th:text="${employeeDetail.departmentIdNumber}"
+                                               class="display_detail"></p></div>
+                                        <div class="form-row text-right">
+                                            <label class="control-label" for="name">Name :</label>
+                                            <p id="name"
+                                               th:text="${employeeDetail.title.title} +${' '} +${employeeDetail.name}"
+                                               class="display_detail"></p>
+                                        </div>
+                                        <div class="form-row text-right">
+                                            <label class="control-label" for="callingName">Calling Name :</label>
+                                            <p id="callingName" th:text="${employeeDetail.callingName}"
+                                               class="display_detail"></p>
+                                        </div>
+                                        <div class="form-row text-right">
+                                            <label class="control-label" for="nic">NIC No :</label>
+                                            <p id="nic" th:text="${employeeDetail.nic}" class="display_detail"></p>
+=======
                                     <div class="card-header">
                                         <center><img id="img" class="rounded"
                                                      style="height: 150px; width: 150px; border-radius: 10px"
@@ -53,6 +84,7 @@
                                         <div class="card-header">
                                             <a class="card-link" data-toggle="collapse" data-parent="#card-116170"
                                                href="#card-element-246373">Personal Details</a>
+>>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
                                         </div>
                                         <div id="card-element-246373" class="collapse">
                                             <div class="card-body">
@@ -249,9 +281,36 @@
 
                                                 </div>
 
+<<<<<<< HEAD
+                                        </div>
+                                        <!--images-->
+                                        <div class="form-group text-left flex-column ">
+                                            <div class="col" id="photoDetails">
+                                                <div>
+                                                    <label class="control-label ">Photo Details : </label>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col" id="filesList" th:each="file, rowStat: ${files}">
+                                                        <div class="col">
+                                                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                                <div class="card text-center">
+                                                                    <div class="card-body">
+                                                                        <img id="img" class="rounded" style="height: 150px; width: 150px; border-radius: 10px"
+                                                                             alt="Employee images" th:src="${file.url}"/>
+                                                                    </div>
+                                                                    <div class="card-footer bg-secondary text-light text-center">
+                                                                        <p id="imgName" th:text="${file.filename}"></p>
+                                                                        <span> Uploaded Date : <p id="imgCreateAt" th:text="${{file.createAt}}"></p></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+=======
                                                 <div class="form-row text-right">
                                                     <label class="control-label" for="updatedAt">Photo Name :</label><p id="imgName" th:text="${files.filename}"></p> </br>
                                                     <label class="control-label" for="updatedAt"> Photo Uploaded Date :</label> <p id="imgCreateAt" th:text="${{files.createAt}}"></p>
+>>>>>>> 991a9fa77174c9052d9120bd05ad1fd6ca31d6e1
                                                 </div>
                                             </div>
                                         </div>
