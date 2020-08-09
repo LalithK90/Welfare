@@ -22,4 +22,6 @@ import java.util.List;
 @Repository
 public interface InstalmentDao extends JpaRepository<Instalment, Integer> {
 
+    List< Instalment> findByEmployee(Employee employee);
+
 }

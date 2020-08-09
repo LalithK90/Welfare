@@ -81,63 +81,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                <!--<div class="card-body">
-                                    <h4>Secondary Header </h4>-->
-                                <div class="card-body"><div class="container-fluid table-responsive" data-th-if="${not #lists.isEmpty(employees)}">
-                                    <table id="example2" class="table table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th> Index</th>
-                                            <th> EPF No</th>
-                                            <th> Name</th>
-                                            <th> Mobile</th>
-                                            <th> Designation</th>
-                                            <th> Status</th>
-                                            <th> Modify</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr data-th-each="employee, rowCount : ${employees}">
-                                            <td data-th-text="${rowCount.count}"></td>
-                                            <!--<td><div class="user-panel mt-0 pb-0 mb-0 d-flex">
-                                                <div class="image">
-                                                    <img data-th-src="${files.url}" class="img-circle elevation-2"
-                                                    alt="User
-                                                     Image">
-                                                </div></div></td>-->
-                                            <td>
-                                                <div class="user-panel mt-0 pb-0 mb-0 d-flex">
-                                                    <div class="image">
-                                                        <img src="/img/prasad.jpg" class="img-circle elevation-2"
-                                                             alt="User Image">
-                                                    </div>
-                                                    <div class="info">
-                                                        <a href="#" class="d-block">W B Prasad</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <!-- <td data-th-text="${employee.epf}"></td>-->
-                                            <td data-th-text="${employee.name}"></td>
-                                            <td data-th-text="${employee.mobileOne}"></td>
-                                            <td data-th-if="${employee.designation != null}"
-                                                data-th-text="${employee.designation.name}"></td>
-                                            <td data-th-if="${employee.designation == null}"
-                                                data-th-text="${'Not mentioned'}"></td>
-                                            <td data-th-text="${employee.employeeStatus.employeeStatus}"></td>
-                                            <td>
-                                                <a data-th-href="${'/collection/' + employee.id}"
-                                                   class="btn btn-success btn-sm"><i
-                                                        class="fa fa-folder-open"></i>&nbsp;Add Instalment</a>
-
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                    <div class="container-fluid" data-th-if="${ #lists.isEmpty(employees)}">
-                                        <span data-th-text="${message}"></span>
-                                    </div>
-                                </div>
+                               <div data-th-replace="~{employee/employee-detail :: employeeDetailsFragment}"></div>
                             </div>
                         </div>
                     </div>
