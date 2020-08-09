@@ -26,6 +26,7 @@ public class Briefing {
     private String name;
 
     private String toWhom;
+    private String subject;
 
     private String notices;
 

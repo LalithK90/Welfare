@@ -23,7 +23,6 @@ import javax.persistence.Enumerated;
 public class Designation extends AuditEntity {
 
 
-   // @Size(min = 2, max = 60, message = "Your name length should be 13")
     private String name;
 
     private String shortName;
@@ -36,14 +35,4 @@ public class Designation extends AuditEntity {
 
     private String remark;
 
-
-
-  /*  @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate completeDate;*/
-    /*@Enumerated(EnumType.STRING)
-    private Province province;*/
-
-//Subject(name) , Description , participant , Remark, priority
-/*    @OneToMany(mappedBy = "district")
-    private List<WorkingPlace> workingPlaces;*/
 }
