@@ -81,7 +81,14 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                               <div data-th-replace="~{employee/employee-detail :: employeeDetailsFragment}"></div>
+                                <div data-th-replace="~{employee/employee-detail :: employeeDetailsFragment}"></div>
+                            </div>
+                            <div class="card">
+                                <form data-th-action="${'/instalment/save'}"
+                                      data-th-object="${instalment}" method="POST">
+
+
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -3,6 +3,7 @@ package lk.AVSEC.Welfare.asset.processManagement;
 import lk.AVSEC.Welfare.asset.employee.entity.Employee;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.WelfarePosition;
 import lk.AVSEC.Welfare.asset.employee.service.EmployeeService;
+import lk.AVSEC.Welfare.asset.finance.entity.Instalment;
 import lk.AVSEC.Welfare.asset.finance.service.InstalmentService;
 import lk.AVSEC.Welfare.asset.finance.service.InstalmentTypeService;
 import lk.AVSEC.Welfare.asset.finance.service.MainAccountService;
@@ -66,6 +67,7 @@ public class CollectionController {
         Employee employee = employeeService.findById(id);
         //todo need to find payment history and available balance need show
         model.addAttribute("employeeDetail", employee);
+        model.addAttribute("instalment", new Instalment());
         model.addAttribute("instalments", instalmentService.findByEmployee(employee));
         model.addAttribute("instalmentTypes", instalmentTypeService.findAll());
         return "processManagement/addInstalment";
