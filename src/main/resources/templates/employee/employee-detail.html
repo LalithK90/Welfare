@@ -47,7 +47,7 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <center><img id="img" class="rounded"
-                                                     style="height: 150px; widdata-th- 150px; border-radius: 10px"
+                                                     style="height:150px; width:150px; border-radius: 10px"
                                                      alt="Employee images"
                                                      data-th-src="${files.url}"/></center>
                                     </div>
@@ -318,10 +318,11 @@
                                                 <td data-th-text="${dependentEmployee.dependent.name}"></td>
                                                 <td data-th-text="${dependentEmployee.dependent.nic}"></td>
                                                 <td data-th-text="${dependentEmployee.dependent.currentStatus.currentStatus}"></td>
-                                            <td>
-                                                <a
-                                                        data-th-href="${'/dependent/'+dependentEmployee.dependent.id}" type="button" class="btn btn-success">View</a>
-                                            </td>
+                                                <td>
+                                                    <a
+                                                            data-th-href="${'/dependent/'+dependentEmployee.dependent.id}"
+                                                            type="button" class="btn btn-success">View</a>
+                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>

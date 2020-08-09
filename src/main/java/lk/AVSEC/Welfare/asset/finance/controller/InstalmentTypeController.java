@@ -70,5 +70,3 @@ public class InstalmentTypeController implements AbstractController<InstalmentTy
         return "redirect:/instalmentType";
     }
 }
-//meke apita payment ekak ne hadanna thiyenne
-//oyawa meeting ekkene remove kala
