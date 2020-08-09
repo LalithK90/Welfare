@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping( "/dependent" )
 public class DependentController implements AbstractController< Dependent, Integer > {
-    //todo -> need to dependentEmployee view and edit
+
     private final DependentService dependentService;
     private final DependentEmployeeService dependentEmployeeService;
     private final UserService userService;

@@ -124,7 +124,7 @@ public class EmailService {
     }
 
 /*    public void sendPatientReport(String receiverEmail, String subject, String fileName) {
-//todo send pdf as email after encryption
+
 
      File Encryption
 

@@ -1,5 +1,6 @@
 package lk.AVSEC.Welfare.asset.finance.service;
 
+import lk.AVSEC.Welfare.asset.employee.entity.Employee;
 import lk.AVSEC.Welfare.asset.finance.dao.InstalmentDao;
 import lk.AVSEC.Welfare.asset.finance.entity.Instalment;
 import lk.AVSEC.Welfare.util.interfaces.AbstractService;
@@ -44,5 +45,9 @@ public class InstalmentService implements AbstractService<Instalment, Integer> {
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
         Example<Instalment> debitExample = Example.of(instalment, matcher);
         return instalmentDao.findAll(debitExample);
+    }
+
+    public List<Instalment> findByEmployee(Employee employee) {
+    return instalmentDao.findByEmployee(employee);
     }
 }

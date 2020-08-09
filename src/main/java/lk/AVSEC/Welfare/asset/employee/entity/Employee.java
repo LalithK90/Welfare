@@ -3,21 +3,18 @@ package lk.AVSEC.Welfare.asset.employee.entity;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.*;
 import lk.AVSEC.Welfare.asset.commonAsset.model.FileInfo;
-import lk.AVSEC.Welfare.asset.dependent.entity.Dependent;
 import lk.AVSEC.Welfare.asset.dependent.entity.DependentEmployee;
 import lk.AVSEC.Welfare.asset.designation.entity.Designation;
-import lk.AVSEC.Welfare.asset.employee.entity.Enum.BoardOfDirectors;
-import lk.AVSEC.Welfare.asset.employee.entity.Enum.EmployeeStatus;
-import lk.AVSEC.Welfare.asset.employee.entity.Enum.Nationality;
-import lk.AVSEC.Welfare.asset.employee.entity.Enum.UniformType;
-import lk.AVSEC.Welfare.asset.finance.entity.Instalment;
+import lk.AVSEC.Welfare.asset.employee.entity.Enum.*;
 import lk.AVSEC.Welfare.asset.finance.entity.ExpensesFund;
+import lk.AVSEC.Welfare.asset.finance.entity.Instalment;
 import lk.AVSEC.Welfare.asset.message.entity.EmailMessage;
 import lk.AVSEC.Welfare.asset.workingPlace.entity.WorkingPlace;
 import lk.AVSEC.Welfare.util.audit.AuditEntity;
-import lombok.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,97 +29,98 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonFilter("Employee")
+@JsonFilter( "Employee" )
 public class Employee extends AuditEntity {
 
-    @Column(unique = true)
+    @Column( unique = true )
     private String epf;
 
-    @Size(min = 5, message = "Your name cannot be accepted")
+    @Size( min = 5, message = "Your name cannot be accepted" )
     private String name;
 
 
     private String callingName;
 
-    @Size(max = 12, min = 10, message = "NIC number is contained numbers between 9 and X/V or 12 ")
-    @Column(unique = true)
+    @Size( max = 12, min = 10, message = "NIC number is contained numbers between 9 and X/V or 12 " )
+    @Column( unique = true )
     private String nic;
 
-    @Column(unique = true)
+    @Column( unique = true )
     private String departmentIdNumber;
 
-    @Size(max = 10, message = "Mobile number length should be contained 10 and 9")
+    @Size( max = 10, message = "Mobile number length should be contained 10 and 9" )
     private String mobileOne;
 
-    @Size(max = 10, message = "Mobile number length should be contained 10 and 9")
+    @Size( max = 10, message = "Mobile number length should be contained 10 and 9" )
     private String mobileTwo;
 
-    @Size(max = 10, message = "Residence number length should be contained 10 and 9")
+    @Size( max = 10, message = "Residence number length should be contained 10 and 9" )
     private String land;
 
     private String fullName;
     private String nearestPoliceStation;
 
-    @Column(columnDefinition = "VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin NULL", length = 255)
+    @Column( columnDefinition = "VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin NULL", length = 255 )
     private String temporaryAddress;
 
     private String residenceNo;
 
-    @Size(max = 10, message = "Mobile number length should be contained 10 and 9")
+    @Size( max = 10, message = "Mobile number length should be contained 10 and 9" )
     private String officeNo;
 
-    @Size(max = 10, message = "Mobile number length should be contained 10 and 9")
+    @Size( max = 10, message = "Mobile number length should be contained 10 and 9" )
     private String emergencyContactNo;
 
-    private String position;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat( pattern = "yyyy-MM-dd" )
     private String appoimentDate;
     private String intakeNo;
 
-    @Column(unique = true)
+    @Column( unique = true )
     private String medicleNo;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated( EnumType.STRING )
+    private WelfarePosition welfarePosition;
+
+    @Enumerated( EnumType.STRING )
     private Nationality nationality;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated( EnumType.STRING )
     private Religion religion;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated( EnumType.STRING )
     private UniformType uniformType;
 
-    @Column(unique = true)
+    @Column( unique = true )
     private String email;
 
-    @Column(unique = true)
+    @Column( unique = true )
     private String officeEmail;
 
-    @Column(columnDefinition = "VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin NULL", length = 255)
+    @Column( columnDefinition = "VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin NULL", length = 255 )
     private String address;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated( EnumType.STRING )
     private Title title;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated( EnumType.STRING )
     private Gender gender;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated( EnumType.STRING )
     private BloodGroup bloodGroup;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated( EnumType.STRING )
     private CivilStatus civilStatus;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated( EnumType.STRING )
     private EmployeeStatus employeeStatus;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated( EnumType.STRING )
     private BoardOfDirectors boardOfDirectors;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat( pattern = "yyyy-MM-dd" )
     private LocalDate dateOfBirth;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat( pattern = "yyyy-MM-dd" )
     private LocalDate dateOfAssignment;
 
     @ManyToOne
@@ -131,32 +129,32 @@ public class Employee extends AuditEntity {
     @ManyToOne
     private Designation designation;
 
-    @OneToMany(mappedBy = "employee")
-    private List<ExpensesFund> expensesFunds;
+    @OneToMany( mappedBy = "employee" )
+    private List< ExpensesFund > expensesFunds;
 
-    @OneToMany(mappedBy = "employee")
-    private List<Instalment> instalments;
+    @OneToMany( mappedBy = "employee" )
+    private List< Instalment > instalments;
 
-    @OneToMany(mappedBy = "employee")
-    private List<Promotion> promotions;
+    @OneToMany( mappedBy = "employee" )
+    private List< Promotion > promotions;
 
-    @OneToMany(mappedBy = "employee")
-    private List<Qualification> qualifications;
+    @OneToMany( mappedBy = "employee" )
+    private List< Qualification > qualifications;
 
-    @ManyToMany(mappedBy = "employees")
-    private List<EmailMessage> emailMessages;
+    @ManyToMany( mappedBy = "employees" )
+    private List< EmailMessage > emailMessages;
 
-    @OneToMany(mappedBy = "employeeOne")
-    private List<DependentEmployee> dependentEmployees;
+    @OneToMany( mappedBy = "employeeOne" )
+    private List< DependentEmployee > dependentEmployees;
 
     @Transient
     private MultipartFile file;
 
     @Transient
-    private List<String> removeImages = new ArrayList<>();
+    private List< String > removeImages = new ArrayList<>();
 
     @Transient
-    private List<FileInfo> fileInfos = new ArrayList<>();
+    private List< FileInfo > fileInfos = new ArrayList<>();
 
 
 }
