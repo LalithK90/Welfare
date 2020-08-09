@@ -47,8 +47,10 @@ public class EmployeeController {
 
     @Autowired
     public EmployeeController(EmployeeService employeeService, EmployeeFilesService employeeFilesService,
-                              DateTimeAgeService dateTimeAgeService, WorkingPlaceService workingPlaceService, CommonService commonService,
-                              DependentEmployeeService dependentEmployeeService, UserService userService, DesignationService designationService,
+                              DateTimeAgeService dateTimeAgeService, WorkingPlaceService workingPlaceService,
+                              CommonService commonService,
+                              DependentEmployeeService dependentEmployeeService, UserService userService,
+                              DesignationService designationService,
                               DependentService dependentService) {
         this.employeeService = employeeService;
         this.employeeFilesService = employeeFilesService;
@@ -76,7 +78,7 @@ public class EmployeeController {
         model.addAttribute("uniformType", UniformType.values());
         model.addAttribute("relationship", Relationship.values());
         model.addAttribute("currentStatus", CurrentStatus.values());
-model.addAttribute("workingPlace", workingPlaceService.findAll());
+        model.addAttribute("workingPlaces", workingPlaceService.findAll());
         return "employee/addEmployee";
     }
 
@@ -107,7 +109,7 @@ model.addAttribute("workingPlace", workingPlaceService.findAll());
         model.addAttribute("addStatus", false);
         model.addAttribute("contendHeader", "Employee View Details");
         model.addAttribute("files", employeeFilesService.employeeFileDownloadLinks(employee));
-        model.addAttribute("dependentEmployees",dependentEmployeeService.findByEmployee(employee));
+        model.addAttribute("dependentEmployees", dependentEmployeeService.findByEmployee(employee));
         return "employee/employee-detail";
     }
 

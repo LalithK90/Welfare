@@ -35,7 +35,7 @@ public class WorkingPlaceController implements AbstractController<WorkingPlace, 
     private String commonThing(Model model, Boolean booleanValue, WorkingPlace workingPlaceObject) {
         model.addAttribute("addStatus", booleanValue);
         /*Start array*/
-        model.addAttribute("provinces", Province.values()); //[]
+        model.addAttribute("provinces", Province.values());
         model.addAttribute("shortNames", ShortName.values());
         model.addAttribute("airportTypes", AirportType.values());
         model.addAttribute("workingPlaceSections", WorkingPlaceSection.values());
@@ -76,7 +76,7 @@ public class WorkingPlaceController implements AbstractController<WorkingPlace, 
     public String persist(@Valid @ModelAttribute WorkingPlace workingPlace, BindingResult bindingResult,
                           RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
-            return commonThing(model, true, workingPlace);
+            return commonThing(model, false, workingPlace);
 
         }
         redirectAttributes.addFlashAttribute("workingPlaceDetail", workingPlaceService.persist(workingPlace));

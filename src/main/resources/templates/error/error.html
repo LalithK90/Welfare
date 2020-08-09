@@ -1,47 +1,50 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<html lang="en">
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}"></head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper"><!-- wrapper start -->
-    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
-    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
     <div class="content-wrapper"><!-- content-wrapper Start -->
-        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
-        <!-- Form Header  Path -->
-        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+                                 <!-- Form Header  Path -->
+        <section data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set
+         -->
 
 
-    <div class="content-header">
-        <div class="container-fluid" th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.expensesStatus)}">
-            <div class="container text-center">
-                <h1 class="invalid-feedback" th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h1>
-                <h1 class="invalid-feedback" th:if="${accessDenied!=null}" th:text="${accessDenied}">404</h1>
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 mt-4 mb-4 p-4">
-                <marquee behavior="scroll" direction="left">
-                    <div class="container" id="iconAround">
-                        <div id="icon">
-                            <i class="fa fa-frown text-danger " id="iconIn"> </i>
+        <div class="content-header">
+            <div class="container-fluid"
+                 data-th-with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.expensesStatus)}">
+                <div class="container text-center">
+                    <h1 class="invalid-feedback" data-th-text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h1>
+                    <h1 class="invalid-feedback" data-th-if="${accessDenied!=null}" data-th-text="${accessDenied}">
+                        404</h1>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 mt-4 mb-4 p-4">
+                    <marquee behavior="scroll" direction="left">
+                        <div class="container" id="iconAround">
+                            <div id="icon">
+                                <i class="fa fa-frown text-danger " id="iconIn"> </i>
+                            </div>
                         </div>
-                    </div>
-                </marquee>
-            </div>
-            <div class="container-fluid mt-4 text-center">
-                <p class="invalid-feedback" th:text="${errorMessage}">Error java.lang.NullPointerException</p>
-            </div>
-            <div class="container-fluid text-center">
-                <a href="/home">
-                    <button class="btn btn-info" type="submit">
-                        <i class="fa fa-home" style="font-size: 20px"></i>&nbsp; Home
-                    </button>
-                </a>
+                    </marquee>
+                </div>
+                <div class="container-fluid mt-4 text-center">
+                    <p class="invalid-feedback" data-th-text="${errorMessage}">Error java.lang.NullPointerException</p>
+                </div>
+                <div class="container-fluid text-center">
+                    <a href="/home">
+                        <button class="btn btn-info" type="submit">
+                            <i class="fa fa-home" style="font-size: 20px"></i>&nbsp; Home
+                        </button>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
 
-</div><!-- content-wrapper end -->
-<footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+    </div><!-- content-wrapper end -->
+    <footer data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
 </div><!-- wrapper end -->
-<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
+<script data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
 </body>
 </html>
