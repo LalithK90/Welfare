@@ -7,7 +7,7 @@
     <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
     <div class="content-wrapper"><!-- content-wrapper Start -->
         <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
-        <!-- Form Header  Path -->
+                                 <!-- Form Header  Path -->
         <section data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set
          -->
 
@@ -22,7 +22,8 @@
                                         <h4>First sud Header</h4>
                                         <a class="btn btn-primary" href="/home"> <i class="fa fa-home"></i> Home
                                         </a><a href="/employee" class="btn btn-primary"><i class="fa fa-list"></i>View
-                                        List </a>
+                                                                                                                  List
+                                    </a>
                                     </div>
                                 </div>
                             </div>
@@ -36,7 +37,7 @@
                                             <div class="row">
                                                 <!--left side-->
                                                 <div class="col-md-6"><!--Left Side-->
-                                                    <!--ID -->
+                                                                      <!--ID -->
                                                     <div id="idStatus" data-th-if="${addStatus==false}"
                                                          class="form-row text-right">
 
@@ -48,7 +49,7 @@
                                                                readonly/>
 
                                                     </div>
-                                                    <!--Name-->
+                                                                      <!--Name-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="name">Name :</label>
                                                         <div class="form-row">
@@ -68,7 +69,7 @@
                                                                   class="error">Error Name</span>
                                                         </div>
                                                     </div>
-                                                    <!--Full Name-->
+                                                                      <!--Full Name-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="name">Full Name :</label>
                                                         <input id="fullName" data-th-field="*{fullName}"
@@ -78,10 +79,10 @@
                                                               data-th-if="${#fields.hasErrors('fullName')}"
                                                               class="error">Error Full Name</span>
                                                     </div>
-                                                    <!--Calling Name-->
+                                                                      <!--Calling Name-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="callingName">Calling Name
-                                                            :</label>
+                                                                                                       :</label>
                                                         <input id="callingName" data-th-field="*{callingName}"
                                                                class="form-control" tabindex="4" type="text"
                                                                minlength="5"/>
@@ -90,7 +91,7 @@
                                                               id="callingNameError">Error
                                                                        Calling                                                                                                                        Name</span>
                                                     </div>
-                                                    <!--Nic-->
+                                                                      <!--Nic-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="nic">NIC No :</label>
                                                         <input id="nic" data-th-field="*{nic}" class="form-control"
@@ -101,11 +102,11 @@
                                                               data-th-if="${#fields.hasErrors('nic')}">Error
                                                                NIC Number</span>
                                                     </div>
-                                                    <!--Nationality error-->
+                                                                      <!--Nationality error-->
                                                     <div class="form-group">
                                                         <label class="control-label"
                                                                data-th-for="nationality">Nationality
-                                                            :</label>
+                                                                                         :</label>
                                                         <select id="nationality" data-th-field="*{nationality}"
                                                                 class="form-control" tabindex="6" required>
                                                             <option value="">Please select</option>
@@ -115,7 +116,7 @@
                                                                     data-th-selected="${nationalitys==employee.nationality?'selected':'unselected'}"></option>
                                                         </select>
                                                     </div>
-                                                    <!--Gender-->
+                                                                      <!--Gender-->
                                                     <div class="form-group">
                                                         <label data-th-for="${gender}">Gender:</label>
                                                         <!--Radio button-->
@@ -135,10 +136,10 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!--Date of birth-->
+                                                                      <!--Date of birth-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="dateOfBirth">Birth date
-                                                            :</label>
+                                                                                                       :</label>
                                                         <input id="dateOfBirth" data-th-field="*{dateOfBirth}"
                                                                class="form-control" tabindex="8"
                                                                placeholder="Ex: 1990 - 01 - 20"
@@ -147,7 +148,7 @@
                                                               data-th-if="${#fields.hasErrors('dateOfBirth')}"
                                                               class="error">Error Birthday</span>
                                                     </div>
-                                                    <!--religion-->
+                                                                      <!--religion-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="religion">Religion :</label>
                                                         <select id="religion" data-th-field="*{religion}"
@@ -162,10 +163,10 @@
                                                             </option>
                                                         </select>
                                                     </div>
-                                                    <!--Blood group-->
+                                                                      <!--Blood group-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="bloodGroup">Blood Group
-                                                            :</label>
+                                                                                                      :</label>
                                                         <select id="bloodGroup" data-th-field="*{bloodGroup}"
                                                                 class="form-control" tabindex="10" required>
                                                             <option value="">Please select</option>
@@ -178,10 +179,10 @@
                                                             </option>
                                                         </select>
                                                     </div>
-                                                    <!--uniformType-->
+                                                                      <!--uniformType-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="uniformType">Uniform Type
-                                                            :</label>
+                                                                                                       :</label>
                                                         <select id="uniformType" data-th-field="*{uniformType}"
                                                                 class="form-control" tabindex="11" required>
                                                             <option value="">Please select</option>
@@ -194,10 +195,10 @@
                                                             </option>
                                                         </select>
                                                     </div>
-                                                    <!--Designation-->
+                                                                      <!--Designation-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="designation">Designation
-                                                            :</label>
+                                                                                                       :</label>
                                                         <select id="designation" data-th-field="*{designation}"
                                                                 class="form-control" tabindex="12"
                                                         >
@@ -208,17 +209,20 @@
                                                                     data-th-selected="${designations==employee.designation?'selected':'unselected'}"></option>
                                                         </select>
                                                     </div>
-                                                    <!--position-->
+                                                                      <!--position-->
                                                     <div class="form-group">
-                                                        <label class="control-label" for="position">Position :</label>
-                                                        <input id="position" data-th-field="*{position}"
-                                                               class="form-control"
-                                                               tabindex="24" type="text"/>
-                                                        <span id="positionError" data-th-errors="*{position}"
-                                                              data-th-if="${#fields.hasErrors('position')}"
-                                                              class="error">Error Position</span>
+                                                        <label class="control-label" for="designation">Welfare Position
+                                                                                                       :</label>
+                                                        <select data-th-field="*{welfarePosition}" class="form-control"
+                                                                tabindex="12">
+                                                            <option value="">Please select</option>
+                                                            <option data-th-each="welfarePosition : ${welfarePositions}"
+                                                                    data-th-text="${welfarePosition.welfarePosition}"
+                                                                    data-th-value="${welfarePosition}"
+                                                            ></option>
+                                                        </select>
                                                     </div>
-                                                    <!--intakeNo-->
+                                                                      <!--intakeNo-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="intakeNo">Intake No :</label>
                                                         <input id="intakeNo" data-th-field="*{intakeNo}"
@@ -228,7 +232,7 @@
                                                               data-th-if="${#fields.hasErrors('intakeNo')}"
                                                               class="error">Error IntakeNo</span>
                                                     </div>
-                                                    <!--Email-->
+                                                                      <!--Email-->
                                                     <div class="form-group">
 
                                                         <label class="control-label" for="email">Email :</label>
@@ -241,11 +245,11 @@
                                                               id="emailError">Error Email</span>
 
                                                     </div>
-                                                    <!--Office email-->
+                                                                      <!--Office email-->
                                                     <div class="form-group">
 
                                                         <label class="control-label" for="officeEmail">Office Email
-                                                            :</label>
+                                                                                                       :</label>
 
                                                         <input id="officeEmail" data-th-field="*{officeEmail}"
                                                                class="form-control" tabindex="27"
@@ -264,7 +268,7 @@
                                                     <!-- Civil State-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="civilStatus">Civil State
-                                                            :</label>
+                                                                                                       :</label>
 
                                                         <select data-th-field="*{civilStatus}" id="civilStatus"
                                                                 class="form-control" tabindex="14"
@@ -294,7 +298,7 @@
                                                     <div class="form-group">
 
                                                         <label class="control-label" for="address">Temporary Address
-                                                            :</label>
+                                                                                                   :</label>
 
                                                         <textarea id="temporaryAddress"
                                                                   data-th-field="*{temporaryAddress}"
@@ -309,7 +313,7 @@
                                                     <div class="form-group">
 
                                                         <label class="control-label" for="mobileOne">Mobile One No
-                                                            :</label>
+                                                                                                     :</label>
 
                                                         <input id="mobileOne" data-th-field="*{mobileOne}"
                                                                class="form-control mobile" tabindex="17"
@@ -325,7 +329,7 @@
                                                     <div class="form-group">
 
                                                         <label class="control-label" for="mobileTwo">Mobile Two No
-                                                            :</label>
+                                                                                                     :</label>
 
                                                         <input id="mobileTwo" data-th-field="*{mobileTwo}"
                                                                class="form-control mobile" tabindex="18"
@@ -356,7 +360,7 @@
                                                     <div class="form-group">
 
                                                         <label class="control-label" for="land">Office Contact No
-                                                            :</label>
+                                                                                                :</label>
 
                                                         <input id="officeNo" data-th-field="*{officeNo}"
                                                                class="form-control land"
@@ -372,7 +376,7 @@
                                                     <div class="form-group">
 
                                                         <label class="control-label" for="land">Emergency Contact No
-                                                            :</label>
+                                                                                                :</label>
 
                                                         <input id="emergencyContactNo"
                                                                data-th-field="*{emergencyContactNo}"
@@ -388,7 +392,9 @@
                                                     <!--nearestPoliceStation-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="nearestPoliceStation">Nearest
-                                                            Police Station :</label>
+                                                                                                                Police
+                                                                                                                Station
+                                                                                                                :</label>
                                                         <input id="nearestPoliceStation" data-th-field="*{fullName}"
                                                                class="form-control"
                                                                tabindex="22" type="text"/>
@@ -400,7 +406,7 @@
                                                     <!--medicleNo-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="medicleNo">Medicle No
-                                                            :</label>
+                                                                                                     :</label>
                                                         <input id="medicleNo" data-th-field="*{medicleNo}"
                                                                class="form-control"
                                                                tabindex="23" type="text" required/>
@@ -412,7 +418,8 @@
                                                     <div class="form-group">
 
                                                         <label class="control-label" for="dateOfAssignment">Date Of
-                                                            Assignment :</label>
+                                                                                                            Assignment
+                                                                                                            :</label>
 
                                                         <input id="dateOfAssignment"
                                                                data-th-field="*{{dateOfAssignment}}"
@@ -428,7 +435,8 @@
                                                     <div class="form-group">
 
                                                         <label class="control-label" for="appoimentDate">Date of
-                                                            Appointment :</label>
+                                                                                                         Appointment
+                                                                                                         :</label>
 
                                                         <input id="appoimentDate" data-th-field="*{{appoimentDate}}"
                                                                type="date"
@@ -442,7 +450,8 @@
                                                     <!--Employee Status-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="employeeStatus">Employee
-                                                            Status :</label>
+                                                                                                          Status
+                                                                                                          :</label>
                                                         <select id="employeeStatus" data-th-field="*{employeeStatus}"
                                                                 class="form-control" tabindex="30"
                                                                 required>
@@ -456,8 +465,9 @@
                                                     <!--Employee Status-->
                                                     <div class="form-group">
                                                         <label class="control-label" for="employeeStatus">Working
-                                                                                                          Place :</label>
-                                                        <select  data-th-field="*{workingPlace}"
+                                                                                                          Place
+                                                                                                          :</label>
+                                                        <select data-th-field="*{workingPlace}"
                                                                 class="form-control" tabindex="30"
                                                                 required>
                                                             <option value="">Please select</option>
@@ -515,7 +525,7 @@
                                                     <div class="form-group" id="updateStatus"
                                                          data-th-if="${addStatus==false}">
                                                         <label class="control-label" for="createdBy">Created By
-                                                            :</label>
+                                                                                                     :</label>
                                                         <input id="createdBy" data-th-field="*{createdBy}"
                                                                class="form-control" type="text"
                                                                readonly/>
@@ -530,19 +540,27 @@
                                             <div class="accordion" id="accordion">
                                                 <div class="card">
                                                     <div class="card-header" id="headingOne">
-                                                        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
-                                                                aria-controls="collapseOne">Dependance One</button>
+                                                        <button type="button" class="btn btn-link"
+                                                                data-toggle="collapse" data-target="#collapseOne"
+                                                                aria-expanded="false"
+                                                                aria-controls="collapseOne">Dependance One
+                                                        </button>
                                                     </div>
-                                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                                    <div id="collapseOne" class="collapse show"
+                                                         aria-labelledby="headingOne" data-parent="#accordion">
                                                         <div class="card-body">Dependance gose here.</div>
                                                     </div>
                                                 </div>
                                                 <div class="card">
                                                     <div class="card-header" id="headingTwo">
-                                                        <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
-                                                                aria-expanded="false" aria-controls="collapseTwo">Education Two</button>
+                                                        <button type="button" class="btn btn-link collapsed"
+                                                                data-toggle="collapse" data-target="#collapseTwo"
+                                                                aria-expanded="false" aria-controls="collapseTwo">
+                                                            Education Two
+                                                        </button>
                                                     </div>
-                                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                                         data-parent="#accordion">
                                                         <div class="card-body">Education Qulification</div>
                                                     </div>
                                                 </div>
@@ -551,8 +569,8 @@
 
                                             <div class="card-footer">
                                                 <button type="submit" class="btn btn-primary">
-                                                    <i                                                             data-th-class="${addStatus==true?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i>
-                                                    <span                                                            data-th-text="${addStatus==true?'Save' : 'Update'}"></span>
+                                                    <i data-th-class="${addStatus==true?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i>
+                                                    <span data-th-text="${addStatus==true?'Save' : 'Update'}"></span>
                                                 </button>
                                             </div>
                                         </form>

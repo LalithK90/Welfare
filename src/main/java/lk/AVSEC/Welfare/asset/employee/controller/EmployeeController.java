@@ -12,6 +12,7 @@ import lk.AVSEC.Welfare.asset.employee.entity.EmployeeFiles;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.EmployeeStatus;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.Nationality;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.UniformType;
+import lk.AVSEC.Welfare.asset.employee.entity.Enum.WelfarePosition;
 import lk.AVSEC.Welfare.asset.employee.service.EmployeeFilesService;
 import lk.AVSEC.Welfare.asset.employee.service.EmployeeService;
 import lk.AVSEC.Welfare.asset.userManagement.entity.User;
@@ -79,6 +80,7 @@ public class EmployeeController {
         model.addAttribute("relationship", Relationship.values());
         model.addAttribute("currentStatus", CurrentStatus.values());
         model.addAttribute("workingPlaces", workingPlaceService.findAll());
+        model.addAttribute("welfarePositions", WelfarePosition.values());
         return "employee/addEmployee";
     }
 
