@@ -1,4 +1,4 @@
-package lk.AVSEC.Welfare.asset.grievanceStateChangeStateChange.service;
+package lk.AVSEC.Welfare.asset.grievances.service;
 
 import lk.AVSEC.Welfare.asset.grievances.dao.GrievanceStateChangeDao;
 import lk.AVSEC.Welfare.asset.grievances.entity.Enum.SolutionType;

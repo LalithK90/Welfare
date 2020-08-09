@@ -2,12 +2,12 @@ package lk.AVSEC.Welfare.asset.grievances.controller;
 
 
 import lk.AVSEC.Welfare.asset.employee.entity.Employee;
-import lk.AVSEC.Welfare.asset.grievanceStateChangeStateChange.service.GrievanceStateChangeService;
 import lk.AVSEC.Welfare.asset.grievances.entity.Enum.GrievancesStatus;
 import lk.AVSEC.Welfare.asset.grievances.entity.Enum.Priority;
 import lk.AVSEC.Welfare.asset.grievances.entity.Enum.SolutionType;
 import lk.AVSEC.Welfare.asset.grievances.entity.Grievance;
 import lk.AVSEC.Welfare.asset.grievances.entity.GrievanceStateChange;
+import lk.AVSEC.Welfare.asset.grievances.service.GrievanceStateChangeService;
 import lk.AVSEC.Welfare.asset.grievances.service.GrievancesService;
 import lk.AVSEC.Welfare.asset.userManagement.service.UserService;
 import lk.AVSEC.Welfare.util.interfaces.AbstractController;
