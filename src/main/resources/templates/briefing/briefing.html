@@ -60,16 +60,17 @@
                     <div class="card-body">
 
                         <!--if not empty list-->
-                        <div class="row" id="briefingListTable" th:if="${not #lists.isEmpty(briefings)}">
+                        <div class="table-responsive container-fluid" id="briefingListTable" th:if="${not #lists.isEmpty(briefings)}">
                             <!-- data table start -->
-                            <table id="myTable" class="table table-hover table-dark">
+                            <table id="myTable" class="table table-hover table-light">
                                 <thead>
                                 <tr>
                                     <!--id, name, toWhom, notices, priority effDate-->
                                     <th>Index</th>
                                     <th>By Whom</th>
                                     <th>To Whom</th>
-                                    <th>Notices</th>
+                                    <th>Subject</th>
+<!--                                    <th>Notices</th>-->
                                     <th>Priority</th>
                                     <th>Effect Date</th>
                                     <th>Action</th>
@@ -81,7 +82,8 @@
                                     <td th:text="${rowCount.count}"></td>
                                     <td th:text="${briefing.name}"></td>
                                     <td th:text="${briefing.toWhom}"></td>
-                                    <td th:text="${briefing.notices}"></td>
+                                    <td th:text="${briefing.subject}"></td>
+<!--                                    <td th:text="${briefing.notices}"></td>-->
                                     <td th:text="${briefing.priority.Priority}"></td>
                                     <td th:text="${briefing.effDate}"></td>
                                     <td>

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-// spring transactional annotation need to tell spring to this method work through the project
+
 @CacheConfig(cacheNames = "designation")
 public class DesignationService implements AbstractService<Designation, Integer> {
 
