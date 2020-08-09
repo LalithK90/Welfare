@@ -255,31 +255,73 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <div class="container-fluid text-center" id="petitionListPresent">
-                                        <table class="table table-hover table-striped" id="myTable">
+                                    <div class="table-responsive container-fluid" id="briefingListTable" th:if="${not #lists.isEmpty(briefing)}">
+                                        <!-- data table start -->
+                                        <table id="myTable" class="table table-hover table-light">
                                             <thead>
                                             <tr>
-                                                <th> Petition Number</th>
-                                                <th> Petition Priority</th>
-                                                <th> Working Place</th>
-                                                <th> State</th>
-                                                <th> Modify</th>
+                                                <!--id, name, toWhom, notices, priority effDate-->
+<!--                                                <th>Index</th>-->
+
+                                                <th>To Whom</th>
+                                                <th>Subject</th>
+                                                <!--                                    <th>Notices</th>-->
+                                                <th>Priority</th>
+                                                <th>Effect Date</th>
+                                                <th>Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr id="petitionList">
-                                                <th id="petitionNumber"></th>
-                                                <th id="petitionPriority"></th>
-                                                <th id="workingPlace"></th>
-                                                <th id="petitionState"></th>
-                                                <th>
-                                                    <a id="petitionView" class="btn btn-success btn-sm"><i
-                                                            class="fa fa-folder-open"></i>&nbsp;View</a>
-                                                </th>
+
+                                            <tr th:each="briefing, rowCount : ${briefing}" scope="row">
+<!--                                                <td th:text="${rowCount.count}"></td>-->
+
+                                                <td th:text="${briefing.toWhom}"></td>
+                                                <td th:text="${briefing.subject}"></td>
+                                                <!--                                    <td th:text="${briefing.notices}"></td>-->
+                                                <td th:text="${briefing.priority.Priority}"></td>
+                                                <td th:text="${briefing.effDate}"></td>
+                                                <td>
+
+
+                                                    <a class="btn btn-success btn-sm" th:href="${'/briefing/' + briefing.id}" id="briefingView">
+                                                        <i class="fa fa-folder-open"></i>View</a>
+
+
+                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>
+                                        <!-- data table end -->
                                     </div>
+
+
+
+<!--                                    <div class="container-fluid text-center" id="petitionListPresent">-->
+<!--                                        <table class="table table-hover table-striped" id="myTable">-->
+<!--                                            <thead>-->
+<!--                                            <tr>-->
+<!--                                                <th> Petition Number</th>-->
+<!--                                                <th> Petition Priority</th>-->
+<!--                                                <th> Working Place</th>-->
+<!--                                                <th> State</th>-->
+<!--                                                <th> Modify</th>-->
+<!--                                            </tr>-->
+<!--                                            </thead>-->
+<!--                                            <tbody>-->
+<!--                                            <tr id="petitionList">-->
+<!--                                                <th id="petitionNumber"></th>-->
+<!--                                                <th id="petitionPriority"></th>-->
+<!--                                                <th id="workingPlace"></th>-->
+<!--                                                <th id="petitionState"></th>-->
+<!--                                                <th>-->
+<!--                                                    <a id="petitionView" class="btn btn-success btn-sm"><i-->
+<!--                                                            class="fa fa-folder-open"></i>&nbsp;View</a>-->
+<!--                                                </th>-->
+<!--                                            </tr>-->
+<!--                                            </tbody>-->
+<!--                                        </table>-->
+<!--                                    </div>-->
                                     <div class="row" id="petitionListNotPresent">
                                         <div class="card-footer">
                                             <div class="alert alert-warning alert-dismissible fade show" role="alert">

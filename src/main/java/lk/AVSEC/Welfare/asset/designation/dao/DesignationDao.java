@@ -7,7 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DesignationDao extends JpaRepository<Designation, Integer> {
 
-/*//select * from district where province = ?1
-    List<Qualification> findByProvince(Province province);*/
 
 }

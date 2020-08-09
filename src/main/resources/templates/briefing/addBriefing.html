@@ -99,6 +99,13 @@
                                                        th:errors="*{toWhom}">Error toWhom</p>
 
                                                 </div>
+                                            <!--subject-->
+                                            <div class="form-group ">
+                                                <label th:for="${'notices'}" class="form-label "> Subject </label>
+                                                <textarea class="form-control" th:field="*{subject}"></textarea>
+                                                <p class="text-danger" th:if="${#fields.hasErrors('subject')}"
+                                                   th:errors="*{subject}">Error subject</p>
+                                            </div>
                                                 <!--notices-->
                                                 <div class="form-group ">
                                                     <label th:for="${'notices'}" class="form-label "> notices </label>
