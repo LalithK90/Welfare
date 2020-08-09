@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head data-th-replace="~{fragments/headerSection :: headerSectionFragment}"></head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper"><!-- wrapper start -->
@@ -462,7 +462,7 @@
                                                                 required>
                                                             <option value="">Please select</option>
                                                             <option data-th-each="workingPlace : ${workingPlaces}"
-                                                                    data-th-text="${workingPlace.name}"
+                                                                    data-th-text="${workingPlace.shortName +' - '+workingPlace.workingPlaceSection}"
                                                                     data-th-value="${workingPlace.id}"></option>
                                                         </select>
                                                     </div>
@@ -471,7 +471,8 @@
                                                         <label class="active ">Photos :</label>
                                                         <input type="file" id="imgInp" name="file" tabindex="13">
                                                         <div class="row">
-                                                            <img src="" alt="" id="blah">
+                                                            <img style="height: 150px; width: 150px;" src="" alt=""
+                                                                 id="blah">
                                                         </div>
                                                         <div class="row">
                                                             <div class="col" id="filesList"
@@ -483,7 +484,7 @@
                                                                             <div class="card-body">
                                                                                 <img id="img" class="rounded"
                                                                                      style="height: 150px;
-                                                                                     widdata-th- 150px; border-radius:
+                                                                                     width: 150px; border-radius:
                                                                                      10px"
                                                                                      alt="Employee images"
                                                                                      data-th-src="${file.url}"/>
@@ -563,10 +564,14 @@
                 </div>
             </div>
         </div>
-    </div><!-- content-wrapper end -->
-    <footer data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
-</div><!-- wrapper end -->
-<script data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
+    </div>
+                     <!-- content-wrapper end -->
+    <footer data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></footer>
+                     <!-- footer Section -->
+</div>
+<!-- wrapper end -->
+<script data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></script>
+<!-- script Fragment -->
 <script>
 
     function readURL(input) {

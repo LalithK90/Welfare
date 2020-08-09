@@ -8,7 +8,8 @@
     <div class="content-wrapper"><!-- content-wrapper Start -->
         <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
                                  <!-- Form Header  Path -->
-                                 <!--<section data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section>-->
+                                 <!--<section data-th-replace="~{fragments/smallBoxSection ::
+                                 smallBoxSectionFragment}"></section>-->
                                  <!-- Small Box Set -->
 
         <div class="content-header">
@@ -122,43 +123,16 @@
                                             <td data-th-if="${employee.designation != null}"
                                                 data-th-text="${employee.designation.name}"></td>
                                             <td data-th-if="${employee.designation == null}"
-                                                s data-th-text="${'Not mentioned'}"></td>
+                                                data-th-text="${'Not mentioned'}"></td>
                                             <td data-th-text="${employee.employeeStatus.employeeStatus}"></td>
                                             <td>
-                                                <a id="employeeView" data-th-href="${'/employee/' + employee.id}"
+                                                <a id="employeeView" data-th-href="${'/collection/' + employee.id}"
                                                    class="btn btn-success btn-sm"><i
-                                                        class="fa fa-folder-open"></i>&nbsp;View</a>
-                                                <a id="employeeEdit" data-th-href="${'/employee/edit/' + employee.id}"
-                                                   class="btn btn-primary btn-sm"><i
-                                                        class="fa fa-edit"></i>&nbsp;Edit</a>
-                                                <a id="employeeRemove"
-                                                   data-th-href="${'/employee/remove/' + employee.id}"
-                                                   data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
-                                                   class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>
-                                                    Delete</a>
+                                                        class="fa fa-folder-open"></i>&nbsp;Add Instalment</a>
+
                                             </td>
                                         </tr>
-                                        </tfoot>
                                     </table>
-                                </div>
-
-                                <div>
-                                    <td data-th-each="employee: ${employees}"></td>
-                                </div>
-
-
-                                <div class="row" data-th-if="${ #lists.isEmpty(employees)}">
-                                    <!-- <div class="col-sm-12">-->
-                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        <h3 class="text-center text-danger">
-                                            <strong>There is no employee upto now please add employee to the system
-                                                    using add user button.
-                                            </strong>
-                                        </h3>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -168,7 +142,6 @@
         </div>
     </div>
 </div>
-
 <!-- content-wrapper end -->
 <footer data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
 <!-- wrapper end -->
