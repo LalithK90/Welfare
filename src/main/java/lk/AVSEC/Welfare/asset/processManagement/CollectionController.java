@@ -4,8 +4,10 @@ import lk.AVSEC.Welfare.asset.employee.entity.Employee;
 import lk.AVSEC.Welfare.asset.employee.service.EmployeeFilesService;
 import lk.AVSEC.Welfare.asset.employee.service.EmployeeService;
 import lk.AVSEC.Welfare.asset.finance.entity.Enum.ExpenseOrReceived;
+import lk.AVSEC.Welfare.asset.finance.entity.Enum.OtherFundReceivingType;
 import lk.AVSEC.Welfare.asset.finance.entity.Instalment;
 import lk.AVSEC.Welfare.asset.finance.entity.MainAccount;
+import lk.AVSEC.Welfare.asset.finance.entity.OtherFundReceiving;
 import lk.AVSEC.Welfare.asset.finance.service.InstalmentService;
 import lk.AVSEC.Welfare.asset.finance.service.InstalmentTypeService;
 import lk.AVSEC.Welfare.asset.finance.service.MainAccountService;
@@ -91,5 +93,36 @@ public class CollectionController {
         //instalmentService.persist(instalment);
         return "redirect:/collection";
     }
+
+    @GetMapping( "/special" )
+    public String specialsReceiving(Model model) {
+        model.addAttribute("donation", new MainAccount());
+        model.addAttribute("instalmentTypes", instalmentTypeService.findAll());
+        model.addAttribute("fundReceivingTypes", OtherFundReceivingType.values());
+        return "processManagement/addSpecialInstalment";
+    }
+
+    @PostMapping( "/special/save" )
+    public String specialInstalmentSave(@Valid @ModelAttribute MainAccount mainAccount, BindingResult bindingResult,
+                                        Model model) {
+        if ( bindingResult.hasErrors() ) {
+            model.addAttribute("donation", mainAccount);
+            model.addAttribute("instalmentTypes", instalmentTypeService.findAll());
+            model.addAttribute("fundReceivingTypes", OtherFundReceivingType.values());
+            return "processManagement/addSpecialInstalment";
+        }
+        mainAccount.setExpenseOrReceived(ExpenseOrReceived.RECEIVED);
+
+        OtherFundReceiving otherFundReceiving = new OtherFundReceiving();
+        otherFundReceiving.setAmount(mainAccount.getAmount());
+        otherFundReceiving.setFundReceivingType(mainAccount.getOtherFundReceivingType());
+        otherFundReceiving.setRemark(mainAccount.getRemark());
+
+        mainAccount.setOtherFundReceiving(otherFundReceiving);
+
+        mainAccountService.persist(mainAccount);
+        return "redirect:/collection";
+    }
+
 
 }

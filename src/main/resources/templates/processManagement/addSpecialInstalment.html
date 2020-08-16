@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+                                 <!-- Form Header  Path -->
+                                 <!--<section data-th-replace="~{fragments/smallBoxSection ::
+                                 smallBoxSectionFragment}"></section>-->
+                                 <!-- Small Box Set -->
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <!-- /employee/add-->
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <a data-th-href="${'/employee/add'}">
+                                    <div class="info-box bg-success">
+                                        <span class="info-box-icon"><i class="fas fa-user"></i></span>
+                                        Add <br/>Employee
+                                    </div>
+                                </a></div>
+                            <!-- /employee/View-->
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <!--
+                                                                <a data-th-href="${'/employee/add'}">-->
+                                <div class="info-box bg-info" data-toggle="modal" data-target="#modal">
+                                    <span class="info-box-icon"><i class="fas fa-folder-open"></i></span>
+                                    View <br/>Employee
+                                </div>
+                                <!--</a>--></div>
+                            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle"
+                                 aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalTitle">View Employee</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Enter EPF No <input type="text">
+                                            <p><a data-th-href="${'/employee/' + 1}">enter</a></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary">Action</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /employee/Edit-->
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <a data-th-href="${'/employee/add'}">
+                                    <div class="info-box bg-warning">
+                                        <span class="info-box-icon"><i class="fas fa-edit"></i></span>
+                                        Edit <br/>Employee
+                                    </div>
+                                </a></div>
+                            <!--/employee/Delete-->
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <a data-th-href="${'/employee/add'}">
+                                    <div class="info-box bg-danger">
+                                        <span class="info-box-icon"><i class="fas fa-trash"></i></span>
+                                        Edit <br/>Employee
+                                    </div>
+                                </a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="card">
+                                <form data-th-action="${'/collection/special/save'}"
+                                      data-th-object="${donation}" method="POST">
+                                    <!--Amount-->
+                                    <div class="form-group">
+                                        <label class="control-label" for="amount">Amount :</label>
+                                        <input id="amount" data-th-field="*{amount}" class="form-control"
+                                               tabindex="5" type="text"
+                                                required/>
+                                        <span class="error" id="nicError" data-th-errors="*{amount}"
+                                              data-th-if="${#fields.hasErrors('amount')}">Error
+                                                               NIC Number</span>
+                                    </div>
+                                    <!--Instalment Type-->
+                                    <div class="form-group">
+                                        <label class="control-label"
+                                               data-th-for="nationality">Instalment Type
+                                                                         :</label>
+                                        <select id="nationality" data-th-field="*{instalmentType}"
+                                                class="form-control" tabindex="6" required>
+                                            <option value="">Please select</option>
+                                            <option data-th-each="instalmentType : ${instalmentTypes}"
+                                                    data-th-text="${instalmentType.name}"
+                                                    data-th-value="${instalmentType.id}"></option>
+                                        </select>
+                                    </div>
+                                    <!--Type-->
+                                    <div class="form-group">
+                                        <label class="control-label" for="type">Amount :</label>
+                                        <input id="type" data-th-field="*{type}" class="form-control"
+                                               tabindex="5" type="text"
+                                               required/>
+                                        <span class="error" id="typeOne" data-th-errors="*{type}"
+                                              data-th-if="${#fields.hasErrors('type')}">Error
+                                                               NIC Number</span>
+                                    </div>
+                                    <!--Remark-->
+                                    <div class="form-group">
+                                        <label class="control-label" for="remark">Remark :</label>
+                                        <textarea id="remark" data-th-field="*{remark}" class="form-control"   required></textarea>                                        <span class="error" data-th-errors="*{remark}"
+                                              data-th-if="${#fields.hasErrors('remark')}">remark
+                                                               NIC Number</span>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i data-th-class="${'fa fa-save mr-1'}"></i>
+                                      Save
+                                    </button>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content-wrapper end -->
+<footer data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+<!-- wrapper end -->
+<script data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
+</body>
+</html>

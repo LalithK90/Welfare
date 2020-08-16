@@ -1,6 +1,7 @@
 package lk.AVSEC.Welfare.asset.finance.entity;
 
 import lk.AVSEC.Welfare.asset.finance.entity.Enum.ExpenseOrReceived;
+import lk.AVSEC.Welfare.asset.finance.entity.Enum.OtherFundReceivingType;
 import lk.AVSEC.Welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,7 +31,11 @@ public class MainAccount extends AuditEntity {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Instalment instalment;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private OtherFundReceiving otherFundReceiving;
+
+    @Transient
+    private OtherFundReceivingType otherFundReceivingType;
+
 
 }
