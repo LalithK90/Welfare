@@ -1,25 +1,21 @@
 package lk.AVSEC.Welfare.asset.processManagement;
 
 import lk.AVSEC.Welfare.asset.employee.entity.Employee;
-import lk.AVSEC.Welfare.asset.employee.entity.Enum.WelfarePosition;
+import lk.AVSEC.Welfare.asset.employee.service.EmployeeFilesService;
 import lk.AVSEC.Welfare.asset.employee.service.EmployeeService;
+import lk.AVSEC.Welfare.asset.finance.entity.Enum.ExpenseOrReceived;
 import lk.AVSEC.Welfare.asset.finance.entity.Instalment;
+import lk.AVSEC.Welfare.asset.finance.entity.MainAccount;
 import lk.AVSEC.Welfare.asset.finance.service.InstalmentService;
 import lk.AVSEC.Welfare.asset.finance.service.InstalmentTypeService;
 import lk.AVSEC.Welfare.asset.finance.service.MainAccountService;
-import lk.AVSEC.Welfare.asset.userManagement.entity.User;
-import lk.AVSEC.Welfare.asset.employee.service.EmployeeFilesService;
 import lk.AVSEC.Welfare.asset.userManagement.service.UserService;
-import lk.AVSEC.Welfare.asset.workingPlace.entity.WorkingPlace;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping( "/collection" )
@@ -29,24 +25,25 @@ public class CollectionController {
     private final InstalmentService instalmentService;
     private final MainAccountService mainAccountService;
     private final UserService userService;
-    private final EmployeeFileService employeeFileService;
+    private final EmployeeFilesService employeeFilesService;
 
 
     public CollectionController(EmployeeService employeeService, InstalmentTypeService instalmentTypeService,
                                 InstalmentService instalmentService, MainAccountService mainAccountService,
-                                UserService userService, EmployeeFileService employeeFileService) {
+                                UserService userService, EmployeeFilesService employeeFilesService) {
         this.employeeService = employeeService;
         this.instalmentTypeService = instalmentTypeService;
         this.instalmentService = instalmentService;
         this.mainAccountService = mainAccountService;
         this.userService = userService;
-        this.employeeFileService = employeeFileService;
+        this.employeeFilesService = employeeFilesService;
     }
 
     @GetMapping
     public String allEmployee(Model model) {
         /*User user =
-                userService.findById(userService.findByUserIdByUserName(SecurityContextHolder.getContext().getAuthentication().getName()));
+                userService.findById(userService.findByUserIdByUserName(SecurityContextHolder.getContext()
+                .getAuthentication().getName()));
         WorkingPlace workingPlace = user.getEmployee().getWorkingPlace();
         WelfarePosition welfarePosition = user.getEmployee().getWelfarePosition();
         //member and other person can not view employee who need to pay
@@ -77,6 +74,22 @@ public class CollectionController {
         model.addAttribute("instalmentTypes", instalmentTypeService.findAll());
 
         return "processManagement/addInstalment";
+    }
+
+    @PostMapping( "/save" )
+    public String saveInstalment(@Valid @ModelAttribute Instalment instalment, BindingResult bindingResult) {
+        if ( bindingResult.hasErrors() ) {
+            return "redirect:/collection" + instalment.getEmployee().getId();
+        }
+        MainAccount mainAccount = new MainAccount();
+        mainAccount.setInstalment(instalment);
+        mainAccount.setExpenseOrReceived(ExpenseOrReceived.RECEIVED);
+        mainAccount.setAmount(instalment.getAmount());
+
+        mainAccountService.persist(mainAccount);
+
+        //instalmentService.persist(instalment);
+        return "redirect:/collection";
     }
 
 }

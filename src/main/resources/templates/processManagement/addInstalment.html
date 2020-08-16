@@ -84,9 +84,59 @@
                                 <div data-th-replace="~{employee/employee-detail :: employeeDetailsFragment}"></div>
                             </div>
                             <div class="card">
-                                <form data-th-action="${'/instalment/save'}"
-                                      data-th-object="${instalment}" method="POST">
+                                <table id="myTable" data-th-if="${not #lists.isEmpty(instalments)}"
+                                       class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th> Index</th>
+                                        <th> Instalment Type</th>
+                                        <th> Amount</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr data-th-each="instalment, rowCount : ${instalments}">
+                                        <td data-th-text="${rowCount.count}"></td>
+                                        <td data-th-text="${instalment.instalmentType.name}"></td>
+                                        <td data-th-text="${instalment.amount}"></td>
 
+                                    </tr>
+                                </table>
+
+                            </div>
+                            <div class="card">
+                                <form data-th-action="${'/collection/save'}"
+                                      data-th-object="${instalment}" method="POST">
+                                    <!--Employee id-->
+                                    <input type="hidden" data-th-name="${'employee.id'}"
+                                           data-th-value="${employeeDetail.id}" hidden required>
+                                    <!--Amount-->
+                                    <div class="form-group">
+                                        <label class="control-label" for="amount">Amount :</label>
+                                        <input id="amount" data-th-field="*{amount}" class="form-control"
+                                               tabindex="5" type="text"
+                                                required/>
+                                        <span class="error" id="nicError" data-th-errors="*{amount}"
+                                              data-th-if="${#fields.hasErrors('amount')}">Error
+                                                               NIC Number</span>
+                                    </div>
+                                    <!--Instalment Type-->
+                                    <div class="form-group">
+                                        <label class="control-label"
+                                               data-th-for="nationality">Instalment Type
+                                                                         :</label>
+                                        <select id="nationality" data-th-field="*{instalmentType}"
+                                                class="form-control" tabindex="6" required>
+                                            <option value="">Please select</option>
+                                            <option data-th-each="instalmentType : ${instalmentTypes}"
+                                                    data-th-text="${instalmentType.name}"
+                                                    data-th-value="${instalmentType.id}"></option>
+                                        </select>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">
+                                        <i data-th-class="${'fa fa-save mr-1'}"></i>
+                                      Save
+                                    </button>
 
                                 </form>
                             </div>

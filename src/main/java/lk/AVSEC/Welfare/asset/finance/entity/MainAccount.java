@@ -27,7 +27,7 @@ public class MainAccount extends AuditEntity {
     @Enumerated(EnumType.STRING)
     private ExpenseOrReceived expenseOrReceived;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Instalment instalment;
 
     @ManyToOne
