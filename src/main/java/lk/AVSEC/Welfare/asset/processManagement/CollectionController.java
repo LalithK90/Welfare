@@ -108,7 +108,7 @@ public class CollectionController {
         if ( bindingResult.hasErrors() ) {
             model.addAttribute("donation", mainAccount);
             model.addAttribute("instalmentTypes", instalmentTypeService.findAll());
-            model.addAttribute("fundReceivingTypes", OtherFundReceivingType.values());
+            model.addAttribute("otherFundReceivingTypes", OtherFundReceivingType.values());
             return "processManagement/addSpecialInstalment";
         }
         mainAccount.setExpenseOrReceived(ExpenseOrReceived.RECEIVED);

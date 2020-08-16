@@ -107,6 +107,22 @@
                                                     data-th-value="${instalmentType.id}"></option>
                                         </select>
                                     </div>
+                                    <!--other fund receiving Type-->
+                                    <div class="form-group">
+                                        <label class="control-label" for="otherFundReceivingType">Fund Receiving Type
+                                                                                                  :</label>
+                                        <select id="otherFundReceivingType" data-th-field="*{otherFundReceivingType}"
+                                                 class="form-control">
+                                            <option value="">Please select</option>
+                                            <option data-th-each="otherFundReceivingType : ${otherFundReceivingTypes}"
+                                                    data-th-text="${otherFundReceivingType.otherFundReceivingType}"
+                                                    data-th-value="${otherFundReceivingType}"></option>
+                                        </select>
+
+                                        <span class="error"                                              data-th-errors="*{otherFundReceivingType}"
+                                              data-th-if="${#fields.hasErrors('otherFundReceivingType')}">Error
+                                                               NIC Number</span>
+                                    </div>
                                     <!--Type-->
                                     <div class="form-group">
                                         <label class="control-label" for="type">Amount :</label>

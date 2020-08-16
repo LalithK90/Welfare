@@ -37,5 +37,9 @@ public class MainAccount extends AuditEntity {
     @Transient
     private OtherFundReceivingType otherFundReceivingType;
 
+    @Transient
+    private InstalmentType instalmentType;
+
+
 
 }
