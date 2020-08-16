@@ -19,7 +19,7 @@ repositories {
 springBoot {
 	buildInfo {
 		properties {
-			group = 'lk.w3Academy'
+			group = 'lk.welfare'
 			version = '0.0.1-SNAPSHOT'
 			sourceCompatibility = '11'
 		}
