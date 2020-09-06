@@ -47,11 +47,18 @@
                                                     <p class="display_detail" th:text="${workingPlaceDetail.district.province.province}"></p>
                                                 </div>
                                             </div>
+                                            <!--WorkingPlace S.name-->
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label "> Working placw short Name </label>
+                                                <div class="col-sm-10">
+                                                    <p class="display_detail" th:text="${workingPlaceDetail.shortName}"></p>
+                                                </div>
+                                            </div>
                                             <!--WorkingPlace name-->
                                             <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label "> Name </label>
+                                                <label class="col-sm-2 col-form-label "> Working place district </label>
                                                 <div class="col-sm-10">
-                                                    <p class="display_detail" th:text="${workingPlaceDetail.name}"></p>
+                                                    <p class="display_detail" th:text="${workingPlaceDetail.district}"></p>
                                                 </div>
                                             </div>
                                         </div>
