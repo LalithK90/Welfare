@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping( "/dependent" )
-public class DependentController implements AbstractController< Dependent, Integer > {
+public class DependentController{
 
     private final DependentService dependentService;
     private final DependentEmployeeService dependentEmployeeService;
@@ -60,8 +60,9 @@ public class DependentController implements AbstractController< Dependent, Integ
         return "dependent/dependent";
     }
 
-    @GetMapping( "/add" )
-    public String form(Model model) {
+    @GetMapping( "/add/{id}" )
+    public String form(@PathVariable Integer id, Model model) {
+        model.addAttribute("employee", employeeService.findById(id));
         return commonThing(model, false, new Dependent());
     }
 
@@ -74,16 +75,14 @@ public class DependentController implements AbstractController< Dependent, Integ
     @GetMapping( "/edit/{id}" )
     public String edit(@PathVariable Integer id, Model model) {
         Dependent dependent = dependentService.findById(id);
-        Employee employee =
-                userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getEmployee();
+        Employee employee =dependent.getDependentEmployees().get(0).getEmployeeOne();
         return commonThing(model, true, dependentEmployeeService.findByDependentAndEmployee(dependent, employee));
     }
 
     @PostMapping( value = {"/save", "/update"} )
     public String persist(@Valid @ModelAttribute Dependent dependent, BindingResult bindingResult,
                           RedirectAttributes redirectAttributes, Model model) {
-        Employee employee =
-                userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getEmployee();
+        Employee employee =employeeService.findById(dependent.getEmployee().getId());
 
         if ( bindingResult.hasErrors() ) {
             return commonThing(model, false, dependent);

@@ -136,6 +136,12 @@
                                                    data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
                                                    class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>
                                                     Delete</a>
+                                                <a
+                                                   data-th-href="${'/dependent/add/' + employee.id}"
+
+                                                   class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>
+                                                    Dependent</a>
+                                                <!--data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"-->
                                             </td>
                                         </tr>
                                         </tfoot>

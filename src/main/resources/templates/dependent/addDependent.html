@@ -35,6 +35,7 @@
                                         <h4>Secondary Header </h4>
                                         <form th:action="${addStatus==false?'/dependent/save' :'/dependent/update'}"
                                               method="post" th:object="${dependent}">
+                                            <input type="hidden" data-th-value="${employee.id}" data-th-name="${'employee'}">
                                             <!--Id-->
                                             <div class="form-group row" th:if="${addStatus==true}">
                                                 <label for="id" class="form-label "> Id </label>

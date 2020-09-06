@@ -46,4 +46,7 @@ public class Dependent extends AuditEntity {
 
     @Transient
     private String epfNumber;
+
+    @Transient
+    private Employee employee;
 }
