@@ -86,7 +86,7 @@
                                                 <div class="form-group row">
                                                     <label th:for="${'name'}" class="form-label "> Name </label>
 
-                                                    <input type="text" class="form-control" th:field="*{name}" required>
+                                                    <input type="text" class="form-control" th:field="*{name}">
                                                     <p class="text-danger" th:if="${#fields.hasErrors('name')}"
                                                        th:errors="*{name}">Error Name</p>
                                                 </div>
@@ -101,7 +101,7 @@
                                                 <div class="form-group row">
                                                     <label th:for="${'nic'}" class="form-label "> NIC No </label>
 
-                                                    <input type="text" class="form-control" th:field="*{nic}" required>
+                                                    <input type="text" class="form-control" th:field="*{nic}">
                                                     <p class="text-danger" th:if="${#fields.hasErrors('nic')}"
                                                        th:errors="*{nic}">Error NIC</p>
                                                 </div>
@@ -128,7 +128,7 @@
                                                     <label th:for="${'Remark'}" class="form-label"> Remark </label>
 
                                                     <input type="text" class="form-control" th:field="*{Remark}"
-                                                           required>
+                                                           >
                                                     <p class="text-danger" th:if="${#fields.hasErrors('Remark')}"
                                                        th:errors="*{Remark}">Error Remark</p>
                                                 </div>
