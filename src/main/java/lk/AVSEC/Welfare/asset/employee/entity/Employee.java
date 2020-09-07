@@ -152,6 +152,9 @@ public class Employee extends AuditEntity {
     private MultipartFile file;
 
     @Transient
+    private FileInfo fileInfo;
+
+    @Transient
     private List< String > removeImages = new ArrayList<>();
 
     @Transient

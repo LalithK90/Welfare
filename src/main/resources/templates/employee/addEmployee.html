@@ -260,6 +260,20 @@
 
                                                     </div>
 
+                                                    <div class="form-group">
+
+                                                        <label class="control-label" for="epf">EPF No
+                                                            :</label>
+
+                                                        <input id="epf" data-th-field="*{epf}"
+                                                               class="form-control" tabindex="27"
+                                                               type="text"/>
+                                                        <span class="error" data-th-errors="*{epf}"
+                                                              data-th-if="${#fields.hasErrors('epf')}"
+                                                              id="epfError">Error epf</span>
+
+                                                    </div>
+
 
                                                 </div>
                                                 <!--right side-->

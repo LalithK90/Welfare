@@ -37,11 +37,11 @@
                             <div class="col-md-9">
                                 <div class="card">
                                     <div class="card-body" th:fragment="dependentDetail">
-                                        <h4>Secondary Header </h4>
+                                        <h4>Dependent Detail </h4>
                                         <span th:text="${dependentDetail}"></span>
                                         <!--/* id this comment not visualize */-->
                                         <!--Id-->
-<!--                                        <div class="form-group row">
+                                       <div class="form-group row">
                                             <label class="form-label "> Id </label>
                                             <p class="display_detail" th:text="${dependentDetail.dependent.id}"></p>
                                         </div>
@@ -61,10 +61,9 @@
                                         <div class="form-group row">
                                             <label class="form-label "> Remark </label>
                                             <p class="display_detail" th:text="${dependentDetail.dependent.remark}"></p>
-                                        </div>-->
+                                        </div>
                                         <!--Dependent Employee -->
-                             <!--
-                                        <div class="container-fluid" th:each="dependent : ${dependentDetail.dependentEmployees}">
+                                        <div class="container-fluid" th:each="dependent : ${dependentDetail..dependentEmployees}">
 
                                             <div class="form-group row">
                                                 <label class="form-label "> Remark </label>
@@ -87,7 +86,7 @@
                                             </div>
 
                                         </div>
--->
+
                                     </div>
 
                                 </div>

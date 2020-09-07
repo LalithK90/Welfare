@@ -107,9 +107,11 @@
                                             <td>
                                                 <div class="user-panel mt-0 pb-0 mb-0 d-flex">
                                                     <div class="image">
-                                                        <img src="/img/prasad.jpg" class="img-circle elevation-2"
-                                                             alt="User Image">
-                                                    </div>
+                                                        <img id="img" class="rounded"
+                                                             style="height:150px; width:150px; border-radius: 10px"
+                                                             alt="Employee images"
+                                                             data-th-src="${employee.fileInfo.url}"/>
+                                                         </div>
                                                     <div class="info">
                                                         <a href="#" class="d-block">W B Prasad</a>
                                                     </div>
@@ -136,6 +138,12 @@
                                                    data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
                                                    class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>
                                                     Delete</a>
+                                                <a
+                                                   data-th-href="${'/dependent/add/' + employee.id}"
+
+                                                   class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>
+                                                    Dependent</a>
+                                                <!--data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"-->
                                             </td>
                                         </tr>
                                         </tfoot>
