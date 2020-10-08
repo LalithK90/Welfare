@@ -83,10 +83,12 @@
                                 <!--<div class="card-body">
                                     <h4>Secondary Header </h4>-->
                                 <div class="card-body">
-                                    <table id="example2" class="table table-hover">
+                                  <table id="myTable" class="table table-hover">
+
                                         <thead>
                                         <tr>
                                             <th> Index</th>
+                                            <th> Image</th>
                                             <th> EPF No</th>
                                             <th> Name</th>
                                             <th> Mobile</th>
@@ -108,17 +110,18 @@
                                                 <div class="user-panel mt-0 pb-0 mb-0 d-flex">
                                                     <div class="image">
                                                         <img id="img" class="rounded"
-                                                             style="height:150px; width:150px; border-radius: 10px"
+                                                         style="height:50px; width:50px;border-radius: 1px"
                                                              alt="Employee images"
                                                              data-th-src="${employee.fileInfo.url}"/>
                                                          </div>
                                                     <div class="info">
-                                                        <a href="#" class="d-block">W B Prasad</a>
+<!--                                                        <a href="#" class="d-block">W B Prasad</a>-->
+
                                                     </div>
                                                 </div>
                                             </td>
 
-                                            <!-- <td data-th-text="${employee.epf}"></td>-->
+                                             <td data-th-text="${employee.epf}"></td>
                                             <td data-th-text="${employee.name}"></td>
                                             <td data-th-text="${employee.mobileOne}"></td>
                                             <td data-th-if="${employee.designation != null}"
