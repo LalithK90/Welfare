@@ -1,25 +1,55 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--Styles, meta data, and title are included-->
-<head th:replace="~{fragments/header :: headerFragment}">
-    <meta charset="UTF-8">
-    <title>Thymeleaf Springboot </title>
-</head>
-<body>
-<!--Nav bar is included-->
-<nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
-<form class="password-strength form p-4" action="/register/token" method="post">
-    <label>Email: <input id="myPassword" type="email" name="email" required class="form-control">
-    </label>
-    <button class="btn btn-success d-flex m-auto" type="submit">Submit
-    </button>
+<!doctype html>
+<html lang="en">
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <!--<section data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section>-->
+        <!-- Small Box Set -->
 
-</form>
+        <div class="content-header">
+            <div class="container-fluid">
 
-<!--footer is included-->
-</div><!-- content-wrapper end -->
-<footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
-</div><!-- wrapper end -->
-<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <!--<div class="card-body">
+                                    <h4>Secondary Header </h4>-->
+                                <div class="card-body">
+                                    <div><blockquote>You can create the account through our token which is submitted to your email address by WMS and that token is valid up to 24hrs only
+                                        </blockquote></div>
+                                    <form action="/register/token" method="post">
+                                    <div class="form-group">
+                                        <label class="control-label" for="myPassword">Your Email Address</label>
+                                        <input id="myPassword" type="email" name="email" required class="form-control"><br>
+                                        <button class="btn btn-success form-control d-flex m-auto" type="submit">Submit</button>
+                                    </div>
+                                    </form>
+                                    </div>
+
+                                <div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- content-wrapper end -->
+<footer data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+<!-- wrapper end -->
+<script data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
 </body>
 </html>
