@@ -24,18 +24,17 @@ import java.util.List;
 @JsonFilter("Dependent")
 public class Dependent extends AuditEntity {
 
-    @Size(min = 2, max = 60, message = "Your name length should be 13")
     private String name;
+
+    private String nic;
+
+    private String remark;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dob;
 
-    private String nic;
-
     @Enumerated(EnumType.STRING)
     private CurrentStatus currentStatus;
-
-    private String remark;
 
     @OneToMany(mappedBy = "dependent")
     private List<DependentEmployee> dependentEmployees;
