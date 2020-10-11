@@ -263,7 +263,7 @@
                                                     <div class="form-group">
 
                                                         <label class="control-label" for="epf">EPF No
-                                                            :</label>
+                                                                                               :</label>
 
                                                         <input id="epf" data-th-field="*{epf}"
                                                                class="form-control" tabindex="27"
@@ -475,10 +475,10 @@
                                                     </div>
                                                     <!--Employee Status-->
                                                     <div class="form-group">
-                                                        <label class="control-label" for="employeeStatus">Working
+                                                        <label class="control-label" for="workingPlace">Working
                                                                                                           Place
                                                                                                           :</label>
-                                                        <select data-th-field="*{workingPlace}"
+                                                        <select data-th-field="*{workingPlace}" id="workingPlace"
                                                                 class="form-control" tabindex="30"
                                                                 required>
                                                             <option value="">Please select</option>
@@ -514,7 +514,7 @@
                                                                                 <p id="imgName"
                                                                                    data-th-text="${file.filename}"></p>
                                                                                 <span> Uploaded Date :
-                                            <p id="imgCreateAt" data-th-text="${{file.createAt}}"></p>
+                                            <span id="imgCreateAt" data-th-text="${{file.createAt}}"></span>
                                             </span>
                                                                             </div>
                                                                         </div>
@@ -545,8 +545,6 @@
 
                                                 </div>
                                             </div>
-
-
                                             <h2 class="text-muted mt-5 mb-3">Colspan</h2>
                                             <div class="accordion" id="accordion">
                                                 <div class="card">

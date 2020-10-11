@@ -2,6 +2,7 @@ package lk.AVSEC.Welfare.asset.dependent.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.AVSEC.Welfare.asset.dependent.entity.Enum.CurrentStatus;
+import lk.AVSEC.Welfare.asset.dependent.entity.Enum.InsideOrOut;
 import lk.AVSEC.Welfare.asset.dependent.entity.Enum.Relationship;
 import lk.AVSEC.Welfare.asset.employee.entity.Employee;
 import lk.AVSEC.Welfare.util.audit.AuditEntity;
@@ -35,6 +36,9 @@ public class Dependent extends AuditEntity {
 
     @Enumerated(EnumType.STRING)
     private CurrentStatus currentStatus;
+
+    @Enumerated(EnumType.STRING)
+    private InsideOrOut insideOrOut;
 
     @OneToMany(mappedBy = "dependent")
     private List<DependentEmployee> dependentEmployees;

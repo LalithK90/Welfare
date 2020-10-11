@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum TranferReason {
+public enum TransferReason {
     Punishment("Punishment"),
     Request("Request"),
     Roster("Roster"),
