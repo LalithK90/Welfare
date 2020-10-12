@@ -1,9 +1,9 @@
-package lk.AVSEC.Welfare.asset.employee.controller;
+package lk.AVSEC.Welfare.asset.promotion.controller;
 
 import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Province;
 import lk.AVSEC.Welfare.asset.employee.entity.Employee;
-import lk.AVSEC.Welfare.asset.employee.entity.Promotion;
-import lk.AVSEC.Welfare.asset.employee.service.PromotionService;
+import lk.AVSEC.Welfare.asset.promotion.entity.Promotion;
+import lk.AVSEC.Welfare.asset.promotion.service.PromotionService;
 import lk.AVSEC.Welfare.asset.userManagement.service.UserService;
 import lk.AVSEC.Welfare.util.interfaces.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;

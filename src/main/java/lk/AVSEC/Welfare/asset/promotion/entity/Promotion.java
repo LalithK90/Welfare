@@ -1,7 +1,8 @@
-package lk.AVSEC.Welfare.asset.employee.entity;
+package lk.AVSEC.Welfare.asset.promotion.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import lk.AVSEC.Welfare.asset.employee.entity.Employee;
 import lk.AVSEC.Welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,6 @@
-package lk.AVSEC.Welfare.asset.employee.dao;
+package lk.AVSEC.Welfare.asset.promotion.dao;
 
-import lk.AVSEC.Welfare.asset.employee.entity.Promotion;
+import lk.AVSEC.Welfare.asset.promotion.entity.Promotion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

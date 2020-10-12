@@ -1,7 +1,7 @@
-package lk.AVSEC.Welfare.asset.employee.service;
+package lk.AVSEC.Welfare.asset.promotion.service;
 
-import lk.AVSEC.Welfare.asset.employee.dao.PromotionDao;
-import lk.AVSEC.Welfare.asset.employee.entity.Promotion;
+import lk.AVSEC.Welfare.asset.promotion.dao.PromotionDao;
+import lk.AVSEC.Welfare.asset.promotion.entity.Promotion;
 import lk.AVSEC.Welfare.util.interfaces.AbstractService;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
