@@ -63,7 +63,7 @@
                                             <p class="display_detail" th:text="${dependentDetail.dependent.remark}"></p>
                                         </div>
                                         <!--Dependent Employee -->
-                                        <div class="container-fluid" th:each="dependent : ${dependentDetail..dependentEmployees}">
+                                        <div class="container-fluid" th:each="dependent : ${dependentDetail.dependentEmployees}">
 
                                             <div class="form-group row">
                                                 <label class="form-label "> Remark </label>
