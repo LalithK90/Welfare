@@ -130,7 +130,7 @@ public class EmployeeController {
         model.addAttribute("newEmployee", employee.getEpf());
         model.addAttribute("addStatus", false);
         model.addAttribute("contendHeader", "Employee Edit Details");
-        model.addAttribute("files", employeeFilesService.employeeFileDownloadLinks(employee));
+        model.addAttribute("file", employeeFilesService.employeeFileDownloadLinks(employee));
         return commonThings(model);
     }
 

@@ -107,49 +107,43 @@
                           </div></div></td>-->
                       <td >
                         <div class="user-panel mt-0 pb-0 mb-0 d-flex" >
-                          <div class="image" data-th-if="${employee.fileInfo !=null}">
+                          <div class="image" data-th-if="${employee.fileInfo !=null}" >
                             <img id="img" class="rounded"
                                  style="height:50px; width:50px;border-radius: 1px"
                                  alt="Employee images"
-                                 data-th-src="${employee.fileInfo.url}"/>
-                          </div>
+                                 data-th-src="${employee.fileInfo.url}" />
+                          </div >
                           <div class="info" >
                             <!--                                                        <a href="#" class="d-block">W B Prasad</a>-->
 
                           </div >
                         </div >
                       </td >
-
                       <td data-th-text="${employee.epf}" ></td >
                       <td data-th-text="${employee.name}" ></td >
                       <td data-th-text="${employee.mobileOne}" ></td >
-                      <td data-th-if="${employee.designation != null}"
-                          data-th-text="${employee.designation.name}" ></td >
-                      <td data-th-if="${employee.designation == null}"                           data-th-text="${'Not mentioned'}" ></td >
+                      <td data-th-if="${employee.designation != null}" data-th-text="${employee.designation.name}" ></td >
+                      <td data-th-if="${employee.designation == null}" data-th-text="${'Not mentioned'}" ></td >
                       <td data-th-text="${employee.employeeStatus.employeeStatus}" ></td >
                       <td >
-                        <a id="employeeView" data-th-href="${'/employee/' + employee.id}"
+                        <a data-th-href="${'/employee/' + employee.id}"
                            class="btn btn-success btn-sm" ><i
                               class="fa fa-folder-open" ></i >&nbsp;View</a >
-                        <a id="employeeEdit" data-th-href="${'/employee/edit/' + employee.id}"
+                        <a data-th-href="${'/employee/edit/' + employee.id}"
                            class="btn btn-primary btn-sm" ><i
                               class="fa fa-edit" ></i >&nbsp;Edit</a >
-                        <a id="employeeRemove"
-                           data-th-href="${'/employee/remove/' + employee.id}"
+                        <a data-th-href="${'/employee/remove/' + employee.id}"
                            data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
                            class="btn btn-danger btn-sm" ><i class="fa fa-trash" ></i >
                           Delete</a >
-                        <a
-                              data-th-href="${'/dependent/add/' + employee.id}"
-
-                              class="btn btn-info btn-sm" ><i class="fa fa-trash" ></i >
+                        <a data-th-href="${'/dependent/add/' + employee.id}" class="btn btn-info btn-sm" ><i
+                              class="fa fa-trash" ></i >
                           Dependent</a >
                         <!--data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"-->
                       </td >
                     </tr >
                   </table >
                 </div >
-
 
                 <div class="row" data-th-if="${ #lists.isEmpty(employees)}" >
                   <!-- <div class="col-sm-12">-->
