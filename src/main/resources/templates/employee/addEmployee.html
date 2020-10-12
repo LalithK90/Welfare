@@ -417,9 +417,9 @@
                                   data-th-if="${#fields.hasErrors('nearestPoliceStation')}"
                                   class="error" >Error Nearest Police Station</span >
                           </div >
-                          <!--medicleNo-->
+                          <!--Medical  No-->
                           <div class="form-group" >
-                            <label class="control-label" for="medicleNo" >Medicle No
+                            <label class="control-label" for="medicleNo" >Medical No
                                                                           :</label >
                             <input id="medicleNo" data-th-field="*{medicleNo}"
                                    class="form-control"
@@ -488,51 +488,23 @@
                             </select >
                           </div >
                           <!--Photos-->
-                          <div class="form-group" >
-                            <label class="active " >Photos :</label >
-                            <input type="file" id="imgInp" name="file" tabindex="13" >
-                            <div class="row" >
-                              <img style="height: 150px; width: 150px;" src="" alt=""
-                                   id="blah" >
+                          <div class="form-row col-md-6 mb-3 " >
+                            <div class="col-md-3 mr-5" >
+                              <label class="control-label" >Image</label >
+                              <input type="file" name="file" id="imgUpload"
+                                     accept="image/png, image/jpeg" />
                             </div >
-                            <div class="row" >
-                              <div class="col" id="filesList"
-                                   data-th-each="file, rowStat: ${files}" >
-                                <div class="col" >
-                                  <div class="alert alert-warning alert-dismissible fade show"
-                                       role="alert" >
-                                    <div class="card text-center" >
-                                      <div class="card-body" >
-                                        <img id="img" class="rounded"
-                                             style="height: 150px;
-                                                                                     width: 150px; border-radius:
-                                                                                     10px"
-                                             alt="Employee images"
-                                             data-th-src="${file.url}" />
-                                      </div >
-                                      <div class="card-footer bg-secondary text-light text-center" >
-                                        <p id="imgName"
-                                           data-th-text="${file.filename}" ></p >
-                                        <span > Uploaded Date :
-                                            <span id="imgCreateAt" data-th-text="${{file.createAt}}" ></span >
-                                            </span >
-                                      </div >
-                                    </div >
-                                  </div >
-                                </div >
-                              </div >
-                            </div >
-                            <div class="form-row" >
-                              <label id="errorLabel"
-                                     data-th-if="${#fields.hasErrors('*')}"
-                                     data-th-text="'Errors: '" >Errors: </label >
-                              <ul >
-                                <li id="error"
-                                    data-th-each="err: ${#fields.errors('*')}"
-                                    data-th-text="${err}" class="error" ></li >
-                              </ul >
+                            <div class="col-md-3" ></div >
+                            <div class="col-md-3 ml-5" >
+                              <!--photo details-->
+                              <img class="img-fluid ml-5" data-th-if="${addStatus==false}" data-th-src="${file.url}"
+                                   id="image" alt=""
+                                   style="height: 100px; width: 100%;" >
+                              <img class="img-fluid ml-5" data-th-if="${addStatus==true}" src="" id="image" alt=""
+                                   style="height: 100px; width: 100%" >
                             </div >
                           </div >
+
                           <div class="form-group" id="updateStatus"
                                data-th-if="${addStatus==false}" >
                             <label class="control-label" for="createdBy" >Created By
@@ -552,38 +524,6 @@
                         </button >
                       </div >
                     </form >
-                    <!-- to display Dependent and  Eduction Qualifications-->
-                    <!--<div class="container-fluid" >                       &lt;!&ndash;  data-th-if="${addStatus==false}"-&ndash;&gt;-->
-                    <!--  <h2 class="text-muted mt-5 mb-3" >Dependent Details</h2 >-->
-                    <!--  <div class="accordion" id="accordion" >-->
-                    <!--    <div class="card" >-->
-                    <!--      <div class="card-header" id="headingOne" >-->
-                    <!--        <button type="button" class="btn btn-link"-->
-                    <!--                data-toggle="collapse" data-target="#collapseOne"-->
-                    <!--                aria-expanded="false"-->
-                    <!--                aria-controls="collapseOne" >Dependance One-->
-                    <!--        </button >-->
-                    <!--      </div >-->
-                    <!--      <div id="collapseOne" class="collapse show"-->
-                    <!--           aria-labelledby="headingOne" data-parent="#accordion" >-->
-                    <!--        <div class="card-body" >Dependance gose here.</div >-->
-                    <!--      </div >-->
-                    <!--    </div >-->
-                    <!--    <div class="card" >-->
-                    <!--      <div class="card-header" id="headingTwo" >-->
-                    <!--        <button type="button" class="btn btn-link collapsed"-->
-                    <!--                data-toggle="collapse" data-target="#collapseTwo"-->
-                    <!--                aria-expanded="false" aria-controls="collapseTwo" >-->
-                    <!--          Education Two-->
-                    <!--        </button >-->
-                    <!--      </div >-->
-                    <!--      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"-->
-                    <!--           data-parent="#accordion" >-->
-                    <!--        <div class="card-body" >Education Qulification</div >-->
-                    <!--      </div >-->
-                    <!--    </div >-->
-                    <!--  </div >-->
-                    <!--</div >-->
                   </div >
                 </div >
               </div >
@@ -593,26 +533,29 @@
       </div >
     </div >
   </div >
-                      <!-- content-wrapper end -->
-  <footer data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></footer >
-                      <!-- footer Section -->
 </div >
-<!-- wrapper end -->
-<script data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></script >
-<!-- script Fragment -->
-<script >
 
+<div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div >
+<!-- footer Section -->
+<!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div >
+<!-- script Fragment -->
+<!-- content-wrapper end -->
+<script >
     function readURL(input) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
+            let reader = new FileReader();
+
             reader.onload = function (e) {
-                $('#blah').attr('src', e.target.result);
+                $('#image').attr('src', e.target.result);
             }
+
             reader.readAsDataURL(input.files[0]); // convert to base64 string
         }
     }
 
-    $("#imgInp").change(function () {
+    //display selected image
+    $("#imgUpload").change(function () {
         readURL(this);
     });
 </script >
