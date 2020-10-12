@@ -9,6 +9,8 @@ import lk.AVSEC.Welfare.asset.employee.entity.Enum.*;
 import lk.AVSEC.Welfare.asset.finance.entity.ExpensesFund;
 import lk.AVSEC.Welfare.asset.finance.entity.Instalment;
 import lk.AVSEC.Welfare.asset.message.entity.EmailMessage;
+import lk.AVSEC.Welfare.asset.promotion.entity.Promotion;
+import lk.AVSEC.Welfare.asset.qualification.entity.Qualification;
 import lk.AVSEC.Welfare.asset.workingPlace.entity.WorkingPlace;
 import lk.AVSEC.Welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
