@@ -1,6 +1,5 @@
 package lk.AVSEC.Welfare.asset.processManagement.commonModel;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,8 +10,8 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 public class YearAndPaidAmount {
-private String year;
-private BigDecimal yearAmount;
-private BigDecimal paidAmount;
-private BigDecimal pendingAmount;
+    private String year;
+    private BigDecimal yearAmount;
+    private BigDecimal paidAmount;
+    private BigDecimal pendingAmount;
 }

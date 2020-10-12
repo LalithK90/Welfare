@@ -2,6 +2,7 @@ package lk.AVSEC.Welfare.asset.dependent.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.AVSEC.Welfare.asset.dependent.entity.Enum.CurrentStatus;
+import lk.AVSEC.Welfare.asset.dependent.entity.Enum.InsideOrOut;
 import lk.AVSEC.Welfare.asset.dependent.entity.Enum.Relationship;
 import lk.AVSEC.Welfare.asset.employee.entity.Employee;
 import lk.AVSEC.Welfare.util.audit.AuditEntity;
@@ -24,18 +25,20 @@ import java.util.List;
 @JsonFilter("Dependent")
 public class Dependent extends AuditEntity {
 
-    @Size(min = 2, max = 60, message = "Your name length should be 13")
     private String name;
+
+    private String nic;
+
+    private String remark;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dob;
 
-    private String nic;
-
     @Enumerated(EnumType.STRING)
     private CurrentStatus currentStatus;
 
-    private String remark;
+    @Enumerated(EnumType.STRING)
+    private InsideOrOut insideOrOut;
 
     @OneToMany(mappedBy = "dependent")
     private List<DependentEmployee> dependentEmployees;

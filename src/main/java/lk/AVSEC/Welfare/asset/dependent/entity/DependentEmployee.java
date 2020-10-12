@@ -34,7 +34,7 @@ public class DependentEmployee extends AuditEntity {
     @ManyToOne
     private Employee employeeTwo;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Dependent dependent;
 
 }

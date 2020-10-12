@@ -9,6 +9,8 @@ import lk.AVSEC.Welfare.asset.employee.entity.Enum.*;
 import lk.AVSEC.Welfare.asset.finance.entity.ExpensesFund;
 import lk.AVSEC.Welfare.asset.finance.entity.Instalment;
 import lk.AVSEC.Welfare.asset.message.entity.EmailMessage;
+import lk.AVSEC.Welfare.asset.promotion.entity.Promotion;
+import lk.AVSEC.Welfare.asset.qualification.entity.Qualification;
 import lk.AVSEC.Welfare.asset.workingPlace.entity.WorkingPlace;
 import lk.AVSEC.Welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
@@ -38,7 +40,6 @@ public class Employee extends AuditEntity {
     @Size( min = 5, message = "Your name cannot be accepted" )
     private String name;
 
-
     private String callingName;
 
     @Size( max = 12, min = 10, message = "NIC number is contained numbers between 9 and X/V or 12 " )
@@ -58,6 +59,7 @@ public class Employee extends AuditEntity {
     private String land;
 
     private String fullName;
+
     private String nearestPoliceStation;
 
     @Column( columnDefinition = "VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin NULL", length = 255 )
@@ -73,6 +75,7 @@ public class Employee extends AuditEntity {
 
     @DateTimeFormat( pattern = "yyyy-MM-dd" )
     private String appoimentDate;
+
     private String intakeNo;
 
     @Column( unique = true )

@@ -2,7 +2,7 @@ package lk.AVSEC.Welfare.asset.transfers.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import lk.AVSEC.Welfare.asset.transfers.entity.Enum.TranferReason;
+import lk.AVSEC.Welfare.asset.transfers.entity.Enum.TransferReason;
 import lk.AVSEC.Welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,16 +23,16 @@ import java.time.LocalDate;
 @JsonFilter("Transfers")
 public class Transfers extends AuditEntity {
 
+    private String description;
+
+    @Enumerated(EnumType.STRING)
+    private TransferReason transferReason;
+
     @DateTimeFormat( pattern = "yyyy-MM-dd" )
     private LocalDate dateFrom;
 
     @DateTimeFormat( pattern = "yyyy-MM-dd" )
     private LocalDate dateTo;
-
-    private String description;
-
-    @Enumerated(EnumType.STRING)
-    private TransferReason transferReason;
 
 //    @Transient
 //    private String remark;

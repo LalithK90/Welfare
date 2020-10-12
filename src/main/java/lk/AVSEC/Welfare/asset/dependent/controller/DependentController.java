@@ -3,6 +3,7 @@ package lk.AVSEC.Welfare.asset.dependent.controller;
 import lk.AVSEC.Welfare.asset.dependent.entity.Dependent;
 import lk.AVSEC.Welfare.asset.dependent.entity.DependentEmployee;
 import lk.AVSEC.Welfare.asset.dependent.entity.Enum.CurrentStatus;
+import lk.AVSEC.Welfare.asset.dependent.entity.Enum.InsideOrOut;
 import lk.AVSEC.Welfare.asset.dependent.entity.Enum.Relationship;
 import lk.AVSEC.Welfare.asset.dependent.service.DependentEmployeeService;
 import lk.AVSEC.Welfare.asset.dependent.service.DependentService;
@@ -24,7 +25,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping( "/dependent" )
-public class DependentController{
+public class DependentController {
 
     private final DependentService dependentService;
     private final DependentEmployeeService dependentEmployeeService;
@@ -75,28 +76,31 @@ public class DependentController{
     @GetMapping( "/edit/{id}" )
     public String edit(@PathVariable Integer id, Model model) {
         Dependent dependent = dependentService.findById(id);
-        Employee employee =dependent.getDependentEmployees().get(0).getEmployeeOne();
+        Employee employee = dependent.getDependentEmployees().get(0).getEmployeeOne();
         return commonThing(model, true, dependentEmployeeService.findByDependentAndEmployee(dependent, employee));
     }
 
     @PostMapping( value = {"/save", "/update"} )
     public String persist(@Valid @ModelAttribute Dependent dependent, BindingResult bindingResult,
                           RedirectAttributes redirectAttributes, Model model) {
-        Employee employee =employeeService.findById(dependent.getEmployee().getId());
+        Employee employee = employeeService.findById(dependent.getEmployee().getId());
 
         if ( bindingResult.hasErrors() ) {
             return commonThing(model, false, dependent);
         }
 
-        Dependent saveDependant = new Dependent();
         //if there is registered dependent on system
         if ( !dependent.getNic().isEmpty() ) {
+            System.out.println("existing dependent come to modified");
+            Dependent saveDependant;
             Dependent dependentDb = dependentService.findByNic(dependent.getNic());
             if ( dependentDb == null ) {
                 saveDependant = dependentService.persist(dependent);
             } else {
                 saveDependant = dependentDb;
             }
+            redirectAttributes.addFlashAttribute("dependentDetail", saveDependant);
+            return "redirect:/dependent";
         }
 
         // create a new dependentEmployee and set value to it
@@ -105,12 +109,19 @@ public class DependentController{
 
         //relationship if wife husband -> employeeOne or employeeTwo
         if ( dependent.getRelationship().equals(Relationship.HUS) || dependent.getRelationship().equals(Relationship.WIF) && !dependent.getEpfNumber().isEmpty() ) {
+            System.out.println("Dependent employee is AVSEC");
             Employee employeeDB = employeeService.findByEpf(dependent.getEpfNumber());
+
+            //husband or wife
             dependentEmployee.setEmployeeTwo(employeeDB);
+            //set relation ship
             dependentEmployee.setRelationship(dependent.getRelationship());
+            //working employee
             dependentEmployee.setEmployeeOne(employee);
-            dependentEmployee.setRelationship(dependent.getRelationship());
+
+            //make new dependent using employee
             Dependent dependentAVSEC = new Dependent();
+            //set employee status
             if ( employeeDB.getEmployeeStatus().equals(EmployeeStatus.RESIGNED) ) {
                 dependentAVSEC.setCurrentStatus(CurrentStatus.OTR);
             } else {
@@ -118,16 +129,17 @@ public class DependentController{
             }
             dependentAVSEC.setDob(employeeDB.getDateOfBirth());
             dependentAVSEC.setName(employeeDB.getName());
+            dependentAVSEC.setNic(employeeDB.getNic());
+            dependentAVSEC.setInsideOrOut(InsideOrOut.IN);
+
+            //created dependent set to dependent employee
             dependentEmployee.setDependent(dependentAVSEC);
+
         } else {
             dependentEmployee.setRelationship(dependent.getRelationship());
             dependentEmployee.setEmployeeOne(employee);
-            dependentEmployee.setRelationship(dependent.getRelationship());
+            dependent.setInsideOrOut(InsideOrOut.OUT);
             dependentEmployee.setDependent(dependent);
-        }
-
-        if ( dependent.getRelationship().equals(Relationship.HUS) || dependent.getRelationship().equals(Relationship.WIF) && dependent.getEpfNumber().isEmpty() ) {
-            return "redirect:/dependent";
         }
 
 
