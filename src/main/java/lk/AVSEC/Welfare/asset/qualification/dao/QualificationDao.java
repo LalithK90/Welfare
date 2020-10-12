@@ -1,6 +1,6 @@
-package lk.AVSEC.Welfare.asset.employee.dao;
+package lk.AVSEC.Welfare.asset.qualification.dao;
 
-import lk.AVSEC.Welfare.asset.employee.entity.Qualification;
+import lk.AVSEC.Welfare.asset.qualification.entity.Qualification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
