@@ -132,16 +132,16 @@ public class DependentController {
       dependentAVSEC.setDob(employeeDB.getDateOfBirth());
       dependentAVSEC.setName(employeeDB.getName());
       dependentAVSEC.setNic(employeeDB.getNic());
-      dependentAVSEC.setInsideOrOut(InsideOrOut.IN);
 
       //created dependent set to dependent employee
       dependentEmployee.setDependent(dependentAVSEC);
+      dependentEmployee.setInsideOrOut(InsideOrOut.IN);
 
     } else {
       dependentEmployee.setRelationship(dependent.getRelationship());
       dependentEmployee.setEmployeeOne(employee);
-      dependent.setInsideOrOut(InsideOrOut.OUT);
       dependentEmployee.setDependent(dependent);
+      dependentEmployee.setInsideOrOut(InsideOrOut.OUT);
     }
 
 
