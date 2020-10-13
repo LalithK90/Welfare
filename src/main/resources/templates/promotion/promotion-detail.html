@@ -1,63 +1,65 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper"><!-- wrapper start -->
-    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
-    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
-    <div class="content-wrapper"><!-- content-wrapper Start -->
-        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
-        <!-- Form Header  Path -->
-        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+  <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+  <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+  <div class="content-wrapper" ><!-- content-wrapper Start -->
+    <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+                                <!-- Form Header  Path -->
+    <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}" ></section ><!-- Small Box Set -->
 
-<div class="content-header">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4>First sud Header</h4>
-                                <form role="form">
+    <div class="content-header" >
+      <div class="container-fluid" >
+        <div class="row" >
+          <div class="col-md-12" >
+            <div class="row" >
+              <div class="col-md-3" >
+                <div class="card" >
+                  <div class="card-body" >
+                    <h4 >First sud Header</h4 >
+                    <form role="form" >
 
-                                    <a href="/promotion">
-                                        <button class="btn btn-primary">
+                      <a href="/promotion" >
+                        <button class="btn btn-primary" >
 
-                                            <i class="fa fa-step-backward mr-1"></i>Back
-                                        </button>
-                                    </a>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4>Secondary Header </h4>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label "> Id </label>
-                                <div class="col-sm-10">
-                                    <p class="display_detail" th:text="${promotionDetail.id}"></p>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label "> Promotion Name </label>
-                                <div class="col-sm-10">
-                                    <p class="display_detail" th:text="${promotionDetail.name}"></p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div></div>
-</div><!-- content-wrapper end -->
-<footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
-</div><!-- wrapper end -->
-<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
-</body>
-</html>
+                          <i class="fa fa-step-backward mr-1" ></i >Back
+                        </button >
+                      </a >
+                    </form >
+                  </div >
+                </div >
+              </div >
+              <div class="col-md-9" >
+                <div class="card" >
+                  <div class="card-body" >
+                    <h4 >Secondary Header </h4 >
+                    <div class="container-fluid" th:fragment="promotionDetail" >
+                      <div class="form-group row" >
+                        <label class="col-sm-2 col-form-label " > Id </label >
+                        <div class="col-sm-10" >
+                          <p class="display_detail" th:text="${promotionDetail.id}" ></p >
+                        </div >
+                      </div >
+                      <div class="form-group row" >
+                        <label class="col-sm-2 col-form-label " > Promotion Name </label >
+                        <div class="col-sm-10" >
+                          <p class="display_detail" th:text="${promotionDetail.name}" ></p >
+                        </div >
+                      </div >
+                    </div >
+                  </div >
+                </div >
+              </div >
+            </div >
+          </div >
+        </div >
+      </div >
+    </div >
+  </div ><!-- content-wrapper end -->
+  <footer th:replace="~{fragments/footerSection :: footerSectionFragment}" ></footer ><!-- footer Section -->
+</div ><!-- wrapper end -->
+<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}" ></script ><!-- script Fragment -->
+</body >
+</html >

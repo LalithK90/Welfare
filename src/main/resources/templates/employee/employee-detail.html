@@ -342,9 +342,27 @@
                                      data-parent="#accordion">
                                     <div class="card-body">
                                        <div class="container-fluid" data-th-each="qualificationDetail : ${employeeDetail.qualifications}">
-                                           <a data-th-href="${'/qualification/edit'+ qualificationDetail.id}" class="btn btn-primary"> <i class="fa fa-list"></i>&nbsp; View List </a>
+                                           <a data-th-href="${'/qualification/edit/'+ qualificationDetail.id}" class="btn btn-primary"> <i class="fa fa-list"></i>&nbsp; View List </a>
                                            <div data-th-replace="~{qualification/qualification-detail :: qualificationDetail}"></div>
                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#collapseThree"
+                                            aria-expanded="false" aria-controls="collapseTwo">Promotion
+                                    </button>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                     data-parent="#accordion">
+                                    <div class="card-body">
+                                        <div class="container-fluid" data-th-each="promotionDetail : ${employeeDetail.promotions}">
+                                            <a data-th-href="${'/promotion/edit/'+ promotionDetail.id}" class="btn btn-primary"> <i class="fa fa-list"></i>&nbsp; View List </a>
+                                            <div data-th-replace="~{promotion/promotion-detail :: promotionDetail}"></div>
+                                        <hr>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
