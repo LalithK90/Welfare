@@ -1,10 +1,8 @@
 package lk.AVSEC.Welfare.asset.promotion.controller;
 
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Province;
 import lk.AVSEC.Welfare.asset.employee.service.EmployeeService;
 import lk.AVSEC.Welfare.asset.promotion.entity.Promotion;
 import lk.AVSEC.Welfare.asset.promotion.service.PromotionService;
-import lk.AVSEC.Welfare.util.interfaces.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +26,6 @@ public class PromotionController {
   }
 
   private String commonThing(Model model, Boolean booleanValue, Promotion promotionObject) {
-    model.addAttribute("promotions", Province.values());
     model.addAttribute("addStatus", booleanValue);
     model.addAttribute("promotion", promotionObject);
     return "promotion/addPromotion";
@@ -42,8 +39,9 @@ public class PromotionController {
 
   @GetMapping( "/add/{id}" )
   public String promotionAddEmployee(@PathVariable Integer id, Model model) {
-    model.addAttribute("employee", employeeService.findById(id));
-    return commonThing(model, false, new Promotion());
+    Promotion newPromotion = new Promotion();
+    newPromotion.setEmployee(employeeService.findById(id));
+    return commonThing(model, false, newPromotion);
   }
 
   @GetMapping( "/{id}" )
@@ -62,10 +60,10 @@ public class PromotionController {
                         RedirectAttributes redirectAttributes, Model model) {
     if ( bindingResult.hasErrors() ) {
       return commonThing(model, false, promotion);
-
     }
-    redirectAttributes.addFlashAttribute("promotionDetail", promotionService.persist(promotion));
-    return "redirect:/promotion";
+    promotionService.persist(promotion);
+    redirectAttributes.addFlashAttribute("employees", employeeService.findAll());
+    return "redirect:/employee";
   }
 
   @GetMapping( "/delete/{id}" )
