@@ -37,7 +37,7 @@ public class Dependent extends AuditEntity {
     @Enumerated(EnumType.STRING)
     private CurrentStatus currentStatus;
 
-    @OneToMany(mappedBy = "dependent")
+    @OneToMany(mappedBy = "dependent", fetch = FetchType.EAGER)
     private List<DependentEmployee> dependentEmployees;
 
     @Transient

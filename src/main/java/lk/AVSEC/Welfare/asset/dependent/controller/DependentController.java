@@ -67,7 +67,7 @@ public class DependentController {
 
   @GetMapping( "/{id}" )
   public String findById(@PathVariable Integer id, Model model) {
-    model.addAttribute("dependentDetail", dependentEmployeeService.findById(id));
+    model.addAttribute("dependentDetail", dependentService.findById(id));
     return "dependent/dependent-detail";
   }
 
@@ -87,18 +87,18 @@ public class DependentController {
       return commonThing(model, false, dependent);
     }
 
+    Dependent saveDependant = null;
     //if there is registered dependent on system
     if ( !dependent.getNic().isEmpty() ) {
       System.out.println("existing dependent come to modified");
-      Dependent saveDependant;
       Dependent dependentDb = dependentService.findByNic(dependent.getNic());
       if ( dependentDb == null ) {
         saveDependant = dependentService.persist(dependent);
       } else {
         saveDependant = dependentDb;
       }
-      redirectAttributes.addFlashAttribute("dependentDetail", saveDependant);
-      return "redirect:/dependent";
+//      redirectAttributes.addFlashAttribute("dependentDetail", saveDependant);
+//      return "redirect:/dependent";
     }
 
     // create a new dependentEmployee and set value to it
@@ -140,7 +140,7 @@ public class DependentController {
     } else {
       dependentEmployee.setRelationship(dependent.getRelationship());
       dependentEmployee.setEmployeeOne(employee);
-      dependentEmployee.setDependent(dependent);
+      dependentEmployee.setDependent(saveDependant);
       dependentEmployee.setInsideOrOut(InsideOrOut.OUT);
     }
 
