@@ -43,7 +43,7 @@ public class PromotionController {
   @GetMapping( "/add/{id}" )
   public String promotionAddEmployee(@PathVariable Integer id, Model model) {
     model.addAttribute("employee", employeeService.findById(id));
-    return commonThing(model, true, promotionService.findById(id));
+    return commonThing(model, true, new Promotion());
   }
 
   @GetMapping( "/{id}" )
