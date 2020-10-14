@@ -61,8 +61,9 @@ public class DependentController {
 
   @GetMapping( "/add/{id}" )
   public String form(@PathVariable Integer id, Model model) {
-    model.addAttribute("employee", employeeService.findById(id));
-    return commonThing(model, false, new Dependent());
+    Dependent newDependent = new Dependent();
+    newDependent.setEmployee(employeeService.findById(id));
+    return commonThing(model, false, newDependent);
   }
 
   @GetMapping( "/{id}" )
@@ -73,10 +74,8 @@ public class DependentController {
 
   @GetMapping( "/edit/{id}" )
   public String edit(@PathVariable Integer id, Model model) {
-    Dependent dependent = dependentService.findById(id);
-    Employee employee = dependent.getDependentEmployees().get(0).getEmployeeOne();
-    return commonThing(model, true, dependentEmployeeService.findByDependentAndEmployee(dependent, employee));
-  }
+    return commonThing(model, true, dependentService.findById(id));
+ }
 
   @PostMapping( value = {"/save", "/update"} )
   public String persist(@Valid @ModelAttribute Dependent dependent, BindingResult bindingResult,
