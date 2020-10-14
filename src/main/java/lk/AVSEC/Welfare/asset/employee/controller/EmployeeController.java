@@ -143,6 +143,15 @@ public class EmployeeController {
         return commonThings(model);
     }
 
+//    @GetMapping(value = {"/add"})
+//    public String employeeAddForm(Model model) {
+//        model.addAttribute("addStatus", true);
+//        model.addAttribute("employee", new Employee());
+//        model.addAttribute("contendHeader", "Employee Add Members");
+//        return commonThings(model);
+//    }
+
+
     //Employee add and update
     @PostMapping(value = {"/save", "/update"})
     public String addEmployee(@Valid @ModelAttribute Employee employee, BindingResult result, Model model
