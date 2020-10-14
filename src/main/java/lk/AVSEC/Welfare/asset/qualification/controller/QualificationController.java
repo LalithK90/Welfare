@@ -2,10 +2,10 @@ package lk.AVSEC.Welfare.asset.qualification.controller;
 
 import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Province;
 import lk.AVSEC.Welfare.asset.employee.entity.Employee;
+import lk.AVSEC.Welfare.asset.employee.service.EmployeeService;
 import lk.AVSEC.Welfare.asset.qualification.entity.Qualification;
 import lk.AVSEC.Welfare.asset.qualification.service.QualificationService;
 import lk.AVSEC.Welfare.asset.userManagement.service.UserService;
-import lk.AVSEC.Welfare.util.interfaces.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,15 +18,16 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/qualification")
-public class QualificationController implements AbstractController<Qualification, Integer> {
+public class QualificationController {
 
     private final QualificationService qualificationService;
-    private final UserService userService;
+    private final EmployeeService employeeService;
 
     @Autowired
-    public QualificationController(QualificationService qualificationService, UserService userService) {
+    public QualificationController(QualificationService qualificationService,
+                                   EmployeeService employeeService) {
         this.qualificationService = qualificationService;
-        this.userService = userService;
+        this.employeeService = employeeService;
     }
 
     private String commonThing(Model model, Boolean booleanValue, Qualification qualificationObject) {
@@ -42,9 +43,11 @@ public class QualificationController implements AbstractController<Qualification
         return "qualification/qualification";
     }
 
-    @GetMapping("/add")
-    public String form(Model model) {
-        return commonThing(model, false, new Qualification());
+    @GetMapping("/add/{id}")
+    public String form(@PathVariable Integer id, Model model) {
+        Qualification newQualification = new Qualification();
+        newQualification.setEmployee(employeeService.findById(id));
+        return commonThing(model, false,newQualification );
     }
 
     @GetMapping("/{id}")
@@ -64,10 +67,9 @@ public class QualificationController implements AbstractController<Qualification
         if (bindingResult.hasErrors()) {
             return commonThing(model, false, qualification);
         }
-        Employee employee = userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getEmployee();
-        qualification.setEmployee(employee);
-        redirectAttributes.addFlashAttribute("qualificationDetail", qualificationService.persist(qualification));
-        return "redirect:/qualification";
+        qualificationService.persist(qualification);
+        redirectAttributes.addFlashAttribute("employees", employeeService.findAll());
+        return "redirect:/employee";
     }
 
     @GetMapping("/delete/{id}")

@@ -23,10 +23,8 @@ import java.time.LocalDate;
 @JsonFilter("Promotion")
 public class Promotion extends AuditEntity {
 
-
     @Size(min = 2, max = 60, message = "Your name length should be 13")
     private String name;
-
 
     private String remark;
 

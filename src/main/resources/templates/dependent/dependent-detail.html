@@ -1,104 +1,106 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper"><!-- wrapper start -->
-    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
-    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
-    <div class="content-wrapper"><!-- content-wrapper Start -->
-        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
-        <!-- Form Header  Path -->
-        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+  <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+  <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+  <div class="content-wrapper" ><!-- content-wrapper Start -->
+    <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+                                <!-- Form Header  Path -->
+    <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}" ></section ><!-- Small Box Set -->
 
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4>First sud Header</h4>
-                                        <form role="form">
-                                            <a href="/dependent">
-                                                <button class="btn btn-primary">
+    <div class="content-header" >
+      <div class="container-fluid" >
+        <div class="row" >
+          <div class="col-md-12" >
+            <div class="row" >
+              <div class="col-md-3" >
+                <div class="card" >
+                  <div class="card-body" >
+                    <h4 >First sud Header</h4 >
+                    <form role="form" >
+                      <a href="/dependent" >
+                        <button class="btn btn-primary" >
 
-                                                    <i class="fa fa-step-backward mr-1"></i>Back
-                                                </button>
-                                            </a>
-                                            <a href="/dependent" class="btn btn-primary">
-                                                <i class="fa fa-list"></i>&nbsp; View List
-                                            </a>
+                          <i class="fa fa-step-backward mr-1" ></i >Back
+                        </button >
+                      </a >
+                      <a href="/dependent" class="btn btn-primary" >
+                        <i class="fa fa-list" ></i >&nbsp; View List
+                      </a >
 
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="card">
-                                    <div class="card-body" th:fragment="dependentDetail">
-                                        <h4>Dependent Detail </h4>
-                                        <span th:text="${dependentDetail}"></span>
-                                        <!--/* id this comment not visualize */-->
-                                        <!--Id-->
-                                       <div class="form-group row">
-                                            <label class="form-label "> Id </label>
-                                            <p class="display_detail" th:text="${dependentDetail.dependent.id}"></p>
-                                        </div>
+                    </form >
+                  </div >
+                </div >
+              </div >
+              <div class="col-md-9" >
+                <div class="card" >
+                  <div class="card-body" th:fragment="dependentDetail" >
+                    <h4 >Dependent Detail </h4 >
+                    <!--/* id this comment not visualize */-->
+                    <!--Id-->
+                    <div class="form-group row" >
+                      <label class="form-label " > Id </label >
+                      <p class="display_detail" th:text="${dependentDetail.id}" ></p >
+                    </div >
 
-                                        <div class="form-group row">
-                                            <label class="form-label "> Name </label>
-                                            <p class="display_detail" th:text="${dependentDetail.dependent.name}"></p>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="form-label "> Birth date </label>
-                                            <p class="display_detail" th:text="${dependentDetail.dependent.dob}"></p>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="form-label "> Nic </label>
-                                            <p class="display_detail" th:text="${dependentDetail.dependent.nic}"></p>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="form-label "> Remark </label>
-                                            <p class="display_detail" th:text="${dependentDetail.dependent.remark}"></p>
-                                        </div>
-                                        <!--Dependent Employee -->
-                                        <div class="container-fluid" th:each="dependent : ${dependentDetail.dependentEmployees}">
+                    <div class="form-group row" >
+                      <label class="form-label " > Name </label >
+                      <p class="display_detail" th:text="${dependentDetail.name}" ></p >
+                    </div >
+                    <div class="form-group row" >
+                      <label class="form-label " > Birth date </label >
+                      <p class="display_detail" th:text="${dependentDetail.dob}" ></p >
+                    </div >
+                    <div class="form-group row" >
+                      <label class="form-label " > Nic </label >
+                      <p class="display_detail" th:text="${dependentDetail.nic}" ></p >
+                    </div >
+                    <div class="form-group row" >
+                      <label class="form-label " > Remark </label >
+                      <p class="display_detail" th:text="${dependentDetail.remark}" ></p >
+                    </div >
 
-                                            <div class="form-group row">
-                                                <label class="form-label "> Remark </label>
-                                                <p class="display_detail" th:text="${dependent.relationship.relationship}"></p>
-                                            </div>
-                                            <div class="container-fluid" th:if="${dependent.getEmployeeTwo() != null}">
-                                                <div class="form-group row">
-                                                    <label class="form-label "> Remark </label>
-                                                    <p class="display_detail" th:text="${dependent.dependent.name}"></p>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="form-label "> Remark </label>
-                                                    <p class="display_detail" th:text="${dependent.dependent.nic}"></p>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="form-label "> Remark </label>
-                                                    <p class="display_detail"
-                                                       th:text="${dependent.dependent.remark}"></p>
-                                                </div>
-                                            </div>
+                    <!--Dependent Employee -->
+                    <div class="container-fluid" th:each="dependentEmployee : ${dependentDetail.dependentEmployees}" >
 
-                                        </div>
+                      <div class="form-group row" >
+                        <label class="form-label " > Remark </label >
+                        <p class="display_detail" th:text="${dependentEmployee.relationship.relationship}" ></p >
+                      </div >
+                      <div class="form-group row" >
+                        <label class="form-label " > Internal Employee Or Not </label >
+                        <p class="display_detail" th:text="${dependentEmployee.insideOrOut.insideOrOut}" ></p >
+                      </div >
+                      <div class="container-fluid" th:if="${dependentEmployee.getEmployeeTwo() != null}" >
+                        <div class="form-group row" >
+                          <label class="form-label " > Remark </label >
+                          <p class="display_detail" th:text="${dependentEmployee.dependent.name}" ></p >
+                        </div >
+                        <div class="form-group row" >
+                          <label class="form-label " > Remark </label >
+                          <p class="display_detail" th:text="${dependentEmployee.dependent.nic}" ></p >
+                        </div >
+                        <div class="form-group row" >
+                          <label class="form-label " > Remark </label >
+                          <p class="display_detail"
+                             th:text="${dependentEmployee.dependent.remark}" ></p >
+                        </div >
 
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- content-wrapper end -->
-    <div th:replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
-</div><!-- wrapper end -->
-<div th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
-</body>
-</html>
+                      </div >
+                    </div >
+                  </div >
+                </div >
+              </div >
+            </div >
+          </div >
+        </div >
+      </div >
+    </div >
+  </div ><!-- content-wrapper end -->
+  <div th:replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
+</div ><!-- wrapper end -->
+<div th:replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div ><!-- script Fragment -->
+</body >
+</html >

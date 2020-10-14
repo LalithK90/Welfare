@@ -35,7 +35,4 @@ public class Qualification extends AuditEntity {
     @ManyToOne
     private Employee employee;
 
-
-/*    @OneToMany(mappedBy = "district")
-    private List<WorkingPlace> workingPlaces;*/
 }
