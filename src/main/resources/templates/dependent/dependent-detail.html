@@ -61,34 +61,36 @@
                       <label class="form-label " > Remark </label >
                       <p class="display_detail" th:text="${dependentDetail.remark}" ></p >
                     </div >
-
+                    <h1 >Dependended Employees</h1 >
                     <!--Dependent Employee -->
                     <div class="container-fluid" th:each="dependentEmployee : ${dependentDetail.dependentEmployees}" >
 
                       <div class="form-group row" >
-                        <label class="form-label " > Remark </label >
+                        <label class="form-label " > Relation Ship </label >
                         <p class="display_detail" th:text="${dependentEmployee.relationship.relationship}" ></p >
                       </div >
                       <div class="form-group row" >
                         <label class="form-label " > Internal Employee Or Not </label >
                         <p class="display_detail" th:text="${dependentEmployee.insideOrOut.insideOrOut}" ></p >
                       </div >
-                      <div class="container-fluid" th:if="${dependentEmployee.getEmployeeTwo() != null}" >
-                        <div class="form-group row" >
-                          <label class="form-label " > Remark </label >
-                          <p class="display_detail" th:text="${dependentEmployee.dependent.name}" ></p >
-                        </div >
-                        <div class="form-group row" >
-                          <label class="form-label " > Remark </label >
-                          <p class="display_detail" th:text="${dependentEmployee.dependent.nic}" ></p >
-                        </div >
-                        <div class="form-group row" >
-                          <label class="form-label " > Remark </label >
-                          <p class="display_detail"
-                             th:text="${dependentEmployee.dependent.remark}" ></p >
-                        </div >
 
+                      <!--  Employee one details-->
+                      <div class="container-fluid" >
+                        <div class="form-group row" >
+                          <label class="form-label" >Name</label >
+                          <p class="display_detail" th:text="${dependentEmployee.employeeOne.name}"></p >
+                        </div >
+                        <div class="form-group row" >
+                          <label class="form-label" >NIC</label >
+                          <p class="display_detail" th:text="${dependentEmployee.employeeOne.nic}"></p >
+                        </div >
+                        <div class="form-group row" >
+                          <label class="form-label" >EPF No</label >
+                          <p class="display_detail" th:text="${dependentEmployee.employeeOne.epf}"></p >
+                        </div >
                       </div >
+                      <!--  Employee two details-->
+
                     </div >
                   </div >
                 </div >
