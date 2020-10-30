@@ -16,20 +16,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-2">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4>First sud Header</h4>
-                                        <form role="form">
-                                            <a class="btn btn-success" id="newWorkingPlace"
-                                               data-th-href="${'/workingPlace/add'}">
-                                                <i class="fa fa-workingPlace-plus" style="font-size: 18px;"></i> &nbsp; Add WorkingPlace </a>
 
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-10">
+                            <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body" id="workingPlaceListTable"
                                          data-th-if="${not #lists.isEmpty(workingPlaces)}">

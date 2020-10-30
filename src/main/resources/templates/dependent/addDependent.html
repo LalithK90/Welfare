@@ -16,23 +16,11 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-3">
+
+                            <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4><span id="formHeader"
-                                                  th:text="${addStatus==false?'New Dependency':'Update Dependency'}"></span>
-                                        </h4>
-                                        <form role="form">
-                                            <a href="/dependent" class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;
-                                                View List</a>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4>Secondary Header </h4>
+                                        <h4>Dependent Control </h4>
                                         <form th:action="${addStatus==false?'/dependent/save' :'/dependent/update'}"
                                               method="post" th:object="${dependent}">
                                             <input type="hidden" data-th-filed="*{employee}" data-th-name="${'employee'}">
@@ -75,6 +63,7 @@
                                                                for="exampleRadios2">Other</label>
                                                     </div>
                                                 </div>
+<!--                                                EPF-->
                                                 <div class="form-group row" id="employeeEpf">
                                                     <label class="form-label "> Employee EPF Number </label>
                                                     <input type="text" class="form-control" th:field="*{epfNumber}">
@@ -132,6 +121,7 @@
                                                     <p class="text-danger" th:if="${#fields.hasErrors('Remark')}"
                                                        th:errors="*{Remark}">Error Remark</p>
                                                 </div>
+<!--                                                update Status-->
                                                 <div class="form-group" id="updateStatus"
                                                      th:if="${addStatus}">
                                                     <label class="control-label" for="createdBy">Created By
@@ -141,6 +131,7 @@
                                                            readonly/>
                                                 </div>
                                             </div>
+<!--                                            button-->
 
                                             <div class="form-group row">
                                                 <button type="submit" class="btn btn-primary">

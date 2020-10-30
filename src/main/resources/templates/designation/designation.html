@@ -15,21 +15,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-3">
+<!--                    <a class="btn btn-success" id="newDesignation" data-th-href="${'/designation/add'}">-->
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5>First sud Header</h5>
-                                <form role="form">
-                                    <a class="btn btn-success" id="newDesignation" data-th-href="${'/designation/add'}">
-                                        <i class="fa fa-designation-plus"></i> &nbsp; Add Designation </a>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4>Secondary Header </h4>
+                                <h4>Designation </h4>
                                <!--if not empty list-->
                                     <div class="row" id="designationListTable"
                                          data-th-if="${not #lists.isEmpty(designations)}">

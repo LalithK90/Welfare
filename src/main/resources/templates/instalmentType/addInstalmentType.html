@@ -14,108 +14,118 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4>First sud Header</h4>
-                                        <form role="form">
-
-
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4>Secondary Header </h4>
+                                        <h4>Add New Instralment Type</h4>
 
                                         <div class="container-fluid">
                                             <form th:action="${addStatus==false?'/instalmentType/save' :'/instalmentType/update'}"
                                                   method="post" th:object="${instalmentType}">
+
                                                 <!--Id-->
-                                                <div class="form-group row" th:if="${addStatus==true}">
-                                                    <label for="id" class="form-label "> Id </label>
-                                                    <input type="text" class="form-control" th:field="*{id}" id="id"
-                                                           readonly>
-                                                </div>
-                                                <!--Name-->
-                                                <div class="form-group row">
-                                                    <label class="control-label" for="name">Name :</label>
-                                                    <div class="form-row">
-                                                        <input id="name" th:field="*{name}"
-                                                               class="form-control col-10"
-                                                               type="text" tabindex="2" required/>
-                                                        <span id="nameError" th:errors="*{name}"
-                                                              th:if="${#fields.hasErrors('name')}"
-                                                              class="error">Error Name</span>
-                                                    </div>
-                                                </div>
-                                                . <!--Year-->
-                                                <div class="form-group row">
-                                                    <label class="control-label" for="year">Year :</label>
-                                                    <div class="form-row">
-                                                        <input id="year" th:field="*{year}"
-                                                               class="form-control col-10"
-                                                               type="text" tabindex="2" required/>
-                                                        <span th:errors="*{year}"
-                                                              th:if="${#fields.hasErrors('year')}"
-                                                              class="error">Error Name</span>
-                                                    </div>
-                                                </div>
-                                                <!--Collection type-->
-                                                <div class="form-group row">
-                                                    <label class="control-label" th:for="${'collectionTypes'}">Collection
-                                                        Type
-                                                        :</label>
-                                                    <div class="form-row">
-                                                        <select id="nationality" th:field="*{collectionType}"
-                                                                class="form-control" tabindex="6" required>
-                                                            <option value="">Please select</option>
-                                                            <option th:each="collectionType : ${collectionTypes}"
-                                                                    th:text="${collectionType.collectionType}"
-                                                                    th:value="${collectionType}"
-                                                                    th:selected="${collectionType==instalmentType.collectionType?'selected':'unselected'}"></option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <!--Expense Or Received type-->
-                                                <div class="form-group row">
-                                                    <label class="control-label" th:for="${'expenseOrReceived'}">Expense
-                                                        Or
-                                                        Received
-                                                        :</label>
-                                                    <div class="form-row">
-                                                        <select id="expenseOrReceived" th:field="*{expenseOrReceived}"
-                                                                class="form-control" tabindex="6" required>
-                                                            <option value="">Please select</option>
-                                                            <option th:each="expenseOrReceived : ${expenseOrReceiveds}"
-                                                                    th:text="${expenseOrReceived.expenseOrReceived}"
-                                                                    th:value="${expenseOrReceived}"
-                                                                    th:selected="${expenseOrReceived==instalmentType.expenseOrReceived?'selected':'unselected'}"></option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <!--Amount-->
-                                                <div class="form-group row">
-                                                    <label class="control-label" for="year">Amount :</label>
-                                                    <div class="form-row">
-                                                        <input id="amount" th:field="*{amount}"
-                                                               class="form-control col-10"
-                                                               type="text" tabindex="2" required/>
-                                                        <span th:errors="*{amount}"
-                                                              th:if="${#fields.hasErrors('amount')}"
-                                                              class="error">Error Name</span>
-                                                    </div>
-                                                </div>
-                                                <!--buttons -->
-                                                <div class="form-group row">
-                                                    <button type="submit" class="btn btn-primary">
-                                                        <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i>
-                                                        <span
-                                                                th:text="${addStatus==false?'Save' : 'Update'}"></span>
-                                                    </button>
-                                                </div>
+
+<!--                                                </div>-->
+                                                <table class="table table-borderless">
+                                                   <tbody>
+                                                   <tr>
+                                                       <th th:if="${addStatus==true}">
+                                                       <label for="id" class="form-label "> Id </label></th>
+                                                       <td th:if="${addStatus==true}">  <input type="text" class="form-control" th:field="*{id}" id="id"
+                                                                    readonly></td>
+                                                   </tr>
+                                                   <!--Name-->
+                                                    <tr>
+                                                       <th><label class="control-label" for="name">Name :</label></th>
+                                                        <td><div class="form-row">
+                                                            <input id="name" th:field="*{name}"
+                                                                   class="form-control col-10"
+                                                                   type="text" tabindex="2" required/>
+                                                            <span id="nameError" th:errors="*{name}"
+                                                                  th:if="${#fields.hasErrors('name')}"
+                                                                  class="error">Error Name</span>
+                                                        </div></td>
+                                                    </tr>
+                                                   <!--Year-->
+                                                    <tr>
+                                                        <th><label class="control-label" for="year">Year :</label></th>
+                                                        <td><div class="form-row">
+                                                            <input id="year" th:field="*{year}"
+                                                                   class="form-control col-10"
+                                                                   type="text" tabindex="2" required/>
+                                                            <span th:errors="*{year}"
+                                                                  th:if="${#fields.hasErrors('year')}"
+                                                                  class="error">Error Name</span>
+                                                        </div></td>
+                                                    </tr>
+
+                                                   <!--Collection type-->
+                                                    <tr>
+                                                        <th><label class="control-label" th:for="${'collectionTypes'}">Collection Type:</label></th>
+                                                        <td><div class="form-row">
+                                                            <select id="nationality" th:field="*{collectionType}"
+                                                                    class="form-control" tabindex="6" required>
+                                                                <option value="">Please select</option>
+                                                                <option th:each="collectionType : ${collectionTypes}"
+                                                                        th:text="${collectionType.collectionType}"
+                                                                        th:value="${collectionType}"
+                                                                        th:selected="${collectionType==instalmentType.collectionType?'selected':'unselected'}"></option>
+                                                            </select>
+                                                        </div></td>
+                                                    </tr>
+                                                   <!--Expense Or Received type-->
+                                                    <tr>
+                                                        <th><label class="control-label" th:for="${'expenseOrReceived'}">Expense
+                                                            Or
+                                                            Received
+                                                            :</label></th>
+                                                        <td><div class="form-row">
+                                                            <select id="expenseOrReceived" th:field="*{expenseOrReceived}"
+                                                                    class="form-control" tabindex="6" required>
+                                                                <option value="">Please select</option>
+                                                                <option th:each="expenseOrReceived : ${expenseOrReceiveds}"
+                                                                        th:text="${expenseOrReceived.expenseOrReceived}"
+                                                                        th:value="${expenseOrReceived}"
+                                                                        th:selected="${expenseOrReceived==instalmentType.expenseOrReceived?'selected':'unselected'}"></option>
+                                                            </select>
+                                                        </div></td>
+                                                    </tr>
+                                                   <!--Amount-->
+
+                                                    <tr>
+                                                        <th> <label class="control-label" for="year">Amount :</label></th>
+                                                        <td> <div class="form-row">
+                                                            <input id="amount" th:field="*{amount}"
+                                                                   class="form-control col-10"
+                                                                   type="text" tabindex="2" required/>
+                                                            <span th:errors="*{amount}"
+                                                                  th:if="${#fields.hasErrors('amount')}"
+                                                                  class="error">Error Name</span>
+                                                        </div></td>
+                                                    </tr>
+                                                   <tr>
+                                                       <th></th>
+                                                       <td><!--buttons -->
+                                                           <div class="form-group row">
+                                                               <button type="reset" class="btn btn-warning mr-2">
+                                                                   <i th:class="${addStatus==false?'fa fa-save mr-3':'fa fa-thumbs-down mr-3'}"></i>
+                                                                   <span
+                                                                           th:text="${addStatus==false?'Clear' : 'Reset'}"></span>
+                                                               </button>
+
+                                                               <button type="submit" class="btn btn-primary">
+                                                                   <i th:class="${addStatus==false?'fa fa-save mr-3':'fa fa-thumbs-up mr-3'}"></i>
+                                                                   <span
+                                                                           th:text="${addStatus==false?'Save' : 'Update'}"></span>
+                                                               </button>
+                                                           </div></td>
+                                                   </tr>
+                                                   </tbody></table>
+
+
+
+
+
                                             </form>
                                         </div>
                                     </div>

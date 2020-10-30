@@ -2,3 +2,10 @@ todo
 instalmentTypeAdd form
 dependent view page
 workingPlace view page
+
+
+
+Error occur
+* Add Dependant
+
+Working place need to set on emoployee module
