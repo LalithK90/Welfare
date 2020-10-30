@@ -16,25 +16,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-3">
+
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4>First sud Header</h4>
-                                <form role="form">
-                                    <span id="formHeader" th:text="${addStatus==true?'New Role ':'Update Role'}"></span>
-                                    <a href="/role" class="btn btn-primary">
-                                        <i class="fa fa-list"></i>&nbsp; View List
-                                    </a>
-
-
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4>Secondary Header </h4>
+                                <h4> <span id="formHeader" th:text="${addStatus==true?'New Role ':'Update Role'}"></span> </h4>
 
                                 <form id="form" class="form-horizontal" method="POST" th:action="${addStatus==true?'/role/add':'/role/update'}"
                                       th:object="${role}">

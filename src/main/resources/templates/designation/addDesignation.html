@@ -20,52 +20,49 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-3">
+
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4>First sud Header</h4>
                                 <form role="form">
-                                    <span id="formHeader" th:text="${addStatus==false?'New Designation':'Update Designation'}"></span>
-                                    <a href="/designation" class="btn btn-primary"><i class="fa fa-list"></i>&nbsp; View List </a>
-
-
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4>Secondary Header </h4>
-
+                                    <h4><span id="formHeader" th:text="${addStatus==false?'New Designation':'Update Designation'}"></span> </h4>
+<table class="table table-borderless">
+<tbody>
                                 <form th:action="${addStatus==false?'/designation/save' :'/designation/update'}" method="post"
                                       th:object="${designation}">
 
                                     <!--/* id this comment not visualize */-->
                                     <!--Id-->
-                                    <div class="form-group" th:if="${addStatus==true}">
-                                        <label for="id" class="form-label "> Id </label>
-                                        <input type="text" class="form-control" th:field="*{id}" id="id" readonly>
-                                    </div>
+                                    <tr class="form-group" th:if="${addStatus==true}">
+                                    <th>
+                                        <label for="id" class="form-label "> Id </label></th>
+                                       <td> <input type="text" class="form-control" th:field="*{id}" id="id" readonly></td>
+                                    </tr>
                                     <!--Name-->
-                                    <div class="form-group row">
-                                        <label th:for="${'name'}" class="form-label"> Designation </label>
-                                        <input type="text" class="form-control" th:field="*{name}" required>
+                                    <tr><th>
+                                        <label th:for="${'name'}" class="form-label"> Designation </label></th>
+                                        <td><input type="text" class="form-control" th:field="*{name}" required>
                                         <p class="text-danger" th:if="${#fields.hasErrors('name')}"
                                            th:errors="*{name}">Error Name</p>
-                                    </div>
+
                                     <!--shortName-->
-                                    <div class="form-group row">
-                                        <label th:for="${'shortName'}" class="col-form-label "> Short Designation Code</label>
+                                        </td>
+                                    </tr>
+                                    <tr><th>
+                                        <label th:for="${'shortName'}" class="col-form-label "> Short Designation Code</label></th><td>
 
                                         <textarea class="form-control" th:field="*{shortName}" required></textarea>
                                         <p class="text-danger" th:if="${#fields.hasErrors('shortName')}"
                                            th:errors="*{shortName}">Error shortName</p>
-                                    </div>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
                                     <!--categoryType-->
                                     <!--Enum test-->
-                                    <div class="form-group row">
-                                        <label th:for="${'categoryType'}" class="col-sm-4 col-form-label "> Category Type </label>
+
+                                        <label th:for="${'categoryType'}" class="form-label "> Category Type </label></th><td>
                                         <select class="form-control" th:field="*{categoryType}">
                                             <option th:each="categoryType : ${categoryTypes}"
                                                     th:text="${categoryType.categoryType}"
@@ -73,7 +70,7 @@
 
                                             </option>
                                         </select>
-                                    </div>
+
                                     <!--<div class="form-group row">
                                         <label th:for="${'categoryType'}" class="form-label"> Category Type </label>
 
@@ -82,8 +79,10 @@
                                            th:errors="*{categoryType}">Error categoryType</p>
                                     </div>-->
                                     <!--salaryScale-->
-                                    <div class="form-group row">
-                                        <label th:for="${'salaryScale'}" class="col-sm-4 col-form-label "> Salary Scale  </label>
+                                        </td>
+                                    </tr>
+                                    <tr><th>
+                                        <label th:for="${'salaryScale'}" class="form-label "> Salary Scale  </label></th><td>
                                         <select class="form-control" th:field="*{salaryScale}">
                                             <option th:each="salaryScale : ${salaryScales}"
                                                     th:text="${salaryScale.salaryScale}"
@@ -91,29 +90,31 @@
 
                                             </option>
                                         </select>
-                                    </div>
+
                                     <!--Remark-->
-                                    <div class="form-group row">
-                                        <label th:for="${'remark'}" class="form-label "> Remark </label>
+                                        </td>
+                                    </tr>
+                                    <tr><th>
+                                        <label th:for="${'remark'}" class="form-label "> Remark </label></th><td>
                                         <input type="text" class="form-control" th:field="*{remark}" required>
                                         <p class="text-danger" th:if="${#fields.hasErrors('remark')}"
                                            th:errors="*{remark}">Error Remark</p>
-                                    </div>
 
-                                    <div class="form-group row">
-                                        <div class="offset-sm-2 col-sm-10">
-                                            <button type="submit" class="btn btn-primary">
+                                        </td>
+                                    </tr>
+                                    <tr><th></th>
+                                        <td>
+                                     <button type="submit" class="btn btn-primary">
                                                 <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i> <span
                                                     th:text="${addStatus==false?'Save' : 'Update'}"></span>
                                             </button>
-                                        </div>
-                                    </div>
-
+                                        </td>
+                                    </tr>
 
                                 </form>
+</tbody></table>
 
-
-
+                                </form>
                             </div>
                     </div>
                 </div>

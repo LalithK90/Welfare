@@ -16,65 +16,63 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4>First sud Header</h4>
-                                        <form role="form">
-                                            <a href="/briefing" class="btn btn-primary">
-                                                <i class="fa fa-list"></i>&nbsp; View List
-                                            </a>
-                                            <a href="/briefing">
-                                                <button class="btn btn-primary">
 
-                                                    <i class="fa fa-step-backward mr-1"></i>Back
-                                                </button>
-                                            </a>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
+                            <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body container-fluid" th:fragment="briefingDetail">
-                                        <h4>Secondary Header </h4>
+                                        <h4>Briefing </h4>
                                     <!--Id-->
-                                    <div class="form-group row">
-                                        <label class="form-label "> Id </label>
-
-                                        <p class="display_detail pl-xl-5" th:text="${briefingDetail.id}"></p>
-                                    </div>
+                                    <table class="table table-borderless table-hover">
+                                        <tbody>
+                                        <tr>
+                                            <th>
+                                                <label class="form-label "> Id </label></th>
+                                        <td><p class="display_detail" th:text="${briefingDetail.id}"></p>
+                                            </td>
+                                        </tr>
                                     <!--Name-->
-                                    <div class="form-group row">
-                                        <label class="form-label "> Name </label>
-                                        <p class="display_detail" th:text="${briefingDetail.name}"></p>
-                                    </div>
+                                        <tr>
+                                            <th>
+                                                <label class="form-label "> Name </label></th>
+                                       <td> <p class="display_detail" th:text="${briefingDetail.name}"></p>
+                                            </td>
+                                        </tr>
                                         <!--Description-->
-                                        <div class="form-group row">
-                                            <label class="form-label "> Sublect </label>
-                                            <p class="display_detail" th:text="${briefingDetail.subject}"></p>
-                                        </div>
+                                        <tr>
+                                            <th>
+                                                <label class="form-label "> Sublect </label></th>
+                                         <td>   <p class="display_detail" th:text="${briefingDetail.subject}"></p>
+                                            </td>
+                                        </tr>
                                     <!--Description-->
-                                    <div class="form-group row">
-                                        <label class="form-label "> Description </label>
-                                        <p class="display_detail" th:text="${briefingDetail.notices}"></p>
-                                    </div>
+                                        <tr>
+                                            <th>
+                                                <label class="form-label "> Description </label></th>
+                                            <td> <p class="display_detail" th:text="${briefingDetail.notices}"></p>
+                                            </td>
+                                        </tr>
                                     <!--Participant -->
-                                    <div class="form-group row">
-                                        <label class="form-label "> Participant  </label>
-                                        <p class="display_detail" th:text="${briefingDetail.name}"></p>
-                                    </div>
+                                        <tr>
+                                            <th>
+                                                <label class="form-label "> Participant  </label></th>
+                                            <td> <p class="display_detail" th:text="${briefingDetail.name}"></p>
+                                            </td>
+                                        </tr>
                                     <!--Name-->
-                                    <div class="form-group row">
-                                        <label class="form-label "> Remark </label>
-                                        <p class="display_detail" th:text="${briefingDetail.name}"></p>
-                                    </div>
+                                        <tr>
+                                            <th>
+                                                <label class="form-label "> Remark </label></th>
+                                            <td>  <p class="display_detail" th:text="${briefingDetail.name}"></p>
+                                            </td>
+                                        </tr>
                                     <!--Name-->
-                                    <div class="form-group row">
-                                        <label class="form-label "> Priority </label>
-                                        <p class="display_detail" th:text="${briefingDetail.priority.priority}"></p>
-                                    </div>
-
+                                        <tr>
+                                            <th>
+                                                <label class="form-label "> Priority </label></th>
+                                    <td>    <p class="display_detail" th:text="${briefingDetail.priority.priority}"></p>
+                                    </td>
+                                        </tr>
+                                        </tbody></table>
                                 </div>
                             </div>
                         </div>

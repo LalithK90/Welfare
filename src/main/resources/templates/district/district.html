@@ -15,26 +15,16 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4>First sud Header</h4>
-                                        <form role="form">
-                                            <a class="btn btn-success" id="newDistrict" th:href="${'/district/add'}">
-                                                <i class="fa fa-district-plus" style="font-size: 18px;"></i> &nbsp; Add District </a>
 
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
+                            <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4>Secondary Header </h4>
+                                        <h4>District </h4>
                                         <!--if not empty list-->
-                                        <div class="row" id="districtListTable" th:if="${not #lists.isEmpty(districts)}">
+
                                             <table class="table table-hover table-striped" id="myTable">
-                                                <thead class="thead-inverse">
+                                                <div class="row" id="districtListTable" th:if="${not #lists.isEmpty(districts)}">
+                                                <thead class="thead-inverse" >
                                                 <tr>
                                                     <th>Index</th>
                                                     <th>Province</th>
@@ -64,8 +54,9 @@
                                                     </th>
                                                 </tr>
                                                 </tbody>
+                                                </div>
                                             </table>
-                                        </div>
+
                                         <!--if empty list-->
                                         <div class="row" id="districtNotList" th:if="${ #lists.isEmpty(districts)}">
                                             <div class="col-sm-12">

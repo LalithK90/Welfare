@@ -15,49 +15,40 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-3">
+
+                            <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4>First sud Header</h4>
-                                        <form role="form">
-                                            <span id="formHeader" th:text="${districtDetail.province.province}+${' '}+${districtDetail.name}"></span>
-                                            <a href="/district" class="btn btn-primary"><i class="fa fa-list"></i>&nbsp; View List</a>
-                                            <a href="/district">
-                                                <button class="btn btn-primary">
-
-                                                    <i class="fa fa-step-backward mr-1"></i>Back
-                                                </button>
-                                            </a>
-
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4>Secondary Header </h4>
+                                        <h4><span id="formHeader" th:text="${districtDetail.province.province}+${' '}+${districtDetail.name}"></span> </h4>
                                     <div class="container-fluid" th:fragment="districtDetail">
 
                                         <!--/* id this comment not visualize */-->
                                         <!--Id-->
-                                        <div class="form-group">
-                                            <label class="form-label "> Id </label>
-
+                                        <table class="table table-hover table-borderless">
+                                            <tr>
+                                                <th>
+                                            <label class="form-label "> Id </label></th>
+                                                <td>
                                             <p class="display_detail" th:text="${districtDetail.id}"></p>
-
-                                        </div>
+                                                </td>
+                                            </tr>
                                         <!--Province-->
-                                        <div class="form-group">
-                                            <label th:for="${'province'}" class="form-label "> Province </label>
+                                            <tr>
+                                                <th>
+                                            <label th:for="${'province'}" class="form-label "> Province </label></th>
+                                                <td>
                                             <p class="display_detail" th:text="${districtDetail.province.province}"></p>
-
-                                        </div>
+                                                </td>
+                                            </tr>
                                         <!--District name-->
-                                        <div class="form-group">
-                                            <label class="form-label "> Name </label>
+                                            <tr>
+                                                <th>
+                                            <label class="form-label "> Name </label></th>
+                                            <td>
                                             <p class="display_detail" th:text="${districtDetail.name}"></p>
-                                        </div>
+                                            </td>
+                                        </tr>
+                                        </table>
                                     </div>
 
                                 </div>
