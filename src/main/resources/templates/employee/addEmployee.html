@@ -440,7 +440,7 @@
                                                                                      Police
                                                                                      Station
                                                                                      :</label >
-                            <input id="nearestPoliceStation" data-th-field="*{fullName}"
+                            <input id="nearestPoliceStation" data-th-field="*{nearestPoliceStation}"
                                    class="form-control"
                                    tabindex="23" type="text" />
                             <span id="nearestPoliceStationError"
@@ -552,7 +552,7 @@
                           <hr >
 
                       </div >
-                    </form></div >
+                   </div >
                       <div class="card-footer " >
                         <button type="submit" class="btn btn-primary float-right ml-2" tabindex="28" >
                           <i data-th-class="${addStatus==true?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}" ></i >
@@ -574,7 +574,6 @@
       </div >
     </div >
   </div >
-</div >
 
 <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div >
 <!-- footer Section -->
