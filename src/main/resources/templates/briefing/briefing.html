@@ -7,55 +7,55 @@
     <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
     <div class="content-wrapper"><!-- content-wrapper Start -->
         <!-- Header (null area) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Briefing</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                            <li class="breadcrumb-item active"></li>
-                        </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+          <!-- /.content-header -->
+        <!--form action button---------------------------------------------------------     -->
+        <div class="row m-1">
+            <div class="col-12">
+                <div class="text-right">
+                    <div text-right>
+                        <button type="button" class="btn btn-info btn-sm">
+                            <a  data-th-href="${'/briefing/add'}" >
+                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
+                                <span class="text-white"> Add Briefing </span></a>
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm disabled">
+                            <a  data-th-href="${'/briefing'}" >
+                                <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >
+                                <span class="text-white"> View Briefing </span></a>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-sm" onclick="myEdit()">
+                            <!--                            <a  data-th-href="${'/designation/edit/'}" >-->
+                            <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >
+                            <span class="text-white"> Edit Briefing </span></a>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="myDelete()">
+                            <!--                            <a  data-th-href="${'/designation/remove/'}" >-->
+                            <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >
+                            <span class="text-white"> Delete Briefing </span></a>
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <!-- Header (end null area) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Briefing</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                            <li class="breadcrumb-item active"></li>
-                        </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header -->
+        <!--form action end button---------------------------------------------------------     -->
 
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
-                <div th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></div><!-- Small Box Set -->
+
+                <!-- Small Box Set -->
                 <!-- /.row -->
                 <!-- Small boxes (Stat box) -->
 
                 <!-- data table start -->
                 <div class="card">
                     <div class="card-header">
-                        <a class="btn btn-success" id="newBriefing" th:href="${'/briefing/add'}">
-                            <i class="fa fa-briefing-plus"></i>  Add Briefing </a>
-
-
-                    </div>
+                        <h3 class="breadcrumb-item active" th:text="${contendHeader}"></h3>
+                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
 

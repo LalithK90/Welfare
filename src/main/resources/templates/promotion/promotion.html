@@ -17,35 +17,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4>First sud Header</h4>
-                                        <form role="form">
-                                            <div class="form-group">
-                                                <a class="btn btn-success" id="newPromotion" style="width:100%" th:href="${'/promotion/add'}">
-                                                    <i class="fa fa-grievance-plus" style="font-size: 18px;"></i> &nbsp; Add Grievances </a>
-                                            </div>
-                                            <div class="form-group">
-                                                <a class="btn btn-warning" id="newGrievances" style="width:100%" th:href="${'/promotion'}">
-                                                    <i class="fa fa-grievance-plus" style="font-size: 18px;"></i> &nbsp; Edit Grievances </a>
-                                            </div>
-                                            <div class="form-group">
-                                                <button type="button" class="btn btn-primary" style="width:100%";data-toggle="modal" data-target="#modalScrollableBody">
-                                                    <i class="fa fa-grievance-plus" style="font-size: 18px;"></i>  Read Circular</button>
-                                            </div>
-
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
+                            <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4>Secondary Header </h4>
                                     <!--if not empty list-->
-                                    <div class="row" id="promotionListTable" th:if="${not #lists.isEmpty(promotions)}">
+
                                        <table class="table table-hover table-striped" id="myTable">
+                                           <div class="row" id="promotionListTable" th:if="${not #lists.isEmpty(promotions)}">
                                                 <thead class="thead-inverse">
                                                 <tr>
                                                     <th>Index</th>
@@ -83,8 +62,9 @@
                                                     </td>
                                                 </tr>
                                                 </tbody>
+                                           </div>
                                             </table>
-                                        </div>
+
                                      <!--if empty list-->
                                     <div class="row" id="promotionNotList" th:if="${ #lists.isEmpty(promotions)}">
                                         <div class="col-sm-12">

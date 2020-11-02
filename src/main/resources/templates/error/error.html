@@ -1,51 +1,79 @@
 <!doctype html>
-<html lang="en">
-<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}"></head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper"><!-- wrapper start -->
-    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
-    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
-    <div class="content-wrapper"><!-- content-wrapper Start -->
-        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
-                                 <!-- Form Header  Path -->
-        <section data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set
-         -->
+<html lang="en" >
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+    <div class="content-wrapper" ><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
 
+        <!--form action button---------------------------------------------------------     -->
+        <div class="row m-1">
+            <div class="col-12">
+                <div class="text-right">
+                    <div text-right>
+                        <button type="button" class="btn btn-info btn-sm">
+                            <a  data-th-href="${'/employee/add'}" >
+                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
+                                <span class="text-white"> Add Employee </span></a>
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm disabled">
+                            <a  data-th-href="${'/employee'}" >
+                                <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >
+                                <span class="text-white"> View Employee </span></a>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-sm" onclick="myEdit()">
+                            <!--                            <a  data-th-href="${'/designation/edit/'}" >-->
+                            <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >
+                            <span class="text-white"> Edit Employee </span></a>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="myDelete()">
+                            <!--                            <a  data-th-href="${'/designation/remove/'}" >-->
+                            <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >
+                            <span class="text-white"> Delete Employee </span></a>
 
-        <div class="content-header">
-            <div class="container-fluid"
-                 data-th-with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.expensesStatus)}">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--form action end button---------------------------------------------------------     -->
+        <div class="content-header" >
+<!--            <div class="container-fluid" data-th-with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.expensesStatus)}">-->
                 <div class="container text-center">
-                    <h1 class="invalid-feedback" data-th-text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h1>
+<!--                    <h1 class="invalid-feedback" data-th-text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h1>-->
                     <h1 class="invalid-feedback" data-th-if="${accessDenied!=null}" data-th-text="${accessDenied}">
                         404</h1>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 mt-4 mb-4 p-4">
-                    <marquee behavior="scroll" direction="left">
-                        <div class="container" id="iconAround">
-                            <div id="icon">
-                                <i class="fa fa-frown text-danger " id="iconIn"> </i>
-                            </div>
-                        </div>
-                    </marquee>
+<!--                    <marquee behavior="scroll" direction="left">-->
+<!--                        <div class="container" id="iconAround">-->
+<!--                            <div id="icon">-->
+<!--                                <i class="fa fa-frown text-danger " id="iconIn"> </i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </marquee>-->
                 </div>
+            <div ><h1 class="align-center">Someting Error- <a href="/index">home directory</a></h1></div>
                 <div class="container-fluid mt-4 text-center">
                     <p class="invalid-feedback" data-th-text="${errorMessage}">Error java.lang.NullPointerException</p>
                 </div>
                 <div class="container-fluid text-center">
-                    <a href="/home">
-                        <button class="btn btn-info" type="submit">
+                    <a href="/index">
+                        <button class="btn btn-info" a href="/index">
                             <i class="fa fa-home" style="font-size: 20px"></i>&nbsp; Home
                         </button>
                     </a>
                 </div>
             </div>
         </div>
-
+    </div>
     </div><!-- content-wrapper end -->
-    <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
-</div><!-- wrapper end -->
-<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
-<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
-</body>
-</html>
+    <!-- content-wrapper end -->
+    <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
+    <!-- wrapper end -->
+    <div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div ><!-- script Fragment -->
+</body >
+</html >

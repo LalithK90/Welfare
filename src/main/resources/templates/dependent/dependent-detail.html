@@ -6,89 +6,108 @@
   <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
   <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
   <div class="content-wrapper" ><!-- content-wrapper Start -->
-    <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
-                                <!-- Form Header  Path -->
-    <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}" ></section ><!-- Small Box Set -->
+      <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+      <!-- /.content-header -->
+      <!--form action button---------------------------------------------------------     -->
+      <div class="row m-1">
+          <div class="col-12">
+              <div class="text-right">
+                  <div text-right>
+                      <button type="button" class="btn btn-info btn-sm">
+                          <a  data-th-href="${'/dependent/add'}" >
+                              <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
+                              <span class="text-white"> Add Dependent </span></a>
+                      </button>
+                      <button type="button" class="btn btn-success btn-sm disabled">
+                          <a  data-th-href="${'/dependent'}" >
+                              <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >
+                              <span class="text-white"> View Dependent </span></a>
+                      </button>
+                      <button type="button" class="btn btn-warning btn-sm" onclick="myEdit()">
+                          <!--                            <a  data-th-href="${'/designation/edit/'}" >-->
+                          <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >
+                          <span class="text-white"> Edit Dependent </span></a>
+                      </button>
+                      <button type="button" class="btn btn-danger btn-sm" onclick="myDelete()">
+                          <!--                            <a  data-th-href="${'/designation/remove/'}" >-->
+                          <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >
+                          <span class="text-white"> Delete Dependent </span></a>
 
+                      </button>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+      <!--form action end button---------------------------------------------------------     -->
     <div class="content-header" >
       <div class="container-fluid" >
         <div class="row" >
           <div class="col-md-12" >
             <div class="row" >
-              <div class="col-md-3" >
-                <div class="card" >
-                  <div class="card-body" >
-                    <h4 >First sud Header</h4 >
-                    <form role="form" >
-                      <a href="/dependent" >
-                        <button class="btn btn-primary" >
 
-                          <i class="fa fa-step-backward mr-1" ></i >Back
-                        </button >
-                      </a >
-                      <a href="/dependent" class="btn btn-primary" >
-                        <i class="fa fa-list" ></i >&nbsp; View List
-                      </a >
-
-                    </form >
-                  </div >
-                </div >
-              </div >
-              <div class="col-md-9" >
+              <div class="col-md-12" >
                 <div class="card" >
                   <div class="card-body" th:fragment="dependentDetail" >
                     <h4 >Dependent Detail </h4 >
                     <!--/* id this comment not visualize */-->
                     <!--Id-->
-                    <div class="form-group row" >
-                      <label class="form-label " > Id </label >
-                      <p class="display_detail" th:text="${dependentDetail.id}" ></p >
-                    </div >
+                    <table>
+                      <tbody>
+                      <tr><th>
+                      <label class="form-label " > Id </label ></th>
+                      <td><p class="display_detail" th:text="${dependentDetail.id}" ></p >
+                      </td> </tr>
 
-                    <div class="form-group row" >
-                      <label class="form-label " > Name </label >
-                      <p class="display_detail" th:text="${dependentDetail.name}" ></p >
-                    </div >
-                    <div class="form-group row" >
-                      <label class="form-label " > Birth date </label >
-                      <p class="display_detail" th:text="${dependentDetail.dob}" ></p >
-                    </div >
-                    <div class="form-group row" >
-                      <label class="form-label " > Nic </label >
-                      <p class="display_detail" th:text="${dependentDetail.nic}" ></p >
-                    </div >
-                    <div class="form-group row" >
-                      <label class="form-label " > Remark </label >
-                      <p class="display_detail" th:text="${dependentDetail.remark}" ></p >
-                    </div >
+                      <tr><th>
+                        <label class="form-label " > Name </label ></th>
+                      <td><p class="display_detail" th:text="${dependentDetail.name}" ></p >
+                      </td> </tr>
+                      <tr><th>
+                        <label class="form-label " > Birth date </label ></th>
+                     <td> <p class="display_detail" th:text="${dependentDetail.dob}" ></p >
+                      </td> </tr>
+                      <tr><th>
+                        <label class="form-label " > Nic </label ></th>
+                      <td><p class="display_detail" th:text="${dependentDetail.nic}" ></p >
+                      </td> </tr>
+                      <tr><th>
+                        <label class="form-label " > Remark </label ></th>
+                      <td></td><p class="display_detail" th:text="${dependentDetail.remark}" ></p >
+                      </td> </tr>
+                      </tbody></table>
                     <h1 >Dependended Employees</h1 >
+
                     <!--Dependent Employee -->
                     <div class="container-fluid" th:each="dependentEmployee : ${dependentDetail.dependentEmployees}" >
+                      <table>
+                        <tbody>
+                        <tr><th>
+                          <label class="form-label " > Relation Ship </label ></th>
+                       <td> <p class="display_detail" th:text="${dependentEmployee.relationship.relationship}" ></p >
+                          </td> </tr>
+                        <tr><th>
 
-                      <div class="form-group row" >
-                        <label class="form-label " > Relation Ship </label >
-                        <p class="display_detail" th:text="${dependentEmployee.relationship.relationship}" ></p >
-                      </div >
-                      <div class="form-group row" >
-                        <label class="form-label " > Internal Employee Or Not </label >
-                        <p class="display_detail" th:text="${dependentEmployee.insideOrOut.insideOrOut}" ></p >
-                      </div >
+                          <label class="form-label " > Internal Employee Or Not </label ></th>
+                       <td> <p class="display_detail" th:text="${dependentEmployee.insideOrOut.insideOrOut}" ></p >
+                          </td> </tr>
+                        <tr><th>
 
                       <!--  Employee one details-->
-                      <div class="container-fluid" >
-                        <div class="form-group row" >
-                          <label class="form-label" >Name</label >
-                          <p class="display_detail" th:text="${dependentEmployee.employeeOne.name}"></p >
-                        </div >
-                        <div class="form-group row" >
-                          <label class="form-label" >NIC</label >
-                          <p class="display_detail" th:text="${dependentEmployee.employeeOne.nic}"></p >
-                        </div >
-                        <div class="form-group row" >
-                          <label class="form-label" >EPF No</label >
-                          <p class="display_detail" th:text="${dependentEmployee.employeeOne.epf}"></p >
-                        </div >
-                      </div >
+
+                          <label class="form-label" >Name</label ></th>
+                         <td> <p class="display_detail" th:text="${dependentEmployee.employeeOne.name}"></p >
+                          </td> </tr>
+                        <tr><th>
+                          <label class="form-label" >NIC</label ></th>
+                        <td>  <p class="display_detail" th:text="${dependentEmployee.employeeOne.nic}"></p >
+                          </td> </tr>
+                        <tr><th>
+                          <label class="form-label" >EPF No</label ></th>
+                         <td> <p class="display_detail" th:text="${dependentEmployee.employeeOne.epf}"></p >
+                          </td> </tr>
+                        </tbody></table>
+
                       <!--  Employee two details-->
 
                     </div >

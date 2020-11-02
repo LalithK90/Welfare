@@ -18,24 +18,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4>First sud Header</h4>
-                                        <form role="form">
-
-
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4>Secondary Header </h4>
+                                        <h4>Qualification </h4>
                                         <!--if not empty list-->
-                                        <div class="row" id="qualificationListTable" th:if="${not #lists.isEmpty(qualifications)}">
+
                                             <table class="table table-hover table-striped" id="myTable">
+                                                <div class="row" id="qualificationListTable" th:if="${not #lists.isEmpty(qualifications)}">
                                                 <thead class="thead-inverse">
                                                 <tr>
                                                     <th>Index</th>
@@ -69,9 +59,9 @@
 
                                                     </th>
                                                 </tr>
-                                                </tbody>
+                                                </tbody></div>
                                             </table>
-                                        </div>
+
                                         <!--if empty list-->
                                         <div class="row" id="qualificationNotList" th:if="${ #lists.isEmpty(qualifications)}">
                                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
