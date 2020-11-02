@@ -6,10 +6,41 @@
     <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
     <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
     <div class="content-wrapper"><!-- content-wrapper Start -->
-        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
-        <!-- Form Header  Path -->
-        <section data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set
-         -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+        <!-- /.content-header -->
+        <!--form action button---------------------------------------------------------     -->
+        <div class="row m-1">
+            <div class="col-12">
+                <div class="text-right">
+                    <div text-right>
+                        <button type="button" class="btn btn-info btn-sm">
+                            <a  data-th-href="${'/designation/add'}" >
+                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
+                                <span class="text-white"> Add Designation </span></a>
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm disabled">
+                            <a  data-th-href="${'/designation'}" >
+                                <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >
+                                <span class="text-white"> View Designation </span></a>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-sm" onclick="myEdit()">
+                            <!--                            <a  data-th-href="${'/designation/edit/'}" >-->
+                            <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >
+                            <span class="text-white"> Edit Designation </span></a>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="myDelete()">
+                            <!--                            <a  data-th-href="${'/designation/remove/'}" >-->
+                            <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >
+                            <span class="text-white"> Delete Designation </span></a>
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--form action end button---------------------------------------------------------     -->
+
 <div class="content-header">
     <div class="container-fluid">
         <div class="row">
@@ -109,7 +140,36 @@
         </div>
     </div>
 </div>
+    <script>
+        function myEdit() {
+            var txt;
 
+            var sNo = prompt("Please enter the serial number, you want to edit:", "Number Only");
+            if (sNo == null || sNo == "") {
+                txt = "Not a valid Number.";
+            } else {
+                txt = "/designation/edit/" + sNo+"/";
+                // document.write(txt);
+            }
+            // window.alert("Are sure?'<a href='+txt+'>Yes</a>'");
+            location.replace(txt);
+            // document.getElementById("demo").innerHTML = txt;
+        }
+        function myDelete() {
+            var txt1;
+
+            var sNo = prompt("Please enter the serial number, you want to edit:", "Number Only");
+            if (sNo == null || sNo == "") {
+                txt1 = "Not a valid Number.";
+            } else {
+                txt1 = "/designation/remove/" + sNo+"/";
+                // document.write(txt);
+            }
+            window.alert("You are not permission to Delete record ");
+            // location.replace(txt1);
+            // document.getElementById("demo").innerHTML = txt;
+        }
+  </script>
 
 </div><!-- content-wrapper end -->
     </div>

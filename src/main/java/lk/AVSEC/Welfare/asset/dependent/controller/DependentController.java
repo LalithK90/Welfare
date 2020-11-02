@@ -56,6 +56,7 @@ public class DependentController {
         .stream()
         .distinct()
         .collect(Collectors.toList()));
+    model.addAttribute("contendHeader", "Dependent List");
     return "dependent/dependent";
   }
 
@@ -63,17 +64,20 @@ public class DependentController {
   public String form(@PathVariable Integer id, Model model) {
     Dependent newDependent = new Dependent();
     newDependent.setEmployee(employeeService.findById(id));
+
     return commonThing(model, false, newDependent);
   }
 
   @GetMapping( "/{id}" )
   public String findById(@PathVariable Integer id, Model model) {
     model.addAttribute("dependentDetail", dependentService.findById(id));
+    model.addAttribute("contendHeader", "Dependent View Details");
     return "dependent/dependent-detail";
   }
 
   @GetMapping( "/edit/{id}" )
   public String edit(@PathVariable Integer id, Model model) {
+    model.addAttribute("contendHeader", "Dependent Edit Details");
     return commonThing(model, true, dependentService.findById(id));
  }
 

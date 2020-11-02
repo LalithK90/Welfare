@@ -7,10 +7,39 @@
     <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
     <div class="content-wrapper" ><!-- content-wrapper Start -->
         <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
-        <!-- Form Header  Path -->
-        <!--                                <section data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section>-->
-        <!-- Small Box Set -->
 
+        <!--form action button---------------------------------------------------------     -->
+        <div class="row m-1">
+            <div class="col-12">
+                <div class="text-right">
+                    <div text-right>
+                        <button type="button" class="btn btn-info btn-sm">
+                            <a  data-th-href="${'/employee/add'}" >
+                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
+                                <span class="text-white"> Add Employee </span></a>
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm disabled">
+                            <a  data-th-href="${'/employee'}" >
+                                <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >
+                                <span class="text-white"> View Employee </span></a>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-sm" onclick="myEdit()">
+                            <!--                            <a  data-th-href="${'/designation/edit/'}" >-->
+                            <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >
+                            <span class="text-white"> Edit Employee </span></a>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="myDelete()">
+                            <!--                            <a  data-th-href="${'/designation/remove/'}" >-->
+                            <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >
+                            <span class="text-white"> Delete Employee </span></a>
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--form action end button---------------------------------------------------------     -->
         <div class="content-header" >
 <!--            <div class="container-fluid" data-th-with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.expensesStatus)}">-->
                 <div class="container text-center">
@@ -27,7 +56,7 @@
 <!--                        </div>-->
 <!--                    </marquee>-->
                 </div>
-            <div><h1>Someting Error- <a href="/index">home directory</a></a></h1></div>
+            <div ><h1 class="align-center">Someting Error- <a href="/index">home directory</a></h1></div>
                 <div class="container-fluid mt-4 text-center">
                     <p class="invalid-feedback" data-th-text="${errorMessage}">Error java.lang.NullPointerException</p>
                 </div>

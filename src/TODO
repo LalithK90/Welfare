@@ -1,14 +1,8 @@
-HOSS - Head of Security Services
-DHOSS - Deputy Head of Security Services
-PRE - President
-VPRE - Vice President
-SCTY - Secretory
-VSCTY - Vice Secretory
-TRS - Treasure
-AGT - Agent
-MBR - Member
-OTR - Other
-admin - Admin
+employee detail not send proper data feild view
+Dependant add/view
+Email
+password change/forget pw
+Grievances
 
 
 POST http://localhost/district/save                         admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member

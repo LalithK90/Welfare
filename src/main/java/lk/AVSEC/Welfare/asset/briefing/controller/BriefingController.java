@@ -29,28 +29,34 @@ public class BriefingController implements AbstractController<Briefing, Integer>
         model.addAttribute("priorities", Priority.values());
         model.addAttribute("addStatus", booleanValue);
         model.addAttribute("briefing", briefingObject);
+//        model.addAttribute("contendHeader", "Add Briefing");
         return "briefing/addBriefing";
     }
     //id, name, toWhom, notices, priority date
     @GetMapping
     public String findAll(Model model) {
         model.addAttribute("briefings", briefingService.findAll());
+        model.addAttribute("contendHeader", "Briefing List");
         return "briefing/briefing";
+
     }
 
     @GetMapping("/add")
     public String form(Model model) {
+
         return commonThing(model, false, new Briefing());
     }
 
     @GetMapping("/{id}")
     public String findById(@PathVariable Integer id, Model model) {
         model.addAttribute("briefingDetail", briefingService.findById(id));
+        model.addAttribute("contendHeader", "Briefing View Details");
         return "briefing/briefing-detail";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
+        model.addAttribute("contendHeader", "Briefing Edit Details");
         return commonThing(model, true, briefingService.findById(id));
     }
 
