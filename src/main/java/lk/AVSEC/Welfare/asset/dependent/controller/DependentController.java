@@ -149,7 +149,7 @@ public class DependentController {
   }
 
   @GetMapping( "/delete/{id}" )
-  public String delete(@PathVariable Integer id, Model model) {
+  public String delete(@PathVariable Integer id) {
     dependentService.delete(id);
     return "redirect:/dependent";
   }
