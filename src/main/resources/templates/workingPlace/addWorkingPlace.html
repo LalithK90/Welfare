@@ -8,8 +8,8 @@
     <div class="content-wrapper"><!-- content-wrapper Start -->
         <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
         <!-- Form Header  Path -->
-        <section data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set
-         -->
+<!--        <section data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section>-->
+        <!-- Small Box Se -->
 
         <div class="content-header">
             <div class="container-fluid">
@@ -22,9 +22,9 @@
                                         <h4>Working Place</h4>
                                         <form data-th-action="${addStatus==false?'/workingPlace/save' :'/workingPlace/update'}" method="post" data-th-object="${workingPlace}">
                                             <table class="table table-borderless table-hover">
-                                                <tbody>
-                                            <tr>
-                                            <th class="form-group" data-th-if="${addStatus==true}">
+                                            <tbody>
+                                            <tr class="form-group" data-th-if="${addStatus==true}">
+                                            <th>
                                                 <label for="id" class="form-label "> Id </label>
                                             </th>
                                                 <td>
@@ -35,11 +35,12 @@
                                             </td>
                                             </tr>
                                             <!--Province-->
-                                            <tr><th>
-                                                <label data-th-for="${'province'}" class="form-label "> Province
-                                                </label></th>
-
-                                              <td>  <select class="form-control" id="province">
+                                            <tr>
+                                                <th>
+                                                <label data-th-for="${'province'}" class="form-label "> Province </label>
+                                                </th>
+                                                <td>
+                                                  <select class="form-control" id="province">
                                                     <option value="" selected>Please Select</option>
                                                     <option data-th-each="province : ${provinces}"
                                                             data-th-text="${province.province}"
@@ -47,49 +48,54 @@
 
                                                     </option>
                                                 </select>
-                                            </td>
+                                                </td>
                                             </tr>
                                              <!--District-->
-                                            <tr><th>
-
+                                            <tr>
+                                                <th>
                                                 <label data-th-for="${'province'}" class="form-label "> District
-                                                </label></th>
+                                                </label>
+                                                </th>
                                                 <td>
-
-                                                <select class="form-control" data-th-field="*{district}">
+                                                    <select class="form-control" data-th-field="*{district}">
                                                     <option value=""> Please Select</option>
                                                     <option data-th-each="district : ${districts}"
                                                             data-th-text="${district.name}"
                                                             data-th-value="${district.id}"></option>
-                                                </select>
+                                                    </select>
                                                 <p class="text-danger" data-th-if="${#fields.hasErrors('district')}"
                                                    data-th-errors="*{district}">Error Name</p>
                                                 </td>
                                             </tr>
                                             <!--ShortNameAirport-->
-                                            <tr><th>
-                                                <label data-th-for="${'shortName'}" class="form-label "> Airport
-                                                                               Code </label></th><td>
-
-                                            <select class="form-control" data-th-field="*{shortName}">
+                                            <tr>
+                                                <th>
+                                                <label data-th-for="${'shortName'}" class="form-label "> Airport Code </label>
+                                                </th>
+                                                <td>
+                                                    <select class="form-control" data-th-field="*{shortName}">
                                                     <option data-th-each="shortName : ${shortNames}"
                                                             data-th-text="${shortName.shortName}"
-                                                            data-th-value="${shortName}"
-                                                    ></option>
-                                                </select>
-                                                <p class="text-danger" data-th-if="${#fields.hasErrors('shortName')}"
-                                                   data-th-errors="*{shortName}">Error Name</p>
+                                                            data-th-value="${shortName}">
+
+                                                    </option>
+                                                    </select>
+                                                    <p class="text-danger" data-th-if="${#fields.hasErrors('shortName')}"
+                                                                            data-th-errors="*{shortName}">Error Name</p>
 
                                                 </td>
                                             </tr>
                                             <!--Address-->
-                                            <tr><th>
-                                                <label data-th-for="${'address'}" class="form-label "> Address </label>
-                                            </th><td>
-                                                <textarea class="form-control" data-th-field="*{address}"></textarea>
-                                                <p class="text-danger" data-th-if="${#fields.hasErrors('address')}"
-                                                   data-th-errors="*{address}">Error Name</p>
-                                             </td>
+                                            <tr>
+                                                <th>
+                                                    <label data-th-for="${'address'}" class="form-label "> Address </label>
+                                                </th>
+                                                <td>
+                                                    <textarea class="form-control" data-th-field="*{address}"></textarea>
+                                                    <p class="text-danger" data-th-if="${#fields.hasErrors('address')}"
+                                                                                data-th-errors="*{address}">Error Name
+                                                    </p>
+                                                </td>
                                             </tr>
                                             <!--Email-->
                                             <tr><th>
@@ -101,37 +107,39 @@
                                                 </td>
                                             </tr>
                                             <!--phoneNumber-->
-                                            <tr><th>
+                                            <tr>
+                                                <th>
                                                 <label data-th-for="${'phoneNumber'}" class="form-label "> Phone
-                                                    Number </label></th><td>
-
+                                                    Number </label>
+                                                </th>
+                                                <td>
                                                 <input type="tel" class="form-control" data-th-field="*{phoneNumber}">
-                                                <p class="text-danger" data-th-if="${#fields.hasErrors('phoneNumber')}"
+                                                    <p class="text-danger" data-th-if="${#fields.hasErrors('phoneNumber')}"
                                                    data-th-errors="*{phoneNumber}">Error Name</p>
-
                                                 </td>
                                             </tr>
                                             <!--airportType-->
-                                            <tr><th>
+                                            <tr>
+                                                <th>
                                                 <label data-th-for="${'airportType'}" class="form-label "> Airport
-                                                    Type </label></th><td>
-
+                                                    Type </label></th>
+                                                <td>
                                                 <select class="form-control" data-th-field="*{airportType}">
                                                     <option data-th-each="airportType : ${airportTypes}"
                                                             data-th-text="${airportType.airportType}"
-                                                            data-th-value="${airportType}"
-                                                    ></option>
+                                                            data-th-value="${airportType}">
+                                                    </option>
                                                 </select>
                                                 <p class="text-danger" data-th-if="${#fields.hasErrors('airportType')}"
                                                    data-th-errors="*{airportType}">Error Name</p>
-
                                                 </td>
                                             </tr>
                                             <!--workingPlaceSections-->
-                                            <tr><th>
+                                            <tr>
+                                                <th>
                                                 <label data-th-for="${'workingPlaceSection'}" class="form-label ">
-                                                    Working
-                                                    Group </label></th>
+                                                    Working Group </label>
+                                                </th>
                                                 <td>
 
                                                 <select class="form-control" data-th-field="*{workingPlaceSection}">
@@ -147,18 +155,16 @@
                                                 </td>
                                             </tr>
                                             <!--Button-->
-                                            <tr><th>
-                                            </th>><td>
-
-                                                <button type="submit" class="btn btn-primary">
-                                                    <i
-                                                            data-th-class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i>
-                                                    <span
-                                                            data-th-text="${addStatus==false?'Save' : 'Update'}"></span>
+                                            <tr>
+                                                <th></th>
+                                                <td><button type="submit" class="btn btn-primary">
+                                                    <i data-th-class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i>
+                                                    <span data-th-text="${addStatus==false?'Save' : 'Update'}"></span>
                                                 </button>
                                                 </td>
                                             </tr>
-                                            </tbody></table>
+                                            </tbody>
+                                            </table>
                                         </form>
                                     </div>
                                 </div>
@@ -171,8 +177,8 @@
     </div><!-- content-wrapper end -->
     <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
 </div><!-- wrapper end -->
-<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
 
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
 <script>
     $('#province').bind("change", function () {
         optionFieldAdd(this.value);
