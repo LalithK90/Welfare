@@ -171,7 +171,7 @@ public class EmployeeController {
         try {
 
             //save employee images file
-            if (employee.getFile()!= null) {
+            if (employee.getFile().getOriginalFilename()!= null) {
                 EmployeeFiles employeeFiles = employeeFilesService.findByEmployee(employeeSaved);
                 if (employeeFiles != null) {
                     // update new contents
