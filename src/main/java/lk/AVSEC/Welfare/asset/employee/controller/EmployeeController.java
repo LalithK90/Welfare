@@ -143,58 +143,36 @@ public class EmployeeController {
         return commonThings(model);
     }
 
-//    @GetMapping(value = {"/add"})
-//    public String employeeAddForm(Model model) {
-//        model.addAttribute("addStatus", true);
-//        model.addAttribute("employee", new Employee());
-//        model.addAttribute("contendHeader", "Employee Add Members");
-//        return commonThings(model);
-//    }
-
 
     //Employee add and update
     @PostMapping(value = {"/save", "/update"})
     public String addEmployee(@Valid @ModelAttribute Employee employee, BindingResult result, Model model
     ) {
-        System.out.println("came employee" + employee.toString());
         if (result.hasErrors()) {
             model.addAttribute("addStatus", true);
             model.addAttribute("employee", employee);
             return commonThings(model);
         }
-        try {
-            employee.setMobileOne(commonService.commonMobileNumberLengthValidator(employee.getMobileOne()));
-            employee.setMobileTwo(commonService.commonMobileNumberLengthValidator(employee.getMobileTwo()));
-            employee.setLand(commonService.commonMobileNumberLengthValidator(employee.getLand()));
-            // System.out.println("dependent length " + employee.getDependents().size());
+        employee.setMobileOne(commonService.commonMobileNumberLengthValidator(employee.getMobileOne()));
+        employee.setMobileTwo(commonService.commonMobileNumberLengthValidator(employee.getMobileTwo()));
+        employee.setLand(commonService.commonMobileNumberLengthValidator(employee.getLand()));
 
-            /*int i = employee.getDependents().size();
-            if (i != 0) {
-                for (int k = 0; k < i; k++) {
-                    if (employee.getDependents().get(k).getId() == null) {
-                        Dependent dependent = employee.getDependents().get(k);
-                        employee.getDependents().add(k, dependent);
-                        System.out.println("id not " + k + " name employee id " + employee.getDependents().get(k)
-                        .getEmployee().getId());
-                    }
-                }
-            }*/
-            //remove current
-            //  System.out.println("dependent count " + employee.getDependents().size());
-            //after save employee files and save employee
-            Employee employeeSaved = employeeService.persist(employee);
-            //if employee state is not working he or she cannot access to the system
-            if (!employee.getEmployeeStatus().equals(EmployeeStatus.WORKING)) {
-                User user = userService.findUserByEmployee(employeeService.findByNic(employee.getNic()));
-                //if employee not a user
-                if (user != null) {
-                    user.setEnabled(false);
-                    userService.persist(user);
-                }
+        //after save employee files and save employee
+        Employee employeeSaved = employeeService.persist(employee);
+        //if employee state is not working he or she cannot access to the system
+        if (!employee.getEmployeeStatus().equals(EmployeeStatus.WORKING)) {
+            User user = userService.findUserByEmployee(employeeService.findByNic(employee.getNic()));
+            //if employee not a user
+            if (user != null) {
+                user.setEnabled(false);
+                userService.persist(user);
             }
+        }
+        try {
+
             //save employee images file
-            if (employee.getFile().getOriginalFilename() != null) {
-                EmployeeFiles employeeFiles = employeeFilesService.findByName(employee.getFile().getOriginalFilename());
+            if (employee.getFile()!= null) {
+                EmployeeFiles employeeFiles = employeeFilesService.findByEmployee(employeeSaved);
                 if (employeeFiles != null) {
                     // update new contents
                     employeeFiles.setPic(employee.getFile().getBytes());
@@ -209,7 +187,6 @@ public class EmployeeController {
                 }
                 employeeFilesService.persist(employeeFiles);
             }
-            employee = employeeSaved;
             return "redirect:/employee";
 
         } catch (Exception e) {
@@ -218,11 +195,11 @@ public class EmployeeController {
             result.addError(error);
             if (employee.getId() != null) {
                 model.addAttribute("addStatus", true);
-                System.out.println("id is null");
+                model.addAttribute("employee", employee);
             } else {
                 model.addAttribute("addStatus", false);
+                model.addAttribute("employee", employeeSaved);
             }
-            model.addAttribute("employee", employee);
             return commonThings(model);
         }
     }
