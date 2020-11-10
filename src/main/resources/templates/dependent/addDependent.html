@@ -53,9 +53,11 @@
 <!--                                        <h4>Dependent Control </h4>-->
                                         <form th:action="${addStatus==false?'/dependent/save' :'/dependent/update'}"
                                               method="post" th:object="${dependent}">
-                                            <input type="hidden" data-th-value="${addStatus==false?'dependent.employee.id':'dependent.employee'}" data-th-name="${'employee'}">
+                                            <input type="hidden" data-th-value="${dependent.employee.id}" data-th-name="${'employee'}">
                                             <!--Id-->
                                             <div class="form-group row" th:if="${addStatus==true}">
+                                                <!--<input type="hidden" data-th-value="${dependent.employee}" data-th-name="${'employee'}">-->
+
                                                 <label for="id" class="form-label "> Id </label>
 
                                                 <input type="text" class="form-control" th:field="*{id}" id="id"
