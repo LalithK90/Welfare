@@ -79,6 +79,7 @@ public class DependentController {
   public String edit(@PathVariable Integer id, Model model) {
     Dependent dependent =  dependentService.findById(id);
     dependent.setEmployee(dependent.getDependentEmployees().get(0).getEmployeeOne());
+    dependent.setRelationship(dependent.getDependentEmployees().get(0).getRelationship());
     model.addAttribute("contendHeader", "Dependent Edit Details");
     return commonThing(model, true,dependent);
  }
@@ -103,8 +104,8 @@ public class DependentController {
       } else {
         saveDependant = dependentDb;
       }
-//      redirectAttributes.addFlashAttribute("dependentDetail", saveDependant);
-//      return "redirect:/dependent";
+     // redirectAttributes.addFlashAttribute("dependentDetail", saveDependant);
+     // return "redirect:/dependent";
     }
 
     // create a new dependentEmployee and set value to it
