@@ -2,6 +2,7 @@ package lk.AVSEC.Welfare.asset.dependent.service;
 
 import lk.AVSEC.Welfare.asset.dependent.dao.DependentDao;
 import lk.AVSEC.Welfare.asset.dependent.entity.Dependent;
+import lk.AVSEC.Welfare.asset.dependent.entity.Enum.CurrentStatus;
 import lk.AVSEC.Welfare.asset.employee.entity.Employee;
 import lk.AVSEC.Welfare.util.interfaces.AbstractService;
 import org.springframework.cache.annotation.*;
@@ -29,6 +30,9 @@ public class DependentService implements AbstractService<Dependent, Integer> {
     }
 
     public Dependent persist(Dependent dependent) {
+        if(dependent.getId()==null){
+            dependent.setCurrentStatus(CurrentStatus.ACT);
+        }
         return dependentDao.save(dependent);
     }
 

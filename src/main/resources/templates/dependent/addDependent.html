@@ -53,7 +53,7 @@
 <!--                                        <h4>Dependent Control </h4>-->
                                         <form th:action="${addStatus==false?'/dependent/save' :'/dependent/update'}"
                                               method="post" th:object="${dependent}">
-                                            <input type="hidden" data-th-filed="*{employee}" data-th-name="${'employee'}">
+                                            <input type="hidden" data-th-value="${dependent.employee.id}" data-th-name="${'employee'}">
                                             <!--Id-->
                                             <div class="form-group row" th:if="${addStatus==true}">
                                                 <label for="id" class="form-label "> Id </label>
@@ -125,7 +125,7 @@
                                                        th:errors="*{nic}">Error NIC</p>
                                                 </div>
                                                 <!--currentStatus-->
-                                                <div class="form-group row">
+                                                <div class="form-group row" data-th-if="${addStatus==true}">
                                                     <label th:for="${'currentStatus'}" class="form-label "> Current
                                                         Status
                                                         No </label>

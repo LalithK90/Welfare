@@ -90,6 +90,7 @@ public class DependentController {
       return commonThing(model, false, dependent);
     }
 
+
     Dependent saveDependant = null;
     //if there is registered dependent on system
     if ( !dependent.getNic().isEmpty() ) {
