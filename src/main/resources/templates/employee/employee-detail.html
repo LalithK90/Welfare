@@ -10,7 +10,6 @@
                                 <!-- Form Header  Path -->
 <!--    <section data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}" ></section >&lt;!&ndash; Small Box Set-->
 <!--         &ndash;&gt;-->
-
     <div class="content-header" >
       <div class="container-fluid" data-th-fragment="employeeDetailsFragment" >
         <div class="row" >
@@ -26,16 +25,13 @@
                     </h3 >
                     <h3 data-th-text="${'EPF No - '} +${employeeDetail.epf}" class="display_detail" >
                     </h3 >
-
                     <div class="left-arrow left-container align-content-center" >
                       <a href="/employee" class="btn btn-sm btn-primary" > <i class="fa fa-list" ></i >&nbsp;
                                                                                                 View
                                                                                                 List
                       </a >
-
                       <a data-th-href="${'/employee/' + employeeDetail.id++}" class="btn btn-success btn-sm"
                          tabindex="" ><i class="fa fa-backward" ></i >&nbsp;Back </a >
-
                       <a data-th-href="${'/employee/' + employeeDetail.id--}" class="btn btn-success btn-sm"
                          tabindex="" ><i class="fa fa-forward" ></i >&nbsp;Next </a >
                     </div >
@@ -62,6 +58,8 @@
                     <div class="card-header" >
                       <a class="card-link" data-toggle="collapse" data-parent="#card-116170"
                          href="#card-element-246373" >Personal Details</a >
+                        <spam style="float: right">  <a data-th-href="${'/employee/edit/' + employeeDetail.id}" class="btn btn-sm btn-default" ><i
+                                class="fa fa-edit" ></i ></a ></spam>
                     </div >
                     <div id="card-element-246373" class="collapse" >
                       <div class="card-body" >
@@ -114,7 +112,8 @@
                         </tr>
                       </tbody>
                       </table>
-                      </div></div>
+                      </div>
+                    </div>
                         </div >
                       </div >
                     </div >
@@ -125,6 +124,8 @@
                   <a class="collapsed card-link" data-toggle="collapse"
                      data-parent="#card-116170" href="#card-element-510343" >Contact
                     Details</a >
+                    <spam style="float: right">  <a data-th-href="${'/employee/edit/' + employeeDetail.id}" class="btn btn-sm btn-default" ><i
+                            class="fa fa-edit" ></i ></a ></spam>
                 </div >
                 <div id="card-element-510343" class="collapse" >
                   <div class="card-body" >
@@ -182,6 +183,8 @@
                     <div class="card-header" >
                       <a class="card-link" data-toggle="collapse" data-parent="#card-987460"
                          href="#card-element-845498" >Employee Details</a >
+                        <spam style="float: right">  <a data-th-href="${'/employee/edit/' + employeeDetail.id}" class="btn btn-sm btn-default" ><i
+                                class="fa fa-edit" ></i ></a ></spam>
                     </div >
                     <div id="card-element-845498" class="collapse" >
                       <div class="card-body" >
@@ -192,18 +195,14 @@
                         <th>  <label class="control-label" for="payRoleNumber" >EPF No :</label ></th>
                          <td><p id="payRoleNumber" data-th-text="${employeeDetail.epf}"
                                 class="display_detail" ></p ></td></tr>
-
-
                         <!--Designation-->
                         <tr>
                         <th>  <label class="control-label" for="designation" >Designation :</label ></th>
-
                           <td> <p id="designation"
                              data-th-if="${employeeDetail.designation !=null}"
                              data-th-text="${employeeDetail.designation.name}"
                              class="display_detail" >
                           </p ></td></tr>
-
                         <!--Employee Status-->
                         <tr>
                           <th>  <label class="control-label" for="employeeStatus" >Employee Status
@@ -238,6 +237,8 @@
                     <div class="card-header" >
                       <a class="collapsed card-link" data-toggle="collapse"
                          data-parent="#card-987460" href="#card-element-475526" >System Details</a >
+                        <spam style="float: right">  <a data-th-href="${'/employee/edit/' + employeeDetail.id}" class="btn btn-sm btn-default" ><i
+                                class="fa fa-edit" ></i ></a ></spam>
                     </div >
                     <div id="card-element-475526" class="collapse" >
                       <div class="card-body" >
@@ -301,6 +302,8 @@
                           data-target="#collapseOne" aria-expanded="false"
                           aria-controls="collapseOne" >Dependant
                   </button >
+                    <spam style="float: right">  <a data-th-href="${'/dependent/add/' + employeeDetail.id}" class="btn btn-sm btn-default" >
+                         <i class="fa fa-plus" ></i > </a ></spam>
                 </div >
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                      data-parent="#accordion" >
@@ -343,13 +346,15 @@
              </div>
             </div></div>
             <div class="row" >
-                  <div class="col-md-6" >
+                  <div class="col-md-12" >
               <div class="card" >
                 <div class="card-header" id="headingTwo" >
                   <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
                           data-target="#collapseTwo"
                           aria-expanded="false" aria-controls="collapseTwo" >Education
                   </button >
+                    <spam style="float: right">  <a data-th-href="${'/qualification/add/' + employeeDetail.id}" class="btn btn-sm btn-default" >
+                          <i class="fa fa-plus" ></i ></a ></spam>
                 </div >
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                      data-parent="#accordion" >
@@ -361,64 +366,63 @@
                     </div >
                   </div >
                 </div >
-              </div ></div>
-                <div class="col-md-6" >
+              </div ></div></div>
+              <div class="row" >
+                <div class="col-md-12" >
               <div class="card" >
                 <div class="card-header" id="headingThree" >
                   <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
                           data-target="#collapseThree"
-                          aria-expanded="false" aria-controls="collapseTwo" >Promotion
+                          aria-expanded="false" aria-controls="collapseTwo" ><i class="fa fa-arrow-down">&nbsp;</i> &nbsp;&nbsp;Promotion
                   </button >
+                <spam style="float: right">  <a data-th-href="${'/promotion/add/' + employeeDetail.id}" class="btn btn-sm btn-default" ><i
+                            class="fa fa-plus" ></i ></a ></spam>
                 </div >
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
                      data-parent="#accordion" >
                   <div class="card-body" >
+                      <table class="table table-borderless table-hover">
+                          <tbody>
+                          <tr>
+                              <th> <label class="form-label" > Id </label ></th>
+                              <th> <label class="form-label" > Promotion Name </label ></th>
+                              <th><label class="form-label" > Remark </label ></th>
+                              <th><label class="form-label" > Effected Dte </label ></th>
+                              <th> <label class="form-label" > Action </label >
+                              </th></tr></tbody></table>
                     <div class="container-fluid" data-th-each="promotionDetail : ${employeeDetail.promotions}" >
-                      <a data-th-href="${'/promotion/edit/'+ promotionDetail.id}" class="btn btn-primary" > <i
-                            class="fa fa-list" ></i >&nbsp; View List </a >
-                      <div data-th-replace="~{promotion/promotion-detail :: promotionDetail}" ></div >
+
+                      <div data-th-replace="~{promotion/promotion-detail :: promotionDetail1}" ></div >
                       <hr >
                     </div >
                   </div >
                 </div >
-              </div ></div>
+              </div >
+                </div>
                   </div >
 
            </div>
           </div>
           </div >
-          <div class="container-fluid formBorder " >
-            <a href="/employee" class="btn btn-primary" > <i class="fa fa-list" ></i > View List</a >
+          <div class="container-fluid formBorder">
+            <a href="/employee" class="btn btn-sm btn-primary" > <i class="fa fa-list" ></i > View List</a >
 
-            <a  data-th-href="${'/employee/add'}" class="btn btn-success"
+            <a  data-th-href="${'/employee/add'}" class="btn btn-sm btn-success"
                tabindex="" ><i class="fas fa-user" ></i >&nbsp;Add Employee </a >
 
             <a data-th-href="${'/employee/edit/' + employeeDetail.id}"
-               class="btn btn-primary" ><i class="fa fa-edit" ></i >&nbsp;Edit</a >
+               class="btn btn-sm btn-primary" ><i class="fa fa-edit" ></i >&nbsp;Edit</a >
             <a data-th-href="${'/employee/remove/' + employeeDetail.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
-               class="btn btn-danger" ><i class="fa fa-trash" ></i >
+               class="btn btn-sm btn-danger" ><i class="fa fa-trash" ></i >
               Delete</a >
-            <a data-th-href="${'/dependent/add/' + employeeDetail.id}" class="btn btn-info" ><i
-                    class="fa fa-trash" ></i >
-              Dependent</a >
-            <a data-th-href="${'/promotion/add/' + employeeDetail.id}" class="btn btn-info" ><i
-                    class="fa fa-trash" ></i >
-              Promotion</a >
-            <a data-th-href="${'/qualification/add/' + employeeDetail.id}" class="btn btn-info" ><i
-                    class="fa fa-trash" ></i >
-              Qualification</a >
-
-            <a data-th-href="${'/employee/' + employeeDetail.id++}" class="btn btn-success"
+            <a data-th-href="${'/employee/' + employeeDetail.id++}" class="btn btn-sm btn-success"
                tabindex="" ><i class="fa fa-backward" ></i >&nbsp;Back </a >
-
-            <a data-th-href="${'/employee/' + employeeDetail.id--}" class="btn btn-success"
+            <a data-th-href="${'/employee/' + employeeDetail.id--}" class="btn btn-sm btn-success"
                tabindex="" ><i class="fa fa-forward" ></i >&nbsp;Next </a >
             </a >
           </div >
         </div >
-
   </div ><!-- content-wrapper end -->
-
   <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
 </div ><!-- wrapper end -->
 <div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div ><!-- script Fragment -->

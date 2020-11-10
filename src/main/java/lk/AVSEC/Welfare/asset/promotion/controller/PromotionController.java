@@ -41,6 +41,8 @@ public class PromotionController {
   public String promotionAddEmployee(@PathVariable Integer id, Model model) {
     Promotion newPromotion = new Promotion();
     newPromotion.setEmployee(employeeService.findById(id));
+//    8/11/2020
+//    model.addAttribute("promotionDetail", promotionService.findById(id));
     return commonThing(model, false, newPromotion);
   }
 
