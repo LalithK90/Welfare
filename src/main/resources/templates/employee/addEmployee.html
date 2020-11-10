@@ -8,37 +8,31 @@
   <div class="content-wrapper" ><!-- content-wrapper Start -->
     <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
 
-                                <!--form action button---------------------------------------------------------     -->
+    <!--form action button---------------------------------------------------------     -->
     <div class="row m-1" >
       <div class="col-12" >
         <div class="text-right" >
           <div text-right >
-
-            <button type="button" class="btn btn-success btn-sm disabled" >
+            <button type="button" class="btn btn-success btn-sm mr-lg-1" >
               <a data-th-href="${'/employee'}" >
                 <span class="info-box-icon text-white" ><i class="fas fa-folder-open mr-1" ></i ></span >
                 <span class="text-white" > View Employee </span ></a >
             </button >
-
           </div >
         </div >
       </div >
-
     </div >
-                                <!--form action end button---------------------------------------------------------     -->
+    <!--form action end button---------------------------------------------------------     -->
     <div class="content-header" >
       <div class="container-fluid" >
         <div class="row" >
           <div class="col-md-12" >
             <div class="row" >
-
               <div class="col-md-12" >
                 <div class="card" >
                   <div class="card-body" >
-
                     <!-- <h4>
                        <div data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"/>
-
                      </h4>-->
                     <form data-th-action="${addStatus==true?'/employee/save' :'/employee/update'}"
                           method="post" data-th-object="${employee}" enctype="multipart/form-data" >

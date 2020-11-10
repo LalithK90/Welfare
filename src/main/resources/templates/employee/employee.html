@@ -7,7 +7,6 @@
   <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
   <div class="content-wrapper" ><!-- content-wrapper Start -->
     <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section ><!-- content-header Start -->
-
       <!--action button layer---------------------------------------------------------     -->
       <div class="row m-1">
           <div class="col-12">
@@ -43,14 +42,12 @@
           </div>
       </div>
       <!--form action end button---------------------------------------------------------     -->
-    <div class="content-header" >
-
-
-      <div class="row" >
+    <div class="content-header">
+      <div class="row">
         <div class="col-md-12" >
-          <div class="row" >
-            <div class="col-md-12" >
-              <div class="card" >
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
                 <!--<div class="card-body">
                     <h4>Secondary Header </h4>-->
                 <div class="card-body" >
@@ -120,17 +117,17 @@
                   </table >
                 </div >
 
-                <div class="row" data-th-if="${ #lists.isEmpty(employees)}" >
+                <div class="row" data-th-if="${ #lists.isEmpty(employees)}">
                   <!-- <div class="col-sm-12">-->
-                  <div class="alert alert-warning alert-dismissible fade show" role="alert" >
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
                       <span aria-hidden="true" >&times;</span >
                     </button >
-                    <h3 class="text-center text-danger" >
+                    <p class="text-center text-danger" >
                       <strong >There is no employee upto now please add employee to the system
                                using add user button.
                       </strong >
-                    </h3 >
+                    </p >
                   </div >
                 </div >
               </div >
@@ -140,9 +137,6 @@
       </div >
     </div >
   </div >
-
-
-
 <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
 </div ><!-- wrapper end -->
 <div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div ><!-- script Fragment -->

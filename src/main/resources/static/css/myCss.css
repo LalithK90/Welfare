@@ -1,0 +1,6 @@
+input:required+label::after,
+select:required+label::after,
+textarea:required+label::after {
+    content: " *";
+    color: #e32;
+}
