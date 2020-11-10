@@ -77,8 +77,10 @@ public class DependentController {
 
   @GetMapping( "/edit/{id}" )
   public String edit(@PathVariable Integer id, Model model) {
+    Dependent dependent =  dependentService.findById(id);
+    dependent.setEmployee(dependent.getDependentEmployees().get(0).getEmployeeOne());
     model.addAttribute("contendHeader", "Dependent Edit Details");
-    return commonThing(model, true, dependentService.findById(id));
+    return commonThing(model, true,dependent);
  }
 
   @PostMapping( value = {"/save", "/update"} )
