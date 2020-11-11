@@ -114,18 +114,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         .invalidateHttpSession(true)
                                         .clearAuthentication(true))
                 //session management
+                //remember me
+                .rememberMe().key("uniqueAndSecret").tokenValiditySeconds(86400)
+                .and()
+                //session management
                 .sessionManagement(
                         sessionManagement ->
                                 sessionManagement
-                                        .sessionFixation().migrateSession()
+                                        .sessionFixation()
+                                        .migrateSession()
                                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                                         .invalidSessionUrl("/login")
-                                        .maximumSessions(1)
-                                        .expiredUrl("/l")
+                                        .maximumSessions(2)
                                         .sessionRegistry(sessionRegistry()))
                 //Cross site disable
                 .csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling();
+
+
+
     }
 }
 
