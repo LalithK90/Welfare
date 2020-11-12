@@ -93,10 +93,11 @@
 </div>
 
 <!--/* footer is */-->
-<footer data-th-replace="~{fragments/footer :: footerFragment}"></footer>
-<!--/* script is included */-->
-<script data-th-replace="~{fragments/script :: scriptFragment}"></script>
-
+    </div>
+    <!--footer include-->
+    <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+</div><!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
 <script>
     function dateMatch(obj) {
         let selectedFiledId = obj.getAttribute('id').slice(2);
