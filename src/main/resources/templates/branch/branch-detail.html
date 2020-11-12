@@ -1,97 +1,147 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper"><!-- wrapper start -->
-    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
-    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
-    <div class="content-wrapper"><!-- content-wrapper Start -->
-        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
-        <!-- Form Header  Path -->
-        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4>First sud Header</h4>
-                                        <form role="form">
+<html lang="en" >
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+    <div class="content-wrapper" ><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section ><!-- content-header Start -->
 
-                                            <a href="/branch">
-                                                <button class="btn btn-dark" type="button" tabindex="3">
-                                                    <i class="fas fa-arrow-circle-left" style="font-size: 20px"></i>&nbsp; &nbsp;Back
-                                                </button>
-                                            </a>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="card">
-                                    <div class="card-body" th:fragment="branchDetailsFragment">
-                                        <h4>Secondary Header </h4>
 
-        <!--id-->
-        <div class="form-group">
-            <label class="control-label" for="id">ID :</label>
-            <p id="id" th:text="${branchDetail.id}" class="display_detail"></p>
+        <!--heading Area-->
+<div class="container-fluid bg-dark form-Border">
+    <div class="row text-center formManagement border-info">
+        <!--ViewList Button-->
+        <div class="col">
+            <a href="/branch" class="btn btn-primary" tabindex="1">
+                <i class="fa fa-list" style="font-size: 20px"></i>&nbsp;&nbsp;View List
+            </a>
         </div>
-        <!--Name-->
-        <div class="form-group">
-            <label class="control-label" for="name">Name :</label>
-            <p id="name" th:text="${branchDetail.name}"
-               class="display_detail"></p>
+        <!--Branch Name-->
+        <div class="col">
+            <h2 class="text-light text-center">
+                <strong>
+                    <p th:text="${branchDetail.name}"></p>
+                </strong>
+            </h2>
         </div>
-        <!--Land-->
-        <div class="form-group">
-            <label class="control-label" for="land">Land No :</label>
-            <p id="land" th:text="${branchDetail.land}" class="display_detail"></p>
+        <!--Home Button-->
+        <div class="col">
+            <a class="btn btn-primary" href="/home" tabindex="2">
+                <i class="fa fa-home" style="font-size: 20px"></i> &nbsp;&nbsp;Home
+            </a>
         </div>
-        <!--Address-->
-        <div class="form-group">
-            <label class="control-label" for="address">Address :</label>
-            <p id="address" class="display_detail " th:utext="${branchDetail.address}"></p>
-        </div>
-        <!--Email-->
-        <div class="form-group">
-            <label class="control-label" for="email">Email :</label>
-            <p id="email" th:text="${branchDetail.email}" class="display_detail"></p>
-        </div>
-        <!--Created By-->
-        <div class="form-group">
-            <label class="control-label" for="createdBy">Created By :</label>
-            <p id="createdBy" th:text="${branchDetail.createdBy}" class="display_detail"></p>
-        </div>
-        <!--Created at-->
-        <div class="form-group">
-            <label class="control-label" for="createdAt">Created At :</label>
-            <p id="createdAt" th:text="${#temporals.format(branchDetail.createdAt, 'dd-MM-yyyy HH:mm')}"
-               class="display_detail"></p>
-        </div>
-        <!--Updated by-->
-        <div class="form-group">
-            <label class="control-label" for="updatedBy">Updated By :</label>
-            <p id="updatedBy" th:text="${branchDetail.updatedBy}" class="display_detail"></p>
-        </div>
-        <!--Updated at-->
-        <div class="form-group">
-            <label class="control-label" for="updatedAt">Updated At :</label>
-            <p id="updatedAt" th:text="${#temporals.format(branchDetail.updatedAt, 'dd-MM-yyyy HH:mm')}" class="display_detail"></p>
-        </div>
-
-                                </div>
-                            </div>
-                        </div>
+    </div>
+</div>
+<!--details-->
+<div th:fragment="branchDetailsFragment" class="container-fluid ">
+    <div class="col-sm-12 flex-column ">
+        <div class="row">
+            <!--Left Side-->
+            <div class="form-group col-md-6 col-sm-6 text-left flex-column">
+                <!--id-->
+                <div class="form-row text-right">
+                    <div class="col-md-4">
+                        <label class="control-label" for="id">ID :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <p id="id" th:text="${branchDetail.id}" class="display_detail"></p>
+                    </div>
+                </div>
+                <!--Name-->
+                <div class="form-row text-right">
+                    <div class="col-md-4">
+                        <label class="control-label" for="name">Name :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <p id="name" th:text="${branchDetail.name}"
+                           class="display_detail"></p>
+                    </div>
+                </div>
+                <!--Land-->
+                <div class="form-row text-right">
+                    <div class="col-md-4">
+                        <label class="control-label" for="land">Land No :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <p id="land" th:text="${branchDetail.land}" class="display_detail"></p>
+                    </div>
+                </div>
+                <!--Address-->
+                <div class="form-row text-right">
+                    <div class="col-md-4">
+                        <label class="control-label" for="address">Address :</label>
+                    </div>
+                    <div class="col-md-8 text-left">
+                        <p id="address" class="display_detail " th:utext="${branchDetail.address}"></p>
+                    </div>
+                </div>
+                <!--Email-->
+                <div class="form-row text-right">
+                    <div class="col-md-4">
+                        <label class="control-label" for="email">Email :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <p id="email" th:text="${branchDetail.email}" class="display_detail"></p>
                     </div>
                 </div>
             </div>
-            </div></div>
-    </div><!-- content-wrapper end -->
-    <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
-</div><!-- wrapper end -->
-<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
+            <!--Right Side-->
+            <div class="form-group col-md-6 col-sm-6 text-right flex-column">
+                <!--Created By-->
+                <div class="form-row text-right">
+                    <div class="col-md-4">
+                        <label class="control-label" for="createdBy">Created By :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <p id="createdBy" th:text="${branchDetail.createdBy}" class="display_detail"></p>
+                    </div>
+                </div>
+                <!--Created at-->
+                <div class="form-row text-right">
+                    <div class="col-md-4">
+                        <label class="control-label" for="createdAt">Created At :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <p id="createdAt" th:text="${#temporals.format(branchDetail.createdAt, 'dd-MM-yyyy HH:mm')}"
+                           class="display_detail"></p>
+                    </div>
+                </div>
+                <!--Updated by-->
+                <div class="form-row text-right">
+                    <div class="col-md-4">
+                        <label class="control-label" for="updatedBy">Updated By :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <p id="updatedBy" th:text="${branchDetail.updatedBy}" class="display_detail"></p>
+                    </div>
+                </div>
+                <!--Updated at-->
+                <div class="form-row text-right">
+                    <div class="col-md-4">
+                        <label class="control-label" for="updatedAt">Updated At :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <p id="updatedAt" th:text="${#temporals.format(branchDetail.updatedAt, 'dd-MM-yyyy HH:mm')}" class="display_detail"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Back Button-->
+<div class="form-group col-md-12 col-sm-12 text-center flex-column ">
+    <a href="/branch">
+        <button class="btn btn-dark" type="button" tabindex="3">
+            <i class="fas fa-arrow-circle-left" style="font-size: 20px"></i>&nbsp; &nbsp;Back
+        </button>
+    </a>
+</div>
+    </div>
+<!--footer include-->
+        <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+    </div><!-- wrapper end -->
+    <div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
 </body>
 </html>

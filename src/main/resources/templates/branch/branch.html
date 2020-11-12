@@ -1,161 +1,120 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper"><!-- wrapper start -->
-    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
-    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
-    <div class="content-wrapper"><!-- content-wrapper Start -->
-        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
-        <!-- Form Header  Path -->
-        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4>Branch</h4>
-                                    <form role="form">
-
-                                        <div class="btn"><a class="btn btn-success btn-lg btn-block" href="/branch/add" tabindex="1">
-                                            <i class="fas fa-plus"></i>&nbsp;&nbsp;New
-                                        </a></div>
-                                        <!--Home Button-->
-                                       <div class="btn"> <a class="btn btn-primary btn-lg btn-block" href="/home" id="searchShow"  tabindex="2">
-                                            <i class="fas fa-home"></i>&nbsp;&nbsp;Home
-                                        </a></div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-10">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4>Secondary Header </h4>
-                                <!--Branches List-->
-                                    <!--Table view-->
-                                    <div class="col">
-                                        <div class="col" id="branchListPresent" th:if="${not #lists.isEmpty(branchs)}">
-                                            <table class="table table-hover table-striped" id="myTable">
-                                                <thead>
-                                                <tr>
-                                                    <th> Index</th>
-                                                    <th> Name</th>
-                                                    <th> Land</th>
-                                                    <th> Address</th>
-                                                    <th> Email</th>
-                                                    <th> Modify</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr th:each="branch, rowCount : ${branchs}">
-                                                    <td th:text="${rowCount.count}"></td>
-                                                    <td th:text="${branch.name}"></td>
-                                                    <td th:text="${branch.land}"></td>
-                                                    <td th:text="${branch.address}"></td>
-                                                    <td th:text="${branch.email}"></td>
-                                                    <td>
-                                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVertical">Open
-                                                           </button>
-
-                                                        <a id="branchView" th:href="${'/branch/' + branch.id}" class="btn btn-primary btn-sm"><i
-                                                                class="fa fa-folder-open" style="font-size: 15px"></i>&nbsp;View</a>
-                                                        <a id="branchEdit" th:href="${'/branch/edit/' + branch.id}" class="btn btn-success btn-sm"><i
-                                                                class="fa fa-edit" style="font-size: 15px"></i>&nbsp;Edit</a>
-                                                        <a id="branchRemove" th:href="${'/branch/delete/' + branch.id}" class="btn btn-danger btn-sm">
-                                                            <!--th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" --> <i
-                                                                class="fa fa-trash" style="font-size: 15px"></i>
-                                                            Delete</a>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <!-- Model--->
-                                    <div class="modal fade" id="modalVertical" tabindex="-1" role="dialog" aria-labelledby="modalVerticalTitle"
-                                         aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalVerticalTitle">Modal title</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="name">Name :</label>
-                                                        <p id="name" th:text="${branchDetail.name}"
-                                                           class="display_detail"></p>
-                                                    </div>
-
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary">Action</button>
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+<html lang="en" >
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+    <div class="content-wrapper" ><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section ><!-- content-header Start -->
 
 
-                                    <!--Error-->
-                                    <div class="row" th:if="${ #lists.isEmpty(branchs)}">
-                                        <div class="col-sm-12">
-                                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                <h3 class="text-center text-danger">
-                                                    <strong>There is no branch upto now please add branch to the system
-                                                        using "New" button.
-                                                    </strong>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                        <script>
-                                            /*active boostrap alert - start*/
-                                            $(".alert").alert();
-                                            /*active boostrap alert - end*/
-                                        </script>
-                                    </div>
-                                    <!--Save Message-->
-                                    <div class="row" th:if="${branchDetail != null}">
-                                        <div class="col-sm-12">
-                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                <div th:replace="~{branch/branch-detail :: branchDetailsFragment}"></div>
-                                            </div>
-                                        </div>
-                                        <script>
-                                            /*active boostrap alert - start*/
-                                            $(".alert").alert();
-                                            /*active boostrap alert - end*/
-                                        </script>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!--heading Area-->
+<div class="container-fluid bg-dark form-Border">
+    <div class="row text-center formManagement border-info">
+        <!--New Branch Button-->
+        <div class="col">
+            <a class="btn btn-success" href="/branch/add" tabindex="1">
+                <i class="fas fa-plus" style="font-size: 20px"></i>&nbsp;&nbsp;New
+            </a>
+        </div>
+        <!--List Name-->
+        <div class="col">
+            <h2 class="text-white text-center">
+                <strong>
+                    Branch List
+                </strong>
+            </h2>
+        </div>
+        <!--Home Button-->
+        <div class="col">
+            <a href="/home" id="searchShow" class="btn btn-primary" tabindex="2">
+                <!--<i class="fa fa-user " style="font-size: 20px"></i>&nbsp;Add&nbsp;-->
+                <i class="fas fa-home" style="font-size: 20px"></i>&nbsp;&nbsp;Home
+            </a>
         </div>
     </div>
+</div>
+<!--Branches List-->
+<div class="container-fluid text-center">
+    <!--Table view-->
+    <div class="col">
+        <div class="col" id="branchListPresent" th:if="${not #lists.isEmpty(branchs)}">
+            <table class="table table-hover table-striped" id="myTable">
+                <thead>
+                <tr>
+                    <th> Index</th>
+                    <th> Name</th>
+                    <th> Land</th>
+                    <th> Address</th>
+                    <th> Email</th>
+                    <th> Modify</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="branch, rowCount : ${branchs}">
+                    <th th:text="${rowCount.count}"></th>
+                    <th th:text="${branch.name}"></th>
+                    <th th:text="${branch.land}"></th>
+                    <th th:text="${branch.address}"></th>
+                    <th th:text="${branch.email}"></th>
+                    <th>
+                        <a id="branchView" th:href="${'/branch/' + branch.id}" class="btn btn-primary btn-sm"><i
+                                class="fa fa-folder-open" style="font-size: 15px"></i>&nbsp;View</a>
+                        <a id="branchEdit" th:href="${'/branch/edit/' + branch.id}" class="btn btn-success btn-sm"><i
+                                class="fa fa-edit" style="font-size: 15px"></i>&nbsp;Edit</a>
+                        <a id="branchRemove" th:href="${'/branch/delete/' + branch.id}" class="btn btn-danger btn-sm">
+                            <!--th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" --> <i
+                                class="fa fa-trash" style="font-size: 15px"></i>
+                            Delete</a>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--Error-->
+    <div class="row" th:if="${ #lists.isEmpty(branchs)}">
+        <div class="col-sm-12">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="text-center text-danger">
+                    <strong>There is no branch upto now please add branch to the system
+                        using "New" button.
+                    </strong>
+                </h3>
+            </div>
+        </div>
+        <script>
+            /*active boostrap alert - start*/
+            $(".alert").alert();
+            /*active boostrap alert - end*/
+        </script>
+    </div>
+    <!--Save Message-->
+    <div class="row" th:if="${branchDetail != null}">
+        <div class="col-sm-12">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div th:replace="~{branch/branch-detail :: branchDetailsFragment}"></div>
+            </div>
+        </div>
+        <script>
+            /*active boostrap alert - start*/
+            $(".alert").alert();
+            /*active boostrap alert - end*/
+        </script>
+    </div>
+</div>
+<!--footer include-->
+    </div>
+        <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+    </div><!-- wrapper end -->
+    <div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
 
-<!--<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script>&lt;!&ndash; script Fragment &ndash;&gt;-->
-
-</div><!-- content-wrapper end -->
-<footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
-</div><!-- wrapper end -->
-<!--<script th:replace="~{fragments/script :: scriptFragment}"></script>-->
-<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
 </body>
 </html>

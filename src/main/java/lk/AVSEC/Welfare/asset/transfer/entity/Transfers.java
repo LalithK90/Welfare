@@ -1,8 +1,8 @@
-package lk.AVSEC.Welfare.asset.transfers.entity;
+package lk.AVSEC.Welfare.asset.transfer.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import lk.AVSEC.Welfare.asset.transfers.entity.Enum.TransferReason;
+import lk.AVSEC.Welfare.asset.transfer.entity.Enum.TransferReason;
 import lk.AVSEC.Welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

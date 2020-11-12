@@ -17,7 +17,6 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/briefing")
 public class BriefingController implements AbstractController<Briefing, Integer> {
-
     private final BriefingService briefingService;
 
     @Autowired
