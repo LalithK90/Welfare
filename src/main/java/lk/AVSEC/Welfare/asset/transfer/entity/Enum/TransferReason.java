@@ -1,4 +1,4 @@
-package lk.AVSEC.Welfare.asset.transfers.entity.Enum;
+package lk.AVSEC.Welfare.asset.transfer.entity.Enum;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
