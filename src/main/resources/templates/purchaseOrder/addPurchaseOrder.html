@@ -171,8 +171,12 @@
 <input data-th-if="${supplierDetailShow==false}" data-th-value="${purchaseOrderItemUrl}" hidden
        id="purchaseOrderItemUrl" type="text">
 <!--Supplier Item add - end-->
-<footer data-th-replace="~{fragments/footer :: footerFragment}"></footer>
-<script data-th-replace="~{fragments/script :: scriptFragment}"></script>
+    </div>
+    <!--footer include-->
+    <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+</div><!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+
 <script>
     //when change supplier search criteria that value set search value input
     $(document).ready(function () {

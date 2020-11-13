@@ -52,10 +52,11 @@
                             <div class="card-body">
                                 <h4>Designation </h4>
                                <!--if not empty list-->
-                                    <div class="row" id="designationListTable"
-                                         data-th-if="${not #lists.isEmpty(designations)}">
-                                        <table class="table table-hover table-striped" id="myTable">
-                                            <thead class="thead-inverse">
+
+                                        <table class="table table-hover" id="myTable">
+                                            <div class="row" id="designationListTable"
+                                                 data-th-if="${not #lists.isEmpty(designations)}">
+                                            <thead>
                                             <tr>
                                                 <th>Index</th>
                                                 <th>Designation</th>
@@ -95,8 +96,9 @@
 
                                             </tr>
                                             </tbody>
+                                            </div>
                                         </table>
-                                    </div>
+
                                 <!--if empty list-->
                                 <div class="row" id="designationNotList" data-th-if="${ #lists.isEmpty(designations)}">
                                       <div class="alert alert-warning alert-dismissible fade show" role="alert">

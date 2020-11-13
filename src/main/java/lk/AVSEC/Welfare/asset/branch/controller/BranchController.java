@@ -4,8 +4,7 @@ package lk.AVSEC.Welfare.asset.branch.controller;
 
 import lk.AVSEC.Welfare.asset.branch.entity.Branch;
 import lk.AVSEC.Welfare.asset.branch.service.BranchService;
-import lk.AVSEC.Welfare.asset.briefing.entity.Briefing;
-import lk.AVSEC.Welfare.asset.briefing.service.BriefingService;
+
 import lk.AVSEC.Welfare.util.interfaces.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
