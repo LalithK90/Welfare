@@ -130,21 +130,16 @@ public class DependentController {
       } else {
         dependentEmployee.setDependent(dependentService.findByNic(dependent.getNic()));
       }
-      dependentEmployee.setEmployeeOne(employee);
-      dependentEmployee.setInsideOrOut(InsideOrOut.IN);
-      dependentEmployee.setRelationship(dependent.getRelationship());
 
-      redirectAttributes.addFlashAttribute("dependentDetail", dependentEmployeeService.persist(dependentEmployee));
-      return "redirect:/dependent";
     } else {
       //if dependent has not id only
       dependentEmployee.setDependent(makeDependent(dependent));
-      dependentEmployee.setEmployeeOne(employee);
-      dependentEmployee.setInsideOrOut(InsideOrOut.IN);
-      dependentEmployee.setRelationship(dependent.getRelationship());
-      redirectAttributes.addFlashAttribute("dependentDetail", dependentEmployeeService.persist(dependentEmployee));
-      return "redirect:/dependent";
     }
+    dependentEmployee.setEmployeeOne(employee);
+    dependentEmployee.setInsideOrOut(InsideOrOut.IN);
+    dependentEmployee.setRelationship(dependent.getRelationship());
+    redirectAttributes.addFlashAttribute("dependentDetail", dependentEmployeeService.persist(dependentEmployee));
+    return "redirect:/dependent";
   }
 
   private Dependent makeDependent(Dependent dependent) {
