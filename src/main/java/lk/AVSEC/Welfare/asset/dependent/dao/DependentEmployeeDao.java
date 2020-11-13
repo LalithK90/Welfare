@@ -15,7 +15,6 @@ public interface DependentEmployeeDao extends JpaRepository<DependentEmployee, I
     Dependent findByDependent(Dependent dependent);
 
     DependentEmployee findByDependentAndEmployeeOne(Dependent dependent, Employee employee);
-    DependentEmployee findByDependentAndEmployeeTwo(Dependent dependent, Employee employee);
 
 
 /*//select * from district where province = ?1
