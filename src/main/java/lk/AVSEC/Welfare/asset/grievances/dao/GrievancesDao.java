@@ -19,4 +19,7 @@ public interface GrievancesDao extends JpaRepository<Grievance, Integer> {
     List<Grievance> findBySolutionTypeAndGrievancesStatusAndCreatedAtBetween(SolutionType solutionType, GrievancesStatus grievancesStatus, LocalDateTime form, LocalDateTime to);
 
     List<Grievance> findBySolutionTypeAndCreatedByAndCreatedAtBetween(SolutionType solutionType, String userName, LocalDateTime form, LocalDateTime to);
+
+  List< Grievance> findByCreatedBy(String userName);
+
 }

@@ -79,4 +79,7 @@ public class GrievancesService implements AbstractService<Grievance, Integer> {
     return grievancesDao.findBySolutionTypeAndGrievancesStatusAndCreatedAtBetween(cl,grievancesStatus,form,to);
     }
 
+  public List< Grievance> findByCreatedBy(String userName) {
+  return grievancesDao.findByCreatedBy(userName);
+    }
 }
