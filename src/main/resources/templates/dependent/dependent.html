@@ -6,7 +6,7 @@
     <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
     <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
     <div class="content-wrapper"><!-- content-wrapper Start -->
-        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
         <!-- /.content-header -->
         <!--form action button---------------------------------------------------------     -->
         <div class="row m-1">
@@ -14,23 +14,23 @@
                 <div class="text-right">
                     <div text-right>
                         <button type="button" class="btn btn-info btn-sm">
-                            <a  data-th-href="${'/dependent/add'}" >
-                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
+                            <a data-th-href="${'/dependent/add'}">
+                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1"></i></span>
                                 <span class="text-white"> Add Dependent </span></a>
                         </button>
                         <button type="button" class="btn btn-success btn-sm disabled">
-                            <a  data-th-href="${'/dependent'}" >
-                                <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >
+                            <a data-th-href="${'/dependent'}">
+                                <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1"></i></span>
                                 <span class="text-white"> View Dependent </span></a>
                         </button>
                         <button type="button" class="btn btn-warning btn-sm" onclick="myEdit()">
                             <!--                            <a  data-th-href="${'/designation/edit/'}" >-->
-                            <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >
+                            <span class="info-box-icon text-white"><i class="fas fa-edit"></i></span>
                             <span class="text-white"> Edit Dependent </span></a>
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" onclick="myDelete()">
                             <!--                            <a  data-th-href="${'/designation/remove/'}" >-->
-                            <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >
+                            <span class="info-box-icon text-white"><i class="fas fa-trash mr-1"></i></span>
                             <span class="text-white"> Delete Dependent </span></a>
 
                         </button>
@@ -47,10 +47,11 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-body table-responsive" id="dependentListTable"                                         >
-<!--                                        <h4>Secondary Header </h4>-->
+                                    <div class="card-body table-responsive" id="dependentListTable">
+                                        <!--                                        <h4>Secondary Header </h4>-->
                                         <!--if not empty list-->
-                                        <table class="table table-hover table-striped" id="myTable" th:if="${not #lists.isEmpty(dependents)}">
+                                        <table class="table table-hover table-striped" id="myTable"
+                                               th:if="${not #lists.isEmpty(dependents)}">
                                             <thead class="thead-inverse">
                                             <tr>
                                                 <th>Index</th>
@@ -64,20 +65,14 @@
                                             <tbody>
                                             <tr th:each="dependent, rowCount : ${dependents}" scope="row">
                                                 <td th:text="${rowCount.count}"></td>
-                                                <td th:if="${dependent.dependent!=null}"
-                                                    th:text="${dependent.dependent.name}"></td>
-                                                <td th:if="${dependent.employeeTwo != null}"
-                                                    th:text="${dependent.employeeTwo.name}"></td><td th:if="${dependent.employeeTwo != null}"
-                                                    th:text="${dependent.employeeTwo.name}"></td>
+                                                <td
+                                                        th:text="${dependent.dependent.name}"></td>
                                                 <td th:text="${dependent.relationship.relationship}"></td>
-                                                <td th:if="${dependent.dependent != null}"
-                                                    th:text="${dependent.dependent.nic}"></td>
-                                                <td th:if="${dependent.employeeTwo != null}"
-                                                    th:text="${dependent.employeeTwo.nic}"></td>
-                                                <td th:if="${dependent.dependent != null}"
-                                                    th:text="${dependent.dependent.currentStatus.currentStatus}"></td>
-                                                <td th:if="${dependent.employeeTwo != null}"
-                                                    th:text="${dependent.employeeTwo.employeeStatus.employeeStatus}"></td>
+                                                <td
+                                                        th:text="${dependent.dependent.nic}"></td>
+                                                <td
+                                                        th:text="${dependent.dependent.currentStatus.currentStatus}"></td>
+
 
                                                 <td>
                                                     <a class="btn btn-success btn-sm"
@@ -131,7 +126,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                                 <div class="container">
-                                                   <span>[[${message}]]</span> </div>
+                                                    <span>[[${message}]]</span></div>
                                             </div>
                                         </div>
                                     </div>
