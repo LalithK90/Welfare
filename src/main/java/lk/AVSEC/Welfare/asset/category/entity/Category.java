@@ -2,6 +2,7 @@ package lk.AVSEC.Welfare.asset.category.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import lk.AVSEC.Welfare.asset.item.entity.Enum.MainCategory;
 import lk.AVSEC.Welfare.asset.item.entity.Item;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +26,7 @@ public class Category {
     private Integer id;
 
     @Enumerated(EnumType.STRING)
-    private lk.AVSEC.Welfare.asset.item.entity.Enum.MainCategory mainCategory;
+    private MainCategory mainCategory;
 
     @Size(min = 3, message = "Your name cannot be accepted")
     private String name;

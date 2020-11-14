@@ -1,12 +1,13 @@
 package lk.AVSEC.Welfare.asset.category.controller;
 
 
+import lk.AVSEC.Welfare.asset.category.entity.Category;
+import lk.AVSEC.Welfare.asset.category.service.CategoryService;
+import lk.AVSEC.Welfare.asset.item.entity.Enum.MainCategory;
+import lk.AVSEC.Welfare.util.interfaces.AbstractController;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import lk.AVSEC.Welfare.asset.category.entity.Category;
-import lk.AVSEC.Welfare.asset.item.entity.Enum.MainCategory;
-import lk.AVSEC.Welfare.util.interfaces.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
@@ -19,16 +20,16 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/category")
-public abstract class CategoryController implements AbstractController<Category, Integer> {
-    private final lk.AVSEC.Welfare.asset.category.service.CategoryService categoryService;
+public class CategoryController  {
+    private final CategoryService categoryService;
 
     @Autowired
-    public CategoryController(lk.AVSEC.Welfare.asset.category.service.CategoryService categoryService) {
+    public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 
     private String commonThings(Model model, Category category, Boolean addState) {
-        model.addAttribute("mainCategories", lk.AVSEC.Welfare.asset.item.entity.Enum.MainCategory.values());
+        model.addAttribute("mainCategories", MainCategory.values());
         model.addAttribute("category", category);
         model.addAttribute("addStatus", addState);
         return "category/addCategory";
@@ -38,13 +39,6 @@ public abstract class CategoryController implements AbstractController<Category,
     public String findAll(Model model) {
         model.addAttribute("categorys", categoryService.findAll());
         return "category/category";
-    }
-
-
-
-    @Override
-    public String findById(Integer id, Model model) {
-        return null;
     }
 
     @GetMapping("/add")
@@ -57,7 +51,7 @@ public abstract class CategoryController implements AbstractController<Category,
         if (bindingResult.hasErrors()) {
             return commonThings(model, category, true);
         }
-category.setName(category.getName().toUpperCase());
+        category.setName(category.getName().toUpperCase());
         categoryService.persist(category);
         return "redirect:/category";
     }

@@ -4,7 +4,6 @@ package lk.AVSEC.Welfare.asset.branch.controller;
 
 import lk.AVSEC.Welfare.asset.branch.entity.Branch;
 import lk.AVSEC.Welfare.asset.branch.service.BranchService;
-
 import lk.AVSEC.Welfare.util.interfaces.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.validation.Valid;
 
 @Controller
@@ -29,13 +27,16 @@ import javax.validation.Valid;
     private String commonThings(Model model, Branch branch, Boolean addState) {
         model.addAttribute("branch", branch);
         model.addAttribute("addStatus", addState);
+        model.addAttribute("contendHeader", "Add New Branch");
         return "branch/addBranch";
     }
 
     @GetMapping
     public String findAll(Model model) {
         model.addAttribute("branches", branchService.findAll());
-        return "branch/branch";
+        model.addAttribute("contendHeader", "Branch List");
+//        return "branch/branch";
+        return "category/category";
     }
 
     @Override
