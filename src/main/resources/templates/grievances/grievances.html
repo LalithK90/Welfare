@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+  <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+  <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+  <div class="content-wrapper" ><!-- content-wrapper Start -->
+    <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+                                <!-- /.content-header -->
+                                <!--form action button---------------------------------------------------------     -->
+    <div class="row m-1" >
+      <div class="col-12" >
+        <div class="text-right" >
+          <div text-right >
+            <button type="button" class="btn btn-info btn-sm" >
+              <a data-th-href="${'/grievances/add'}" >
+                <span class="info-box-icon text-white" ><i class="fa fa-plus mr-1" ></i ></span >
+                <span class="text-white" > Add Grievances </span ></a >
+            </button >
+            <button type="button" class="btn btn-success btn-sm disabled" >
+              <a data-th-href="${'/grievances'}" >
+                <span class="info-box-icon text-white" ><i class="fas fa-folder-open mr-1" ></i ></span >
+                <span class="text-white" > View Grievances </span ></a >
+            </button >
+            <button type="button" class="btn btn-warning btn-sm" onclick="myEdit()" >
+              <!--                            <a  data-th-href="${'/designation/edit/'}" >-->
+              <span class="info-box-icon text-white" ><i class="fas fa-edit" ></i ></span >
+              <span class="text-white" > Edit Grievances </span ></a>
+            </button >
+            <button type="button" class="btn btn-danger btn-sm" onclick="myDelete()" >
+              <!--                            <a  data-th-href="${'/designation/remove/'}" >-->
+              <span class="info-box-icon text-white" ><i class="fas fa-trash mr-1" ></i ></span >
+              <span class="text-white" > Delete Grievances </span ></a>
+
+            </button >
+          </div >
+        </div >
+      </div >
+
+    </div >
+                                <!--form action end button---------------------------------------------------------     -->
+
+    <div class="content-header" >
+      <div class="container-fluid" >
+        <div class="row" >
+          <div class="col-md-12" >
+            hjjdjasdjasj
+            <div class="row" >
+              <div class="col-md-12" >
+                <div class="accordion" id="accordion" >
+                  <!--User pending-->
+                  <div class="card" >
+                    <div class="card-header" id="headingOne" >
+                      <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                              aria-expanded="true"
+                              aria-controls="collapseOne" >User Grievances - Pending
+                      </button >
+                    </div >
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion" >
+                      <div class="card-body" >
+                        <!--if not empty list-->
+                        <div class="card-body" th:if="${not #lists.isEmpty(toPending)}" >
+                          <table class="table" >
+                            <thead class="thead-inverse" >
+                            <tr >
+                              <th >Index</th >
+                              <th >Subject</th >
+                              <th >Grievance Status</th >
+                              <th >Solution Type</th >
+                              <th >Modify</th >
+                            </tr >
+                            </thead >
+                            <tbody >
+                            <tr th:each="grievance, rowCount : ${toPending}" >
+                              <th th:text="${rowCount.count}" ></th >
+                              <th th:text="${grievance.description}" ></th >
+                              <th th:text="${grievance.grievancesStatus.grievancesStatus}" ></th >
+                              <th th:text="${grievance.solutionType.solutionType}" ></th >
+                              <!--<th th:text="${grievances.priority}" ></th >-->
+
+                              <th ><a class="btn btn-success btn-sm" th:href="${'/grievances/' + grievance.id}"
+                              ><i
+                                    class="fa fa-folder-open" ></i >&nbsp;View</a >
+                                <a class="btn btn-primary btn-sm"
+                                   th:href="${'/grievances/edit/' + grievance.id}" ><i
+                                      class="fa fa-edit" ></i >&nbsp;Edit</a >
+                                <a class="btn btn-danger btn-sm"
+                                   th:href="${'/grievances/remove/' + grievance.id}"
+                                   th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                   th:onclick="if(!(confirm('Are you want to delete this grievances ?'))) return false"
+                                ><i
+                                      aria-hidden="true" class="fa fa-trash" ></i >
+                                  Delete</a >
+
+                              </th >
+                            </tr >
+                            </tbody >
+                          </table >
+                        </div >
+                        <!--if empty list-->
+                        <div class="row" th:if="${ #lists.isEmpty(toPending)}" >
+
+                          <div class="alert alert-info" role="alert" >
+
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                              <span aria-hidden="true" >&times;</span >
+                            </button >
+                            <h4 class="alert-heading" >Info!</h4 >
+                            <p >Please read the provided information.</p >
+                            <p > There is no any grievance upto now please so if you wish to add grievance, please press
+                                 the <a
+                                    th:href="${'/grievance/add'}" class="alert-link" >Add grievance</a > button.
+                            </p ></div >
+                        </div >
+
+                      </div >
+                    </div >
+                  </div >
+                  <!--User finished-->
+                  <div class="card" >
+                    <div class="card-header" id="headingTwo" >
+                      <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+                              data-target="#collapseTwo"
+                              aria-expanded="false" aria-controls="collapseTwo" >User Grievances - Finish
+                      </button >
+                    </div >
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion" >
+                      <!--if not empty list-->
+                      <div class="card-body" th:if="${not #lists.isEmpty(toClose)}" >
+                        <table class="table" >
+                          <thead class="thead-inverse" >
+                          <tr >
+                            <th >Index</th >
+                            <th >Subject</th >
+                            <th >Grievance Status</th >
+                            <th >Solution Type</th >
+                            <th >Modify</th >
+                          </tr >
+                          </thead >
+                          <tbody >
+                          <tr th:each="grievance, rowCount : ${toClose}" >
+                            <th th:text="${rowCount.count}" ></th >
+                            <th th:text="${grievance.description}" ></th >
+                            <th th:text="${grievance.grievancesStatus.grievancesStatus}" ></th >
+                            <th th:text="${grievance.solutionType.solutionType}" ></th >
+                            <!--<th th:text="${grievances.priority}" ></th >-->
+
+                            <th ><a class="btn btn-success btn-sm" th:href="${'/grievances/' + grievance.id}"
+                            ><i
+                                  class="fa fa-folder-open" ></i >&nbsp;View</a >
+                              <a class="btn btn-primary btn-sm"
+                                 th:href="${'/grievances/edit/' + grievance.id}" ><i
+                                    class="fa fa-edit" ></i >&nbsp;Edit</a >
+                              <a class="btn btn-danger btn-sm"
+                                 th:href="${'/grievances/remove/' + grievance.id}"
+                                 th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                 th:onclick="if(!(confirm('Are you want to delete this grievances ?'))) return false"
+                              ><i
+                                    aria-hidden="true" class="fa fa-trash" ></i >
+                                Delete</a >
+
+                            </th >
+                          </tr >
+                          </tbody >
+                        </table >
+                      </div >
+                      <!--if empty list-->
+                      <div class="row" th:if="${ #lists.isEmpty(toClose)}" >
+
+                        <div class="alert alert-info" role="alert" >
+
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                            <span aria-hidden="true" >&times;</span >
+                          </button >
+                          <h4 class="alert-heading" >Info!</h4 >
+                          <p >Please read the provided information.</p >
+                          <p > There is no any grievance upto now please so if you wish to add grievance, please press
+                               the <a
+                                  th:href="${'/grievance/add'}" class="alert-link" >Add grievance</a > button.
+                          </p ></div >
+                      </div >
+
+                    </div >
+                  </div >
+                  <!--Personal Pending-->
+                  <div class="card" >
+                    <div class="card-header" id="headingThree" >
+                      <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+                              data-target="#collapseThree"
+                              aria-expanded="false" aria-controls="collapseThree" >My Grievances - Pending
+                      </button >
+                    </div >
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion" >
+                                    <!--if not empty list-->
+                      <div class="card-body" th:if="${not #lists.isEmpty(personalToPending)}" >
+                        <table class="table" >
+                          <thead class="thead-inverse" >
+                          <tr >
+                            <th >Index</th >
+                            <th >Subject</th >
+                            <th >Grievance Status</th >
+                            <th >Solution Type</th >
+                            <th >Modify</th >
+                          </tr >
+                          </thead >
+                          <tbody >
+                          <tr th:each="grievance, rowCount : ${personalToPending}" scope="row" >
+                            <th th:text="${rowCount.count}" ></th >
+                            <th th:text="${grievance.description}" ></th >
+                            <th th:text="${grievance.grievancesStatus.grievancesStatus}" ></th >
+                            <th th:text="${grievance.solutionType.solutionType}" ></th >
+                            <!--<th th:text="${grievances.priority}" ></th >-->
+
+                            <th ><a class="btn btn-success btn-sm" th:href="${'/grievances/' + grievance.id}"
+                            ><i
+                                  class="fa fa-folder-open" ></i >&nbsp;View</a >
+                              <a class="btn btn-primary btn-sm"
+                                 th:href="${'/grievances/edit/' + grievance.id}" ><i
+                                    class="fa fa-edit" ></i >&nbsp;Edit</a >
+                              <a class="btn btn-danger btn-sm"
+                                 th:href="${'/grievances/remove/' + grievance.id}"
+                                 th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                 th:onclick="if(!(confirm('Are you want to delete this grievances ?'))) return false"
+                              ><i
+                                    aria-hidden="true" class="fa fa-trash" ></i >
+                                Delete</a >
+
+                            </th >
+                          </tr >
+                          </tbody >
+                        </table >
+                      </div >
+                      <!--if empty list-->
+                      <div class="row" th:if="${ #lists.isEmpty(personalToPending)}" >
+
+                        <div class="alert alert-info" role="alert" >
+
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                            <span aria-hidden="true" >&times;</span >
+                          </button >
+                          <h4 class="alert-heading" >Info!</h4 >
+                          <p >Please read the provided information.</p >
+                          <p > There is no any grievance upto now please so if you wish to add grievance, please press
+                               the <a
+                                  th:href="${'/grievance/add'}" class="alert-link" >Add grievance</a > button.
+                          </p ></div >
+                      </div >
+
+                    </div >
+                  </div >
+                  <!--Personal finished-->
+                  <div class="card" >
+                    <div class="card-header" id="headingFour" >
+                      <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+                              data-target="#collapseFour"
+                              aria-expanded="false" aria-controls="collapseFour" >My Grievances - Finish
+                      </button >
+                    </div >
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion" >
+                                  <!--if not empty list-->
+                      <div class="card-body" th:if="${not #lists.isEmpty(personalToClose)}" >
+                        <table class="table" >
+                          <thead class="thead-inverse" >
+                          <tr >
+                            <th >Index</th >
+                            <th >Subject</th >
+                            <th >Grievance Status</th >
+                            <th >Solution Type</th >
+                            <th >Modify</th >
+                          </tr >
+                          </thead >
+                          <tbody >
+                          <tr th:each="grievance, rowCount : ${personalToClose}" scope="row" >
+                            <th th:text="${rowCount.count}" ></th >
+                            <th th:text="${grievance.description}" ></th >
+                            <th th:text="${grievance.grievancesStatus.grievancesStatus}" ></th >
+                            <th th:text="${grievance.solutionType.solutionType}" ></th >
+                            <!--<th th:text="${grievances.priority}" ></th >-->
+
+                            <th ><a class="btn btn-success btn-sm" th:href="${'/grievances/' + grievance.id}"
+                            ><i
+                                  class="fa fa-folder-open" ></i >&nbsp;View</a >
+                              <a class="btn btn-primary btn-sm"
+                                 th:href="${'/grievances/edit/' + grievance.id}" ><i
+                                    class="fa fa-edit" ></i >&nbsp;Edit</a >
+                              <a class="btn btn-danger btn-sm"
+                                 th:href="${'/grievances/remove/' + grievance.id}"
+                                 th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                 th:onclick="if(!(confirm('Are you want to delete this grievances ?'))) return false"
+                              ><i
+                                    aria-hidden="true" class="fa fa-trash" ></i >
+                                Delete</a >
+
+                            </th >
+                          </tr >
+                          </tbody >
+                        </table >
+                      </div >
+                      <!--if empty list-->
+                      <div class="row" th:if="${ #lists.isEmpty(personalToClose)}" >
+
+                        <div class="alert alert-info" role="alert" >
+
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                            <span aria-hidden="true" >&times;</span >
+                          </button >
+                          <h4 class="alert-heading" >Info!</h4 >
+                          <p >Please read the provided information.</p >
+                          <p > There is no any grievance upto now please so if you wish to add grievance, please press
+                               the <a
+                                  th:href="${'/grievance/add'}" class="alert-link" >Add grievance</a > button.
+                          </p ></div >
+                      </div >
+
+                    </div >
+                  </div >
+                </div >
+              </div >
+            </div >
+          </div >
+        </div >
+      </div >
+    </div >
+  </div >
+</div ><!-- content-wrapper end -->
+<div th:replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
+       <!-- wrapper end -->
+<div th:replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div ><!-- script Fragment -->
+</body >
+</html >
+

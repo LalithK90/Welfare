@@ -1,0 +1,57 @@
+<!doctype html>
+    <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <!--<section data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section>-->
+        <!-- Small Box Set -->
+
+        <div class="content-header">
+            <div class="container-fluid">
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <!--<div class="card-body">
+                                    <h4>Secondary Header </h4>-->
+                                <div class="card-body">
+                                    <div><blockquote>
+                                        <p th:text="${successMessage}"></p>
+                                    </blockquote></div>
+                                    <form action="/register/token" method="post">
+                                        <div class="form-group">
+                                            <label class="control-label" for="myPassword">Your Email Address</label>
+                                            <input id="myPassword" type="email" name="email" required class="form-control"><br>
+                                            <button class="btn btn-success form-control d-flex m-auto" type="submit">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- content-wrapper end -->
+<div data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+<!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+</body>
+</html>

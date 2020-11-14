@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerSectionFragment">
+    <title th:if="${headerTitle==null}" th:text="${'AVSEC WMS'}"></title>
+    <title th:if="${headerTitle!=null}" th:text="${headerTitle}"></title>
+     <!--Required meta tags-->
+    <meta charset="utf-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <!-- Bootstrap core CSS Downloaded file add-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap core CSS Downloaded file add-->
+    <link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css} " media="all" rel="stylesheet" type="text/css"/>
+
+
+    <noscript><link th:href="@{/css/noscript.css}" media="all" rel="stylesheet" type="text/css"/></noscript>
+
+    <!--Pdf js -->
+    <!--<link th:href="@{/webjarsa/pdf-js/2.3.200/web/viewer.css}" media="all" rel="stylesheet" type="text/css">-->
+
+    <!--Chart js-->
+    <link th:href="@{/webjars/chart.js/2.9.3/dist/Chart.min.css}" media="all" rel="stylesheet" type="text/css">
+
+    <!--table pagination-->
+    <link th:href="@{/css/dataTables.bootstrap.min.css}" media="all" rel="stylesheet" type="text/css"/>
+
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/myCss.css}" media="all" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/newsLine.css}" media="all" rel="stylesheet" type="text/css"/>
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/form.css}" media="all" rel="stylesheet" type="text/css"/>
+    <!-- fontawesome css -->
+    <link th:href="@{/webjars/font-awesome/5.11.2/css/fontawesome.min.css} " media="all" rel="stylesheet" type="text/css"/>
+    <!--image uploader css-->
+    <!--<link th:href="@{/css/image-uploader.min.css}" media="all" rel="stylesheet" type="text/css"/>-->
+    <!--Floating Label-->
+    <link th:href="@{/css/floating-labels.css}" media="all" rel="stylesheet" type="text/css"/>
+
+    <!-- Font Awesome -->
+    <!--<link th:href="@{/css/all.min.css}" media="all" rel="stylesheet" type="text/css"/>-->
+    <link th:href="@{/css/datatables.css}" media="all" rel="stylesheet" type="text/css"/>
+    <!-- Ionicons -->
+    <link th:href="@{/css/ionicons.min.css}" media="all" rel="stylesheet" type="text/css"/>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link th:href="@{/css/tempusdominus-bootstrap-4.min.css}" media="all" rel="stylesheet" type="text/css"/>
+    <!-- iCheck -->
+    <link th:href="@{/css/icheck-bootstrap.min.css}" media="all" rel="stylesheet" type="text/css"/>
+    <!-- JQVMap -->
+    <link th:href="@{/css/jqvmap.min.css}" media="all" rel="stylesheet" type="text/css"/>
+    <!-- Theme style -->
+    <link th:href="@{/css/adminlte.min.css}" media="all" rel="stylesheet" type="text/css"/>
+    <!-- overlayScrollbars -->
+    <link th:href="@{/css/OverlayScrollbars.min.css}" media="all" rel="stylesheet" type="text/css"/>
+    <!-- Date range picker -->
+    <link th:href="@{/css/daterangepicker.css}" media="all" rel="stylesheet" type="text/css"/>
+    <!-- summer note -->
+    <link th:href="@{/css/summernote-bs4.css}" media="all" rel="stylesheet" type="text/css"/>
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" media="all" rel="stylesheet" type="text/css"/>
+
+</head>
+</html>

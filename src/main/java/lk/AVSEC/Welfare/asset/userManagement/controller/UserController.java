@@ -1,7 +1,7 @@
 package lk.AVSEC.Welfare.asset.userManagement.controller;
 
+import lk.AVSEC.Welfare.asset.designation.entity.Designation;
 import lk.AVSEC.Welfare.asset.employee.entity.Employee;
-import lk.AVSEC.Welfare.asset.employee.entity.Enum.Designation;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.EmployeeStatus;
 import lk.AVSEC.Welfare.asset.employee.service.EmployeeService;
 import lk.AVSEC.Welfare.asset.userManagement.entity.User;
@@ -13,10 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 

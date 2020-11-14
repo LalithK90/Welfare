@@ -1,373 +1,570 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/header :: headerFragment}">
-    <meta charset="UTF-8">
-    <title>Thymeleaf Springboot </title>
-</head>
-<body>
-<nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
+<!doctype html>
+<html lang="en" >
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+  <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+  <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+  <div class="content-wrapper" ><!-- content-wrapper Start -->
+    <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
 
-<div class="container-fluid bg-secondary form-Border">
-    <div class="row text-center formManagement border-info">
-        <div class="col">
-            <a class="btn btn-primary" href="/home">
-                <i class="fa fa-home" style="font-size: 20px"></i> &nbsp; Home
-            </a>
-        </div>
-        <div class="col">
-            <h4 class="text-light text-center">
-                <strong>
-                    <span th:text="${addStatus==true?'New Employee Add':'Update Employee Details'}"></span>
-                </strong>
-            </h4>
-        </div>
-        <div class="col">
-            <a href="/employee" class="btn btn-primary">
-                <i class="fa fa-list"></i>&nbsp; View List
-            </a>
-        </div>
-    </div>
-</div>
-<!--Form Content - start -->
-<div class="container-fluid bg-dark formBorder">
-    <div class="col-sm-12 flex-column ">
-        <form id="form" class="form-horizontal" th:action="${addStatus==true?'/employee/add':'/employee/update'}"
-              th:object="${employee}" method="POST" enctype="multipart/form-data">
-            <div class="row">
-                <!--Left Side-->
-                <div class="form-group col-md-6 col-sm-6 text-left flex-column">
-                    <!--Id-->
-                    <div id="idStatus" th:if="${addStatus==false}" class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="id">ID :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input id="id" th:field="*{id}" class="form-control" type="text" readonly/>
-                        </div>
-                    </div>
-                    <!--Tittle -->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="title">Title :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <select id="title" th:field="*{title}" class="form-control" tabindex="3" required>
-                                <option value="">Please select</option>
-                                <option th:each="titles : ${title}"
-                                        th:text="${titles.title}"
-                                        th:value="${titles}"
-                                        th:selected="${titles==employee.title?'selected':'unselected'}"></option>
-                            </select>
-                        </div>
-                    </div>
-                    <!--Name-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="name">Name :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input id="name" th:field="*{name}" class="form-control" tabindex="4" type="text" required/>
-                            <span id="nameError" th:errors="*{name}"
-                                  th:if="${#fields.hasErrors('name')}" class="error">Error Name</span>
-                        </div>
-                    </div>
-                    <!--Calling Name-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="callingName">Calling Name :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input id="callingName" th:field="*{callingName}" class="form-control" tabindex="5"
-                                   type="text" minlength="5"/>
-                            <span class="error" th:errors="*{callingName}"
-                                  th:if="${#fields.hasErrors('callingName')}" id="callingNameError">Error
-                                                                       Calling                                                                                                                        Name</span>
-                        </div>
-                    </div>
-                    <!--Nic-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="nic">NIC No :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input id="nic" th:field="*{nic}" class="form-control" tabindex="6" type="text"
+    <!--form action button---------------------------------------------------------     -->
+    <div class="row m-1" >
+      <div class="col-12" >
+        <div class="text-right" >
+          <div text-right >
+            <button type="button" class="btn btn-success btn-sm mr-lg-1" >
+              <a data-th-href="${'/employee'}" >
+                <span class="info-box-icon text-white" ><i class="fas fa-folder-open mr-1" ></i ></span >
+                <span class="text-white" > View Employee </span ></a >
+            </button >
+          </div >
+        </div >
+      </div >
+    </div >
+    <!--form action end button---------------------------------------------------------     -->
+    <div class="content-header" >
+      <div class="container-fluid" >
+        <div class="row" >
+          <div class="col-md-12" >
+            <div class="row" >
+              <div class="col-md-12" >
+                <div class="card" >
+                  <div class="card-body" >
+                    <!-- <h4>
+                       <div data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"/>
+                     </h4>-->
+                    <form data-th-action="${addStatus==true?'/employee/save' :'/employee/update'}"
+                          method="post" data-th-object="${employee}" enctype="multipart/form-data" >
+                      <!--Employee personal data-->
+                      <div class="row" >
+                        <!--left side-->
+                        <div class="col-md-6" ><!--Left Side-->
+                                               <!--ID -->
+                          <div id="idStatus" data-th-if="${addStatus==false}"
+                               class="form-row text-right" >
+
+                            <label class="control-label" for="id" >ID :</label >
+
+
+                            <input id="id" data-th-field="*{id}" class="form-control"
+                                   type="text"
+                                   readonly />
+
+                          </div >
+                                               <!--Name-->
+                          <div class="form-group" >
+                            <label class="control-label" for="name" >Name :</label >
+                            <div class="form-row" >
+                              <select id="title" data-th-field="*{title}"
+                                      class="form-control col-2"
+                                      autofocus="autofocus" required >
+                                <option data-th-each="titles : ${title}"
+                                        data-th-text="${titles.title}"
+                                        data-th-value="${titles}"
+                                        data-th-selected="${titles==employee.title?'selected':'unselected'}" ></option >
+                              </select >
+                              <input id="name" data-th-field="*{name}"
+                                     class="form-control col-10"
+                                     type="text" required />
+                              <span id="nameError" data-th-errors="*{name}"
+                                    data-th-if="${#fields.hasErrors('name')}"
+                                    class="error" >Error Name</span >
+                            </div >
+                          </div >
+                                               <!--Full Name-->
+                          <div class="form-group" >
+                            <label class="control-label" for="name" >Full Name :</label >
+                            <input id="fullName" data-th-field="*{fullName}"
+                                   class="form-control"
+                                   type="text" tabindex="2" required />
+                            <span id="fullNameError" data-th-errors="*{fullName}"
+                                  data-th-if="${#fields.hasErrors('fullName')}"
+                                  class="error" >Error Full Name</span >
+                          </div >
+                                               <!--Calling Name-->
+                          <div class="form-group" >
+                            <label class="control-label" for="callingName" >Calling Name
+                                                                            :</label >
+                            <input id="callingName" data-th-field="*{callingName}"
+                                   class="form-control" tabindex="3" type="text"
+                                   minlength="5" />
+                            <span class="error" data-th-errors="*{callingName}"
+                                  data-th-if="${#fields.hasErrors('callingName')}"
+                                  id="callingNameError" >Error
+                                                                       Calling                                                                                                                        Name</span >
+                          </div >
+                                               <!--Nic-->
+                          <div class="form-group" >
+                            <label class="control-label" for="nic" >NIC No :</label >
+                            <input id="nic" data-th-field="*{nic}" class="form-control"
+                                   tabindex="4" type="text"
                                    maxlength="12"
-                                   minlength="10" required/>
-                            <span class="error" id="nicError" th:errors="*{nic}"
-                                  th:if="${#fields.hasErrors('nic')}">Error
-                                                               NIC Number</span>
-                        </div>
-                    </div>
-                    <!--Gender-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="gender">Gender :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <select id="gender" th:field="*{gender}" class="form-control" tabindex="7" required>
-                                <option value="">Please select</option>
-                                <option th:each="genders : ${gender}"
-                                        th:text="${genders.gender}"
-                                        th:value="${genders}"
-                                        th:selected="${genders==employee.gender?'selected':'unselected'}"></option>
-                            </select>
-                        </div>
-                    </div>
-                    <!--Date of birth-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="dateOfBirth">Birth date :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input id="dateOfBirth" th:field="*{dateOfBirth}" class="form-control" tabindex="8"
+                                   minlength="10" required />
+                            <span class="error" id="nicError" data-th-errors="*{nic}"
+                                  data-th-if="${#fields.hasErrors('nic')}" >Error
+                                                               NIC Number</span >
+                          </div >
+                                               <!--Gender-->
+                          <div class="form-group" >
+                            <label data-th-for="${gender}" >Gender:</label >
+                            <!--Radio button-->
+                            <div class="col" >
+                              <div class="custom-control custom-checkbox custom-control-inline "
+                                   data-th-each="genders,index : ${gender}" >
+                                <input class="custom-control-input gender" tabindex="-1" required
+                                       data-th-name="${'gender'}"
+                                       data-th-value="${genders}"
+                                       data-th-id="${index.index}+${genders}"
+                                       type="radio"
+                                       data-th-checked="${genders==gender}" />
+                                <label class="custom-control-label" tabindex="-1"
+                                       data-th-for="${index.index}+${genders}"
+                                       data-th-text="${genders.gender}" > radio
+                                </label >
+                              </div >
+                            </div >
+                          </div >
+                                               <!--Date of birth-->
+                          <div class="form-group" >
+                            <label class="control-label" for="dateOfBirth" >Birth date
+                                                                            :</label >
+                            <input id="dateOfBirth" data-th-field="*{dateOfBirth}"
+                                   class="form-control" tabindex="-1"
                                    placeholder="Ex: 1990 - 01 - 20"
-                                   required type="date"/>
-                            <span id="dateOfBirthError" th:errors="*{dateOfBirth}"
-                                  th:if="${#fields.hasErrors('dateOfBirth')}" class="error">Error Birthday</span>
-                        </div>
-                    </div>
-                    <!--Blood group-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="bloodGroup">Blood Group :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <select id="bloodGroup" th:field="*{bloodGroup}" class="form-control" tabindex="9" required>
-                                <option value="">Please select</option>
-                                <option th:each="bloodGroups : ${bloodGroup}"
-                                        th:text="${bloodGroups.bloodGroup}"
-                                        th:value="${bloodGroups}"
-                                        th:selected="${bloodGroups==employee.bloodGroup?'selected':'unselected'}">Please select</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!--Designation-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="designation">Designation :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <select id="designation" th:field="*{designation}" class="form-control" tabindex="10" required>
-                                <option value="">Please select</option>
-                                <option th:each="designations : ${designation}"
-                                        th:text="${designations.designation}"
-                                        th:value="${designations}"
-                                        th:selected="${designations==employee.designation?'selected':'unselected'}"></option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <!--Right Side-->
-                <div class="form-group col-md-6 col-sm-6 text-right flex-column">
-                    <!--Civil status-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="civilStatus">Civil State :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <select th:field="*{civilStatus}" id="civilStatus" class="form-control" tabindex="11" required>
-                                <option value="">Please select</option>
-                                <option th:each="civilStatu : ${civilStatus}"
-                                        th:text="${civilStatu.CivilStatus}"
-                                        th:value="${civilStatu}"
-                                        th:selected="${civilStatu==employee.civilStatus?'selected':'unselected'}"></option>
-                            </select>
-                        </div>
-                    </div>
-                    <!--Address-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="address">Address :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <textarea id="address" th:field="*{address}" class="form-control" tabindex="12" required></textarea>
-                            <span class="error" th:errors="*{address}"
-                                  th:if="${#fields.hasErrors('address')}" id="addressError">Error Address</span>
-                        </div>
-                    </div>
-                    <!--Mobile Number One-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="mobileOne">Mobile One No :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input id="mobileOne" th:field="*{mobileOne}" class="form-control mobile" tabindex="13" type="text"
-                                   maxlength="10" min="9"
-                                   required/>
-                            <span class="error" th:errors="*{mobileOne}"
-                                  th:if="${#fields.hasErrors('mobileOne')}" id="mobileOneError">Error Mobile Number</span>
-                        </div>
-                    </div>
-                    <!--Mobile Number Two-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="mobileTwo">Mobile Two No :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input id="mobileTwo" th:field="*{mobileTwo}" class="form-control mobile" tabindex="14" type="text"
-                                   maxlength="10" min="9"/>
-                            <span class="error" th:errors="*{mobileTwo}"
-                                  th:if="${#fields.hasErrors('mobileTwo')}" id="mobileTwoError">Error Mobile  Number</span>
-                        </div>
-                    </div>
-                    <!--Land Number-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="land">Land No :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input id="land" th:field="*{land}" class="form-control land" type="text" tabindex="15" maxlength="10"
-                                   min="9"/>
-                            <span class="error" th:errors="*{land}"
-                                  th:if="${#fields.hasErrors('land')}" id="landError">Error Land Number</span>
-                        </div>
-                    </div>
-                    <!--Email-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="email">Email :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input id="email" th:field="*{email}" class="form-control" tabindex="16" type="email" required/>
-                            <span class="error" th:errors="*{email}"
-                                  th:if="${#fields.hasErrors('email')}" id="emailError">Error Email</span>
-                        </div>
-                    </div>
-                    <!--Office email-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="officeEmail">Office Email :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input id="officeEmail" th:field="*{officeEmail}" class="form-control" tabindex="17" type="email" required/>
-                            <span class="error" th:errors="*{officeEmail}"
-                                  th:if="${#fields.hasErrors('officeEmail')}" id="officeEmailError">Error Office Email</span>
-                        </div>
-                    </div>
-                    <!--Date of assignment-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="dateOfAssignment">Date Of Assignment :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input id="dateOfAssignment" th:field="*{{dateOfAssignment}}" type="date" class="form-control" tabindex="18"
-                                   placeholder="Ex: 1990 - 01 - 20" required/>
-                            <span class="error" th:errors="*{dateOfAssignment}"
-                                  th:if="${#fields.hasErrors('dateOfAssignment')}" id="dateOfAssignmentError">Error Date Of Assignment</span>
-                        </div>
-                    </div>
-                    <!--Employee status-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="employeeStatus">Employee Status :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <select id="employeeStatus" th:field="*{employeeStatus}" class="form-control" tabindex="19" required>
-                                <option value="">Please select</option>
-                                <option th:each="employeeStatuss : ${employeeStatus}"
-                                        th:text="${employeeStatuss.employeeStatus}"
-                                        th:value="${employeeStatuss}"
-                                        th:selected="${employeeStatuss==employee.employeeStatus?'selected':'unselected'}"></option>
-                            </select>
-                        </div>
-                    </div>
-                    <!--Current Working Place-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="workingPlace">Employee Working Place :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <select id="workingPlace" th:field="*{workingPlace}" class="form-control" tabindex="20" required>
-                                <option value="">Please select</option>
-                                <option th:each="workingPlace : ${workingPlaces}"
-                                        th:text="${workingPlace.name}"
-                                        th:value="${workingPlace.id}"></option>
-                            </select>
-                        </div>
-                    </div>
-                    <!--Created by and created at-->
-                    <div id="updateStatus" th:if="${addStatus==false}">
-                        <div class="form-row text-right">
-                            <div class="col-md-4">
-                                <label class="control-label" for="createdBy">Created By :</label>
-                            </div>
-                            <div class="col-md-8">
-                                <input id="createdBy" th:field="*{createdBy}" class="form-control" type="text" readonly/>
-                            </div>
-                        </div>
-                        <div class="form-row text-right">
-                            <div class="col-md-4">
-                                <label class="control-label" for="createdAt">Created At :</label>
-                            </div>
-                            <div class="col-md-8">
-                                <input id="createdAt" th:text="${{createdAt}}" class="form-control" type="text" readonly/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-md-12 col-sm-12 text-left flex-column ">
-                    <div class="input-field">
-                        <label class="active ">Photos :</label>
-                        <label>Please remove numbers where included in image number </label>
-                        <div class="input-images" style="padding-top: .5rem;"></div>
-                    </div>
-                    <div class="col" id="photoDetails" th:if="${addStatus==false}">
-                        <div>
-                            <label class="control-label ">Photo Details : </label>
-                        </div>
-                        <div class="row">
-                            <div class="col" id="filesList" th:each="file, rowStat: ${files}">
-                                <div class="col">
-                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                        <button id="alertClose" type="button" class="close" data-dismiss="alert"
-                                                aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        <div class="card text-center">
-                                            <div class="card-header" hidden>
-                                                <input id="removeImages" th:value="${file.filename}" type="text" name="removeImages"></div>
-                                            <div class="card-body">
-                                                <img id="img" class="rounded" src="" th:src="${file.url}"
-                                                     style="height: 150px; width: 150px; border-radius: 10px" alt=""/>
-                                            </div>
-                                            <div class="card-footer bg-secondary text-light text-center">
-                                                <p id="imgName" th:text="${file.filename}"></p>
-                                                <p> Uploaded Date : <span id="imgCreateAt" th:text="${{file.createAt}}"></span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <script>
-                                    $(".alert").alert();
-                                </script>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Button-->
-                    <div class="form-group col-md-12 col-sm-12 text-center flex-column ">
-                        <button class="btn btn-success" type="submit" tabindex="21">
-                            <i class="fa fa-save " style="font-size: 20px"></i>&nbsp; &nbsp;<span id="submit" th:text="${addStatus==true?'Save': 'Update'}"></span>
-                        </button>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <label id="errorLabel" th:if="${#fields.hasErrors('*')}" th:text="'Errors: '">Errors: </label>
-                    <ul>
-                        <li id="error" th:each="err: ${#fields.errors('*')}" th:text="${err}" class="error"></li>
-                    </ul>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<!--footer include-->
-<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
-<!--script include-->
-<script th:replace="~{fragments/script :: scriptFragment}"></script>
+                                   required type="date" readonly />
+                            <span data-th-errors="*{dateOfBirth}"
+                                  data-th-if="${#fields.hasErrors('dateOfBirth')}"
+                                  class="error" >Error Birthday</span >
+                          </div >
+                                               <!--Nationality -->
+                          <div class="form-group" >
+                            <label class="control-label"
+                                   data-th-for="nationality" >Nationality
+                                                              :</label >
+                            <select id="nationality" data-th-field="*{nationality}"
+                                    class="form-control" tabindex="5" required >
+                              <option value="" >Please select</option >
+                              <option data-th-each="nationalitys : ${nationality}"
+                                      data-th-text="${nationalitys.nationality}"
+                                      data-th-value="${nationalitys}"
+                                      data-th-selected="${nationalitys==employee.nationality?'selected':'unselected'}" ></option >
+                            </select >
+                          </div >
+                                               <!--religion-->
+                          <div class="form-group" >
+                            <label class="control-label" for="religion" >Religion :</label >
+                            <select id="religion" data-th-field="*{religion}"
+                                    class="form-control" tabindex="6" required >
+                              <option value="" >Please select</option >
+                              <option data-th-each="religions : ${religion}"
+                                      data-th-text="${religions.religion}"
+                                      data-th-value="${religions}"
+                                      data-th-selected="${religions==employee.religion?'selected':'unselected'}" >
+                                Please
+                                select
+                              </option >
+                            </select >
+                          </div >
+                                               <!--Blood group-->
+                          <div class="form-group" >
+                            <label class="control-label" for="bloodGroup" >Blood Group
+                                                                           :</label >
+                            <select id="bloodGroup" data-th-field="*{bloodGroup}"
+                                    class="form-control" tabindex="7" required >
+                              <option value="" >Please select</option >
+                              <option data-th-each="bloodGroups : ${bloodGroup}"
+                                      data-th-text="${bloodGroups.bloodGroup}"
+                                      data-th-value="${bloodGroups}"
+                                      data-th-selected="${bloodGroups==employee.bloodGroup?'selected':'unselected'}" >
+                                Please
+                                select
+                              </option >
+                            </select >
+                          </div >
+                                               <!--EPF-->
+                          <div class="form-group" >
 
-<script>
-    $('.input-images').imageUploader();
-</script>
-</body>
-</html>
+                            <label class="control-label" for="epf" >EPF No
+                                                                    :</label >
+
+                            <input id="epf" data-th-field="*{epf}"
+                                   class="form-control" tabindex="8"
+                                   type="text" />
+                            <span class="error" data-th-errors="*{epf}"
+                                  data-th-if="${#fields.hasErrors('epf')}"
+                                  id="epfError" >Error epf</span >
+
+                          </div >
+                                               <!--uniformType-->
+                          <div class="form-group" >
+                            <label class="control-label" for="uniformType" >Uniform Type
+                                                                            :</label >
+                            <select id="uniformType" data-th-field="*{uniformType}"
+                                    class="form-control" tabindex="9" required >
+                              <option value="" >Please select</option >
+                              <option data-th-each="uniformTypes : ${uniformType}"
+                                      data-th-text="${uniformTypes.uniformType}"
+                                      data-th-value="${uniformTypes}"
+                                      data-th-selected="${uniformTypes==employee.uniformType?'selected':'unselected'}" >
+                                Please
+                                select
+                              </option >
+                            </select >
+                          </div >
+                                               <!--Designation-->
+                          <div class="form-group" >
+                            <label class="control-label" for="designation" >Designation
+                                                                            :</label >
+                            <select id="designation" data-th-field="*{designation}"
+                                    class="form-control" tabindex="10"
+                            >
+                              <option value="" >Please select</option >
+                              <option data-th-each="designations : ${designation}"
+                                      data-th-text="${designations.name}"
+                                      data-th-value="${designations.id}"
+                                      data-th-selected="${designations==employee.designation?'selected':'unselected'}" ></option >
+                            </select >
+                          </div >
+                                               <!--position-->
+                          <div class="form-group" >
+                            <label class="control-label" for="designation" >Welfare Position
+                                                                            :</label >
+                            <select data-th-field="*{welfarePosition}" class="form-control"
+                                    tabindex="11" >
+                              <option value="" >Please select</option >
+                              <option data-th-each="welfarePosition : ${welfarePositions}"
+                                      data-th-text="${welfarePosition.welfarePosition}"
+                                      data-th-value="${welfarePosition}"
+                              ></option >
+                            </select >
+                          </div >
+                                               <!--intakeNo-->
+                          <div class="form-group" >
+                            <label class="control-label" for="intakeNo" >Intake No :</label >
+                            <input id="intakeNo" data-th-field="*{intakeNo}"
+                                   class="form-control"
+                                   tabindex="12" type="text" />
+                            <span id="intakeNoError" data-th-errors="*{intakeNo}"
+                                  data-th-if="${#fields.hasErrors('intakeNo')}"
+                                  class="error" >Error IntakeNo</span >
+                          </div >
+                                               <!--Email-->
+                          <div class="form-group" >
+
+                            <label class="control-label" for="email" >Email :</label >
+
+                            <input id="email" data-th-field="*{email}" class="form-control"
+                                   tabindex="13" type="email"
+                                   required />
+                            <span class="error" data-th-errors="*{email}"
+                                  data-th-if="${#fields.hasErrors('email')}"
+                                  id="emailError" >Error Email</span >
+
+                          </div >
+                                               <!--Office email-->
+                          <div class="form-group" >
+
+                            <label class="control-label" for="officeEmail" >Office Email
+                                                                            :</label >
+
+                            <input id="officeEmail" data-th-field="*{officeEmail}"
+                                   class="form-control" tabindex="14"
+                                   type="email" />
+                            <span class="error" data-th-errors="*{officeEmail}"
+                                  data-th-if="${#fields.hasErrors('officeEmail')}"
+                                  id="officeEmailError" >Error Office Email</span >
+
+                          </div >
+
+
+                        </div >
+                        <!--right side-->
+                        <div class="col-md-6" >
+
+                          <!-- Civil State-->
+                          <div class="form-group" >
+                            <label class="control-label" for="civilStatus" >Civil State
+                                                                            :</label >
+
+                            <select data-th-field="*{civilStatus}" id="civilStatus"
+                                    class="form-control" tabindex="15"
+                                    required >
+                              <option value="" >Please select</option >
+                              <option data-th-each="civilStatu : ${civilStatus}"
+                                      data-th-text="${civilStatu.CivilStatus}"
+                                      data-th-value="${civilStatu}"
+                                      data-th-selected="${civilStatu==employee.civilStatus?'selected':'unselected'}" ></option >
+                            </select >
+
+                          </div >
+                          <!--Address-->
+                          <div class="form-group" >
+
+                            <label class="control-label" for="address" >Address :</label >
+
+                            <textarea id="address" data-th-field="*{address}"
+                                      class="form-control" tabindex="16"
+                                      required ></textarea >
+                            <span class="error" data-th-errors="*{address}"
+                                  data-th-if="${#fields.hasErrors('address')}"
+                                  id="addressError" >Error Address</span >
+
+                          </div >
+                          <!--Temporary Address-->
+                          <div class="form-group" >
+
+                            <label class="control-label" for="address" >Temporary Address
+                                                                        :</label >
+
+                            <textarea id="temporaryAddress"
+                                      data-th-field="*{temporaryAddress}"
+                                      class="form-control" tabindex="17"
+                            ></textarea >
+                            <span class="error" data-th-errors="*{temporaryAddress}"
+                                  data-th-if="${#fields.hasErrors('temporaryAddress')}"
+                                  id="temporaryAddressError" >Error temporaryAddress</span >
+
+                          </div >
+                          <!--Mobile Number One-->
+                          <div class="form-group" >
+
+                            <label class="control-label" for="mobileOne" >Mobile One No
+                                                                          :</label >
+
+                            <input id="mobileOne" data-th-field="*{mobileOne}"
+                                   class="form-control mobile" tabindex="18"
+                                   type="text"
+                                   maxlength="10" min="9"
+                                   required />
+                            <span class="error" data-th-errors="*{mobileOne}"
+                                  data-th-if="${#fields.hasErrors('mobileOne')}"
+                                  id="mobileOneError" >Error Mobile Number</span >
+
+                          </div >
+                          <!--Mobile Number Two-->
+                          <div class="form-group" >
+
+                            <label class="control-label" for="mobileTwo" >Mobile Two No
+                                                                          :</label >
+
+                            <input id="mobileTwo" data-th-field="*{mobileTwo}"
+                                   class="form-control mobile" tabindex="19"
+                                   type="text"
+                                   maxlength="10" min="9" />
+                            <span class="error" data-th-errors="*{mobileTwo}"
+                                  data-th-if="${#fields.hasErrors('mobileTwo')}"
+                                  id="mobileTwoError" >Error Mobile  Number</span >
+
+                          </div >
+                          <!--Land Number-->
+                          <div class="form-group" >
+
+                            <label class="control-label" for="land" >Land No :</label >
+
+                            <input id="land" data-th-field="*{land}"
+                                   class="form-control land"
+                                   type="text" tabindex="20"
+                                   maxlength="10"
+                                   min="9" />
+                            <span class="error" data-th-errors="*{land}"
+                                  data-th-if="${#fields.hasErrors('land')}"
+                                  id="landError" >Error
+                                                                                                                Land Number</span >
+
+                          </div >
+                          <!--Office Number-->
+                          <div class="form-group" >
+
+                            <label class="control-label" for="land" >Office Contact No
+                                                                     :</label >
+
+                            <input id="officeNo" data-th-field="*{officeNo}"
+                                   class="form-control land"
+                                   type="text" tabindex="21"
+                                   maxlength="10"
+                                   min="9" />
+                            <span class="error" data-th-errors="*{officeNo}"
+                                  data-th-if="${#fields.hasErrors('officeNo')}"
+                                  id="officeNoError" >Error Office Number</span >
+                          </div >
+                          <!--emergencyContactNo-->
+                          <div class="form-group" >
+                            <label class="control-label" for="land" >Emergency Contact No
+                                                                     :</label >
+                            <input id="emergencyContactNo"
+                                   data-th-field="*{emergencyContactNo}"
+                                   class="form-control land"
+                                   type="text" tabindex="22"
+                                   maxlength="10"
+                                   min="9" />
+                            <span class="error" data-th-errors="*{emergencyContactNo}"
+                                  data-th-if="${#fields.hasErrors('emergencyContactNo')}"
+                                  id="emergencyContactNoError" >Error EmergencyNumber</span >
+
+                          </div >
+                          <!--nearestPoliceStation-->
+                          <div class="form-group" >
+                            <label class="control-label" for="nearestPoliceStation" >Nearest
+                                                                                     Police
+                                                                                     Station
+                                                                                     :</label >
+                            <input id="nearestPoliceStation" data-th-field="*{nearestPoliceStation}"
+                                   class="form-control"
+                                   tabindex="23" type="text" />
+                            <span id="nearestPoliceStationError"
+                                  data-th-errors="*{nearestPoliceStation}"
+                                  data-th-if="${#fields.hasErrors('nearestPoliceStation')}"
+                                  class="error" >Error Nearest Police Station</span >
+                          </div >
+                          <!--Medical  No-->
+                          <div class="form-group" >
+                            <label class="control-label" for="medicleNo" >Medical No
+                                                                          :</label >
+                            <input id="medicleNo" data-th-field="*{medicleNo}"
+                                   class="form-control"
+                                   tabindex="24" type="text" required />
+                            <span id="medicleNoError" data-th-errors="*{medicleNo}"
+                                  data-th-if="${#fields.hasErrors('medicleNo')}"
+                                  class="error" >Error Medicle No</span >
+                          </div >
+                          <!--Date of assignment-->
+                          <div class="form-group" >
+
+                            <label class="control-label" for="dateOfAssignment" >Date Of
+                                                                                 Assignment
+                                                                                 :</label >
+
+                            <input id="dateOfAssignment"
+                                   data-th-field="*{{dateOfAssignment}}"
+                                   type="date"
+                                   class="form-control" tabindex="25"
+                                   placeholder="Ex: 1990 - 01 - 20" required />
+                            <span class="error" data-th-errors="*{dateOfAssignment}"
+                                  data-th-if="${#fields.hasErrors('dateOfAssignment')}"
+                                  id="dateOfAssignmentError" >Error Date Of Assignment</span >
+
+                          </div >
+                          <!--Date of Appointment-->
+                          <div class="form-group" >
+                            <label class="control-label" for="appoimentDate" >Date of
+                                                                              Appointment
+                                                                              :</label >
+                            <input id="appoimentDate" data-th-field="*{{appoimentDate}}"
+                                   type="date"
+                                   class="form-control" tabindex="25"
+                                   placeholder="Ex: 1990 - 01 - 20" required />
+                            <span class="error" data-th-errors="*{appoimentDate}"
+                                  data-th-if="${#fields.hasErrors('appoimentDate')}"
+                                  id="appoimentDateError" >Error Date Of Appointment</span >
+                          </div >
+                          <!--Employee Status-->
+                          <div class="form-group" >
+                            <label class="control-label" for="employeeStatus" >Employee
+                                                                               Status
+                                                                               :</label >
+                            <select id="employeeStatus" data-th-field="*{employeeStatus}"
+                                    class="form-control" tabindex="26"
+                                    required >
+                              <option value="" >Please select</option >
+                              <option data-th-each="employeeStatuss : ${employeeStatus}"
+                                      data-th-text="${employeeStatuss.employeeStatus}"
+                                      data-th-value="${employeeStatuss}"
+                                      data-th-selected="${employeeStatuss==employee.employeeStatus?'selected':'unselected'}" ></option >
+                            </select >
+                          </div >
+                          <!--Employee Status-->
+                          <div class="form-group" >
+                            <label class="control-label" for="workingPlace" >Working
+                                                                             Place
+                                                                             :</label >
+                            <select data-th-field="*{workingPlace}" id="workingPlace"
+                                    class="form-control" tabindex="27"
+                                    required >
+                              <option value="" >Please select</option >
+                              <option data-th-each="workingPlace : ${workingPlaces}"
+                                      data-th-text="${workingPlace.shortName +' - '+workingPlace.workingPlaceSection}"
+                                      data-th-value="${workingPlace.id}" ></option >
+                            </select >
+                          </div >
+                          <!--Photos-->
+
+
+                          <div class="form-row col-md-6 mb-3 " >
+                            <div class="col-md-3 mr-5" >
+                              <label class="control-label" >Image</label >
+                              <input type="file" name="file" id="imgUpload" tabindex="-1"
+                                     accept="image/png, image/jpeg" />
+                            </div >
+
+
+                            <!--                            <div class="col-md-3 ml-5" >-->
+                            <!--photo details-->
+                            <img class="img-fluid ml-5 mt-3" data-th-if="${addStatus==false}" data-th-src="${file.url}"
+                                 id="image" alt="" style="height: 150px; width: 150px;" >
+                            <img class="img-fluid ml-5" data-th-if="${addStatus==true}" src="" id="image" alt=""
+                                 style="height: 150px; width: 150px" >
+                          </div >
+
+
+                        </div >
+
+                        <div class="form-group" id="updateStatus"
+                             data-th-if="${addStatus==false}" >
+                          <label class="control-label" for="createdBy" >Created By
+                                                                        :</label >
+                          <input id="createdBy" data-th-field="*{createdBy}"
+                                 class="form-control" type="text"
+                                 readonly />
+                        </div >
+                        <hr >
+
+                      </div >
+                      <div class="card-footer " >
+                        <button type="submit" class="btn btn-primary float-right ml-2" tabindex="28" >
+                          <i data-th-class="${addStatus==true?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}" ></i >
+                          <span data-th-text="${addStatus==true?'Save' : 'Update'}" ></span >
+                        </button >
+
+                        <button type="clear" class="btn btn-primary float-right" >
+                          <i data-th-class="${addStatus==true?'fa fa-save mr-1':'fa fa-thumbs-down mr-1'}" ></i >
+                          <span data-th-text="${addStatus==true?'Clear' : 'Reset'}" ></span >
+                        </button >
+                      </div >
+                    </form >
+                  </div >
+                </div >
+              </div >
+            </div >
+          </div >
+        </div >
+      </div >
+    </div >
+  </div >
+</div >
+<div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div >
+<!-- footer Section -->
+<!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div >
+<!-- script Fragment -->
+<!-- content-wrapper end -->
+<script >
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            let reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+    }
+
+    //display selected image
+    $("#imgUpload").change(function () {
+        readURL(this);
+    });
+</script >
+</body >
+</html >

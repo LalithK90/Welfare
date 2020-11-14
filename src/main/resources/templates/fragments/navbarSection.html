@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<nav th:fragment="navbarSectionFragment" class="main-header navbar navbar-expand navbar-dark fixed-top border-0">
+<!--<nav th:fragment="navbarSectionFragment" class="main-header navbar navbar-expand navbar-gray fixed-top border-0">-->
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="index.html" class="nav-link">Home</a>
+        </li>
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Sys Sitemap
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="home">Home</a>
+                <a class="dropdown-item" href="mainWindow">Main Window</a>
+                <a class="dropdown-item" href="login">Login</a>
+                <a class="dropdown-item" href="error">Error</a>
+                <a class="dropdown-item" href="select/user">Select User</a>
+                <a class="dropdown-item" href="passwordChange">Password Change</a>
+                <a class="dropdown-item" href="profile">Profile</a>
+                <a class="dropdown-item" href="user/workingPlace">User workingPlace</a>
+                <a class="dropdown-item" href="user">User</a>
+                <a class="dropdown-item" href="user/add">Add User</a>
+                <a class="dropdown-item" href="user/search">User search</a>
+                <a class="dropdown-item" href="register/token">Register Token</a>
+                <a class="dropdown-item" href="register">Register</a>
+                <a class="dropdown-item" href="role/add">Add Role</a>
+                <a class="dropdown-item" href="role">Role</a>
+            </div>
+        </li>
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                General Sitemap
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="employee">Employee</a>
+                <a class="dropdown-divider"></a>
+                <a class="dropdown-item" href="designation">Designation</a>
+                <a class="dropdown-item" href="workingPlace">Working Place</a>
+                <a class="dropdown-item" href="district">District</a>
+                <a class="dropdown-item" href="dependent">Dependent</a>
+                <a class="dropdown-item" href="payment">payment</a>
+                <a class="dropdown-item" href="promotion">Promotion</a>
+                <a class="dropdown-item" href="qualification">Qualification</a>
+                <a class="dropdown-item" href="instalmentType">Instalment Type</a>
+                <a class="dropdown-item" href="briefing">Briefing</a>
+                <a class="dropdown-item" href="briefing/add">Add Briefing</a>
+                <a class="dropdown-item" href="grievances">Grievances</a>
+                <a class="dropdown-item" href="emailMessage">Email Message</a>
+            </div>
+        </li>
+
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Welfare Shop
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="branch">Branch</a>
+                <a class="dropdown-item" href="category">Category</a>
+                <a class="dropdown-item" href="customer">Customer</a>
+                <a class="dropdown-item" href="discountRatio">Discount Ratio</a>
+                <a class="dropdown-item" href="goodReceivedNote">GRN</a>
+                <a class="dropdown-item" href="invoice">Invoice</a>
+                <a class="dropdown-item" href="item">Item</a>
+                <a class="dropdown-item" href="ledger">Ledger</a>
+                <a class="dropdown-item" href="purchaseOrder">Purchase Order</a>
+                <a class="dropdown-item" href="supplier">Supplier</a>
+                <a class="dropdown-item" href="supplierItem">Supplier Item</a>
+            </div>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Manifesto</a>
+        </li>
+
+    </ul>
+
+    <!-- SEARCH FORM -->
+  <!--  <form class="form-inline ml-3">
+        <div class="input-group input-group-sm">
+            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+            <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>-->
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+        <!-- Messages Dropdown Menu -->
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <!--<i class="far fa-comments"></i>-->
+                <span class="badge badge-danger">AVSEC Welfare Management System</span>
+            </a>
+        </li>
+        <!-- Notifications Dropdown Menu -->
+        <!--<li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <i class="far fa-bell"></i>
+                <span class="badge badge-warning navbar-badge">0</span>
+            </a>
+        </li>-->
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <!--<i class="far fa-times"></i>-->
+                <p id="headerDate"></p>
+            </a>
+        </li>
+    </ul>
+</nav>
+</html>

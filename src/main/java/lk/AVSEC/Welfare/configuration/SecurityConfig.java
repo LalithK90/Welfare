@@ -72,10 +72,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
      /*       http.csrf().disable();
-            http.authorizeRequests().antMatchers("/").permitAll();
-    */
+            http.authorizeRequests().antMatchers("/").permitAll();*/
         // For developing easy to give permission all lin
-
         http
                 .authorizeRequests(
                         authorizeRequests ->
@@ -86,12 +84,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         //this is used the normal admin to give access every url mapping
                                         .antMatchers("/employee").hasRole("ADMIN")
                                         //Need to login for access those are
-                                        /*   .antMatchers("/employee/**").hasRole("ADMIN")
+                                           .antMatchers("/employee/**").hasRole("ADMIN")
                                            .antMatchers("/employee1/**").hasRole("MANAGER")
                                            .antMatchers("/user/**").hasRole("ADMIN")
                                            .antMatchers("/petition/**").hasRole("ADMIN")
                                            .antMatchers("/minutePetition/**").hasRole("MANAGER")
-                                           .antMatchers("/invoiceProcess/add").hasRole("CASHIER")*/
+                                           .antMatchers("/invoiceProcess/add").hasRole("CASHIER")
                                         .anyRequest()
                                         .authenticated())
                 // Login form
@@ -116,18 +114,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         .invalidateHttpSession(true)
                                         .clearAuthentication(true))
                 //session management
+                //remember me
+                .rememberMe().key("uniqueAndSecret").tokenValiditySeconds(86400)
+                .and()
+                //session management
                 .sessionManagement(
                         sessionManagement ->
                                 sessionManagement
-                                        .sessionFixation().migrateSession()
+                                        .sessionFixation()
+                                        .migrateSession()
                                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                                         .invalidSessionUrl("/login")
-                                        .maximumSessions(1)
-                                        .expiredUrl("/l")
+                                        .maximumSessions(2)
                                         .sessionRegistry(sessionRegistry()))
                 //Cross site disable
                 .csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling();
+
+
+
     }
 }
 

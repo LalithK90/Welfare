@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- content-header Start -->
+        <!--form action button---------------------------------------------------------     -->
+        <div class="row m-1">
+            <div class="col-12">
+                <div class="text-right">
+                    <div text-right>
+                        <button type="button" class="btn btn-info btn-sm">
+                            <a data-th-href="${'/customer/add'}">
+                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1"></i></span>
+                                <span class="text-white"> Add Customer </span></a>
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm">
+                            <a data-th-href="${'/Customer'}">
+                                <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1"></i></span>
+                                <span class="text-white"> View Customer </span></a>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--form action end button---------------------------------------------------------     -->
+
+        <!--heading Area-->
+
+        <!--Customers List-->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <!--                    <a class="btn btn-success" id="newDesignation" data-th-href="${'/designation/add'}">-->
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+<!--                                        <h4>Designation </h4>-->
+                                        <!--if not empty list-->
+
+                                            <table id="myTable" class="table table-hover" >
+                                                <div class="row" id="customerListPresent"  data-th:if="${not #lists.isEmpty(customers)}">
+                                                <thead>
+
+                                                <tr>
+                                                    <th> Index</th>
+                                                    <th> Name</th>
+                                                    <th> Code</th>
+                                                    <th> Mobile</th>
+                                                    <th> Address</th>
+                                                    <th> Modify</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="customer, rowCount : ${customers}">
+                                                    <th th:text="${rowCount.count}"></th>
+                                                    <th th:text="${customer.title}+${'. '}+${customer.name}"></th>
+                                                    <th th:text="${customer.code}"></th>
+                                                    <th th:text="${customer.mobile}"></th>
+                                                    <th th:text="${customer.address}"></th>
+                                                    <th>
+                                                        <a id="customerView" th:href="${'/customer/' + customer.id}"
+                                                           class="btn btn-primary btn-sm"><i
+                                                                class="fa fa-folder-open" style="font-size: 15px"></i>&nbsp;View</a>
+                                                        <a id="customerEdit"
+                                                           th:href="${'/customer/edit/' + customer.id}"
+                                                           class="btn btn-success btn-sm"><i class="fa fa-edit"
+                                                                                             style="font-size: 15px"></i>&nbsp;Edit</a>
+                                                        <a id="customerRemove"
+                                                           th:href="${'/customer/delete/' + customer.id}"
+                                                           class="btn btn-danger btn-sm">
+                                                            <!--th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" -->
+                                                            <i
+                                                                    class="fa fa-trash" style="font-size: 15px"></i>
+                                                            Delete</a>
+                                                    </th>
+                                                </tr>
+                                                </tbody>
+                                                </div>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!--Error-->
+                                    <div class="row" th:if="${ #lists.isEmpty(customers)}">
+                                        <div class="col-sm-12">
+                                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <h3 class="text-center text-danger">
+                                                    <strong>There is no customer upto now please add customer to the
+                                                        system
+                                                        using "New" button.
+                                                    </strong>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            /*active boostrap alert - start*/
+                                            $(".alert").alert();
+                                            /*active boostrap alert - end*/
+                                        </script>
+                                    </div>
+                                    <!--Save customer-->
+                                    <div class="row" th:if="${customerDetail != null}">
+                                        <div class="col-sm-12">
+                                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <!--save customer include-->
+                                                <div th:replace="~{customer/customer-detail :: customerDetailsFragment}"></div>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            /*active boostrap alert - start*/
+                                            $(".alert").alert();
+                                            /*active boostrap alert - end*/
+                                        </script>
+                                    </div>
+                                </div>
+                                <!--footer include-->
+                            </div>
+                            <!--footer include-->
+
+                        </div>
+                    </div><!-- content-wrapper end -->
+                </div>
+            </div>
+        </div>
+    </div><!-- content-wrapper end -->
+</div>
+<div data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+</div><!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+</body>
+</html>

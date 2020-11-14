@@ -14,22 +14,27 @@ public interface AbstractController<E, I> {
     String findAll(Model model);
 
     /**
-     * 2. Find One relevant things belongs provided entity {} id
+     * 2. Relevant entity add form give font end
+     */
+    String form(Model model);
+
+    /**
+     * 3. Find One relevant things belongs provided entity {} id
      */
     String findById(I id, Model model);
 
     /**
-     * 3. Find One and send data to frontend to Edit relevant things belongs provided entity {} id
+     * 4. Find One and send data to frontend to Edit relevant things belongs provided entity {} id
      */
     String edit(I id, Model model);
 
     /**
-     * 4. Save and Update {} data using relevant entity belongs to model Attribute
+     * 5. Save and Update {} data using relevant entity belongs to model Attribute
      */
-    String persist(@Valid @ModelAttribute E e, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model);
+    String persist(@Valid @ModelAttribute E e, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) throws Exception;
 
     /**
-     * 5. Remove One relevant things belongs provided entity {} id
+     * 6. Remove One relevant things belongs provided entity {} id
      */
     String delete(I id, Model model);
 

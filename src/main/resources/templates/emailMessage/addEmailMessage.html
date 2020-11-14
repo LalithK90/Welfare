@@ -1,211 +1,237 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/header :: headerFragment}">
-    <meta charset="UTF-8">
-    <title>Thymeleaf Springboot </title>
-</head>
-<body>
-<nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+        <!-- /.content-header -->
+        <!--form action button---------------------------------------------------------     -->
+        <div class="row m-1">
+            <div class="col-12">
+                <div class="text-right">
+                    <div text-right>
+                        <button type="button" class="btn btn-info btn-sm">
+                            <a  data-th-href="${'/emailMessage/add'}" >
+                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
+                                <span class="text-white"> Add Email Message </span></a>
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm disabled">
+                            <a  data-th-href="${'/emailMessage'}" >
+                                <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >
+                                <span class="text-white"> View Email Message </span></a>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-sm" onclick="myEdit()">
+                            <!--                            <a  data-th-href="${'/designation/edit/'}" >-->
+                            <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >
+                            <span class="text-white"> Edit Email Message </span></a>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="myDelete()">
+                            <!--                            <a  data-th-href="${'/designation/remove/'}" >-->
+                            <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >
+                            <span class="text-white"> Delete Email Message </span></a>
 
-<div class="container-fluid bg-secondary form-Border">
-    <div class="row text-center formManagement border-info">
-        <div class="col">
-            <a class="btn btn-primary" href="/home">
-                <i class="fa fa-home" style="font-size: 20px"></i> &nbsp; Home
-            </a>
-        </div>
-        <div class="col">
-            <h4 class="text-light text-center">
-                <strong>
-                    Create a new message
-                </strong>
-            </h4>
-        </div>
-        <div class="col">
-            <a href="/emailMessage" class="btn btn-primary">
-                <i class="fa fa-list"></i>&nbsp; View List
-            </a>
-        </div>
-    </div>
-</div>
-<!--Form Content - start -->
-<div class="container-fluid bg-dark formBorder">
-    <div class="col-sm-12 flex-column ">
-        <form id="form" th:action="${'/emailMessage/add'}" th:object="${emailMessage}" class="form-horizontal" method="POST">
-            <div class="container-fluid">
-                <!--Left Side-->
-                <div class="form-group text-left flex-column">
-                    <!--Subject-->
-                        <div class="col-md-4">
-                            <label class="control-label" for="subject">Subject :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input id="subject" th:field="*{subject}" class="form-control" tabindex="" type="text" required/>
-                        </div>
-                </div>
-            </div>
-            <!--employee find to add-->
-            <div class="form-group col-12 col-md-12 col-sm-12 formBorder" id="teamFindShow">
-                <div class="row col-12 col-md-12 col-sm-12 text-left">
-                    <h3 class="text-md-left "><strong>Add Employee :- </strong></h3>
-                </div>
-                <!--Working Place to select Employee -->
-                <div class="form-group col-12 col-md-12 col-sm-12 formBorder" id="employeeFind">
-                    <div class="form-row">
-                        <!--province-->
-                        <div class="col-md-3 col-sm-3 text-left ">
-                            <div class="col-md-4">
-                                <label class="control-label" for="provinces">Province</label>
-                            </div>
-                            <div class="col-md-12">
-                                <select class="form-control" tabindex="" id="provinces">
-                                    <option value="">Please select</option>
-                                    <option th:each="province : ${provinces}"
-                                            th:text="${province.province}"
-                                            th:value="${province}"></option>
-                                </select>
-                            </div>
-                        </div>
-                        <!--District-->
-                        <div class="districtShow col-md-3 col-sm-3 text-left ">
-                            <div class="col-md-4">
-                                <label class="control-label" for="districts">District</label>
-                            </div>
-                            <div class="col-md-12">
-                                <select class="form-control" name="district" id="districts" tabindex="">
-                                    <option th:each="designation : ${designations}"
-                                            th:text="${designation.designation}"
-                                            th:value="${designation}">Please select</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!--Station-->
-                        <div class="stationShow col-md-3 col-sm-3 text-left ">
-                            <div class="col-md-4">
-                                <label class="control-label" for="stations">Stations</label>
-                            </div>
-                            <div class="col-md-12">
-                                <select id="stations" class="form-control" tabindex="">
-                                    <option value="">Please select</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!--designation-->
-                        <div class="col-md-3 col-sm-3 text-left ">
-                            <div class="col-md-4">
-                                <label class="control-label" for="designations">Designation</label>
-                            </div>
-                            <div class="col-md-12">
-                                <select id="designations" class="form-control" tabindex="">
-                                    <option value="">Please select</option>
-                                    <option id="designationList" value=""></option>
-                                </select>
-                            </div>
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>
-            <!--Employee show-->
-            <div class="form-group col-12 col-sm-12 col-md-12 formBorder" id="employeeShow">
-                <div class="form-group col-12 col-sm-12 col-md-12 formBorder">
-                    <div class="form-row">
-                        <!--Left side-->
-                        <div class="col-sm-6 col-md-6 text-left flex-column">
-                            <div class="bg-secondary col-12 col-sm-12 col-md-12 text-center">
-                                <p class="text-white ">
-                                    <strong> Please Select Employee</strong></p>
-                            </div>
-                            <table class="table table-responsive table-hover" id="myTableData">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Id</th>
-                                    <th>Employee Name</th>
-                                    <th>Pay Role Number</th>
-                                    <th>Designation</th>
-                                    <th>Action</th>
-                                </tr>
-                            </table>
-                        </div>
-                        <!--Right side-->
-                        <div class="col-sm-6 col-md-6 text-left flex-column" id="selectEmployeeShow">
-                            <!--Selected Employee Show-->
-                            <div class="bg-white col-12 col-sm-12 col-md-12 text-center">
-                                <p class="text-primary ">
-                                    <strong>Selected Employee List</strong>
-                                </p>
-                            </div>
-                            <table class="table table-hover bg-transparent"
-                                   id="selectedEmployee">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Id</th>
-                                    <th></th>
-                                    <th>Employee Name</th>
-                                    <th>Action</th>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group col-md-12 col-sm-12 text-left flex-column ">
-                <label class="control-label" for="messageOne">Message:</label>
-                <div class="container-fluid">
-                    <div>
+
+        </div>
+        <!--form action end button---------------------------------------------------------     -->
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+<!--                                <h4>Secondary Header </h4>-->
+                                <form id="form" th:action="${'/emailMessage/add'}" th:object="${emailMessage}" class="form-horizontal" method="POST">
+                                    <div class="container-fluid">
+                                        <!--Left Side-->
+                                        <div class="form-group text-left flex-column">
+                                            <!--Subject-->
+                                            <div class="col-md-4">
+                                                <label class="control-label" for="subject">Subject :</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input id="subject" th:field="*{subject}" class="form-control" tabindex="" type="text" required/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--employee find to add-->
+                                    <div class="form-group col-12 col-md-12 col-sm-12 formBorder" id="teamFindShow">
+                                        <div class="row col-12 col-md-12 col-sm-12 text-left">
+                                            <h3 class="text-md-left "><strong>Add Employee :- </strong></h3>
+                                        </div>
+                                        <!--Working Place to select Employee -->
+                                        <div class="form-group col-12 col-md-12 col-sm-12 formBorder" id="employeeFind">
+                                            <div class="form-row">
+                                                <!--province-->
+                                                <div class="col-md-3 col-sm-3 text-left ">
+                                                    <div class="col-md-4">
+                                                        <label class="control-label" for="provinces">Province</label>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <select class="form-control" tabindex="" id="provinces">
+                                                            <option value="">Please select</option>
+                                                            <option th:each="province : ${provinces}"
+                                                                    th:text="${province.province}"
+                                                                    th:value="${province}"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <!--District-->
+                                                <div class="districtShow col-md-3 col-sm-3 text-left ">
+                                                    <div class="col-md-4">
+                                                        <label class="control-label" for="districts">District</label>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <select class="form-control" name="district" id="districts" tabindex="">
+                                                            <option th:each="designation : ${designations}"
+                                                                    th:text="${designation.designation}"
+                                                                    th:value="${designation}">Please select</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <!--Station-->
+                                                <div class="stationShow col-md-3 col-sm-3 text-left ">
+                                                    <div class="col-md-4">
+                                                        <label class="control-label" for="stations">Stations</label>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <select id="stations" class="form-control" tabindex="">
+                                                            <option value="">Please select</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <!--designation-->
+                                                <div class="col-md-3 col-sm-3 text-left ">
+                                                    <div class="col-md-4">
+                                                        <label class="control-label" for="designations">Designation</label>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <select id="designations" class="form-control" tabindex="">
+                                                            <option value="">Please select</option>
+                                                            <option id="designationList" value=""></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Employee show-->
+                                    <div class="form-group col-12 col-sm-12 col-md-12 formBorder" id="employeeShow">
+                                        <div class="form-group col-12 col-sm-12 col-md-12 formBorder">
+                                            <div class="form-row">
+                                                <!--Left side-->
+                                                <div class="col-sm-6 col-md-6 text-left flex-column">
+                                                    <div class="bg-secondary col-12 col-sm-12 col-md-12 text-center">
+                                                        <p class="text-white ">
+                                                            <strong> Please Select Employee</strong></p>
+                                                    </div>
+                                                    <table class="table table-responsive table-hover" id="myTableData">
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Id</th>
+                                                            <th>Employee Name</th>
+                                                            <th>Pay Role Number</th>
+                                                            <th>Designation</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <!--Right side-->
+                                                <div class="col-sm-6 col-md-6 text-left flex-column" id="selectEmployeeShow">
+                                                    <!--Selected Employee Show-->
+                                                    <div class="bg-white col-12 col-sm-12 col-md-12 text-center">
+                                                        <p class="text-primary ">
+                                                            <strong>Selected Employee List</strong>
+                                                        </p>
+                                                    </div>
+                                                    <table class="table table-hover bg-transparent"
+                                                           id="selectedEmployee">
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Id</th>
+                                                            <th></th>
+                                                            <th>Employee Name</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-12 text-left flex-column ">
+                                        <label class="control-label" for="messageOne">Message:</label>
+                                        <div class="container-fluid">
+                                            <div>
                             <textarea class="form-control" id="messageOne" th:field="*{message}"
                                       placeholder="Enter Description"></textarea>
-                        <div id="the-count">
-                            <span id="current">0</span>
-                            <span id="maximum">/ 250</span>
-                            <span id="messageNotice"></span>
+                                                <div id="the-count">
+                                                    <span id="current">0</span>
+                                                    <span id="maximum">/ 250</span>
+                                                    <span id="messageNotice"></span>
 
-                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <!--Translator Sinhala-->
+                                        <div class="container-fluid col-sm-6 text-center">
+                                            <!--Sinhala modal button -->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                    data-target=".bd-example-modal-xl"><i
+                                                    class="fas fa-language"></i> &nbsp;Singlish to Sinhala
+                                            </button>
+                                        </div>
+                                        <!--Translator Tamil-->
+                                        <div class="container-fluid col-sm-6 text-center">
+                                            <!-- modal tamil button -->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#bd-example-modal-xl"><i
+                                                    class="fas fa-language"></i> &nbsp;Tamilish to Tamil
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!--button-->
+                                    <div class="form-group col-md-12 col-sm-12 text-center flex-column ">
+                                        <div class="input-field">
+                                            <button class="btn btn-success" type="submit" tabindex="10">
+                                                <i class="fas fa-paper-plane" style="font-size: 20px"></i>&nbsp; &nbsp;<span
+                                                    id="submit" th:text="${'Send'}"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!--Hide content from visual-->
+                                    <div class="form-row">
+                                        <input type="hidden" th:value="${districtUrl}" id="districtUrl" class="hide"/>
+                                        <input type="hidden" th:value="${stationUrl}" id="stationUrl" class="hide"/>
+                                        <input type="hidden" th:value="${employeeUrl}" id="employeeUrl" class="hide"/>
+                                    </div>
+                                </form>
+
+
+
+                            </div>
                     </div>
                 </div>
             </div>
-            <div class="form-row">
-                <!--Translator Sinhala-->
-                <div class="container-fluid col-sm-6 text-center">
-                    <!--Sinhala modal button -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target=".bd-example-modal-xl"><i
-                            class="fas fa-language"></i> &nbsp;Singlish to Sinhala
-                    </button>
-                </div>
-                <!--Translator Tamil-->
-                <div class="container-fluid col-sm-6 text-center">
-                    <!-- modal tamil button -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#bd-example-modal-xl"><i
-                            class="fas fa-language"></i> &nbsp;Tamilish to Tamil
-                    </button>
-                </div>
-            </div>
-            <!--button-->
-            <div class="form-group col-md-12 col-sm-12 text-center flex-column ">
-                <div class="input-field">
-                    <button class="btn btn-success" type="submit" tabindex="10">
-                        <i class="fas fa-paper-plane" style="font-size: 20px"></i>&nbsp; &nbsp;<span
-                            id="submit" th:text="${'Send'}"></span>
-                    </button>
-                </div>
-            </div>
-            <!--Hide content from visual-->
-            <div class="form-row">
-                <input type="hidden" th:value="${districtUrl}" id="districtUrl" class="hide"/>
-                <input type="hidden" th:value="${stationUrl}" id="stationUrl" class="hide"/>
-                <input type="hidden" th:value="${employeeUrl}" id="employeeUrl" class="hide"/>
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+    </div></div>
 
-<!--footer include-->
-<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
-<!--script include-->
-<script th:replace="~{fragments/script :: scriptFragment}"></script>
-
-
+</div><!-- content-wrapper end -->
+<div th:replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+</div><!-- wrapper end -->
+<div th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
 <script>
     $(document).ready(function () {
 
@@ -258,6 +284,5 @@
 <div th:replace="~{fragments/unicodeSinhala :: unicodeSinhalaFragment}"></div>
 <!--Tamish to Tamil Translator-->
 <div th:replace="~{fragments/unicodeTamil :: unicodeTamilFragment}"></div>
-
 </body>
 </html>

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <!-- Header (null area) -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+          <!-- /.content-header -->
+        <!--form action button---------------------------------------------------------     -->
+        <div class="row m-1">
+            <div class="col-12">
+                <div class="text-right">
+                    <div text-right>
+                        <button type="button" class="btn btn-info btn-sm">
+                            <a  data-th-href="${'/briefing/add'}" >
+                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
+                                <span class="text-white"> Add Briefing </span></a>
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm disabled">
+                            <a  data-th-href="${'/briefing'}" >
+                                <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >
+                                <span class="text-white"> View Briefing </span></a>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-sm" onclick="myEdit()">
+                            <!--                            <a  data-th-href="${'/designation/edit/'}" >-->
+                            <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >
+                            <span class="text-white"> Edit Briefing </span></a>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="myDelete()">
+                            <!--                            <a  data-th-href="${'/designation/remove/'}" >-->
+                            <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >
+                            <span class="text-white"> Delete Briefing </span></a>
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--form action end button---------------------------------------------------------     -->
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Small boxes (Stat box) -->
+
+                <!-- Small Box Set -->
+                <!-- /.row -->
+                <!-- Small boxes (Stat box) -->
+
+                <!-- data table start -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="breadcrumb-item active" th:text="${contendHeader}"></h3>
+                     </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+
+                        <!--if not empty list-->
+                        <div class="table-responsive container-fluid" id="briefingListTable" th:if="${not #lists.isEmpty(briefings)}">
+                            <!-- data table start -->
+                            <table id="myTable" class="table table-hover table-light">
+                                <thead>
+                                <tr>
+                                    <!--id, name, toWhom, notices, priority effDate-->
+                                    <th>Index</th>
+                                    <th>By Whom</th>
+                                    <th>To Whom</th>
+                                    <th>Subject</th>
+<!--                                    <th>Notices</th>-->
+                                    <th>Priority</th>
+                                    <th>Effect Date</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr th:each="briefing, rowCount : ${briefings}" scope="row">
+                                    <td th:text="${rowCount.count}"></td>
+                                    <td th:text="${briefing.name}"></td>
+                                    <td th:text="${briefing.toWhom}"></td>
+                                    <td th:text="${briefing.subject}"></td>
+<!--                                    <td th:text="${briefing.notices}"></td>-->
+                                    <td th:text="${briefing.priority.Priority}"></td>
+                                    <td th:text="${briefing.effDate}"></td>
+                                    <td>
+
+
+                                        <a class="btn btn-success btn-sm" th:href="${'/briefing/' + briefing.id}" id="briefingView">
+                                            <i class="fa fa-folder-open"></i>View</a>
+                                        <a class="btn btn-primary btn-sm" id="briefingEdit"
+                                           th:href="${'/briefing/edit/' + briefing.id}"><i
+                                                class="fa fa-edit"></i>&nbsp;Edit </a>
+                                        <a class="btn btn-danger btn-sm" id="briefingRemove"
+                                           th:href="${'/briefing/remove/' + briefing.id}"
+                                           th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                           th:onclick="if(!(confirm('Are you want to delete this civilStatus ?'))) return false"
+                                        ><i
+                                                aria-hidden="true" class="fa fa-trash"></i>
+                                            Delete</a>
+
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <!-- data table end -->
+                        </div>
+                    </div>
+                    <!--if empty list-->
+                    <div class="row" id="briefingNotList" th:if="${ #lists.isEmpty(briefings)}">
+                        <div class="col-sm-12">
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h3 class="text-center text-danger">
+                                    <strong>There is no briefing upto know please add briefing to the system
+                                        using add briefing button.
+                                    </strong>
+                                </h3>
+                            </div>
+                        </div>
+                        <script>
+                            /*active boostrap alert - start*/
+                            $(".alert").alert();
+                            /*active boostrap alert - end*/
+                        </script>
+                    </div>
+                    <!--Show saved briefing-->
+                    <div class="row" th:if="${briefingDetail!=null}">
+                        <div class="col-sm-12">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <div class="container">
+                                    <div th:replace="~{briefing/briefing-detail :: briefingDetail}"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            /*active boostrap alert - start*/
+                            $(".alert").alert();
+                            /*active boostrap alert - end*/
+                        </script>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+
+
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+    <!-- Scroll Up Button -->
+    <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+    <!-- Scroll Up Button end-->
+</div><!-- wrapper end -->
+<div th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+</body>
+</html>

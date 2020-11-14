@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+
+
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4>Secondary Header </h4>
+                                    <!--if not empty list-->
+
+                                       <table class="table table-hover table-striped" id="myTable">
+                                           <div class="row" id="promotionListTable" th:if="${not #lists.isEmpty(promotions)}">
+                                                <thead class="thead-inverse">
+                                                <tr>
+                                                    <th>Index</th>
+                                                    <th>Promotion Name</th>
+                                                    <th>Remark</th>
+                                                    <th>with Effect From</th>
+                                                    <th>Action</th>
+
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="promotion, rowCount : ${promotions}" scope="row">
+                                                    <td th:text="${rowCount.count}"></td>
+                                                    <td th:text="${promotion.name}"></td>
+                                                    <td th:text="${promotion.remark}"></td>
+                                                    <!-- Enum Test <th th:text="${promotion.relationship.relationship}"></th>-->
+                                                    <td th:text="${promotion.withEffect}"></td>
+
+
+
+                                                    <td><a class="btn btn-success btn-sm" th:href="${'/promotion/' + promotion.id}" id="promotionView"><i
+                                                            class="fa fa-folder-open"></i>&nbsp;View</a>
+                                                        <a class="btn btn-primary btn-sm" id="promotionEdit"
+                                                           th:href="${'/promotion/edit/' + promotion.id}"><i
+                                                                class="fa fa-edit"></i>&nbsp;Edit</a>
+                                                        <a class="btn btn-danger btn-sm" id="promotionRemove"
+                                                           th:href="${'/promotion/remove/' + promotion.id}"
+                                                           th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                                           th:onclick="if(!(confirm('Are you want to delete this civilStatus ?'))) return false"
+                                                        ><i
+                                                                aria-hidden="true" class="fa fa-trash"></i>
+                                                            Delete</a>
+
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                           </div>
+                                            </table>
+
+                                     <!--if empty list-->
+                                    <div class="row" id="promotionNotList" th:if="${ #lists.isEmpty(promotions)}">
+                                        <div class="col-sm-12">
+                                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <h3 class="text-center text-danger">
+                                                    <strong>There is no promotion upto know please add promotion to the system
+                                                        using add promotion button.
+                                                    </strong>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            /*active boostrap alert - start*/
+                                            $(".alert").alert();
+                                            /*active boostrap alert - end*/
+                                        </script>
+                                    </div>
+                                    <!--Show saved promotion-->
+                                    <div class="row" th:if="${promotionDetail!=null}">
+                                        <div class="col-sm-12">
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <div class="container">
+                                                    <div th:replace="~{promotion/promotion-detail :: promotionDetail}"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            /*active boostrap alert - start*/
+                                            $(".alert").alert();
+                                            /*active boostrap alert - end*/
+                                        </script>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div><!-- content-wrapper end -->
+    <div th:replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+</div><!-- wrapper end -->
+<div th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+</body>
+</html>
+

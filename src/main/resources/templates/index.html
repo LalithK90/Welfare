@@ -1,18 +1,221 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/header :: headerFragment}">
-    <meta charset="UTF-8">
-    <title>Thymeleaf Springboot </title>
-</head>
-<body>
-<nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
+<!--
+	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<!--<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>-->
+<link th:href="@{/css/main.css}" media="all" rel="stylesheet" type="text/css"/>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-<h1> I am index page</h1>
+		   <style>
+			.alert {
+			  padding: 20px;
+			  background-color: #66708a;
+			  color: white;
+			  border-radius: 5px;
+			}
 
-<!--footer include-->
-<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
-<!--script include-->
-<script th:replace="~{fragments/script :: scriptFragment}"></script>
+			.closebtn {
+			  margin-left: 15px;
+			  color: white;
+			  font-weight: bold;
+			  float: right;
+			  font-size: 22px;
+			  line-height: 20px;
+			  cursor: pointer;
+			  transition: 0.3s;
+			}
 
-</body>
+			.closebtn:hover {
+			  color: black;
+			}
+			</style>
+
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+<!-- video BD -->
+<!-- <video autoplay muted loop id="myVideo">
+	<source src="img/Airport_Background.mp4" type="video/mp4">
+	Your browser does not support HTML5 video.
+  </video> -->	
+  <!-- Footer logo -->
+ <!-- <div class="content1">
+	<p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei. Id qui nemore latine molestiae, ad mutat oblique delicatissimi pro.</p>
+	<button id="myBtn" onclick="myFunction()">Pause</button>
+  </div> -->
+
+				<!-- Header -->
+					<header id="header">
+						<div class="logo">
+
+							<span class="fas fa-handshake fa-3x"></span>
+
+
+
+						</div>
+						<div class="content">
+							<div class="inner">
+								<h1>AVSEC WMS</h1>
+								<p>Aviation Security Welfare System <a href="https://airport.lk">(AVSEC-WMS)</a> released<br />
+								for staff those how are in working in AASL AVSEC Disvision staff in <a href="https://www.airport.lk/">Bandaranayake International Airport, Mattala International Airport, Jaffna International Airport, Ratmalana Airport and Baticaloa Airport </a>.</p>
+							</div>
+						</div>
+						<nav>
+							<ul>
+								<li><a href="#intro">Intro</a></li>
+								<li><a href="#work">Work</a></li>
+								<li><a href="#about">Sign Up</a></li>
+								<li><a href="#contact">Sign In</a></li>
+								<li><a href="http://localhost:8080/login">Sign In</a></li>
+
+								<!--<li><a href="#elements">Elements</a></li>-->
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Intro -->
+							<article id="intro">
+								<h2 class="major">Intro</h2>
+								<span class="image main"><img src="img/pic04.jpg" alt="" /></span>
+								<p>AVSEC Welfare Society is a one of the large associations based on Civil Airports in Sri Lanka. AVSEC Welfare Society was formed on 23rd May 2008 by government with the aim of providing welfare facilities to serving all members and for their families in order to uplift their welfare function and  ensure a smooth, continuous and regular functioning of the current welfare projects and to launch more innovative welfare projects for the benefit of all ranks, serving in the Aviation Security Division of AASL.</a>.</p>
+								<p>For welfare function they have do various types of transactions, request, grievances and etc. But those all functions are done by manually. They have to manage lot of files and books for their day to day activities. Because of that they have to face lot of problems. Following problems have been occurred in existing process not only that because of manual system, they have to update large number of contribution collection of records day-to-day. when considering about this tedious task, data redundancy and inconsistency between members has become the main problem in their manual system.</p>
+							</article>
+
+						<!-- Work -->
+							<article id="work">
+								<h2 class="major">Work</h2>
+								<span class="image main"><img src="img/pic05.jpg" alt="" /></span>
+								<p><li>Employee Management</li>
+								<li>Welfare Management</li>
+								<li>Contact Management</li>
+								<li>Notification Management</li>
+								</p>
+								</article>
+
+						<!-- About -->
+							<article id="about">
+								<h2 class="major">Sign In</h2>
+								<span class="image main"><img src="img/pic07.jpg" alt="" /></span>
+								<form method="post" action="">
+									<div class="fields">
+										<div class="field half">
+											<label for="email">Email</label>
+											<input type="text" name="email" id="name" required/>
+										</div>
+										<div class="field half">
+											
+										</div>
+										
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" onclick="show();"/></li>
+										<li><input type="reset" value="Reset" /></li>
+									</ul>
+									<p id="helpMessage"  style="display: none;" ></p>
+									<div class="alert">
+										<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+										<strong></strong> We have sent an email with a confirmation link to your email address. In order to complete the sign-up process, please click the confirmation link.
+									  </div>
+								</form>
+							</article>
+
+						<!-- Contact -->
+							<article id="contact">
+								<h2 class="major">Sign In</h2>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<label for="email">Email</label>
+											<input type="text" name="email" id="email" required/>
+										</div>
+										<div class="field half">
+											<label for="password1">Password</label>
+											<input type="password" name="password" id="password1" required/>
+										</div>
+										
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Sign In" class="primary" /></li>
+										<li><input type="reset" value="Reset" /></li>
+									</ul>
+								</form>
+								
+							</article>
+
+						
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer" >
+						<!-- <p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p> -->
+						<p class="copyright">&copy; Design: <a href="http://prasad2020.com">W B Prasad</a>.</p>
+					</br>
+<!--						<ul class="icons">-->
+<!--							<li><a href="#" class="fab fa-twitter"><span class="label">Twitter</span></a></li>-->
+<!--							<li><a href="#" class="fab brands fa-facebook-f"><span class="label">Facebook</span></a></li>-->
+<!--							<li><a href="#" class="fab brands fa-instagram"><span class="label">Instagram</span></a></li>-->
+<!--							<li><a href="#" class="fab brands fa fa-whatsapp" aria-hidden="true"></i><span class="label">Whatsapp</span></a></li>-->
+
+
+<!--						</ul>-->
+						<div>
+						 <nav><ul class="icons">
+							 <li><img src="img/logo_bia_small.png" alt="BIA"></li>
+							<li></li><img src="img/logo_mria.png" alt="MRIA"> </li>
+							<li></li><img src="img/logo_rma.png" alt="RMA"> </li>
+							<li></li><img src="img/logo_jaf_large.png" alt="JIA"> </li>
+							<li></li><img src="img/logo_batti_small.png" alt="BDA"> </li>
+						 </ul></nav></div>
+					</footer>
+
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+		<!-- Scripts -->
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/js/browser.min.js}"></script>
+		<script th:src="@{/js/breakpoints.min.js}"></script>
+		<script th:src="@{/js/util.js}"></script>
+		<script th:src="@{/js/main.js}"></script>
+		<div th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+
+		<!--To modify the alert-->
+
+		<!-- data table -->
+
+		<!--<script>
+				var video = document.getElementById("myVideo");
+				var btn = document.getElementById("myBtn");
+				
+				function myFunction() {
+				  if (video.paused) {
+					video.play();
+					btn.innerHTML = "Pause";
+				  } else {
+					video.pause();
+					btn.innerHTML = "Play";
+				  }
+				}
+				</script>-->	
+				<!-- <script>
+					function show(){
+    document.getElementById('helpMessage').style.display = 'block';
+}
+				</script> -->
+
+	</body>
+
 </html>

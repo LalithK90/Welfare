@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                       <div class="row">
+                            <!-- Default box -->
+
+                           <div class="card card-body">
+                                <div class="card-header">
+                                    <h3 class="card-title">Projects</h3>
+
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                            <i class="fas fa-minus"></i></button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                                            <i class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                    <table class="table table-striped projects">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 5%">
+                                                EPF
+                                            </th>
+                                            <th style="width: 20%">
+                                                Name
+                                            </th>
+                                            <th style="width: 16%">
+                                                Member Image
+                                            </th>
+                                            <th>
+                                                Payment Progress
+                                            </th>
+                                            <th style="width: 8%" class="text-center">
+                                                Status
+                                            </th>
+                                            <th style="width: 30%">
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                               5793
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    W B Prasad
+                                                </a>
+                                         <!--       <br/>
+                                                <small>
+                                                    5793
+                                                </small>-->
+                                            </td>
+                                            <td>
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <img alt="Avatar" class="table-avatar" src="/img/avatar.png">
+                                                    </li>
+                                                  </ul>
+                                            </td>
+                                            <td class="project_progress">
+                                                <div class="progress progress-sm">
+                                                    <div class="progress-bar bg-green" role="progressbar" aria-volumenow="57" aria-volumemin="0" aria-volumemax="100" style="width: 57%">
+                                                    </div>
+                                                </div>
+                                                <small>
+                                                    57% Complete
+                                                </small>
+                                            </td>
+                                            <td class="project-state">
+                                                <span class="badge badge-success">Success</span>
+                                            </td>
+                                            <td class="project-actions text-right">
+                                                <a class="btn btn-primary btn-sm" href="#">
+                                                    <i class="fas fa-folder">
+                                                    </i>
+                                                    View
+                                                </a>
+                                                <a class="btn btn-info btn-sm" href="#">
+                                                    <i class="fas fa-pencil-alt">
+                                                    </i>
+                                                    Edit
+                                                </a>
+                                                <a class="btn btn-danger btn-sm" href="#">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                               6007
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    K T L G Ridmika
+                                                </a>
+                                            <!--    <br/>
+                                                <small>
+
+                                                </small>-->
+                                            </td>
+                                            <td>
+                                                <ul class="list-inline">
+
+                                                    <li class="list-inline-item">
+                                                        <img alt="Avatar" class="table-avatar" src="/img/avatar2.png">
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td class="project_progress">
+                                                <div class="progress progress-sm">
+                                                    <div class="progress-bar bg-green" role="progressbar" aria-volumenow="23" aria-volumemin="0" aria-volumemax="100" style="width: 35%">
+                                                    </div>
+                                                </div>
+                                                <small>
+                                                    35% Complete
+                                                </small>
+                                            </td>
+                                            <td class="project-state">
+                                                <span class="badge badge-danger">Pending</span>
+                                            </td>
+                                            <td class="project-actions text-right">
+                                                <a class="btn btn-primary btn-sm" href="#">
+                                                    <i class="fas fa-folder">
+                                                    </i>
+                                                    View
+                                                </a>
+                                                <a class="btn btn-info btn-sm" href="#">
+                                                    <i class="fas fa-pencil-alt">
+                                                    </i>
+                                                    Edit
+                                                </a>
+                                                <a class="btn btn-danger btn-sm" href="#">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                5793
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    W B Prasad
+                                                </a>
+                                                <!--       <br/>
+                                                       <small>
+                                                           5793
+                                                       </small>-->
+                                            </td>
+                                            <td>
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <img alt="Avatar" class="table-avatar" src="/img/avatar3.png">
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td class="project_progress">
+                                                <div class="progress progress-sm">
+                                                    <div class="progress-bar bg-green" role="progressbar" aria-volumenow="57" aria-volumemin="0" aria-volumemax="100" style="width: 57%">
+                                                    </div>
+                                                </div>
+                                                <small>
+                                                    57% Complete
+                                                </small>
+                                            </td>
+                                            <td class="project-state">
+                                                <span class="badge badge-light">Up now ok</span>
+                                            </td>
+                                            <td class="project-actions text-right">
+                                                <a class="btn btn-primary btn-sm" href="#">
+                                                    <i class="fas fa-folder">
+                                                    </i>
+                                                    View
+                                                </a>
+                                                <a class="btn btn-info btn-sm" href="#">
+                                                    <i class="fas fa-pencil-alt">
+                                                    </i>
+                                                    Edit
+                                                </a>
+                                                <a class="btn btn-danger btn-sm" href="#">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                6007
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    K T L G Ridmika
+                                                </a>
+                                                <!--    <br/>
+                                                    <small>
+
+                                                    </small>-->
+                                            </td>
+                                            <td>
+                                                <ul class="list-inline">
+
+                                                    <li class="list-inline-item">
+                                                        <img alt="Avatar" class="table-avatar" src="/img/avatar04.png">
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td class="project_progress">
+                                                <div class="progress progress-sm">
+                                                    <div class="progress-bar bg-green" role="progressbar" aria-volumenow="23" aria-volumemin="0" aria-volumemax="100" style="width: 35%">
+                                                    </div>
+                                                </div>
+                                                <small>
+                                                    35% Complete
+                                                </small>
+                                            </td>
+                                            <td class="project-state">
+                                                <span class="badge badge-info">Pending</span>
+                                            </td>
+                                            <td class="project-actions text-right">
+                                                <a class="btn btn-primary btn-sm" href="#">
+                                                    <i class="fas fa-folder">
+                                                    </i>
+                                                    View
+                                                </a>
+                                                <a class="btn btn-info btn-sm" href="#">
+                                                    <i class="fas fa-pencil-alt">
+                                                    </i>
+                                                    Edit
+                                                </a>
+                                                <a class="btn btn-danger btn-sm" href="#">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                5793
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    W B Prasad
+                                                </a>
+                                                <!--       <br/>
+                                                       <small>
+                                                           5793
+                                                       </small>-->
+                                            </td>
+                                            <td>
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <img alt="Avatar" class="table-avatar" src="/img/avatar5.png">
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td class="project_progress">
+                                                <div class="progress progress-sm">
+                                                    <div class="progress-bar bg-green" role="progressbar" aria-volumenow="57" aria-volumemin="0" aria-volumemax="100" style="width: 57%">
+                                                    </div>
+                                                </div>
+                                                <small>
+                                                    57% Complete
+                                                </small>
+                                            </td>
+                                            <td class="project-state">
+                                                <span class="badge badge-info">Success</span>
+                                            </td>
+                                            <td class="project-actions text-right">
+                                                <a class="btn btn-primary btn-sm" href="#">
+                                                    <i class="fas fa-folder">
+                                                    </i>
+                                                    View
+                                                </a>
+                                                <a class="btn btn-info btn-sm" href="#">
+                                                    <i class="fas fa-pencil-alt">
+                                                    </i>
+                                                    Edit
+                                                </a>
+                                                <a class="btn btn-danger btn-sm" href="#">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                6007
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    K T L G Ridmika
+                                                </a>
+                                                <!--    <br/>
+                                                    <small>
+
+                                                    </small>-->
+                                            </td>
+                                            <td>
+                                                <ul class="list-inline">
+
+                                                    <li class="list-inline-item">
+                                                        <img alt="Avatar" class="table-avatar" src="/img/avatar.png">
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td class="project_progress">
+                                                <div class="progress progress-sm">
+                                                    <div class="progress-bar bg-green" role="progressbar" aria-volumenow="100" aria-volumemin="0" aria-volumemax="100" style="width: 35%">
+                                                    </div>
+                                                </div>
+                                                <small>
+                                                    100% Complete
+                                                </small>
+                                            </td>
+                                            <td class="project-state">
+                                                <span class="badge badge-secondary">Pending</span>
+                                            </td>
+                                            <td class="project-actions text-right">
+                                                <a class="btn btn-primary btn-sm" href="#">
+                                                    <i class="fas fa-folder">
+                                                    </i>
+                                                    View
+                                                </a>
+                                                <a class="btn btn-info btn-sm" href="#">
+                                                    <i class="fas fa-pencil-alt">
+                                                    </i>
+                                                    Edit
+                                                </a>
+                                                <a class="btn btn-danger btn-sm" href="#">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- content-wrapper end -->
+    <div th:replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+</div><!-- wrapper end -->
+<div th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+</body>
+</html>

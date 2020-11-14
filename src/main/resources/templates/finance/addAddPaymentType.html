@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+
+
+
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card"><div class="card-body">
+                                    <form role="form">
+                                        <div class="form-group">
+
+                                            <label for="exampleInputEmail1">
+                                                Payment Name
+                                            </label>
+                                            <input type="email" class="form-control" id="exampleInputEmail1" />
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label for="exampleInputPassword1">
+                                                Sort Description
+                                            </label>
+                                            <input type="text" class="form-control" id="exampleInputPassword1" />
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label for="exampleInputPassword1" >
+                                                Payment Type
+                                            </label><br>
+                                            <input type="radio" id="credit" class="form-text">
+                                            <label for="credit">Credit (බැර)</label><br>
+                                            <input type="radio" id="debit">
+                                            <label for="debit">Debit (හර)</label><br>
+                                        </div>
+
+
+                                        <button type="submit" class="btn btn-primary">
+                                            Submit
+                                        </button>
+                                    </form>
+                                </div></div>
+                            </div>
+                            <div class="col-md-8">
+
+                                <div class="card"><div class="card-body">Percent Payment Category </div>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>
+                                                    #
+                                                </th>
+                                                <th>
+                                                    Product
+                                                </th>
+                                                <th>
+                                                    Payment Taken
+                                                </th>
+                                                <th>
+                                                    Status
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    1
+                                                </td>
+                                                <td>
+                                                    TB - Monthly
+                                                </td>
+                                                <td>
+                                                    01/04/2012
+                                                </td>
+                                                <td>
+                                                    Default
+                                                </td>
+                                            </tr>
+                                            <tr class="table-active">
+                                                <td>
+                                                    1
+                                                </td>
+                                                <td>
+                                                    TB - Monthly
+                                                </td>
+                                                <td>
+                                                    01/04/2012
+                                                </td>
+                                                <td>
+                                                    Approved
+                                                </td>
+                                            </tr>
+                                            <tr class="table-success">
+                                                <td>
+                                                    2
+                                                </td>
+                                                <td>
+                                                    TB - Monthly
+                                                </td>
+                                                <td>
+                                                    02/04/2012
+                                                </td>
+                                                <td>
+                                                    Declined
+                                                </td>
+                                            </tr>
+                                            <tr class="table-warning">
+                                                <td>
+                                                    3
+                                                </td>
+                                                <td>
+                                                    TB - Monthly
+                                                </td>
+                                                <td>
+                                                    03/04/2012
+                                                </td>
+                                                <td>
+                                                    Pending
+                                                </td>
+                                            </tr>
+                                            <tr class="table-danger">
+                                                <td>
+                                                    4
+                                                </td>
+                                                <td>
+                                                    TB - Monthly
+                                                </td>
+                                                <td>
+                                                    04/04/2012
+                                                </td>
+                                                <td>
+                                                    Call in to confirm
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- content-wrapper end -->
+    <div th:replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+</div><!-- wrapper end -->
+<div th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+</body>
+</html>

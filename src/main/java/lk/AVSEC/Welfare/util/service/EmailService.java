@@ -38,7 +38,7 @@ public class EmailService {
 
         try {
             mailMessage.setTo(receiverEmail);
-            mailMessage.setFrom("-(Excise Department - Sri Lanka - (not reply))");
+            mailMessage.setFrom("-(AVSEC Welfare Management System - (not reply))");
             mailMessage.setSubject(subject);
             mailMessage.setText(message);
 
@@ -124,7 +124,7 @@ public class EmailService {
     }
 
 /*    public void sendPatientReport(String receiverEmail, String subject, String fileName) {
-//todo send pdf as email after encryption
+
 
      File Encryption
 

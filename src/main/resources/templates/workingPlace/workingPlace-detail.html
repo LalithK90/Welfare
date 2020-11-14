@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4>Working Place </h4>
+
+
+                                            <!--/* id this comment not visualize */-->
+                                        <table class="table table-borderless table-hover">
+                                            <tbody>
+                                            <div class="container-fluid" th:fragment="workingPlaceDetail">
+                                            <!--Id-->
+                                            <tr><th>
+                                            <label class="form-label "> Id </label></th>
+                                                <td class="display_detail" th:text="${workingPlaceDetail.id}"></td>
+
+                                            </tr>
+                                            <tr><th><!--Province-->
+                                                <label th:for="${'province'}" class="form-label "> Province </label></th>
+                                           <td class="display_detail" th:text="${workingPlaceDetail.district.province.province}">
+                                           </td>
+                                            </tr>
+                                            <tr><th><!--WorkingPlace S.name-->
+                                                <label class="form-label "> Working placw short Name </label></th>
+                                             <td class="display_detail" th:text="${workingPlaceDetail.shortName}">
+                                             </td>
+                                            </tr>
+                                            <tr><th> <!--WorkingPlace name-->
+                                                <label class="form-label "> Working place district </label></th>
+                                           <td class="display_detail" th:text="${workingPlaceDetail.district}">
+                                                </td>
+                                            </tr>
+                                            <tr><th></th><td><a href="/workingPlace">
+                                                <button class="btn btn-primary">
+
+                                                    <i class="fa fa-step-backward mr-1"></i>Back
+                                                </button>
+                                            </a></td></tr>
+                                            </div>
+                                            </tbody></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div><!-- content-wrapper end -->
+<div th:replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+</div><!-- wrapper end -->
+<div th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+</body>
+</html>

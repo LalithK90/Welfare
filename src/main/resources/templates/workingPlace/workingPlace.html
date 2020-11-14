@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set
+         -->
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body" id="workingPlaceListTable"
+                                         data-th-if="${not #lists.isEmpty(workingPlaces)}">
+                                        <h4>Secondary Header </h4>
+                                                     <table class="table table-hover table-striped" id="myTable">
+                                                        <thead class="thead-inverse">
+                                                        <tr>
+                                                            <th>Index</th>
+                                                            <th>Province</th>
+                                                            <th>Contact No</th>
+                                                            <th>WorkingPlace</th>
+                                                            <th>Email</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr data-th-each="workingPlace, rowCount : ${workingPlaces}"
+                                                            scope="row">
+                                                            <td data-th-text="${rowCount.count}"></td>
+                                                            <td data-th-text="${workingPlace.district.name}"></td>
+                                                            <td data-th-text="${workingPlace.phoneNumber}"></td>
+                                                            <td data-th-text="${workingPlace.shortName.shortName}"></td>
+                                                            <td data-th-text="${workingPlace.email}"></td>
+                                                            <td><a class="btn btn-success btn-sm"
+                                                                   data-th-href="${'/workingPlace/' + workingPlace.id}"
+                                                                   id="workingPlaceView"><i
+                                                                    class="fa fa-folder-open"></i>&nbsp;View</a>
+                                                                <a class="btn btn-primary btn-sm" id="workingPlaceEdit"
+                                                                   data-th-href="${'/workingPlace/edit/' + workingPlace.id}"><i
+                                                                        class="fa fa-edit"></i>&nbsp;Edit</a>
+                                                                <a class="btn btn-danger btn-sm" id="workingPlaceRemove"
+                                                                   data-th-href="${'/workingPlace/remove/' + workingPlace.id}"
+                                                                   data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                                                   data-th-onclick="if(!(confirm('Are you want to delete this civilStatus ?'))) return false"
+                                                                ><i
+                                                                        aria-hidden="true" class="fa fa-trash"></i>
+                                                                    Delete</a>
+
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            <!--if empty list-->
+                                            <div class="row" id="workingPlaceNotList"
+                                                 data-th-if="${ #lists.isEmpty(workingPlaces)}">
+                                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <h3 class="text-center text-danger">
+                                                            <strong>There is no workingPlace upto know please add workingPlace to the system
+                                                                using add workingPlace button.
+                                                            </strong>
+                                                        </h3>
+                                                    </div>
+                                                </div>
+
+
+                                            <!--Show saved workingPlace-->
+                                            <div class="row" data-th-if="${workingPlaceDetail!=null}">
+                                                   <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <div class="container">
+                                                            <div
+                                                                    data-th-replace="~{workingPlace/workingPlace-detail :: workingPlaceDetail}"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    /*active boostrap alert - start*/
+                                                    $(".alert").alert();
+                                                    /*active boostrap alert - end*/
+                                                </script>
+                                </div>
+                         </div>
+
+                     </div>
+                </div>
+            </div>
+        </div>
+
+
+
+</div><!-- content-wrapper end -->
+    </div>
+<div data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+</div><!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+</body>
+</html>

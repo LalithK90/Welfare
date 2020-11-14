@@ -1,25 +1,26 @@
 package lk.AVSEC.Welfare.asset.commonAsset.controller;
 
+import lk.AVSEC.Welfare.asset.briefing.service.BriefingService;
 import lk.AVSEC.Welfare.asset.userManagement.service.UserService;
 import lk.AVSEC.Welfare.util.service.DateTimeAgeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.HashSet;
 
 @Controller
 public class UiController {
 
     private final UserService userService;
     private final DateTimeAgeService dateTimeAgeService;
+    private final BriefingService briefingService;
 
     @Autowired
-    public UiController(UserService userService, DateTimeAgeService dateTimeAgeService) {
+    public UiController(UserService userService, DateTimeAgeService dateTimeAgeService, BriefingService briefingService) {
         this.userService = userService;
         this.dateTimeAgeService = dateTimeAgeService;
+
+        this.briefingService = briefingService;
     }
 
     @GetMapping(value = {"/", "/index"})
@@ -29,6 +30,7 @@ public class UiController {
 
     @GetMapping(value = {"/home", "/mainWindow"})
     public String getHome(Model model) {
+        model.addAttribute("briefing", briefingService.findAll());
         //do some logic here if you want something to be done whenever
         /*User authUser = userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
         Set<Petition> petitionSet = new HashSet<>();
@@ -63,13 +65,13 @@ public class UiController {
         return "login/login";
     }
 
-    @GetMapping(value = {"/unicodeTamil"})
-    public String getUnicodeTamil() {
-        return "fragments/unicodeTamil";
-    }
-
-    @GetMapping(value = {"/unicodeSinhala"})
-    public String getUnicodeSinhala() {
-        return "fragments/unicodeSinhala";
-    }
+//    @GetMapping(value = {"/unicodeTamil"})
+//    public String getUnicodeTamil() {
+//        return "fragments/unicodeTamil";
+//    }
+//
+//    @GetMapping(value = {"/unicodeSinhala"})
+//    public String getUnicodeSinhala() {
+//        return "fragments/unicodeSinhala";
+//    }
 }

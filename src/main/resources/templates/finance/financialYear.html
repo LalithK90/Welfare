@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card"><div class="card-body">
+                                    <h4>Add Financial Years</h4>
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <a class="btn btn-success" id="newfinancialYear" style="width:100%" th:href="${'/fundReceivingType/add'}">
+                                                <i class="fa fa-financialYears-plus" style="font-size: 18px;"></i> &nbsp; Add Financial Year </a>
+                                        </div>
+                                        <div class="form-group">
+                                            <a class="btn btn-warning" id="newfinancialYeara" style="width:100%" th:href="${'/fundReceivingType'}">
+                                                <i class="fa fa-financialYears-plus" style="font-size: 18px;"></i> &nbsp; Edit Financial Year </a>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-primary" style="width:100%";data-toggle="modal" data-target="#modalScrollableBody">
+                                                <i class="fa fa-financialYears-plus" style="font-size: 18px;"></i>  Read Circular</button>
+                                        </div>
+
+                                    </form>
+                                </div></div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card"><div class="card-body">
+                                    <h4>Financial Years List </h4></div>
+                                    <!--if not empty list-->
+                                    <div class="card-body" id="financialYearsListTable" th:if="${not #lists.isEmpty(financialYears)}">
+                                        <table class="table">
+                                            <thead class="thead-inverse">
+                                            <tr>
+                                                <th>Index</th>
+                                                <th>Year</th>
+                                                <th>Description</th>
+                                                <th>Status</th>
+                                                <th>Modify</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="financialYears, rowCount : ${financialYears}" scope="row">
+                                                <td th:text="${rowCount.count}"></td>
+                                                <td th:text="${financialYears.fundReceivingType}"></td>
+                                                <!--     <th th:text="${financialYears.description}"></th>
+                                                     <th th:text="${financialYears.participant}"></th>-->
+                                                <td th:text="${financialYears.description}"></td>
+                                                <td th:text="${financialYears.status.status}"></td>
+
+                                                <td><a class="btn btn-success btn-sm" th:href="${'/fundReceivingType/' + financialYears.id}" id="financialYearsView"><i
+                                                        class="fa fa-folder-open"></i>&nbsp;View</a>
+                                                    <a class="btn btn-primary btn-sm" id="financialYearsEdit"
+                                                       th:href="${'/fundReceivingType/edit/' + financialYears.id}"><i
+                                                            class="fa fa-edit"></i>&nbsp;Edit</a>
+                                                    <a class="btn btn-danger btn-sm" id="financialYearsRemove"
+                                                       th:href="${'/fundReceivingType/remove/' + financialYears.id}"
+                                                       th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                                       th:onclick="if(!(confirm('Are you want to delete this financialYears ?'))) return false"
+                                                    ><i
+                                                            aria-hidden="true" class="fa fa-trash"></i>
+                                                        Delete</a>
+
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div><!-- content-wrapper end -->
+    <div th:replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+</div><!-- wrapper end -->
+<div th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+</body>
+</html>

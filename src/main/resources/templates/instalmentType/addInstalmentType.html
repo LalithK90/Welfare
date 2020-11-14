@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+        <!-- /.content-header -->
+        <!--form action button---------------------------------------------------------     -->
+        <div class="row m-1">
+            <div class="col-12">
+                <div class="text-right">
+                    <div text-right>
+                        <button type="button" class="btn btn-info btn-sm">
+                            <a  data-th-href="${'/addInstalmentType/add'}" >
+                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
+                                <span class="text-white"> Add Instalment Type </span></a>
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm disabled">
+                            <a  data-th-href="${'/addInstalmentType'}" >
+                                <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >
+                                <span class="text-white"> View Instalment Type </span></a>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-sm" onclick="myEdit()">
+                            <!--                            <a  data-th-href="${'/designation/edit/'}" >-->
+                            <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >
+                            <span class="text-white"> Edit Instalment Type </span></a>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="myDelete()">
+                            <!--                            <a  data-th-href="${'/designation/remove/'}" >-->
+                            <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >
+                            <span class="text-white"> Delete Instalment Type </span></a>
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--form action end button---------------------------------------------------------     -->
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4>Add New Instralment Type</h4>
+
+                                        <div class="container-fluid">
+                                            <form th:action="${addStatus==false?'/instalmentType/save' :'/instalmentType/update'}"
+                                                  method="post" th:object="${instalmentType}">
+
+                                                <!--Id-->
+
+<!--                                                </div>-->
+                                                <table class="table table-borderless">
+                                                   <tbody>
+                                                   <tr>
+                                                       <th th:if="${addStatus==true}">
+                                                       <label for="id" class="form-label "> Id </label></th>
+                                                       <td th:if="${addStatus==true}">  <input type="text" class="form-control" th:field="*{id}" id="id"
+                                                                    readonly></td>
+                                                   </tr>
+                                                   <!--Name-->
+                                                    <tr>
+                                                       <th><label class="control-label" for="name">Name :</label></th>
+                                                        <td><div class="form-row">
+                                                            <input id="name" th:field="*{name}"
+                                                                   class="form-control col-10"
+                                                                   type="text" tabindex="2" required/>
+                                                            <span id="nameError" th:errors="*{name}"
+                                                                  th:if="${#fields.hasErrors('name')}"
+                                                                  class="error">Error Name</span>
+                                                        </div></td>
+                                                    </tr>
+                                                   <!--Year-->
+                                                    <tr>
+                                                        <th><label class="control-label" for="year">Year :</label></th>
+                                                        <td><div class="form-row">
+                                                            <input id="year" th:field="*{year}"
+                                                                   class="form-control col-10"
+                                                                   type="text" tabindex="2" required/>
+                                                            <span th:errors="*{year}"
+                                                                  th:if="${#fields.hasErrors('year')}"
+                                                                  class="error">Error Name</span>
+                                                        </div></td>
+                                                    </tr>
+
+                                                   <!--Collection type-->
+                                                    <tr>
+                                                        <th><label class="control-label" th:for="${'collectionTypes'}">Collection Type:</label></th>
+                                                        <td><div class="form-row">
+                                                            <select id="nationality" th:field="*{collectionType}"
+                                                                    class="form-control" tabindex="6" required>
+                                                                <option value="">Please select</option>
+                                                                <option th:each="collectionType : ${collectionTypes}"
+                                                                        th:text="${collectionType.collectionType}"
+                                                                        th:value="${collectionType}"
+                                                                        th:selected="${collectionType==instalmentType.collectionType?'selected':'unselected'}"></option>
+                                                            </select>
+                                                        </div></td>
+                                                    </tr>
+                                                   <!--Expense Or Received type-->
+                                                    <tr>
+                                                        <th><label class="control-label" th:for="${'expenseOrReceived'}">Expense
+                                                            Or
+                                                            Received
+                                                            :</label></th>
+                                                        <td><div class="form-row">
+                                                            <select id="expenseOrReceived" th:field="*{expenseOrReceived}"
+                                                                    class="form-control" tabindex="6" required>
+                                                                <option value="">Please select</option>
+                                                                <option th:each="expenseOrReceived : ${expenseOrReceiveds}"
+                                                                        th:text="${expenseOrReceived.expenseOrReceived}"
+                                                                        th:value="${expenseOrReceived}"
+                                                                        th:selected="${expenseOrReceived==instalmentType.expenseOrReceived?'selected':'unselected'}"></option>
+                                                            </select>
+                                                        </div></td>
+                                                    </tr>
+                                                   <!--Amount-->
+
+                                                    <tr>
+                                                        <th> <label class="control-label" for="year">Amount :</label></th>
+                                                        <td> <div class="form-row">
+                                                            <input id="amount" th:field="*{amount}"
+                                                                   class="form-control col-10"
+                                                                   type="text" tabindex="2" required/>
+                                                            <span th:errors="*{amount}"
+                                                                  th:if="${#fields.hasErrors('amount')}"
+                                                                  class="error">Error Name</span>
+                                                        </div></td>
+                                                    </tr>
+                                                   <tr>
+                                                       <th></th>
+                                                       <td><!--buttons -->
+                                                           <div class="form-group row">
+                                                               <button type="reset" class="btn btn-warning mr-2">
+                                                                   <i th:class="${addStatus==false?'fa fa-save mr-3':'fa fa-thumbs-down mr-3'}"></i>
+                                                                   <span
+                                                                           th:text="${addStatus==false?'Clear' : 'Reset'}"></span>
+                                                               </button>
+
+                                                               <button type="submit" class="btn btn-primary">
+                                                                   <i th:class="${addStatus==false?'fa fa-save mr-3':'fa fa-thumbs-up mr-3'}"></i>
+                                                                   <span
+                                                                           th:text="${addStatus==false?'Save' : 'Update'}"></span>
+                                                               </button>
+                                                           </div></td>
+                                                   </tr>
+                                                   </tbody></table>
+
+
+
+
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- content-wrapper end -->
+</div>
+<!--footer include-->
+<div data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+</div><!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+        <!-- /.content-header -->
+        <!--form action button---------------------------------------------------------     -->
+        <div class="row m-1">
+            <div class="col-12">
+                <div class="text-right">
+                    <div text-right>
+                        <button type="button" class="btn btn-info btn-sm">
+                            <a  data-th-href="${'/district/add'}" >
+                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
+                                <span class="text-white"> Add District </span></a>
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm disabled">
+                            <a  data-th-href="${'/district'}" >
+                                <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >
+                                <span class="text-white"> View District </span></a>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-sm" onclick="myEdit()">
+                            <!--                            <a  data-th-href="${'/designation/edit/'}" >-->
+                            <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >
+                            <span class="text-white"> Edit District </span></a>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="myDelete()">
+                            <!--                            <a  data-th-href="${'/designation/remove/'}" >-->
+                            <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >
+                            <span class="text-white"> Delete District </span></a>
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--form action end button---------------------------------------------------------     -->
+<div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4>District </h4>
+                                        <!--if not empty list-->
+
+                                            <table class="table table-hover table-striped" id="myTable">
+                                                <div class="row" id="districtListTable" th:if="${not #lists.isEmpty(districts)}">
+                                                <thead class="thead-inverse" >
+                                                <tr>
+                                                    <th>Index</th>
+                                                    <th>Province</th>
+                                                    <th>District</th>
+                                                    <th>Modify</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="district, rowCount : ${districts}" scope="row">
+                                                    <th th:text="${rowCount.count}"></th>
+                                                    <th th:text="${district.province.province}"></th>
+                                                    <th th:text="${district.name}"></th>
+
+                                                    <th><a class="btn btn-success btn-sm" th:href="${'/district/' + district.id}" id="districtView"><i
+                                                            class="fa fa-folder-open"></i>&nbsp;View</a>
+                                                        <a class="btn btn-primary btn-sm" id="districtEdit"
+                                                           th:href="${'/district/edit/' + district.id}"><i
+                                                                class="fa fa-edit"></i>&nbsp;Edit</a>
+                                                        <a class="btn btn-danger btn-sm" id="districtRemove"
+                                                           th:href="${'/district/remove/' + district.id}"
+                                                           th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                                           th:onclick="if(!(confirm('Are you want to delete this civilStatus ?'))) return false"
+                                                        ><i
+                                                                aria-hidden="true" class="fa fa-trash"></i>
+                                                            Delete</a>
+
+                                                    </th>
+                                                </tr>
+                                                </tbody>
+                                                </div>
+                                            </table>
+
+                                        <!--if empty list-->
+                                        <div class="row" id="districtNotList" th:if="${ #lists.isEmpty(districts)}">
+                                            <div class="col-sm-12">
+                                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h3 class="text-center text-danger">
+                                                        <strong>There is no district upto know please add district to the system
+                                                            using add district button.
+                                                        </strong>
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                            <script>
+                                                /*active boostrap alert - start*/
+                                                $(".alert").alert();
+                                                /*active boostrap alert - end*/
+                                            </script>
+                                        </div>
+                                        <!--Show saved district-->
+                                        <div class="row" th:if="${districtDetail!=null}">
+                                            <div class="col-sm-12">
+                                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <div class="container">
+                                                        <div th:replace="~{district/district-detail :: districtDetail}"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <script>
+                                                /*active boostrap alert - start*/
+                                                $(".alert").alert();
+                                                /*active boostrap alert - end*/
+                                            </script>
+                                        </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</div><!-- content-wrapper end -->
+<div th:replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+</div><!-- wrapper end -->
+<div th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+</body>
+</html>

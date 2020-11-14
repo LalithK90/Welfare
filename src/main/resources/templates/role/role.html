@@ -1,63 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/header :: headerFragment}">
-    <meta charset="UTF-8">
-    <title>Thymeleaf Springboot </title>
-</head>
-<body>
-<nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
+<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
 
-<div class="container-fluid bg-secondary form-Border">
-    <div class="row text-center formManagement border-info">
-        <div class="col">
-            <a class="btn btn-success" href="/role/add">
-                <i class="fa fa-user-plus" style="font-size: 18px;"></i> &nbsp; New Role </a>
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
 
-        </div>
-        <div class="col ">
-            <h4 class="text-info text-center">
-                <strong>
-                    Role Management
-                </strong>
-            </h4>
-        </div>
-        <div class="col">
-        </div>
-    </div>
-</div>
-<div class="container-fluid bg-dark formBorder">
-    <div class="offset-2 col-8 col-sm-8 col-md-8" id="roleListPresent" th:if="${not #lists.isEmpty(roles)}">
-        <div class="table-responsive">
-            <table class="table table-striped table-condensed">
-                <thead>
-                <tr>
-                    <th> Index</th>
-                    <th> Name</th>
-                    <th th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"> Modify</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="role, rowCount : ${roles}">
-                    <th th:text="${rowCount.count}"></th>
-                    <th th:text="${role.roleName}"></th>
-                    <th th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                        <a id="edit" th:href="${'/role/edit/' + role.id}" class="btn btn-primary btn-sm mr-2 p-2">Edit
-                        </a>
-                        &nbsp;
-                        <a id="remove" th:href="${'/role/remove/' + role.id}" class="btn btn-danger btn-sm mr-2 p-2"
-                           onclick="if
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-body">
+
+<!--                                            <a class="btn btn-success" id="newUser" th:href="${'/role/add'}">-->
+<!--                                                <i class="fa fa-user-plus" style="font-size: 18px;"></i> &nbsp; Add User </a>-->
+
+                                            <h4><span id="formHeader" th:text="${addStatus==true?'New Role':'Update Role'}"></span></h4>
+
+                                            <div class="card-body" id="roleListPresent" th:if="${not #lists.isEmpty(roles)}">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-condensed table-hover table-striped" id="myTable">
+                                                        <thead>
+                                                        <tr>
+                                                            <th> Index</th>
+                                                            <th> Name</th>
+                                                            <th th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"> Modify</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr th:each="role, rowCount : ${roles}">
+                                                            <td th:text="${rowCount.count}"></td>
+                                                            <td th:text="${role.roleName}"></td>
+                                                            <td th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                                                                <a id="edit" th:href="${'/role/edit/' + role.id}" class="btn btn-primary btn-sm mr-2 p-2">Edit
+                                                                </a>
+                                                                &nbsp;
+                                                                <a id="remove" th:href="${'/role/remove/' + role.id}" class="btn btn-danger btn-sm mr-2 p-2"
+                                                                   onclick="if
                         (!(confirm('Are you sure you want to delete this role?'))) return false"
->Delete</a></th>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-<!--footer include-->
-<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
-<!--script include-->
-<script th:replace="~{fragments/script :: scriptFragment}"></script>
+                                                                >Delete</a></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- content-wrapper end -->
+        <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+    </div><!-- wrapper end -->
+    <script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
 </body>
 </html>

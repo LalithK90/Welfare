@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+        <!-- /.content-header -->
+        <!--form action button---------------------------------------------------------     -->
+        <div class="row m-1">
+            <div class="col-12">
+                <div class="text-right">
+                    <div text-right>
+                        <button type="button" class="btn btn-info btn-sm">
+                            <a  data-th-href="${'/designation/add'}" >
+                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
+                                <span class="text-white"> Add Designation </span></a>
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm disabled">
+                            <a  data-th-href="${'/designation'}" >
+                                <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >
+                                <span class="text-white"> View Designation </span></a>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-sm" onclick="myEdit()">
+                            <!--                            <a  data-th-href="${'/designation/edit/'}" >-->
+                            <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >
+                            <span class="text-white"> Edit Designation </span></a>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="myDelete()">
+                            <!--                            <a  data-th-href="${'/designation/remove/'}" >-->
+                            <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >
+                            <span class="text-white"> Delete Designation </span></a>
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--form action end button---------------------------------------------------------     -->
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+<!--                    <a class="btn btn-success" id="newDesignation" data-th-href="${'/designation/add'}">-->
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Designation </h4>
+                               <!--if not empty list-->
+
+                                        <table class="table table-hover" id="myTable">
+                                            <div class="row" id="designationListTable"
+                                                 data-th-if="${not #lists.isEmpty(designations)}">
+                                            <thead>
+                                            <tr>
+                                                <th>Index</th>
+                                                <th>Designation</th>
+                                                <th>Short Name</th>
+                                                <th>Category Type</th>
+                                                <th>Salary Scale</th>
+                                                <th>Remark</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr data-th-each="designation, rowCount : ${designations}" scope="row">
+                                                <td data-th-text="${rowCount.count}"></td>
+                                                <td data-th-text="${designation.name}"></td>
+                                                <td data-th-text="${designation.shortName}">
+                                                <td data-th-text="${designation.categoryType.categoryType}"></td>
+                                                <td data-th-text="${designation.salaryScale.salaryScale}"></td>
+                                                <td data-th-text="${designation.remark}"></td>
+
+
+                                                <td><a class="btn btn-success btn-sm"
+                                                       data-th-href="${'/designation/' + designation.id}"
+                                                       id="designationView"><i
+                                                        class="fa fa-folder-open"></i>&nbsp;View</a>
+                                                    <a class="btn btn-primary btn-sm" id="designationEdit"
+                                                       data-th-href="${'/designation/edit/' + designation.id}"><i
+                                                            class="fa fa-edit"></i>&nbsp;Edit</a>
+                                                    <a class="btn btn-danger btn-sm" id="designationRemove"
+                                                       data-th-href="${'/designation/remove/' + designation.id}"
+                                                       data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                                       data-th-onclick="if(!(confirm('Are you want to delete this civilStatus ?'))) return false"
+                                                    ><i
+                                                            aria-hidden="true" class="fa fa-trash"></i>
+                                                        Delete</a>
+
+                                                </td>
+
+                                            </tr>
+                                            </tbody>
+                                            </div>
+                                        </table>
+
+                                <!--if empty list-->
+                                <div class="row" id="designationNotList" data-th-if="${ #lists.isEmpty(designations)}">
+                                      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <h3 class="text-center text-danger">
+                                                <strong>There is no designation upto know please add designation to the system
+                                                    using add designation button.
+                                                </strong>
+                                            </h3>
+                                        </div>
+                                    </div>
+
+                                <!--Show saved designation-->
+                                <div class="row" data-th-if="${designationDetail!=null}">
+                                    <div class="col-sm-12">
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <div class="container">
+                                                <div
+                                                        data-th-replace="~{designation/designation-detail :: designationDetail}"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        /*active boostrap alert - start*/
+                                        $(".alert").alert();
+                                        /*active boostrap alert - end*/
+                                    </script>
+                                </div>
+
+
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+        function myEdit() {
+            var txt;
+
+            var sNo = prompt("Please enter the serial number, you want to edit:", "Number Only");
+            if (sNo == null || sNo == "") {
+                txt = "Not a valid Number.";
+            } else {
+                txt = "/designation/edit/" + sNo+"/";
+                // document.write(txt);
+            }
+            // window.alert("Are sure?'<a href='+txt+'>Yes</a>'");
+            location.replace(txt);
+            // document.getElementById("demo").innerHTML = txt;
+        }
+        function myDelete() {
+            var txt1;
+
+            var sNo = prompt("Please enter the serial number, you want to edit:", "Number Only");
+            if (sNo == null || sNo == "") {
+                txt1 = "Not a valid Number.";
+            } else {
+                txt1 = "/designation/remove/" + sNo+"/";
+                // document.write(txt);
+            }
+            window.alert("You are not permission to Delete record ");
+            // location.replace(txt1);
+            // document.getElementById("demo").innerHTML = txt;
+        }
+  </script>
+
+</div><!-- content-wrapper end -->
+    </div>
+<div data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+</div><!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+</body>
+</html>
