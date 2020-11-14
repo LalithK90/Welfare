@@ -1,7 +1,6 @@
 package lk.AVSEC.Welfare.asset.item.controller;
 
 
-
 import lk.AVSEC.Welfare.asset.category.controller.CategoryController;
 import lk.AVSEC.Welfare.asset.item.entity.Enum.ItemStatus;
 import lk.AVSEC.Welfare.asset.item.entity.Enum.MainCategory;
@@ -19,7 +18,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping( "/item" )
-public class ItemController implements AbstractController<Item, Integer > {
+public class ItemController  {
     private final ItemService itemService;
 
     public ItemController(ItemService itemService) {
@@ -43,16 +42,6 @@ public class ItemController implements AbstractController<Item, Integer > {
     public String findAll(Model model) {
         model.addAttribute("items", itemService.findAll());
         return "item/item";
-    }
-
-    @Override
-    public String form(Model model) {
-        return null;
-    }
-
-    @Override
-    public String findById(Integer id, Model model) {
-        return null;
     }
 
     @GetMapping( "/add" )

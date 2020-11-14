@@ -44,7 +44,7 @@
                     <div class="card-body">
 
                         <!--if not empty list-->
-                        <div class="table-responsive container-fluid" id="branchListPresent" th:if="${not #lists.isEmpty(branchs)}">
+                        <div class="table-responsive container-fluid" id="branchListPresent" th:if="${not #lists.isEmpty(branches)}">
                             <!-- data table start -->
                             <table id="myTable" class="table table-hover table-light">
                         <thead>
@@ -58,7 +58,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="branch, rowCount : ${branchs}">
+                        <tr th:each="branch, rowCount : ${branches}">
                             <th th:text="${rowCount.count}"></th>
                             <th th:text="${branch.name}"></th>
                             <th th:text="${branch.land}"></th>
@@ -80,7 +80,7 @@
 
 </div></div>
             <!--Error-->
-            <div class="row" th:if="${ #lists.isEmpty(branchs)}">
+            <div class="row" th:if="${ #lists.isEmpty(branches)}">
                 <div class="col-sm-12">
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
