@@ -35,8 +35,8 @@ import javax.validation.Valid;
     public String findAll(Model model) {
         model.addAttribute("branches", branchService.findAll());
         model.addAttribute("contendHeader", "Branch List");
-//        return "branch/branch";
-        return "category/category";
+        return "branch/branch";
+
     }
 
     @Override
@@ -67,6 +67,7 @@ import javax.validation.Valid;
 
     @GetMapping( "/edit/{id}" )
     public String edit(@PathVariable Integer id, Model model) {
+        model.addAttribute("contendHeader", "Edit Branch");
         return commonThings(model, branchService.findById(id), false);
     }
 
@@ -79,6 +80,7 @@ import javax.validation.Valid;
     @GetMapping( "/{id}" )
     public String view(@PathVariable Integer id, Model model) {
         model.addAttribute("branchDetail", branchService.findById(id));
+        model.addAttribute("contendHeader", "Branch Details");
         return "branch/branch-detail";
     }
 }
