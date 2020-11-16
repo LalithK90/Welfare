@@ -1,14 +1,13 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper"><!-- wrapper start -->
-    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
-    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
-    <div class="content-wrapper"><!-- content-wrapper Start -->
-        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
-        <!-- /.content-header -->
-        <!--form action button---------------------------------------------------------     -->
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+    <div class="content-wrapper" ><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section ><!-- content-header Start -->
+        <!--action button layer---------------------------------------------------------     -->
         <div class="row m-1">
             <div class="col-12">
                 <div class="text-right">
@@ -18,29 +17,20 @@
                                 <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
                                 <span class="text-white"> Add District </span></a>
                         </button>
-                        <button type="button" class="btn btn-success btn-sm disabled">
-                            <a  data-th-href="${'/district'}" >
-                                <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >
-                                <span class="text-white"> View District </span></a>
-                        </button>
-                        <button type="button" class="btn btn-warning btn-sm" onclick="myEdit()">
-                            <!--                            <a  data-th-href="${'/designation/edit/'}" >-->
-                            <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >
-                            <span class="text-white"> Edit District </span></a>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="myDelete()">
-                            <!--                            <a  data-th-href="${'/designation/remove/'}" >-->
-                            <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >
-                            <span class="text-white"> Delete District </span></a>
 
+                        <button type="button" class="btn btn-success btn-sm">
+                            <a  data-th-href="${'/home'}" >
+                                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
+                                <span class="text-white"> Home </span></a>
                         </button>
                     </div>
                 </div>
             </div>
-
         </div>
         <!--form action end button---------------------------------------------------------     -->
-<div class="content-header">
+
+
+        <div class="content-header">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
@@ -52,7 +42,7 @@
                                         <h4>District </h4>
                                         <!--if not empty list-->
 
-                                            <table class="table table-hover table-striped" id="myTable">
+                                            <table class="table table-hover table-striped table-striped" id="myTable">
                                                 <div class="row" id="districtListTable" th:if="${not #lists.isEmpty(districts)}">
                                                 <thead class="thead-inverse" >
                                                 <tr>
@@ -66,6 +56,7 @@
                                                 <tr th:each="district, rowCount : ${districts}" scope="row">
                                                     <th th:text="${rowCount.count}"></th>
                                                     <th th:text="${district.province.province}"></th>
+
                                                     <th th:text="${district.name}"></th>
 
                                                     <th><a class="btn btn-success btn-sm" th:href="${'/district/' + district.id}" id="districtView"><i

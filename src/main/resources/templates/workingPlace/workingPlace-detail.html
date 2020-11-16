@@ -1,14 +1,33 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper"><!-- wrapper start -->
-    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
-    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
-    <div class="content-wrapper"><!-- content-wrapper Start -->
-        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
-        <!-- Form Header  Path -->
-        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+    <div class="content-wrapper" ><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section ><!-- content-header Start -->
+        <!--action button layer---------------------------------------------------------     -->
+        <div class="row m-1">
+            <div class="col-12">
+                <div class="text-right">
+                    <div text-right>
+                        <button type="button" class="btn btn-info btn-sm">
+                            <a  data-th-href="${'/workingPlace'}" >
+                                <span class="info-box-icon text-white"><i class="fa fa-backward mr-1" ></i ></span >
+                                <span class="text-white"> View Working Place List </span></a>
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm">
+                            <a  data-th-href="${'/home'}" >
+                                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
+                                <span class="text-white"> Home </span></a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--form action end button---------------------------------------------------------     -->
+
 
         <div class="content-header">
             <div class="container-fluid">
@@ -23,7 +42,7 @@
 
 
                                             <!--/* id this comment not visualize */-->
-                                        <table class="table table-borderless table-hover">
+                                        <table class="table table-borderless table-hover table-striped">
                                             <tbody>
                                             <div class="container-fluid" th:fragment="workingPlaceDetail">
                                             <!--Id-->
@@ -47,12 +66,13 @@
                                            <td class="display_detail" th:text="${workingPlaceDetail.district}">
                                                 </td>
                                             </tr>
-                                            <tr><th></th><td><a href="/workingPlace">
-                                                <button class="btn btn-primary">
 
-                                                    <i class="fa fa-step-backward mr-1"></i>Back
-                                                </button>
-                                            </a></td></tr>
+                                                <tr>
+                                                    <th></th><td>
+                                                    <button class="btn btn-dark" type="button" tabindex="3"> <a data-th-href="${'/workingPlace'}">
+                                                        <span class="info-box-icon text-white"><i class="fas fa-arrow-circle-left" style="font-size: 20px"></i>&nbsp;&nbsp;Back</span></a>
+                                                    </button>
+                                                </td></tr>
                                             </div>
                                             </tbody></table>
                                     </div>

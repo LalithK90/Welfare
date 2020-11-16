@@ -1,44 +1,34 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper"><!-- wrapper start -->
-    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
-    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
-    <div class="content-wrapper"><!-- content-wrapper Start -->
-        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
-        <!-- /.content-header -->
-        <!--form action button---------------------------------------------------------     -->
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+    <div class="content-wrapper" ><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section ><!-- content-header Start -->
+        <!--action button layer---------------------------------------------------------     -->
         <div class="row m-1">
             <div class="col-12">
                 <div class="text-right">
                     <div text-right>
                         <button type="button" class="btn btn-info btn-sm">
-                            <a  data-th-href="${'/designation/add'}" >
-                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
-                                <span class="text-white"> Add Designation </span></a>
-                        </button>
-                        <button type="button" class="btn btn-success btn-sm disabled">
                             <a  data-th-href="${'/designation'}" >
-                                <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >
-                                <span class="text-white"> View Designation </span></a>
+                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
+                                <span class="text-white"> View Designation List </span></a>
                         </button>
-                        <button type="button" class="btn btn-warning btn-sm" onclick="myEdit()">
-                            <!--                            <a  data-th-href="${'/designation/edit/'}" >-->
-                            <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >
-                            <span class="text-white"> Edit Designation </span></a>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="myDelete()">
-                            <!--                            <a  data-th-href="${'/designation/remove/'}" >-->
-                            <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >
-                            <span class="text-white"> Delete Designation </span></a>
 
+                        <button type="button" class="btn btn-success btn-sm">
+                            <a  data-th-href="${'/home'}" >
+                                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
+                                <span class="text-white"> Home </span></a>
                         </button>
                     </div>
                 </div>
             </div>
-
         </div>
+        <!--form action end button---------------------------------------------------------     -->
+
         <!--form action end button---------------------------------------------------------     -->
 <div class="content-header">
     <div class="container-fluid">
@@ -52,7 +42,7 @@
                                 <h4>Designation </h4>
                             <div class="container-fluid" th:fragment="designationDetail">
                                     <!--Id-->
-                                <table class="table table-borderless table-hover">
+                                <table class="table table-borderless table-hover table-striped">
                                     <tbody>
                                     <tr><th>
                                         <label class="form-label "> Id </label></th>
@@ -90,6 +80,12 @@
                                         <p class="display_detail" th:text="${designationDetail.remark}"></p>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <th></th><td>
+                                        <button class="btn btn-dark" type="button" tabindex="3"> <a data-th-href="${'/designation'}">
+                                            <span class="info-box-icon text-white"><i class="fas fa-arrow-circle-left" style="font-size: 20px"></i>&nbsp;&nbsp;Back</span></a>
+                                        </button>
+                                    </td></tr>
                                     </tbody>
                                 </table>
                             </div>
