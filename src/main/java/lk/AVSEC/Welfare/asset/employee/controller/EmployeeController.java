@@ -218,18 +218,14 @@ public class EmployeeController {
         model.addAttribute("employeeDetail", employeeService.search(employee));
         return "employee/employee-detail";
     }
-
+//
 //    @GetMapping(value = "/age/{id}")
 //    public String editEmployeeForm(@PathVariable("id") Integer id, Model model) {
 //        Employee employee = employeeService.findById(id);
-//        model.addAttribute("employee", employee);
-//        model.addAttribute("newEmployee", employee.getEpf());
-//        model.addAttribute("addStatus", false);
-//        model.addAttribute("contendHeader", "Employee Edit Details");
-//        model.addAttribute("file", employeeFilesService.employeeFileDownloadLinks(employee));
+//
 //
 //        //direct age calculation
-//        LocalDate l = LocalDate.of(1998, 04, 23); //specify year, month, date directly
+//        LocalDate l = LocalDate.of(1998, 4, 23); //specify year, month, date directly
 //        LocalDate now = LocalDate.now(); //gets localDate
 //        Period diff = Period.between(l, now); //difference between the dates is calculated
 //        System.out.println(diff.getYears() + "years" + diff.getMonths() + "months" + diff.getDays() + "days");
@@ -247,6 +243,12 @@ public class EmployeeController {
 //        LocalDate now1 = LocalDate.now();
 //        Period diff1 = Period.between(l1, now1);
 //        System.out.println("age:" + diff1.getYears() + "years");
+//        model.addAttribute("employee", employee);
+//        model.addAttribute("newEmployee", employee.getEpf());
+//        model.addAttribute("addStatus", false);
+//        model.addAttribute("contendHeader", "Employee Edit Details");
+//        model.addAttribute("file", employeeFilesService.employeeFileDownloadLinks(employee));
+//        return "redirect:/employee";
 //    }
 
 }
