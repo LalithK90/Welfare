@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
 <body class="hold-transition sidebar-mini layout-fixed" >
 <div class="wrapper" ><!-- wrapper start -->
@@ -42,6 +42,7 @@
           </div>
       </div>
       <!--form action end button---------------------------------------------------------     -->
+
     <div class="content-header">
       <div class="row">
         <div class="col-md-12" >
@@ -51,7 +52,7 @@
                 <!--<div class="card-body">
                     <h4>Secondary Header </h4>-->
                 <div class="card-body" >
-                  <table id="myTable" class="table table-hover" >
+                  <table id="myTable" class="table table-hover table-striped" >
 
                     <thead >
                     <tr >
@@ -136,6 +137,8 @@
         </div >
       </div >
     </div >
+
+
   </div >
 <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
 </div ><!-- wrapper end -->

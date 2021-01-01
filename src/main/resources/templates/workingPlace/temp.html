@@ -1,14 +1,48 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper"><!-- wrapper start -->
-    <nav th:repjlace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
-    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
-    <div class="content-wrapper"><!-- content-wrapper Start -->
-        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
-        <!-- Form Header  Path -->
-        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+    <div class="content-wrapper" ><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section ><!-- content-header Start -->
+        <!--action button layer---------------------------------------------------------     -->
+        <div class="row m-1">
+            <div class="col-12">
+                <div class="text-right">
+                    <div text-right>
+                        <button type="button" class="btn btn-info btn-sm">
+                            <a  data-th-href="${'/employee/add'}" >
+                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
+                                <span class="text-white"> Add Employee </span></a>
+                        </button>
+                        <!--                      <button type="button" class="btn btn-success btn-sm">-->
+                        <!--                          <a  data-th-href="${'/employee'}" >-->
+                        <!--                              <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >-->
+                        <!--                              <span class="text-white"> View Employee </span></a>-->
+                        <!--                      </button>-->
+                        <!--                      <button type="button" class="btn btn-warning btn-sm hide" onclick="myEdit()">-->
+                        <!--                          //                         <a  data-th-href="${'/designation/edit/'}" >-->
+                        <!--                          <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >-->
+                        <!--                          <span class="text-white"> Edit Employee </span></a>-->
+                        <!--                      </button>-->
+                        <!--                      <button type="button" class="btn btn-danger btn-sm " display="none" onclick="myDelete()">-->
+                        <!--                          // <a  data-th-href="${'/designation/remove/'}" >-->
+                        <!--                          <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >-->
+                        <!--                          <span class="text-white"> Delete Employee </span></a>-->
+                        <!--                      </button>-->
+                        <button type="button" class="btn btn-success btn-sm">
+                            <a  data-th-href="${'/home'}" >
+                                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
+                                <span class="text-white"> Home </span></a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--form action end button---------------------------------------------------------     -->
+
 
 
 

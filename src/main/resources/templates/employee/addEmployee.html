@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
 <body class="hold-transition sidebar-mini layout-fixed" >
 <div class="wrapper" ><!-- wrapper start -->
@@ -494,16 +494,16 @@
                             <div class="col-md-3 mr-5" >
                               <label class="control-label" >Image</label >
                               <input type="file" name="file" id="imgUpload" tabindex="-1"
-                                     accept="image/png, image/jpeg" />
+                                     accept="image/png, image/jpeg" style="border:0px"; />
                             </div >
 
 
                             <!--                            <div class="col-md-3 ml-5" >-->
                             <!--photo details-->
                             <img class="img-fluid ml-5 mt-3" data-th-if="${addStatus==false}" data-th-src="${file.url}"
-                                 id="image" alt="" style="height: 150px; width: 150px;" >
+                                 id="image" alt="" style="height: 150px; width: 150px; border: 0px" >
                             <img class="img-fluid ml-5" data-th-if="${addStatus==true}" src="" id="image" alt=""
-                                 style="height: 150px; width: 150px" >
+                                 style="height: 150px; width: 150px; border: 0px" >
                           </div >
 
 

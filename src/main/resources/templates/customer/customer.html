@@ -1,39 +1,31 @@
 <!doctype html>
-<html lang="en">
-<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}"></head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper"><!-- wrapper start -->
-    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
-    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
-    <div class="content-wrapper"><!-- content-wrapper Start -->
-        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
-        <!-- content-header Start -->
-        <!--form action button---------------------------------------------------------     -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+    <div class="content-wrapper" ><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section ><!-- content-header Start -->
+        <!--action button layer---------------------------------------------------------     -->
         <div class="row m-1">
             <div class="col-12">
                 <div class="text-right">
                     <div text-right>
                         <button type="button" class="btn btn-info btn-sm">
-                            <a data-th-href="${'/customer/add'}">
-                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1"></i></span>
+                            <a  data-th-href="${'/customer/add'}" >
+                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
                                 <span class="text-white"> Add Customer </span></a>
                         </button>
                         <button type="button" class="btn btn-success btn-sm">
-                            <a data-th-href="${'/Customer'}">
-                                <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1"></i></span>
-                                <span class="text-white"> View Customer </span></a>
+                            <a  data-th-href="${'/home'}" >
+                                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
+                                <span class="text-white"> Home </span></a>
                         </button>
-
                     </div>
                 </div>
             </div>
-
         </div>
-        <!--form action end button---------------------------------------------------------     -->
-
-        <!--heading Area-->
-
-        <!--Customers List-->
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row">
@@ -43,10 +35,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-<!--                                        <h4>Designation </h4>-->
-                                        <!--if not empty list-->
-
-                                            <table id="myTable" class="table table-hover" >
+                                        <table id="myTable" class="table table-hover" >
                                                 <div class="row" id="customerListPresent"  data-th:if="${not #lists.isEmpty(customers)}">
                                                 <thead>
 
@@ -132,7 +121,6 @@
                                 <!--footer include-->
                             </div>
                             <!--footer include-->
-
                         </div>
                     </div><!-- content-wrapper end -->
                 </div>

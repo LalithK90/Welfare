@@ -50,10 +50,10 @@ public class ApplicationCreateRestController {
 
 //Employee
         Employee employee = new Employee();
-        employee.setEpf("11111111");
+        employee.setEpf("0000");
         employee.setName("Admin User");
         employee.setCallingName("Admin");
-        employee.setName("908670000V");
+        employee.setName("123456789V");
         employee.setMobileOne("0750000000");
         employee.setTitle(Title.DR);
         employee.setGender(Gender.MALE);

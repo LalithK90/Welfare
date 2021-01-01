@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
 <body class="hold-transition sidebar-mini layout-fixed" >
 <div class="wrapper" ><!-- wrapper start -->
@@ -7,99 +7,113 @@
     <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
     <div class="content-wrapper" ><!-- content-wrapper Start -->
         <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section ><!-- content-header Start -->
-
-
-        <!--Heading Area-->
-<div class="container-fluid bg-dark form-Border">
-    <div class="row text-center formManagement border-info">
-        <!--View list Button-->
-        <div class="col">
-            <a href="/category" class="btn btn-primary">
-                <i class="fa fa-list" style="font-size: 20px"></i>&nbsp;&nbsp;View List
-            </a>
-        </div>
-        <!--Form Name-->
-        <div class="col">
-            <h2 class="text-light text-center">
-                <strong>
-                    <span th:text="${addStatus==true?'Add New Category':'Update Category Details'}"></span>
-                </strong>
-            </h2>
-        </div>
-        <!--Home Button-->
-        <div class="col">
-            <a class="btn btn-primary" href="/home">
-                <i class="fa fa-home" style="font-size: 20px"></i> &nbsp;&nbsp;Home
-            </a>
-        </div>
-    </div>
-</div>
-<!--Form Content-->
-<div class="container-fluid bg-info formBorder">
-    <div class="col-sm-12 flex-column ">
-        <form id="form" class="form-horizontal" th:action="${addStatus==true?'/category/add':'/category/update'}"
-              th:object="${category}" method="POST" enctype="multipart/form-data">
-            <div class="row">
-                <div class="form-group col-md-12 col-sm-12 text-center flex-column ">
-                    <!--Id-->
-                    <div id="idStatus" th:if="${addStatus==false}" class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="id">ID :</label>
-                        </div>
-                        <div class="col-md-4">
-                            <input id="id" th:field="*{id}" class="form-control" type="text" readonly/>
-                        </div>
+        <!--action button layer---------------------------------------------------------     -->
+        <div class="row m-1">
+            <div class="col-12">
+                <div class="text-right">
+                    <div text-right>
+                        <button type="button" class="btn btn-info btn-sm">
+                            <a  data-th-href="${'/category'}" >
+                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
+                                <span class="text-white"> View Category  </span></a>
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm">
+                            <a  data-th-href="${'/home'}" >
+                                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
+                                <span class="text-white"> Home </span></a>
+                        </button>
                     </div>
-                    <!--Main Category -->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="mainCategory">Main Category :</label>
-                        </div>
-                        <div class="col-md-4">
-                            <select id="mainCategory" th:field="*{mainCategory}" class="form-control" tabindex="4" style="font-size: large" required>
-                                <option value="">Please select</option>
-                                <option th:each="mainCategory : ${mainCategories}"
-                                        th:text="${mainCategory.mainCategory}"
-                                        th:value="${mainCategory}"
-                                        th:selected="${mainCategory==category.mainCategory?'selected':'unselected'}"></option>
-                            </select>
-                        </div>
-                    </div>
-                    <!--Name-->
-                    <div class="form-row text-right">
-                        <div class="col-md-4">
-                            <label class="control-label" for="name">Name :</label>
-                        </div>
-                        <div class="col-md-4">
-                            <input id="name" th:field="*{name}" class="form-control" tabindex="4" type="text" required/>
-                            <span id="nameError" th:errors="*{name}"
-                                  th:if="${#fields.hasErrors('name')}" class="error">Error Name</span>
-                        </div>
-                    </div>
-                </div>
-                <!--Button-->
-                <div class="form-group col-md-12 col-sm-12 text-center flex-column ">
-                    <button class="btn btn-primary"  >
-                        <i class="fas fa-arrow-circle-left" style="font-size: 20px"></i>&nbsp;&nbsp;Back
-                    </button>
-                    <button class="btn btn-success ml-5" type="submit" tabindex="21">
-                        <i class="fa fa-save " style="font-size: 20px"></i>&nbsp;&nbsp;<span id="submit" th:text="${addStatus==true?'Save': 'Update'}"></span>
-                    </button>
-                    <button class="btn btn-warning ml-5" type="reset" tabindex="21">
-                        <i class="far fa-times-circle" style="font-size: 20px"></i>&nbsp;&nbsp;Cancel
-                    </button>
-                </div>
-                <!--Error-->
-                <div class="form-row">
-                    <label id="errorLabel" th:if="${#fields.hasErrors('*')}" th:text="'Errors: '">Errors: </label>
-                    <ul>
-                        <li id="error" th:each="err: ${#fields.errors('*')}" th:text="${err}" class="error"></li>
-                    </ul>
                 </div>
             </div>
-        </form>
-    </div>
-</div>
+        </div>
+        <!--form action end button---------------------------------------------------------     -->
+
+        <!--Heading Area-->
+        <div class="content-header">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <span th:text="${addStatus==true?'Add New Category':'Update Category Details'}"></span>
+                        </div>
+                        <div class="card-body">
+                            <form id="form" class="form-horizontal"
+                                  th:action="${addStatus==true?'/category/add':'/category/update'}"
+                                  th:object="${category}" method="POST" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <!--Id-->
+                                    <table class="table table-borderless">
+                                        <tr id="idStatus" th:if="${addStatus==false}" class="form-row text-right">
+                                            <th>
+                                                <label class="control-label" for="id">ID :</label>
+                                            </th>
+                                            <td>
+                                                <input id="id" th:field="*{id}" class="form-control" type="text"
+                                                       readonly/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <label class="control-label" for="mainCategory">Main Category :</label>
+                                            </th>
+                                            <td>
+                                                <select id="mainCategory" th:field="*{mainCategory}"
+                                                        class="form-control" tabindex="4" style="font-size: large"
+                                                        required>
+                                                    <option value="">Please select</option>
+                                                    <option th:each="mainCategory : ${mainCategories}"
+                                                            th:text="${mainCategory.mainCategory}"
+                                                            th:value="${mainCategory}"
+                                                            th:selected="${mainCategory==category.mainCategory?'selected':'unselected'}"></option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <label class="control-label" for="name">Name :</label>
+                                            </th>
+                                            <td>
+                                                <input id="name" th:field="*{name}" class="form-control" tabindex="4"
+                                                       type="text" required/>
+                                                <span id="nameError" th:errors="*{name}"
+                                                      th:if="${#fields.hasErrors('name')}"
+                                                      class="error">Error Name</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                                <button class="btn btn-primary">
+                                                    <i class="fas fa-arrow-circle-left" style="font-size: 20px"></i>&nbsp;&nbsp;Back
+                                                </button>
+                                                <button class="btn btn-success ml-5" type="submit" tabindex="21">
+                                                    <i class="fa fa-save " style="font-size: 20px"></i>&nbsp;&nbsp;<span
+                                                        id="submit"
+                                                        th:text="${addStatus==true?'Save': 'Update'}"></span>
+                                                </button>
+                                                <button class="btn btn-warning ml-5" type="reset" tabindex="21">
+                                                    <i class="far fa-times-circle" style="font-size: 20px"></i>&nbsp;&nbsp;Cancel
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <div class="form-row">
+                                        <label id="errorLabel" th:if="${#fields.hasErrors('*')}" th:text="'Errors: '">Errors: </label>
+                                        <ul>
+                                            <li id="error" th:each="err: ${#fields.errors('*')}" th:text="${err}"
+                                                class="error"></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
     <!--footer include-->
     <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
