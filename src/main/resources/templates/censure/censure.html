@@ -9,19 +9,19 @@
     <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
 
     <!--form action button---------------------------------------------------------     -->
-    <div class="row m-1" >
-      <div class="col-12" >
-        <div class="text-right" >
-          <div text-right >
-            <button type="button" class="btn btn-success btn-sm mr-lg-1" >
-              <a data-th-href="${'/employee/findAll'}" >
-                <span class="info-box-icon text-white" ><i class="fas fa-folder-open mr-1" ></i ></span >
-                <span class="text-white" > Add Censure </span ></a >
-            </button >
-          </div >
-        </div >
-      </div >
-    </div >
+<!--    <div class="row m-1" >-->
+<!--      <div class="col-12" >-->
+<!--        <div class="text-right" >-->
+<!--          <div text-right >-->
+<!--            <button type="button" class="btn btn-success btn-sm mr-lg-1" >-->
+<!--              <a data-th-href="${'/employee/findAll'}" >-->
+<!--                <span class="info-box-icon text-white" ><i class="fas fa-folder-open mr-1" ></i ></span >-->
+<!--                <span class="text-white" > Add Censure </span ></a >-->
+<!--            </button >-->
+<!--          </div >-->
+<!--        </div >-->
+<!--      </div >-->
+<!--    </div >-->
 <!--heading Area-->
 
 <div class="container-fluid  form-Border" >
@@ -48,7 +48,7 @@
     <thead class="thead-inverse" >
     <tr >
       <th >Index</th >
-      <th >Ref Number</th >
+
       <th >Employee Name</th >
       <th >Incident Date</th >
       <th >Offence</th >
@@ -58,7 +58,6 @@
     <tbody >
     <tr data-th-each="censure, rowCount : ${censures}" scope="row" >
       <th data-th-text="${rowCount.count}" ></th >
-      <th data-th-text="${censure.refNumber}" ></th >
       <th data-th-text="${censure.employee.name}" ></th >
       <th data-th-text="${{censure.incidentDate}}" ></th >
       <th data-th-text="${censure.offence.name}" ></th >

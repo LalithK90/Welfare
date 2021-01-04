@@ -125,7 +125,7 @@ public class DependentController {
 
     DependentEmployee dependentEmployee = new DependentEmployee();
 //if dependent has not id and dependent has epf number
-    if ( dependent.getId() == null && dependent.getEpfNumber().length() != 0 ) {
+    if ( dependent.getId() == null && dependent.getEpfNumber() != null ) {
       Employee companyEmployee = employeeService.findByEpf(dependent.getEpfNumber());
 //company employee transfer to dependent
       Dependent dependentInternal = new Dependent();

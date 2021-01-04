@@ -1,5 +1,6 @@
 package lk.avsec_welfare.asset.offence.entity.enums;
 
+import lk.avsec_welfare.asset.offence.entity.Offence;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -9,6 +10,8 @@ public enum OffenceType {
     FSO("First Schedule of Offences"),
     SSO("Second  Schedule of Offences"),
     SD("Summary Disciplinary");
+
+
 
     private final String offenceType;
 

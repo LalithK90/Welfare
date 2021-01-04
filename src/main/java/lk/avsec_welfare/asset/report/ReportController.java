@@ -262,7 +262,23 @@ public class ReportController {
     return "report/agent";
   }
 
+//ok ita akin database eka drop karanna
+  // machine eke date eka january walata danna
+  // employee 12 k dann a
+  // users la 1 k ganne hema role ekatama hadanna
+  // hema employee tama dependent 2 k , qualification 2 transfer 2 wage enna danna
+  // january february march instalment danna
+  // other receieng and aother expencess 6-10k daganna
+  //death donation 2k withara danna
+  // data base eka backup ekak ganna
+  //itapase report hadanna
+  // owa danakota thawa samahara table walta data danna wenawa ne ewath danna course policetation working palce wage eawa
 
+
+  //thawa html hadanna yanna epa login eke frogotten passwordlikn eka ain karanna main window eke singup eka ain karanna
+  //ok
+  //ythank
+  // thanks
 
 
 }
