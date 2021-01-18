@@ -71,7 +71,7 @@
                                                 <label th:for="${'relationship'}" class="form-label ">
                                                     relationship </label>
                                                 <select class="form-control" onchange="relationShipChange()"
-                                                        th:field="*{relationship}">
+                                                        th:field="*{relationship}" required>
                                                     <option value="" selected>Please Select</option>
                                                     <option th:each="relationship : ${relationship}"
                                                             th:text="${relationship.relationship}"
@@ -208,10 +208,10 @@
         if ($(this).val() === "AASL") {
             $("#employeeEpf").css("display", "");
             $("#showUnEmployee").css("display", "none");
-            $("#epfNumber").prop("required", true);
+            $("#epfNumber").prop("required", true).attr('name','epfNumber');
         } else {
             $("#employeeEpf").css("display", "none");
-            $("#epfNumber").prop("required", false);
+            $("#epfNumber").prop("required", false).removeAttr('name');
             $("#showUnEmployee").css("display", "");
         }
     });

@@ -90,8 +90,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                            .antMatchers("/petition/**").hasRole("ADMIN")
                                            .antMatchers("/minutePetition/**").hasRole("MANAGER")
                                            .antMatchers("/invoiceProcess/add").hasRole("CASHIER")
+                                        .antMatchers("/invoiceProcess/add").hasAnyRole("CASHIER","MANAGER")
                                         .anyRequest()
                                         .authenticated())
+                // Role base authentication
                 // Login form
                 .formLogin(
                         formLogin ->
@@ -102,7 +104,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         .usernameParameter("username")
                                         .passwordParameter("password")
                                         .successHandler(customAuthenticationSuccessHandler())
-                                        .failureForwardUrl("/login")
+                                        .failureForwardUrl("/login?error")
                           )
                 //Logout controlling
                 .logout(
