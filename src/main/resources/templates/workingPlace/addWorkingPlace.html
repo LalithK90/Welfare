@@ -52,6 +52,16 @@
                                                        data-th-value="${workingPlace.district.province}"/>
                                             </td>
                                             </tr>
+<!--                                            name-->
+                                            <tr class="form-group" data-th-if="${addStatus==true}">
+                                                <th>
+                                                    <label for="name" class="form-label "> Name </label>
+                                                </th>
+                                                <td>
+                                                    <input type="text" class="form-control" data-th-field="*{name}" id="name"
+                                                           readonly>
+                                                   </td>
+                                            </tr>
                                             <!--Province-->
                                             <tr>
                                                 <th>

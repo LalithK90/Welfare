@@ -1,18 +1,19 @@
 package lk.AVSEC.Welfare.asset.employee.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import lk.AVSEC.Welfare.asset.branch.entity.Branch;
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.*;
-import lk.AVSEC.Welfare.asset.commonAsset.model.FileInfo;
+import lk.AVSEC.Welfare.asset.a_shop_management.branch.entity.Branch;
+import lk.AVSEC.Welfare.asset.common_asset.model.Enum.*;
+import lk.AVSEC.Welfare.asset.common_asset.model.FileInfo;
 import lk.AVSEC.Welfare.asset.dependent.entity.DependentEmployee;
 import lk.AVSEC.Welfare.asset.designation.entity.Designation;
 import lk.AVSEC.Welfare.asset.employee.entity.Enum.*;
+import lk.AVSEC.Welfare.asset.employee_working_place.entity.EmployeeWorkingPlace;
 import lk.AVSEC.Welfare.asset.finance.entity.ExpensesFund;
 import lk.AVSEC.Welfare.asset.finance.entity.Instalment;
 import lk.AVSEC.Welfare.asset.message.entity.EmailMessage;
 import lk.AVSEC.Welfare.asset.promotion.entity.Promotion;
 import lk.AVSEC.Welfare.asset.qualification.entity.Qualification;
-import lk.AVSEC.Welfare.asset.workingPlace.entity.WorkingPlace;
+import lk.AVSEC.Welfare.asset.working_place.entity.WorkingPlace;
 import lk.AVSEC.Welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -154,6 +155,9 @@ public class Employee extends AuditEntity {
     @OneToMany( mappedBy = "employeeOne" )
     private List< DependentEmployee > dependentEmployees;
 
+    @OneToMany( mappedBy = "employee" )
+    private List<EmployeeWorkingPlace> employeeWorkingPlaces;
+
     @Transient
     private MultipartFile file;
 
@@ -161,10 +165,10 @@ public class Employee extends AuditEntity {
     private FileInfo fileInfo;
 
     @Transient
-    private List< String > removeImages = new ArrayList<>();
+    private List< String > removeImages;
 
     @Transient
-    private List< FileInfo > fileInfos = new ArrayList<>();
+    private List< FileInfo > fileInfos;
 
 
 }

@@ -1,8 +1,8 @@
 package lk.AVSEC.Welfare.asset.district.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Province;
-import lk.AVSEC.Welfare.asset.workingPlace.entity.WorkingPlace;
+import lk.AVSEC.Welfare.asset.common_asset.model.Enum.Province;
+import lk.AVSEC.Welfare.asset.working_place.entity.WorkingPlace;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

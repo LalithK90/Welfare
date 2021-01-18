@@ -1,7 +1,7 @@
 package lk.AVSEC.Welfare.asset.employee.controller;
 
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.*;
-import lk.AVSEC.Welfare.asset.commonAsset.service.CommonService;
+import lk.AVSEC.Welfare.asset.common_asset.model.Enum.*;
+import lk.AVSEC.Welfare.asset.common_asset.service.CommonService;
 import lk.AVSEC.Welfare.asset.dependent.entity.Enum.CurrentStatus;
 import lk.AVSEC.Welfare.asset.dependent.entity.Enum.Relationship;
 import lk.AVSEC.Welfare.asset.dependent.service.DependentEmployeeService;
@@ -17,7 +17,7 @@ import lk.AVSEC.Welfare.asset.employee.service.EmployeeFilesService;
 import lk.AVSEC.Welfare.asset.employee.service.EmployeeService;
 import lk.AVSEC.Welfare.asset.userManagement.entity.User;
 import lk.AVSEC.Welfare.asset.userManagement.service.UserService;
-import lk.AVSEC.Welfare.asset.workingPlace.service.WorkingPlaceService;
+import lk.AVSEC.Welfare.asset.working_place.service.WorkingPlaceService;
 import lk.AVSEC.Welfare.util.service.DateTimeAgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -29,10 +29,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Period;
 import java.util.*;
 
 

@@ -1,13 +1,10 @@
 package lk.AVSEC.Welfare.asset.qualification.controller;
 
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Province;
-import lk.AVSEC.Welfare.asset.employee.entity.Employee;
+import lk.AVSEC.Welfare.asset.common_asset.model.Enum.Province;
 import lk.AVSEC.Welfare.asset.employee.service.EmployeeService;
 import lk.AVSEC.Welfare.asset.qualification.entity.Qualification;
 import lk.AVSEC.Welfare.asset.qualification.service.QualificationService;
-import lk.AVSEC.Welfare.asset.userManagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

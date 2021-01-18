@@ -473,31 +473,13 @@
                                       data-th-selected="${employeeStatuss==employee.employeeStatus?'selected':'unselected'}" ></option >
                             </select >
                           </div >
-                          <!--Employee Status-->
-                          <div class="form-group" >
-                            <label class="control-label" for="workingPlace" >Working
-                                                                             Place
-                                                                             :</label >
-                            <select data-th-field="*{workingPlace}" id="workingPlace"
-                                    class="form-control" tabindex="27"
-                                    required >
-                              <option value="" >Please select</option >
-                              <option data-th-each="workingPlace : ${workingPlaces}"
-                                      data-th-text="${workingPlace.shortName +' - '+workingPlace.workingPlaceSection}"
-                                      data-th-value="${workingPlace.id}" ></option >
-                            </select >
-                          </div >
-                          <!--Photos-->
-
-
+                                                    <!--Photos-->
                           <div class="form-row col-md-6 mb-3 " >
                             <div class="col-md-3 mr-5" >
                               <label class="control-label" >Image</label >
                               <input type="file" name="file" id="imgUpload" tabindex="-1"
                                      accept="image/png, image/jpeg" style="border:0px"; />
                             </div >
-
-
                             <!--                            <div class="col-md-3 ml-5" >-->
                             <!--photo details-->
                             <img class="img-fluid ml-5 mt-3" data-th-if="${addStatus==false}" data-th-src="${file.url}"
