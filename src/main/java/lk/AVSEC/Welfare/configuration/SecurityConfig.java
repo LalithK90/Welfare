@@ -87,110 +87,46 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                            .antMatchers("/employee/**").hasRole("ADMIN")
                                         .antMatchers("/mainWindow").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
                                         .antMatchers("/user/**").hasRole("ADMIN")
-                                        .antMatchers("/district").hasRole("MEMBER")
+                                        .antMatchers("/district/**").hasRole("MEMBER")
 
-                                        .antMatchers("/dependent").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
-                                        .antMatchers("/dependent/add").hasRole("SECRETORY")
-                                        .antMatchers("/dependent/save").hasRole("SECRETORY")
-                                        .antMatchers("/dependent/update").hasRole("SECRETORY")
-                                        .antMatchers("/dependent/{{id}}").hasRole("SECRETORY")
-                                        .antMatchers("/dependent/edit/{{id}}").hasRole("SECRETORY")
-                                        .antMatchers("/dependent/delete/{{id}}").hasRole("SECRETORY")
+                                        .antMatchers("/dependent/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
 
-                                        .antMatchers("/designation").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
-                                        .antMatchers("/designation/add").hasRole("SECRETORY")
-                                        .antMatchers("/designation/save").hasRole("SECRETORY")
-                                        .antMatchers("/designation/update").hasRole("SECRETORY")
-                                        .antMatchers("/designation/{{id}}").hasRole("SECRETORY")
-                                        .antMatchers("/designation/edit/{{id}}").hasRole("SECRETORY")
-                                        .antMatchers("/designation/delete/{{id}}").hasRole("SECRETORY")
 
-                                        .antMatchers("/district").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
-                                        .antMatchers("/district/add").hasRole("ADMIN")
-                                        .antMatchers("/district/save").hasRole("ADMIN")
-                                        .antMatchers("/district/update").hasRole("ADMIN")
-                                        .antMatchers("/district/{{id}}").hasRole("ADMIN")
-                                        .antMatchers("/district/edit/{{id}}").hasRole("ADMIN")
-                                        .antMatchers(" /district/delete/{{id}}").hasRole("ADMIN")
-                                        .antMatchers("/district/getDistrict/{{province}}").hasRole("ADMIN")
+                                        .antMatchers("/designation/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
 
-                                        .antMatchers("/emailMessage").hasRole("MEMBER")
-                                        .antMatchers("/emailMessage/add").hasRole("SECRETORY")
-                                        .antMatchers("/emailMessage/{{id}}").hasRole("SECRETORY")
-                                        .antMatchers("/emailMessage/add").hasRole("SECRETORY")
 
-                                        .antMatchers("/employee").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
-                                        .antMatchers("/employee/add").hasRole("SECRETORY")
-                                        .antMatchers("/employee/save").hasRole("ADMIN")
-                                        .antMatchers("/employee/update").hasRole("SECRETORY")
-                                        .antMatchers("/employee/delete").hasRole("ADMIN")
-                                        .antMatchers("/employee/{{id}}").hasRole("SECRETORY")
-                                        .antMatchers("/employee/**").hasRole("ADMIN")
+                                        .antMatchers("/district/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
+
+
+                                        .antMatchers("/emailMessage/**").hasRole("MEMBER")
+
+                                        .antMatchers("/employee/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
 
 
 
-                                        .antMatchers("/grievances").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
-                                        .antMatchers("/grievances/add").hasRole("MEMBER")
-                                        .antMatchers("/grievances/update").hasRole("SECRETORY")
-                                        .antMatchers("/grievances/{{id}}").hasRole("MEMBER")
-                                        .antMatchers("/grievances/edit/{{id}}").hasRole("PRESIDENT")
-                                        .antMatchers("/grievances/delete/{{id}}").hasRole("PRESIDENT")
-                                        .antMatchers("/grievances/action/{{id}}").hasRole("HOSS")
 
-                                        .antMatchers("/promotion/").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
-                                        .antMatchers("/promotion/add").hasRole("SECRETORY")
-                                        .antMatchers("/promotion/save").hasRole("SECRETORY")
-                                        .antMatchers("/promotion/update").hasRole("SECRETORY")
-                                        .antMatchers("/promotion/{{id}}").hasRole("SECRETORY")
-                                        .antMatchers("/promotion/*").hasRole("SECRETORY")
+                                        .antMatchers("/grievances/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
 
-                                        .antMatchers("/qualification").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
-                                        .antMatchers("/qualification/add").hasRole("SECRETORY")
-                                        .antMatchers("/qualification/save").hasRole("SECRETORY")
-                                        .antMatchers("/qualification/update").hasRole("SECRETORY")
-                                        .antMatchers("/qualification/{{id}}").hasRole("SECRETORY")
-                                        .antMatchers("/qualification/edit/{{id}}").hasRole("SECRETORY")
-                                        .antMatchers("/qualification/delete/{{id}}").hasRole("HOSS")
+
+                                        .antMatchers("/promotion/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
+
+                                        .antMatchers("/qualification/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
+
 
                                         .antMatchers("/register").hasRole("ADMIN")
                                         .antMatchers("/register/token").hasRole("ADMIN")
                                         .antMatchers("/register/active/{{token}}").hasRole("ADMIN")
 
                                         .antMatchers("/role").hasRole("ADMIN")
-                                        .antMatchers("/role/add").hasRole("ADMIN")
-                                        .antMatchers("/role/update").hasRole("ADMIN")
-                                        .antMatchers("/role/search").hasRole("ADMIN")
-                                        .antMatchers("/role/{{id}}").hasRole("ADMIN")
-                                        .antMatchers("/role/edit/{{id}}").hasRole("ADMIN")
-                                        .antMatchers("/role/remove/{{id}}").hasRole("ADMIN")
 
 
-                                        .antMatchers("/user").hasAnyRole("HOSS","PRESIDENT","ADMIN")
-                                        .antMatchers("/user/add").hasAnyRole("HOSS","PRESIDENT","ADMIN")
-                                        .antMatchers("/user/update").hasAnyRole("HOSS","PRESIDENT","ADMIN")
-                                        .antMatchers("/user/workingPlace").hasAnyRole("HOSS","PRESIDENT","ADMIN")
-                                        .antMatchers("/user/{{id}}").hasAnyRole("HOSS","PRESIDENT","ADMIN")
-                                        .antMatchers("/user/edit/{{id}}").hasAnyRole("HOSS","PRESIDENT","ADMIN")
-                                        .antMatchers("/user/remove/{{id}}").hasAnyRole("HOSS","PRESIDENT","ADMIN")
-                                        .antMatchers("/user/search").hasAnyRole("HOSS","PRESIDENT","ADMIN")
 
-                                        .antMatchers("/workingPlace").hasRole("MEMBER")
-                                        .antMatchers("/workingPlace/add").hasRole("SECRETORY")
-                                        .antMatchers("/workingPlace/save").hasRole("SECRETORY")
-                                        .antMatchers("/workingPlace/update").hasRole("SECRETORY")
-                                        .antMatchers("/workingPlace/{{id}}").hasRole("SECRETORY")
-                                        .antMatchers("/workingPlace/edit/{{id}}").hasRole("SECRETORY")
-                                        .antMatchers("/workingPlace/delete/{{id}}").hasRole("HOSS")
+                                        .antMatchers("/user/**").hasAnyRole("HOSS","PRESIDENT","ADMIN")
 
-                                        .antMatchers("/employeeWorkingPlace").hasRole("ADMIN")
+                                        .antMatchers("/workingPlace/**").hasRole("MEMBER")
+                                        .antMatchers("/employeeWorkingPlace/**").hasRole("ADMIN")
 
-                                        .antMatchers("/briefing").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
-                                        .antMatchers("/briefing/add").hasAnyRole("HOSS","PRESIDENT")
-                                        .antMatchers("/briefing/save").hasAnyRole("HOSS","PRESIDENT")
-                                        .antMatchers("/briefing/update").hasAnyRole("HOSS","PRESIDENT")
-                                        .antMatchers("/briefing/{{id}}").hasRole("MEMBER")
-                                        .antMatchers("/briefing/edit/{{id}}").hasAnyRole("HOSS","PRESIDENT")
-                                        .antMatchers("/briefing/delete/{{id}}").hasAnyRole("HOSS","PRESIDENT")
+                                        .antMatchers("/briefing/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
                                         .anyRequest()
                                         .authenticated())
                 // Role base authentication
@@ -204,7 +140,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         .usernameParameter("username")
                                         .passwordParameter("password")
                                         .successHandler(customAuthenticationSuccessHandler())
-                                        .failureForwardUrl("/login?error")
+                                        .failureUrl("/login?error")
                           )
                 //Logout controlling
                 .logout(
