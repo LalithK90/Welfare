@@ -17,21 +17,6 @@
                                 <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
                                 <span class="text-white"> Add Employee </span></a>
                         </button>
-                        <!--                      <button type="button" class="btn btn-success btn-sm">-->
-                        <!--                          <a  data-th-href="${'/employee'}" >-->
-                        <!--                              <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >-->
-                        <!--                              <span class="text-white"> View Employee </span></a>-->
-                        <!--                      </button>-->
-                        <!--                      <button type="button" class="btn btn-warning btn-sm hide" onclick="myEdit()">-->
-                        <!--                          //                         <a  data-th-href="${'/designation/edit/'}" >-->
-                        <!--                          <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >-->
-                        <!--                          <span class="text-white"> Edit Employee </span></a>-->
-                        <!--                      </button>-->
-                        <!--                      <button type="button" class="btn btn-danger btn-sm " display="none" onclick="myDelete()">-->
-                        <!--                          // <a  data-th-href="${'/designation/remove/'}" >-->
-                        <!--                          <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >-->
-                        <!--                          <span class="text-white"> Delete Employee </span></a>-->
-                        <!--                      </button>-->
                         <button type="button" class="btn btn-success btn-sm">
                             <a  data-th-href="${'/home'}" >
                                 <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
@@ -80,7 +65,7 @@
                                                                 <option value="">Please select</option>
                                                                 <option value="nic">NIC Number</option>
                                                                 <option value="epf">EPF Number</option>
-                                                                <option value="departmentIdNumber">Department Id Number</option>
+                                                                <option value="name">Name</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -185,27 +170,18 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="form-row">
-                                                    <div class="form-row alert alert-danger text-center">
-                                                        <strong>Attention !</strong>
-                                                        If Employee is belong to supper senior category.
-                                                        <strong>Please select one or two work station </strong>.
-                                                    </div>
-                                                </div>
                                             </div>
                                             <!--Right Side-->
                                             <div class="form-group col-md-5 col-sm-7 text-left flex-column">
                                                 <!--Roles Display-->
-                                                <div class="form-row">
-                                                    <label class="control-label" for="roles">Roles :</label>
-                                                    <select id="roles" th:field="*{roles}" class="form-control" size="16" multiple required>
-                                                        <option id="roleList" th:each="role, rowCount : ${roleList}"
-                                                                th:text="${rowCount.count} +${'. '}+${role.roleName}"
-                                                                th:value="${role.id}"
-                                                                th:field="*{roles}" value=""></option>
-                                                    </select>
-                                                </div>
+                                                <div class="form-check" data-th-each="role : ${roleList}" >
+                                                    <label class="form-check-label" >
+                                                        <input type="checkbox" class="form-check-input"
+                                                               data-th-text="${#strings.toUpperCase(role.roleName.substring(0, 1))+#strings.toLowerCase(role.roleName.substring(1))}"
+                                                               data-th-value="${role.id}"
+                                                               data-th-field="*{roles}" >
+                                                    </label >
+                                                </div >
                                             </div>
 
                                             <!--Button-->

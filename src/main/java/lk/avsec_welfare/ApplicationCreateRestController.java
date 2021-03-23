@@ -67,6 +67,7 @@ public class ApplicationCreateRestController {
         user.setEmployee(employeeDb);
         user.setUsername("admin");
         user.setPassword("admin");
+        user.setLiveDead(LiveDead.ACTIVE);
         String message = "Username:- " + user.getUsername() + "\n Password:- " + user.getPassword();
         user.setEnabled(true);
         user.setRoles(roleService.findAll()
