@@ -8,7 +8,6 @@ import lk.avsec_welfare.asset.designation.entity.Designation;
 import lk.avsec_welfare.asset.employee_working_place.entity.EmployeeWorkingPlace;
 import lk.avsec_welfare.asset.finance.entity.ExpensesFund;
 import lk.avsec_welfare.asset.finance.entity.Instalment;
-import lk.avsec_welfare.asset.message.entity.EmailMessage;
 import lk.avsec_welfare.asset.promotion.entity.Promotion;
 import lk.avsec_welfare.asset.qualification.entity.Qualification;
 import lk.avsec_welfare.asset.working_place.entity.WorkingPlace;

@@ -1,6 +1,7 @@
 package lk.avsec_welfare.asset.userManagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
@@ -52,11 +53,5 @@ public class User extends AuditEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
-    /*@ManyToMany(fetch = FetchType.EAGER)
-    //@Fetch( FetchMode.SUBSELECT)
-    @JoinTable(name = "user_working_place",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "working_place_id"))
-    private Set< WorkingPlace > workingPlaces;*/
 
 }
