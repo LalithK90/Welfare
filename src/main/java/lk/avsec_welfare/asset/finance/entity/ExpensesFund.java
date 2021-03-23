@@ -26,6 +26,10 @@ public class ExpensesFund extends AuditEntity {
     @Enumerated(EnumType.STRING)
     private ExpensesStatus expensesStatus;
 
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
+
     @ManyToOne
     private Employee employee;
 }

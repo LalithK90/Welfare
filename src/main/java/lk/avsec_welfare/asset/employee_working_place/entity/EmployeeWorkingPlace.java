@@ -35,6 +35,10 @@ public class EmployeeWorkingPlace extends AuditEntity {
   @Enumerated(EnumType.STRING)
   private WorkingPlaceChangeReason workingPlaceChangeReason;
 
+  @Enumerated(EnumType.STRING)
+  private LiveDead liveDead;
+
+
   @ManyToOne
   private Employee employee;
 

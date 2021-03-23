@@ -31,6 +31,10 @@ public class Promotion extends AuditEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate withEffect;
 
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
+
     @ManyToOne
     private Employee employee;
 

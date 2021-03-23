@@ -24,6 +24,10 @@ public class DependentEmployee extends AuditEntity {
     @Enumerated(EnumType.STRING)
     private Relationship relationship;
 
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
+
     @ManyToOne
     private Employee employeeOne;
 

@@ -2,7 +2,7 @@ package lk.avsec_welfare.asset.employee.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.AVSEC.Welfare.asset.common_asset.model.Enum.*;
-import lk.avsec_welfare.asset.common_asset.model.Enum.*;
+import lk.avsec_welfare.asset.common_asset.model.enums.*;
 import lk.avsec_welfare.asset.common_asset.model.FileInfo;
 import lk.avsec_welfare.asset.dependent.entity.DependentEmployee;
 import lk.avsec_welfare.asset.designation.entity.Designation;
@@ -115,6 +115,10 @@ public class Employee extends AuditEntity {
 
     @Enumerated( EnumType.STRING )
     private CivilStatus civilStatus;
+
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
 
     @Enumerated( EnumType.STRING )
     private EmployeeStatus employeeStatus;

@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonFilter("Reason")
+@JsonFilter("Transfer")
 public class Transfer extends AuditEntity {
 
     @DateTimeFormat( pattern = "yyyy-MM-dd" )

@@ -21,7 +21,6 @@ import javax.persistence.Enumerated;
 @JsonFilter("Designation")
 public class Designation extends AuditEntity {
 
-
     private String name;
 
     private String shortName;
@@ -31,6 +30,10 @@ public class Designation extends AuditEntity {
 
     @Enumerated (EnumType.STRING)
     private SalaryScale salaryScale;
+
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
 
     private String remark;
 

@@ -23,8 +23,12 @@ import java.util.List;
 @JsonIgnoreProperties(value = "createdDate", allowGetters = true)
 public class User extends AuditEntity {
 
+
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
+
     @OneToOne
-    @NotNull
     private Employee employee;
 
     @Column(nullable = false,unique = true)

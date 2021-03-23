@@ -1,7 +1,7 @@
 package lk.avsec_welfare.asset.employee.controller;
 
 import lk.AVSEC.Welfare.asset.common_asset.model.Enum.*;
-import lk.avsec_welfare.asset.common_asset.model.Enum.*;
+import lk.avsec_welfare.asset.common_asset.model.enums.*;
 import lk.avsec_welfare.asset.dependent.entity.Enum.CurrentStatus;
 import lk.avsec_welfare.asset.dependent.entity.Enum.Relationship;
 import lk.avsec_welfare.asset.dependent.service.DependentEmployeeService;

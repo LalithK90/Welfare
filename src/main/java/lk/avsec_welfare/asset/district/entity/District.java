@@ -1,7 +1,7 @@
 package lk.avsec_welfare.asset.district.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import lk.avsec_welfare.asset.common_asset.model.Enum.Province;
+import lk.avsec_welfare.asset.common_asset.model.enums.Province;
 import lk.avsec_welfare.asset.working_place.entity.WorkingPlace;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +28,10 @@ public class District {
 
     @Enumerated(EnumType.STRING)
     private Province province;
+
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
 
     @OneToMany(mappedBy = "district")
     private List<WorkingPlace> workingPlaces;

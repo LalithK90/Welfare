@@ -31,6 +31,10 @@ public class Qualification extends AuditEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate completeDate;
 
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
+
     @ManyToOne
     private Employee employee;
 

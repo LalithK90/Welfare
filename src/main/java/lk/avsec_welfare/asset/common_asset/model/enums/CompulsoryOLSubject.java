@@ -1,4 +1,4 @@
-package lk.avsec_welfare.asset.common_asset.model.Enum;
+package lk.avsec_welfare.asset.common_asset.model.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

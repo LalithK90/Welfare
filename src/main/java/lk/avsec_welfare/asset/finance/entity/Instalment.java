@@ -1,5 +1,6 @@
 package lk.avsec_welfare.asset.finance.entity;
 
+import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
@@ -29,4 +30,8 @@ public class Instalment extends AuditEntity {
 
     @OneToMany(mappedBy = "instalment")
     private List<MainAccount> mainAccounts;
+
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
 }

@@ -1,6 +1,6 @@
 package lk.avsec_welfare.asset.working_place.controller;
 
-import lk.avsec_welfare.asset.common_asset.model.Enum.Province;
+import lk.avsec_welfare.asset.common_asset.model.enums.Province;
 import lk.avsec_welfare.asset.district.controller.DistrictController;
 import lk.avsec_welfare.asset.district.service.DistrictService;
 import lk.avsec_welfare.asset.working_place.entity.Enum.AirportType;

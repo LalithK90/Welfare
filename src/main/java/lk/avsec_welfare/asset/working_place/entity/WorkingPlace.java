@@ -40,6 +40,10 @@ public class WorkingPlace {
     private AirportType airportType;
 
     @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
+
+    @Enumerated(EnumType.STRING)
     private WorkingPlaceSection workingPlaceSection;
 
     @ManyToOne

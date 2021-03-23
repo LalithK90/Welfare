@@ -1,6 +1,6 @@
 package lk.avsec_welfare.asset.district.service;
 
-import lk.avsec_welfare.asset.common_asset.model.Enum.Province;
+import lk.avsec_welfare.asset.common_asset.model.enums.Province;
 import lk.avsec_welfare.asset.district.dao.DistrictDao;
 import lk.avsec_welfare.asset.district.entity.District;
 import lk.avsec_welfare.util.interfaces.AbstractService;

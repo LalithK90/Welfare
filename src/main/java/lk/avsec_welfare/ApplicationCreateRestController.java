@@ -1,9 +1,9 @@
 package lk.avsec_welfare;
 
-import lk.avsec_welfare.asset.common_asset.model.Enum.BloodGroup;
-import lk.avsec_welfare.asset.common_asset.model.Enum.CivilStatus;
-import lk.avsec_welfare.asset.common_asset.model.Enum.Gender;
-import lk.avsec_welfare.asset.common_asset.model.Enum.Title;
+import lk.avsec_welfare.asset.common_asset.model.enums.BloodGroup;
+import lk.avsec_welfare.asset.common_asset.model.enums.CivilStatus;
+import lk.avsec_welfare.asset.common_asset.model.enums.Gender;
+import lk.avsec_welfare.asset.common_asset.model.enums.Title;
 import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.asset.employee.entity.Enum.EmployeeStatus;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;

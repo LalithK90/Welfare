@@ -1,6 +1,6 @@
 package lk.avsec_welfare.asset.qualification.controller;
 
-import lk.avsec_welfare.asset.common_asset.model.Enum.Province;
+import lk.avsec_welfare.asset.common_asset.model.enums.Province;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.qualification.entity.Qualification;
 import lk.avsec_welfare.asset.qualification.service.QualificationService;
