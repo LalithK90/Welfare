@@ -1,5 +1,6 @@
 package lk.avsec_welfare.asset.employee.service;
 
+import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.employee.dao.EmployeeDao;
 import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.asset.employee.entity.Enum.BoardOfDirectors;
@@ -12,70 +13,74 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 // spring transactional annotation need to tell spring to this method work through the project
-@CacheConfig(cacheNames = "employee")
-public class EmployeeService implements AbstractService<Employee, Integer> {
+@CacheConfig( cacheNames = "employee" )
+public class EmployeeService implements AbstractService< Employee, Integer > {
 
-    private final EmployeeDao employeeDao;
+  private final EmployeeDao employeeDao;
 
-    @Autowired
-    public EmployeeService(EmployeeDao employeeDao) {
-        this.employeeDao = employeeDao;
+  @Autowired
+  public EmployeeService(EmployeeDao employeeDao) {
+    this.employeeDao = employeeDao;
+  }
+
+  @Cacheable
+  public List< Employee > findAll() {
+    return employeeDao.findAll().stream().filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE)).collect(Collectors.toList());
+  }
+
+  @Cacheable
+  public Employee findById(Integer id) {
+    return employeeDao.getOne(id);
+  }
+
+  @Caching( evict = {@CacheEvict( value = "employee", allEntries = true )},
+      put = {@CachePut( value = "employee", key = "#employee.id" )} )
+  @Transactional
+  public Employee persist(Employee employee) {
+    if ( employee.getBoardOfDirectors() == null ) {
+      employee.setBoardOfDirectors(BoardOfDirectors.MBR);
+      employee.setLiveDead(LiveDead.ACTIVE);
     }
+    return employeeDao.save(employee);
+  }
 
-    @Cacheable
-    public List<Employee> findAll() {
-        return employeeDao.findAll();
-    }
+  @CacheEvict( allEntries = true )
+  public boolean delete(Integer id) {
+    Employee employee = employeeDao.getOne(id);
+    employee.setLiveDead(LiveDead.STOP);
+    employeeDao.save(employee);
+    return false;
+  }
 
-    @Cacheable
-    public Employee findById(Integer id) {
-        return employeeDao.getOne(id);
-    }
+  @Cacheable
+  public List< Employee > search(Employee employee) {
+    ExampleMatcher matcher = ExampleMatcher
+        .matching()
+        .withIgnoreCase()
+        .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+    Example< Employee > employeeExample = Example.of(employee, matcher);
+    return employeeDao.findAll(employeeExample);
+  }
 
-    @Caching(evict = {@CacheEvict(value = "employee", allEntries = true)},
-            put = {@CachePut(value = "employee", key = "#employee.id")})
-    @Transactional
-    public Employee persist(Employee employee) {
-        if (employee.getBoardOfDirectors() == null) {
-            employee.setBoardOfDirectors(BoardOfDirectors.MBR);
-        }
-        return employeeDao.save(employee);
-    }
-
-    @CacheEvict(allEntries = true)
-    public boolean delete(Integer id) {
-        employeeDao.deleteById(id);
-        return false;
-    }
-
-    @Cacheable
-    public List<Employee> search(Employee employee) {
-        ExampleMatcher matcher = ExampleMatcher
-                .matching()
-                .withIgnoreCase()
-                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
-        Example<Employee> employeeExample = Example.of(employee, matcher);
-        return employeeDao.findAll(employeeExample);
-    }
-
-    public boolean isEmployeePresent(Employee employee) {
-        return employeeDao.equals(employee);
-    }
+  public boolean isEmployeePresent(Employee employee) {
+    return employeeDao.equals(employee);
+  }
 
 
-    public Employee lastEmployee() {
-        return employeeDao.findFirstByOrderByIdDesc();
-    }
+  public Employee lastEmployee() {
+    return employeeDao.findFirstByOrderByIdDesc();
+  }
 
-    @Cacheable
-    public Employee findByNic(String nic) {
-        return employeeDao.findByNic(nic);
-    }
+  @Cacheable
+  public Employee findByNic(String nic) {
+    return employeeDao.findByNic(nic);
+  }
 
-    public Employee findByEpf(String epf){
-        return employeeDao.findByEpf(epf);
-    }
+  public Employee findByEpf(String epf) {
+    return employeeDao.findByEpf(epf);
+  }
 }

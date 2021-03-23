@@ -6,7 +6,6 @@ import lk.avsec_welfare.asset.common_asset.model.enums.*;
 import lk.avsec_welfare.asset.common_asset.model.FileInfo;
 import lk.avsec_welfare.asset.dependent.entity.DependentEmployee;
 import lk.avsec_welfare.asset.designation.entity.Designation;
-import lk.AVSEC.Welfare.asset.employee.entity.Enum.*;
 import lk.avsec_welfare.asset.employee_working_place.entity.EmployeeWorkingPlace;
 import lk.avsec_welfare.asset.finance.entity.ExpensesFund;
 import lk.avsec_welfare.asset.finance.entity.Instalment;
@@ -118,7 +117,6 @@ public class Employee extends AuditEntity {
 
     @Enumerated(EnumType.STRING)
     private LiveDead liveDead;
-
 
     @Enumerated( EnumType.STRING )
     private EmployeeStatus employeeStatus;
