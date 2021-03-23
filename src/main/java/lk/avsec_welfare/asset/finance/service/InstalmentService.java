@@ -1,5 +1,6 @@
 package lk.avsec_welfare.asset.finance.service;
 
+import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.asset.finance.dao.InstalmentDao;
 import lk.avsec_welfare.asset.finance.entity.Instalment;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class InstalmentService implements AbstractService<Instalment, Integer> {
@@ -22,7 +24,7 @@ public class InstalmentService implements AbstractService<Instalment, Integer> {
     }
 
     public List<Instalment> findAll() {
-        return instalmentDao.findAll();
+        return instalmentDao.findAll().stream().filter(x->x.getLiveDead().equals(LiveDead.ACTIVE)).collect(Collectors.toList());
     }
 
     public Instalment findById(Integer id) {
@@ -30,11 +32,16 @@ public class InstalmentService implements AbstractService<Instalment, Integer> {
     }
 
     public Instalment persist(Instalment instalment) {
+        if ( instalment.getId() == null ){
+            instalment.setLiveDead(LiveDead.ACTIVE);
+        }
         return instalmentDao.save(instalment);
     }
 
     public boolean delete(Integer id) {
-        instalmentDao.deleteById(id);
+        Instalment instalment = instalmentDao.getOne(id);
+        instalment.setLiveDead(LiveDead.STOP);
+        instalmentDao.save(instalment);
         return true;
     }
 
