@@ -3,7 +3,7 @@ package lk.avsec_welfare.asset.briefing.controller;
 import lk.avsec_welfare.asset.briefing.entity.Briefing;
 
 import lk.avsec_welfare.asset.briefing.service.BriefingService;
-import lk.avsec_welfare.asset.grievances.entity.Enum.Priority;
+import lk.avsec_welfare.asset.grievances.entity.enums.Priority;
 import lk.avsec_welfare.util.interfaces.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

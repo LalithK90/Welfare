@@ -185,9 +185,9 @@
             </div>
         </div><!-- content-wrapper end -->
     </div>
-    <div th:replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+    <div  data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
 </div><!-- wrapper end -->
-<div th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+<div  data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
 <script th:if="${addStatus==false}">
 
     $("#showWorkingPlace").css("display", "none");

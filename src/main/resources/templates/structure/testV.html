@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<head  data-th-replace="~{fragments/headerSection :: headerSectionFragment}"></head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav>
-    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside>
+    <nav  data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav>
+    <aside  data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside>
     <!-- SIDE END SECTION -->
     <!-- CONTENT START-->
     <!-- Content Wrapper. Contains page content -->
@@ -687,12 +687,12 @@
     <!-- CONTENT END SECTION-->
     <!--FOOTER SECTION-->
     <!-- /.content-wrapper -->
-    <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer>
+    <footer  data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></footer>
     <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
         <i class="fas fa-chevron-up"></i>
     </a>
 
 </div>
-<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script>
+<script  data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></script>
 </body>
 </html>

@@ -155,22 +155,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //remember me
                 .rememberMe().key("uniqueAndSecret").tokenValiditySeconds(86400)
                 .and()
-                //session management
-                .sessionManagement(
-                        sessionManagement ->
-                                sessionManagement
-                                        .sessionFixation()
-                                        .migrateSession()
-                                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                                        .invalidSessionUrl("/login")
-                                        .maximumSessions(2)
-                                        .sessionRegistry(sessionRegistry()))
                 //Cross site disable
                 .csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling();
-
-
-
     }
 }
 

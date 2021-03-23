@@ -1,8 +1,8 @@
 package lk.avsec_welfare.asset.designation.controller;
 
 import lk.avsec_welfare.asset.designation.entity.Designation;
-import lk.avsec_welfare.asset.designation.entity.Enum.SalaryScale;
-import lk.avsec_welfare.asset.designation.entity.Enum.CategoryType;
+import lk.avsec_welfare.asset.designation.entity.enums.SalaryScale;
+import lk.avsec_welfare.asset.designation.entity.enums.CategoryType;
 import lk.avsec_welfare.asset.designation.service.DesignationService;
 import lk.avsec_welfare.util.interfaces.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;

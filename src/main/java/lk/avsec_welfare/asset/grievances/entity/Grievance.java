@@ -1,9 +1,10 @@
 package lk.avsec_welfare.asset.grievances.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import lk.avsec_welfare.asset.grievances.entity.Enum.GrievancesStatus;
-import lk.avsec_welfare.asset.grievances.entity.Enum.Priority;
-import lk.avsec_welfare.asset.grievances.entity.Enum.SolutionType;
+import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
+import lk.avsec_welfare.asset.grievances.entity.enums.GrievancesStatus;
+import lk.avsec_welfare.asset.grievances.entity.enums.Priority;
+import lk.avsec_welfare.asset.grievances.entity.enums.SolutionType;
 import lk.avsec_welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +21,10 @@ import java.util.List;
 @NoArgsConstructor
 @JsonFilter("Grievance")
 public class Grievance extends AuditEntity {
+
+
+    @Enumerated( EnumType.STRING )
+    private LiveDead liveDead;
 
     private String description;
 

@@ -1,8 +1,9 @@
 package lk.avsec_welfare.asset.designation.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import lk.avsec_welfare.asset.designation.entity.Enum.CategoryType;
-import lk.avsec_welfare.asset.designation.entity.Enum.SalaryScale;
+import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
+import lk.avsec_welfare.asset.designation.entity.enums.CategoryType;
+import lk.avsec_welfare.asset.designation.entity.enums.SalaryScale;
 import lk.avsec_welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +22,6 @@ import javax.persistence.Enumerated;
 @JsonFilter("Designation")
 public class Designation extends AuditEntity {
 
-
     private String name;
 
     private String shortName;
@@ -31,6 +31,10 @@ public class Designation extends AuditEntity {
 
     @Enumerated (EnumType.STRING)
     private SalaryScale salaryScale;
+
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
 
     private String remark;
 

@@ -1,6 +1,7 @@
 package lk.avsec_welfare.asset.employee_working_place.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.asset.employee_working_place.entity.enums.WorkingPlaceChangeReason;
 import lk.avsec_welfare.asset.working_place.entity.WorkingPlace;
@@ -34,6 +35,9 @@ public class EmployeeWorkingPlace extends AuditEntity {
 
   @Enumerated(EnumType.STRING)
   private WorkingPlaceChangeReason workingPlaceChangeReason;
+
+  @Enumerated(EnumType.STRING)
+  private LiveDead liveDead;
 
   @ManyToOne
   private Employee employee;

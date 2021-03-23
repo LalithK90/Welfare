@@ -217,9 +217,9 @@
     </div></div>
 
 </div><!-- content-wrapper end -->
-<div th:replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+<div  data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
 </div><!-- wrapper end -->
-<div th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+<div  data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
 <script>
     $(document).ready(function () {
 
@@ -269,8 +269,8 @@
 </script>
 <script th:src="@{/js/employeeFindUsingWorkingPlace.js}"></script>
 <!--Singlish to sinhala Translator-->
-<div th:replace="~{fragments/unicodeSinhala :: unicodeSinhalaFragment}"></div>
+<div  data-th-replace="~{fragments/unicodeSinhala :: unicodeSinhalaFragment}"></div>
 <!--Tamish to Tamil Translator-->
-<div th:replace="~{fragments/unicodeTamil :: unicodeTamilFragment}"></div>
+<div  data-th-replace="~{fragments/unicodeTamil :: unicodeTamilFragment}"></div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package lk.avsec_welfare.asset.district.service;
 
-import lk.avsec_welfare.asset.common_asset.model.Enum.Province;
+import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
+import lk.avsec_welfare.asset.common_asset.model.enums.Province;
 import lk.avsec_welfare.asset.district.dao.DistrictDao;
 import lk.avsec_welfare.asset.district.entity.District;
 import lk.avsec_welfare.util.interfaces.AbstractService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 // spring transactional annotation need to tell spring to this method work through the project
@@ -27,7 +29,7 @@ public class DistrictService implements AbstractService< District, Integer> {
 
     @Cacheable
     public List<District> findAll() {
-        return districtDao.findAll();
+        return districtDao.findAll().stream().filter(x->x.getLiveDead().equals(LiveDead.ACTIVE)).collect(Collectors.toList());
     }
 
     @Cacheable
@@ -39,12 +41,17 @@ public class DistrictService implements AbstractService< District, Integer> {
             put = {@CachePut(value = "district", key = "#district.id")})
     @Transactional
     public District persist(District district) {
+        if ( district.getId() == null ){
+            district.setLiveDead(LiveDead.ACTIVE);
+        }
         return districtDao.save(district);
     }
 
     @CacheEvict(allEntries = true)
     public boolean delete(Integer id) {
-        districtDao.deleteById(id);
+        District district = districtDao.getOne(id);
+        district.setLiveDead(LiveDead.ACTIVE);
+        districtDao.save(district);
         return false;
     }
 

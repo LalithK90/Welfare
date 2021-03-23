@@ -2,7 +2,7 @@ package lk.avsec_welfare.asset.userManagement.controller;
 
 import lk.avsec_welfare.asset.designation.entity.Designation;
 import lk.avsec_welfare.asset.employee.entity.Employee;
-import lk.avsec_welfare.asset.employee.entity.Enum.EmployeeStatus;
+import lk.avsec_welfare.asset.employee.entity.enums.EmployeeStatus;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.userManagement.entity.User;
 import lk.avsec_welfare.asset.userManagement.service.RoleService;

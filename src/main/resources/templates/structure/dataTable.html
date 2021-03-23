@@ -3,7 +3,7 @@
 
 
 
-<head th:replace="~{fragments/headerSection :: headerSectionFragment}">
+<head  data-th-replace="~{fragments/headerSection :: headerSectionFragment}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -17,12 +17,12 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper"><!-- wrapper start -->
-    <nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
-    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <nav  data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside  data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
     <div class="content-wrapper"><!-- content-wrapper Start -->
-        <section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <section  data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
         <!-- Form Header  Path -->
-        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+        <section  data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row">
@@ -535,8 +535,8 @@
             </div>
         </div>
     </div><!-- content-wrapper end -->
-    <footer th:replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+    <footer  data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
 </div><!-- wrapper end -->
-<script th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
+<script  data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
 </body>
 </html>

@@ -2,10 +2,10 @@ package lk.avsec_welfare.asset.grievances.controller;
 
 
 import lk.avsec_welfare.asset.employee.entity.Employee;
-import lk.avsec_welfare.asset.employee.entity.Enum.BoardOfDirectors;
-import lk.avsec_welfare.asset.grievances.entity.Enum.GrievancesStatus;
-import lk.avsec_welfare.asset.grievances.entity.Enum.Priority;
-import lk.avsec_welfare.asset.grievances.entity.Enum.SolutionType;
+import lk.avsec_welfare.asset.employee.entity.enums.BoardOfDirectors;
+import lk.avsec_welfare.asset.grievances.entity.enums.GrievancesStatus;
+import lk.avsec_welfare.asset.grievances.entity.enums.Priority;
+import lk.avsec_welfare.asset.grievances.entity.enums.SolutionType;
 import lk.avsec_welfare.asset.grievances.entity.Grievance;
 import lk.avsec_welfare.asset.grievances.entity.GrievanceStateChange;
 import lk.avsec_welfare.asset.grievances.service.GrievanceStateChangeService;

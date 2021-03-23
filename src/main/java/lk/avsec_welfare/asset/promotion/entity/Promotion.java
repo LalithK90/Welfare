@@ -2,6 +2,7 @@ package lk.avsec_welfare.asset.promotion.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
@@ -30,6 +31,9 @@ public class Promotion extends AuditEntity {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate withEffect;
+
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
 
     @ManyToOne
     private Employee employee;

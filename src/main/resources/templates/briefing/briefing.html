@@ -139,7 +139,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 <div class="container">
-                                    <div th:replace="~{briefing/briefing-detail :: briefingDetail}"></div>
+                                    <div  data-th-replace="~{briefing/briefing-detail :: briefingDetail}"></div>
                                 </div>
                             </div>
                         </div>
@@ -160,13 +160,13 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <div th:replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+    <div  data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
     <!-- Scroll Up Button -->
     <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
         <i class="fas fa-chevron-up"></i>
     </a>
     <!-- Scroll Up Button end-->
 </div><!-- wrapper end -->
-<div th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+<div  data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
 </body>
 </html>

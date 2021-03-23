@@ -473,19 +473,24 @@
                                       data-th-selected="${employeeStatuss==employee.employeeStatus?'selected':'unselected'}" ></option >
                             </select >
                           </div >
-                                                    <!--Photos-->
-                          <div class="form-row col-md-6 mb-3 " >
-                            <div class="col-md-3 mr-5" >
-                              <label class="control-label" >Image</label >
-                              <input type="file" name="file" id="imgUpload" tabindex="-1"
-                                     accept="image/png, image/jpeg" style="border:0px"; />
+                          <!--Image-->
+                          <div class="form-row text-right" >
+                            <div class="form-row " >
+                              <div class="col-md-3 mr-5" >
+                                <label class="control-label" >Image</label >
+                                <input type="file" name="file" id="imgUpload"
+                                       accept="image/png, image/jpeg" />
+                              </div >
+                              <div class="col-md-3" ></div >
+                              <div class="col-md-3 ml-5" >
+                                <!--photo details-->
+                                <img class="img-fluid ml-5" data-th-if="${addStatus==false && file!=null}" data-th-src="${file.url}"
+                                     id="image" alt=""
+                                     style="height: 100px; width: 100%;" >
+                                <img class="img-fluid ml-5" data-th-if="${addStatus==true}" src="" id="image" alt=""
+                                     style="height: 100px; width: 100%" >
+                              </div >
                             </div >
-                            <!--                            <div class="col-md-3 ml-5" >-->
-                            <!--photo details-->
-                            <img class="img-fluid ml-5 mt-3" data-th-if="${addStatus==false}" data-th-src="${file.url}"
-                                 id="image" alt="" style="height: 150px; width: 150px; border: 0px" >
-                            <img class="img-fluid ml-5" data-th-if="${addStatus==true}" src="" id="image" alt=""
-                                 style="height: 150px; width: 150px; border: 0px" >
                           </div >
 
 
@@ -531,6 +536,10 @@
 <!-- script Fragment -->
 <!-- content-wrapper end -->
 <script >
+    $(document).ready(function () {
+        imageSrcAttributeCheck();
+    });
+
     function readURL(input) {
         if (input.files && input.files[0]) {
             let reader = new FileReader();
@@ -545,8 +554,18 @@
 
     //display selected image
     $("#imgUpload").change(function () {
+        $("#image").toggle('show');
         readURL(this);
+
     });
+
+    //image is not -> showing area hide
+    function imageSrcAttributeCheck() {
+        let attribute = $("#image").attr("src");
+        if (attribute === '') {
+            $("#image").toggle('hide');
+        }
+    }
 </script >
 </body >
 </html >

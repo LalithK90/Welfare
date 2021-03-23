@@ -1,6 +1,7 @@
 package lk.avsec_welfare.asset.qualification.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
@@ -30,6 +31,10 @@ public class Qualification extends AuditEntity {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate completeDate;
+
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
 
     @ManyToOne
     private Employee employee;
