@@ -1,6 +1,8 @@
 package lk.avsec_welfare.asset.employee_working_place.service;
 
 
+import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
+import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.asset.employee_working_place.dao.EmployeeWorkingPlaceDao;
 import lk.avsec_welfare.asset.employee_working_place.entity.EmployeeWorkingPlace;
 import lk.avsec_welfare.util.interfaces.AbstractService;
@@ -9,29 +11,35 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeWorkingPlaceService implements AbstractService<EmployeeWorkingPlace, Integer > {
-  private final EmployeeWorkingPlaceDao employeeInstituteDao;
+  private final EmployeeWorkingPlaceDao employeeWorkingPlaceDao;
 
-  public EmployeeWorkingPlaceService(EmployeeWorkingPlaceDao employeeInstituteDao) {
-    this.employeeInstituteDao = employeeInstituteDao;
+  public EmployeeWorkingPlaceService(EmployeeWorkingPlaceDao employeeWorkingPlaceDao) {
+    this.employeeWorkingPlaceDao = employeeWorkingPlaceDao;
   }
 
   public List< EmployeeWorkingPlace > findAll() {
-    return employeeInstituteDao.findAll();
+    return employeeWorkingPlaceDao.findAll().stream().filter(x->x.getLiveDead().equals(LiveDead.ACTIVE)).collect(Collectors.toList());
   }
 
   public EmployeeWorkingPlace findById(Integer id) {
-    return employeeInstituteDao.getOne(id);
+    return employeeWorkingPlaceDao.getOne(id);
   }
 
   public EmployeeWorkingPlace persist(EmployeeWorkingPlace employeeInstitute) {
-    return employeeInstituteDao.save(employeeInstitute);
+    if ( employeeInstitute.getId() ==null ){
+      employeeInstitute.setLiveDead(LiveDead.ACTIVE);
+    }
+    return employeeWorkingPlaceDao.save(employeeInstitute);
   }
 
   public boolean delete(Integer id) {
-    employeeInstituteDao.deleteById(id);
+    EmployeeWorkingPlace employeeWorkingPlace = employeeWorkingPlaceDao.getOne(id);
+    employeeWorkingPlace.setLiveDead(LiveDead.STOP);
+    employeeWorkingPlaceDao.save(employeeWorkingPlace);
     return true;
   }
 
@@ -41,6 +49,6 @@ public class EmployeeWorkingPlaceService implements AbstractService<EmployeeWork
         .withIgnoreCase()
         .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
     Example< EmployeeWorkingPlace > employeeInstituteExample = Example.of(employeeInstitute, matcher);
-    return employeeInstituteDao.findAll(employeeInstituteExample);
+    return employeeWorkingPlaceDao.findAll(employeeInstituteExample);
   }
 }
