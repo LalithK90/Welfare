@@ -6,8 +6,8 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
-<!--<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>-->
+<head  data-th-replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<!--<head  data-th-replace="~{fragments/headerSection :: headerSectionFragment}"></head>-->
 <link th:href="@{/css/main.css}" media="all" rel="stylesheet" type="text/css"/>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -44,7 +44,7 @@
 <!-- <video autoplay muted loop id="myVideo">
 	<source src="img/Airport_Background.mp4" type="video/mp4">
 	Your browser does not support HTML5 video.
-  </video> -->	
+  </video> -->
   <!-- Footer logo -->
  <!-- <div class="content1">
 	<p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei. Id qui nemore latine molestiae, ad mutat oblique delicatissimi pro.</p>
@@ -113,9 +113,9 @@
 											<input type="text" name="email" id="name" required/>
 										</div>
 										<div class="field half">
-											
+
 										</div>
-										
+
 									</div>
 									<ul class="actions">
 										<li><input type="submit" value="Send" class="primary" onclick="show();"/></li>
@@ -123,7 +123,7 @@
 									</ul>
 									<p id="helpMessage"  style="display: none;" ></p>
 									<div class="alert">
-										<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+										<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
 										<strong></strong> We have sent an email with a confirmation link to your email address. In order to complete the sign-up process, please click the confirmation link.
 									  </div>
 								</form>
@@ -142,17 +142,17 @@
 											<label for="password1">Password</label>
 											<input type="password" name="password" id="password1" required/>
 										</div>
-										
+
 									</div>
 									<ul class="actions">
 										<li><input type="submit" value="Sign In" class="primary" /></li>
 										<li><input type="reset" value="Reset" /></li>
 									</ul>
 								</form>
-								
+
 							</article>
 
-						
+
 
 					</div>
 
@@ -190,7 +190,7 @@
 		<script th:src="@{/js/breakpoints.min.js}"></script>
 		<script th:src="@{/js/util.js}"></script>
 		<script th:src="@{/js/main.js}"></script>
-		<div th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+		<div  data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
 
 		<!--To modify the alert-->
 
@@ -199,7 +199,7 @@
 		<!--<script>
 				var video = document.getElementById("myVideo");
 				var btn = document.getElementById("myBtn");
-				
+
 				function myFunction() {
 				  if (video.paused) {
 					video.play();
@@ -209,7 +209,7 @@
 					btn.innerHTML = "Play";
 				  }
 				}
-				</script>-->	
+				</script>-->
 				<!-- <script>
 					function show(){
     document.getElementById('helpMessage').style.display = 'block';

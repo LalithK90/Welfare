@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<head  data-th-replace="~{fragments/headerSection :: headerSectionFragment}"></head>
 <body class="">
 <div class="wrapper"><!-- wrapper start -->
     <nav th:fragment="navbarSectionFragment1" class="main-header navbar navbar-expand navbar-dark fixed-top border-0">
@@ -659,8 +659,8 @@
 
     <!-- /.content-wrapper -->
     </div><!-- content-wrapper end -->
-    <div th:replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+    <div  data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
 </div><!-- wrapper end -->
-<div th:replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+<div  data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
 </body>
 </html>
