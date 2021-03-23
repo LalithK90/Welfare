@@ -3,7 +3,7 @@ package lk.AVSEC.Welfare.asset.district.controller;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import lk.AVSEC.Welfare.asset.commonAsset.model.Enum.Province;
+import lk.AVSEC.Welfare.asset.common_asset.model.Enum.Province;
 import lk.AVSEC.Welfare.asset.district.entity.District;
 import lk.AVSEC.Welfare.asset.district.service.DistrictService;
 import lk.AVSEC.Welfare.util.interfaces.AbstractController;

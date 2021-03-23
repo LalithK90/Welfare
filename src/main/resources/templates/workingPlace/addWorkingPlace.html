@@ -15,7 +15,7 @@
                         <button type="button" class="btn btn-info btn-sm mr-1">
                             <a  data-th-href="${'/workingPlace'}" >
                                 <span class="info-box-icon text-white"><i class="fa fa-backward mr-1" ></i ></span >
-                                <span class="text-white"> View Working Place List </span></a>
+                                <span class="text-white"> View Working Place List </span></a></button>
 
                         <button type="button" class="btn btn-success btn-sm">
                             <a  data-th-href="${'/home'}" >
@@ -51,6 +51,16 @@
                                                 <input type="hidden" id="provinceDistrict"
                                                        data-th-value="${workingPlace.district.province}"/>
                                             </td>
+                                            </tr>
+<!--                                            name-->
+                                            <tr class="form-group" data-th-if="${addStatus==true}">
+                                                <th>
+                                                    <label for="name" class="form-label "> Name </label>
+                                                </th>
+                                                <td>
+                                                    <input type="text" class="form-control" data-th-field="*{name}" id="name"
+                                                           readonly>
+                                                   </td>
                                             </tr>
                                             <!--Province-->
                                             <tr>

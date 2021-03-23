@@ -1,6 +1,6 @@
 package lk.AVSEC.Welfare.asset.employee.service;
 
-import lk.AVSEC.Welfare.asset.commonAsset.model.FileInfo;
+import lk.AVSEC.Welfare.asset.common_asset.model.FileInfo;
 import lk.AVSEC.Welfare.asset.employee.controller.EmployeeController;
 import lk.AVSEC.Welfare.asset.employee.dao.EmployeeFilesDao;
 import lk.AVSEC.Welfare.asset.employee.entity.Employee;

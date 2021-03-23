@@ -1,670 +1,801 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
-<body class="hold-transition sidebar-mini layout-fixed" >
-<div class="wrapper" ><!-- wrapper start -->
-  <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
-  <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
-  <div class="content-wrapper" ><!-- content-wrapper Start -->
-    <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
-                                <!-- Form Header  Path -->
-<!--    <section data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}" ></section >&lt;!&ndash; Small Box Set-->
-<!--         &ndash;&gt;-->
-      <!--action button layer---------------------------------------------------------     -->
-      <div class="row m-1">
-          <div class="col-12">
-              <div class="text-right">
-                  <div text-right>
-                      <button type="button" class="btn btn-info btn-sm">
-                          <a data-th-href="${'/employee'}">
-                              <span class="info-box-icon text-white"><i class="fa fa-list mr-1"></i></span>
-                              <span class="text-white"> View Employee List </span></a>
-                      </button>
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper"><!-- wrapper start -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
+    <div class="content-wrapper"><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!-- Form Header  Path -->
+        <!--    <section data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}" ></section >&lt;!&ndash; Small Box Set-->
+        <!--         &ndash;&gt;-->
+        <!--action button layer---------------------------------------------------------     -->
+        <div class="row m-1">
+            <div class="col-12">
+                <div class="text-right">
+                    <div text-right>
+                        <button type="button" class="btn btn-info btn-sm">
+                            <a data-th-href="${'/employee'}">
+                                <span class="info-box-icon text-white"><i class="fa fa-list mr-1"></i></span>
+                                <span class="text-white"> View Employee List </span></a>
+                        </button>
 
-                      <button type="button" class="btn btn-success btn-sm">
-                          <a data-th-href="${'/home'}">
-                              <span class="info-box-icon text-white"><i class="fas fa-home mr-1"></i></span>
-                              <span class="text-white"> Home </span></a>
-                      </button>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <!--form action end button---------------------------------------------------------     -->
-
-
-      <div class="container-fluid" data-th-fragment="employeeDetailsFragment" >
-        <div class="row" >
-          <div class="col-md-12" >
-            <div class="row" >
-<!--              Main Details-->
-              <div class="col-md-9" >
-                <div class="card" >
-                  <div class="card-header" >
-                    <h3 data-th-text="${employeeDetail.title.title} +${' '} +${employeeDetail.name}" class="display_detail" ></h3 >
-                    <h3 data-th-if="${employeeDetail.designation !=null}"
-                        data-th-text="${employeeDetail.designation.name}" class="display_detail" >
-                    </h3 >
-                    <h3 data-th-text="${'EPF No - '} +${employeeDetail.epf}" class="display_detail" >
-                    </h3 >
-
-                  </div >
-                </div >
-              </div >
-<!--              Image-->
-              <div class="col-md-3" >
-                <div class="card" >
-                  <div class="card-header" >
-                    <center ><img id="img" class="rounded"
-                                  style="height:150px; width:150px; border-radius: 10px"
-                                  alt="Employee images"
-                                  data-th-src="${files.url}" /></center >
-                  </div >
-                </div >
-              </div >
-            </div >
-            <div class="row" >
-<!--              Personal Details-->
-              <div class="col-md-6" >
-                <div id="card-116170" >
-                  <div class="card" >
-                    <div class="card-header" >
-                      <a class="card-link" data-toggle="collapse" data-parent="#card-116170"
-                         href="#card-element-246373" >Personal Details</a >
-                        <spam style="float: right">  <a data-th-href="${'/employee/edit/' + employeeDetail.id}" class="btn btn-sm btn-default" ><i
-                                class="fa fa-edit" ></i ></a ></spam>
-                    </div >
-                    <div id="card-element-246373" class="collapse" >
-                      <div class="card-body" >
-
-                        <table class="table table-borderless table-hover">
-                          <tbody>
-                          <tr><!--Name-->
-                            <th><label class="control-label" for="name" >Name :</label > </th>
-                            <td> <p id="name"
-                                    data-th-text="${employeeDetail.title.title} +${' '} +${employeeDetail.name}"
-                                    class="display_detail" ></p ></td>
-                          </tr>
-                          <tr><!--Calling Name-->
-                            <th> <label class="control-label" for="callingName" >Calling Name
-                              :</label ></th>
-                             <td> <p id="callingName" data-th-text="${employeeDetail.callingName}"
-                                     class="display_detail" ></p ></td>
-                          </tr>
-                          <tr><!--NIC No-->
-                            <th><label class="control-label" for="nic" >NIC No :</label > </th>
-                            <td> <p id="nic" data-th-text="${employeeDetail.nic}"
-                                    class="display_detail" ></p ></td>
-
-
-                       <tr><th><!--Gender-->
-                           <label class="control-label" for="gender" >Gender :</label ></th>
-                         <td>  <p id="gender" data-th-text="${employeeDetail.gender.gender}"
-                                  class="display_detail" ></p ></td>
-
-                        <tr><th><!--Birth date-->
-
-                          <label class="control-label" for="dateOfBirth" >Birth date :</label ></th>
-                          <td> <p id="dateOfBirth" data-th-text="${employeeDetail.dateOfBirth}"
-                             class="display_detail" >Error Birthday</p ></td>
-
-                        <tr><th><!--Blood Group-->
-
-                          <label class="control-label" for="bloodGroup" >Blood Group :</label ></th>
-                          <td> <p id="bloodGroup"
-                             data-th-text="${employeeDetail.bloodGroup.bloodGroup}"
-                             class="display_detail" >
-                          </p ></td>
-
-                        <tr><th> <!--Civil State-->
-
-                          <label class="control-label" for="civilStatus" >Civil State :</label ></th>
-                         <td> <p id="civilStatus"
-                             data-th-text="${employeeDetail.civilStatus.civilStatus}"
-                             class="display_detail" ></p ></td>
-                        </tr>
-                      </tbody>
-                      </table>
-                      </div>
+                        <button type="button" class="btn btn-success btn-sm">
+                            <a data-th-href="${'/home'}">
+                                <span class="info-box-icon text-white"><i class="fas fa-home mr-1"></i></span>
+                                <span class="text-white"> Home </span></a>
+                        </button>
                     </div>
-                        </div >
-                      </div >
-                    </div >
-<!--              Contact Details-->
-              <div class="col-md-6">
-              <div class="card" >
-                <div class="card-header" >
-                  <a class="collapsed card-link" data-toggle="collapse"
-                     data-parent="#card-116170" href="#card-element-510343" >Contact
-                    Details</a >
-                    <spam style="float: right">  <a data-th-href="${'/employee/edit/' + employeeDetail.id}" class="btn btn-sm btn-default" ><i
-                            class="fa fa-edit" ></i ></a ></spam>
-                </div >
-                <div id="card-element-510343" class="collapse" >
-                  <div class="card-body" >
-
-                    <table class="table table-borderless table-hover">
-                      <tbody>
-                      <tr><th>
-                    <!--Address-->
-
-                      <label class="control-label" for="address" >Address :</label ></th>
-                     <td> <p id="address" class="display_detail "
-                         data-th-utext="${employeeDetail.address}" ></p ></td></tr>
-
-                    <!--Mobile One No-->
-
-                      <th><label class="control-label" for="mobileOne" >Mobile One No :</label ></th>
-                      <td><p id="mobileOne" data-th-text="${employeeDetail.mobileOne}"
-                         class="display_detail" ></p ></td></tr>
-
-                    <!--Mobile Two No-->
-
-                     <th><label class="control-label" for="mobileTwo" >Mobile Two No :</label ></th>
-                     <td> <p id="mobileTwo" data-th-text="${employeeDetail.mobileTwo}"
-                         class="display_detail" ></p ></td></tr>
-
-                    <!--Land No-->
-
-                      <th> <label class="control-label" for="land" >Land No :</label ></th>
-                      <td><p id="land" data-th-text="${employeeDetail.land}"
-                         class="display_detail" ></p ></td></tr>
-
-                    <!--Email-->
-
-                      <th><label class="control-label" for="email" >Email :</label ></th>
-                      <td> <p id="email" data-th-text="${employeeDetail.email}"
-                         class="display_detail" ></p ></td></tr>
-
-                    <!--Office Email-->
-
-                      <th><label class="control-label" for="officeEmail" >Office Email
-                        :</label ></th>
-                      <td> <p id="officeEmail" data-th-text="${employeeDetail.officeEmail}"
-                         class="display_detail" ></p ></td></tr>
-                      </tbody></table>
-                  </div >
-                </div >
-              </div >
-              </div >
+                </div>
             </div>
-            <div class="row" >
-<!--              Employee Details-->
-              <div class="col-md-6" >
-                <div id="card-987460" >
-                  <div class="card" >
-                    <div class="card-header" >
-                      <a class="card-link" data-toggle="collapse" data-parent="#card-987460"
-                         href="#card-element-845498" >Employee Details</a >
-                        <spam style="float: right">  <a data-th-href="${'/employee/edit/' + employeeDetail.id}" class="btn btn-sm btn-default" ><i
-                                class="fa fa-edit" ></i ></a ></spam>
-                    </div >
-                    <div id="card-element-845498" class="collapse" >
-                      <div class="card-body" >
-                        <table class="table table-borderless table-hover">
-                          <tbody>
-                        <!--EPF No-->
-                        <tr>
-                        <th>  <label class="control-label" for="payRoleNumber" >EPF No :</label ></th>
-                         <td><p id="payRoleNumber" data-th-text="${employeeDetail.epf}"
-                                class="display_detail" ></p ></td></tr>
-                        <!--Designation-->
-                        <tr>
-                        <th>  <label class="control-label" for="designation" >Designation :</label ></th>
-                          <td> <p id="designation"
-                             data-th-if="${employeeDetail.designation !=null}"
-                             data-th-text="${employeeDetail.designation.name}"
-                             class="display_detail" >
-                          </p ></td></tr>
-                        <!--Employee Status-->
-                        <tr>
-                          <th>  <label class="control-label" for="employeeStatus" >Employee Status
-                                                                             :</label ></th>
-                          <td><p id="employeeStatus"
-                             data-th-text="${employeeDetail.employeeStatus.employeeStatus}"
-                                 class="display_detail" ></p ></td>
-                        </tr>
-                        <!--Working Place-->
-                        <!--<tr>
-                           <th>  <label class="control-label" for="workingPlace">Working Place :</label></th>
-                           <td> <p id="workingPlace" data-th-text="${employeeDetail.workingPlace
-                            .name}"
-                            class="display_detail"></p></td></tr>
-                        -->
-                        <!--Date Of Assignment-->
-                        <tr>
-                         <th> <label class="control-label" for="dateOfAssignment" >Date Of Assignment:</label ></th>
-                          <td>  <p id="dateOfAssignment" data-th-text="${{employeeDetail.dateOfAssignment}}"
-                                   class="display_detail" ></p ></td>
-                        </tr>
-                        </tbody></table>
+        </div>
+        <!--form action end button---------------------------------------------------------     -->
 
-                      </div >
-                    </div >
-                  </div >
+
+        <div class="container-fluid" data-th-fragment="employeeDetailsFragment">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <!--              Main Details-->
+                        <div class="col-md-9">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 data-th-text="${employeeDetail.title.title} +${' '} +${employeeDetail.name}"
+                                        class="display_detail"></h3>
+                                    <h3 data-th-if="${employeeDetail.designation !=null}"
+                                        data-th-text="${employeeDetail.designation.name}" class="display_detail">
+                                    </h3>
+                                    <h3 data-th-text="${'EPF No - '} +${employeeDetail.epf}" class="display_detail">
+                                    </h3>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--              Image-->
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    <center><img id="img" class="rounded"
+                                                 style="height:150px; width:150px; border-radius: 10px"
+                                                 alt="Employee images"
+                                                 data-th-src="${files.url}"/></center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--              Personal Details-->
+                        <div class="col-md-6">
+                            <div id="card-116170">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="card-link" data-toggle="collapse" data-parent="#card-116170"
+                                           href="#card-element-246373">Personal Details</a>
+                                        <spam style="float: right"><a
+                                                data-th-href="${'/employee/edit/' + employeeDetail.id}"
+                                                class="btn btn-sm btn-default"><i
+                                                class="fa fa-edit"></i></a></spam>
+                                    </div>
+                                    <div id="card-element-246373" class="collapse">
+                                        <div class="card-body">
+
+                                            <table class="table table-borderless table-hover">
+                                                <tbody>
+                                                <tr><!--Name-->
+                                                    <th><label class="control-label" for="name">Name :</label></th>
+                                                    <td><p id="name"
+                                                           data-th-text="${employeeDetail.title.title} +${' '} +${employeeDetail.name}"
+                                                           class="display_detail"></p></td>
+                                                </tr>
+                                                <tr><!--Calling Name-->
+                                                    <th><label class="control-label" for="callingName">Calling Name
+                                                        :</label></th>
+                                                    <td><p id="callingName" data-th-text="${employeeDetail.callingName}"
+                                                           class="display_detail"></p></td>
+                                                </tr>
+                                                <tr><!--NIC No-->
+                                                    <th><label class="control-label" for="nic">NIC No :</label></th>
+                                                    <td><p id="nic" data-th-text="${employeeDetail.nic}"
+                                                           class="display_detail"></p></td>
+
+
+                                                <tr>
+                                                    <th><!--Gender-->
+                                                        <label class="control-label" for="gender">Gender :</label></th>
+                                                    <td><p id="gender" data-th-text="${employeeDetail.gender.gender}"
+                                                           class="display_detail"></p></td>
+
+                                                <tr>
+                                                    <th><!--Birth date-->
+
+                                                        <label class="control-label" for="dateOfBirth">Birth date
+                                                            :</label></th>
+                                                    <td><p id="dateOfBirth" data-th-text="${employeeDetail.dateOfBirth}"
+                                                           class="display_detail">Error Birthday</p></td>
+
+                                                <tr>
+                                                    <th><!--Blood Group-->
+
+                                                        <label class="control-label" for="bloodGroup">Blood Group
+                                                            :</label></th>
+                                                    <td><p id="bloodGroup"
+                                                           data-th-text="${employeeDetail.bloodGroup.bloodGroup}"
+                                                           class="display_detail">
+                                                    </p></td>
+
+                                                <tr>
+                                                    <th> <!--Civil State-->
+
+                                                        <label class="control-label" for="civilStatus">Civil State
+                                                            :</label></th>
+                                                    <td><p id="civilStatus"
+                                                           data-th-text="${employeeDetail.civilStatus.civilStatus}"
+                                                           class="display_detail"></p></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--              Contact Details-->
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <a class="collapsed card-link" data-toggle="collapse"
+                                       data-parent="#card-116170" href="#card-element-510343">Contact
+                                        Details</a>
+                                    <spam style="float: right"><a
+                                            data-th-href="${'/employee/edit/' + employeeDetail.id}"
+                                            class="btn btn-sm btn-default"><i
+                                            class="fa fa-edit"></i></a></spam>
+                                </div>
+                                <div id="card-element-510343" class="collapse">
+                                    <div class="card-body">
+
+                                        <table class="table table-borderless table-hover">
+                                            <tbody>
+                                            <tr>
+                                                <th>
+                                                    <!--Address-->
+
+                                                    <label class="control-label" for="address">Address :</label></th>
+                                                <td><p id="address" class="display_detail "
+                                                       data-th-utext="${employeeDetail.address}"></p></td>
+                                            </tr>
+
+                                            <!--Mobile One No-->
+
+                                            <th><label class="control-label" for="mobileOne">Mobile One No :</label>
+                                            </th>
+                                            <td><p id="mobileOne" data-th-text="${employeeDetail.mobileOne}"
+                                                   class="display_detail"></p></td>
+                                            </tr>
+
+                                            <!--Mobile Two No-->
+
+                                            <th><label class="control-label" for="mobileTwo">Mobile Two No :</label>
+                                            </th>
+                                            <td><p id="mobileTwo" data-th-text="${employeeDetail.mobileTwo}"
+                                                   class="display_detail"></p></td>
+                                            </tr>
+
+                                            <!--Land No-->
+
+                                            <th><label class="control-label" for="land">Land No :</label></th>
+                                            <td><p id="land" data-th-text="${employeeDetail.land}"
+                                                   class="display_detail"></p></td>
+                                            </tr>
+
+                                            <!--Email-->
+
+                                            <th><label class="control-label" for="email">Email :</label></th>
+                                            <td><p id="email" data-th-text="${employeeDetail.email}"
+                                                   class="display_detail"></p></td>
+                                            </tr>
+
+                                            <!--Office Email-->
+
+                                            <th><label class="control-label" for="officeEmail">Office Email
+                                                :</label></th>
+                                            <td><p id="officeEmail" data-th-text="${employeeDetail.officeEmail}"
+                                                   class="display_detail"></p></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--              Employee Details-->
+                        <div class="col-md-6">
+                            <div id="card-987460">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="card-link" data-toggle="collapse" data-parent="#card-987460"
+                                           href="#card-element-845498">Employee Details</a>
+                                        <spam style="float: right"><a
+                                                data-th-href="${'/employee/edit/' + employeeDetail.id}"
+                                                class="btn btn-sm btn-default"><i
+                                                class="fa fa-edit"></i></a></spam>
+                                    </div>
+                                    <div id="card-element-845498" class="collapse">
+                                        <div class="card-body">
+                                            <table class="table table-borderless table-hover">
+                                                <tbody>
+                                                <!--EPF No-->
+                                                <tr>
+                                                    <th><label class="control-label" for="payRoleNumber">EPF No
+                                                        :</label></th>
+                                                    <td><p id="payRoleNumber" data-th-text="${employeeDetail.epf}"
+                                                           class="display_detail"></p></td>
+                                                </tr>
+                                                <!--Designation-->
+                                                <tr>
+                                                    <th><label class="control-label" for="designation">Designation
+                                                        :</label></th>
+                                                    <td><p id="designation"
+                                                           data-th-if="${employeeDetail.designation !=null}"
+                                                           data-th-text="${employeeDetail.designation.name}"
+                                                           class="display_detail">
+                                                    </p></td>
+                                                </tr>
+                                                <!--Employee Status-->
+                                                <tr>
+                                                    <th><label class="control-label" for="employeeStatus">Employee
+                                                        Status
+                                                        :</label></th>
+                                                    <td><p id="employeeStatus"
+                                                           data-th-text="${employeeDetail.employeeStatus.employeeStatus}"
+                                                           class="display_detail"></p></td>
+                                                </tr>
+                                                <!--Working Place-->
+                                                <!--<tr>
+                                                   <th>  <label class="control-label" for="workingPlace">Working Place :</label></th>
+                                                   <td> <p id="workingPlace" data-th-text="${employeeDetail.workingPlace
+                                                    .name}"
+                                                    class="display_detail"></p></td></tr>
+                                                -->
+                                                <!--Date Of Assignment-->
+                                                <tr>
+                                                    <th><label class="control-label" for="dateOfAssignment">Date Of
+                                                        Assignment:</label></th>
+                                                    <td><p id="dateOfAssignment"
+                                                           data-th-text="${{employeeDetail.dateOfAssignment}}"
+                                                           class="display_detail"></p></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--                  System Details-->
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <a class="collapsed card-link" data-toggle="collapse"
+                                       data-parent="#card-987460" href="#card-element-475526">System Details</a>
+                                    <spam style="float: right"><a
+                                            data-th-href="${'/employee/edit/' + employeeDetail.id}"
+                                            class="btn btn-sm btn-default"><i
+                                            class="fa fa-edit"></i></a></spam>
+                                </div>
+                                <div id="card-element-475526" class="collapse">
+                                    <div class="card-body">
+                                        <table class="table table-borderless table-hover">
+                                            <tbody>
+                                            <!--ID-->
+                                            <tr>
+
+                                                <th><label class="control-label" for="id">ID :</label></th>
+                                                <td><p id="id" data-th-text="${employeeDetail.id}"
+                                                       class="display_detail"></p>
+                                                </td>
+                                            </tr>
+                                            <!--Created By-->
+                                            <tr>
+                                                <th><label class="control-label" for="createdBy">Created By :</label>
+                                                </th>
+                                                <td><p id="createdBy" data-th-text="${employeeDetail.createdBy}"
+                                                       class="display_detail"></p>
+                                                </td>
+                                            </tr>
+                                            <!--Created At-->
+                                            <tr>
+                                                <th><label class="control-label" for="createdAt">Created At :</label>
+                                                </th>
+                                                <td><p id="createdAt"
+                                                       data-th-text="${#temporals.format(employeeDetail.createdAt, 'dd-MM-yyyy HH:mm')}"
+                                                       class="display_detail"></p>
+                                                </td>
+                                            </tr>
+                                            <!--Updated By-->
+                                            <tr>
+                                                <th><label class="control-label" for="updatedBy">Updated By :</label>
+                                                </th>
+                                                <td><p id="updatedBy" data-th-text="${employeeDetail.updatedBy}"
+                                                       class="display_detail"></p>
+                                                </td>
+                                            </tr>
+                                            <!--Updated At-->
+                                            <tr>
+                                                <th><label class="control-label" for="updatedAt">Updated At :</label>
+                                                </th>
+                                                <td><p id="updatedAt" data-th-text="${{employeeDetail.updatedAt}}"
+                                                       class="display_detail"></p>
+                                                </td>
+                                            </tr>
+
+                                            <!--Photo Name-->
+                                            <tr>
+                                                <th><label class="control-label" for="updatedAt">Photo Name :</label>
+                                                </th>
+                                                <td><p id="imgName" data-th-text="${files.filename}"></p></td>
+                                            </tr>
+                                            <tr>
+                                                <th><label class="control-label" for="updatedAt"> Photo Uploaded Date
+                                                    :</label></th>
+                                                <td><p id="imgCreateAt" data-th-text="${{files.createAt}}"></p>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="accordion" id="accordion">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+                                                data-target="#collapseOne" aria-expanded="false"
+                                                aria-controls="collapseOne">Dependant
+                                        </button>
+                                        <spam style="float: right"><a
+                                                data-th-href="${'/dependent/add/' + employeeDetail.id}"
+                                                class="btn btn-sm btn-default">
+                                            <i class="fa fa-plus"></i> </a></spam>
+                                    </div>
+                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                         data-parent="#accordion">
+                                        <div class="card-body">
+
+
+                                            <table class="table table-striped table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>S/No</th>
+                                                    <th>Relationship</th>
+                                                    <th>Name</th>
+                                                    <th>NIC</th>
+                                                    <th>Inside or Out</th>
+                                                    <th>Status</th>
+                                                    <th>View</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr data-th-each="dependentEmployee, index : ${employeeDetail.dependentEmployees}">
+                                                    <td data-th-text="${index.count}"></td>
+                                                    <td data-th-text="${dependentEmployee.relationship.relationship}"></td>
+                                                    <td data-th-text="${dependentEmployee.dependent.name}"></td>
+                                                    <td data-th-text="${dependentEmployee.dependent.nic}"></td>
+                                                    <td data-th-text="${dependentEmployee.insideOrOut.insideOrOut}"></td>
+                                                    <td data-th-text="${dependentEmployee.dependent.currentStatus.currentStatus}"></td>
+                                                    <td>
+                                                        <a data-th-href="${'/dependent/edit/'+dependentEmployee.dependent.id}"
+                                                           type="button" class="btn btn-success">Edit</a>
+                                                        <a data-th-href="${'/dependent/'+dependentEmployee.dependent.id}"
+                                                           type="button" class="btn btn-success">View</a>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#collapseTwo"
+                                            aria-expanded="false" aria-controls="collapseTwo">Education
+                                    </button>
+                                    <spam style="float: right"><a
+                                            data-th-href="${'/qualification/add/' + employeeDetail.id}"
+                                            class="btn btn-sm btn-default">
+                                        <i class="fa fa-plus"></i></a></spam>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                     data-parent="#accordion">
+                                    <div class="card-body">
+                                        <div class="container-fluid"
+                                             data-th-each="qualificationDetail : ${employeeDetail.qualifications}">
+                                            <a data-th-href="${'/qualification/edit/'+ qualificationDetail.id}"
+                                               class="btn btn-primary"> <i
+                                                    class="fa fa-list"></i>&nbsp; View List </a>
+                                            <div data-th-replace="~{qualification/qualification-detail :: qualificationDetail}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#collapseThree"
+                                            aria-expanded="false" aria-controls="collapseTwo"><i
+                                            class="fa fa-arrow-down">&nbsp;</i> &nbsp;&nbsp;Promotion
+                                    </button>
+                                    <spam style="float: right"><a
+                                            data-th-href="${'/promotion/add/' + employeeDetail.id}"
+                                            class="btn btn-sm btn-default"><i
+                                            class="fa fa-plus"></i></a></spam>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                     data-parent="#accordion">
+                                    <div class="card-body">
+                                        <table class="table table-borderless table-hover">
+                                            <tbody>
+                                            <tr>
+                                                <th><label class="form-label"> Id </label></th>
+                                                <th><label class="form-label"> Promotion Name </label></th>
+                                                <th><label class="form-label"> Remark </label></th>
+                                                <th><label class="form-label"> Effected Dte </label></th>
+                                                <th><label class="form-label"> Action </label>
+                                                </th>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="container-fluid"
+                                             data-th-each="promotionDetail : ${employeeDetail.promotions}">
+
+                                            <div data-th-replace="~{promotion/promotion-detail :: promotionDetail1}"></div>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header" id="headingFour">
+                                    <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#collapseFour"
+                                            aria-expanded="false" aria-controls="collapseTwo"><i
+                                            class="fa fa-arrow-down">&nbsp;</i> &nbsp;&nbsp;Promotion
+                                    </button>
+                                    <spam style="float: right"><a
+                                            data-th-href="${'/workingPlace/add/' + employeeDetail.id}"
+                                            class="btn btn-sm btn-default"><i
+                                            class="fa fa-plus"></i></a></spam>
+                                </div>
+                                <div id="collapseFour" class="collapse" aria-labelledby="headingThree"
+                                     data-parent="#accordion">
+                                    <div class="card-body">
+                                        <table class="table table-borderless table-hover">
+                                            <tbody>
+                                            <tr>
+                                                <th><label class="form-label"> Id </label></th>
+                                                <th><label class="form-label"> Start At </label></th>
+                                                <th><label class="form-label"> End At </label></th>
+                                                <th><label class="form-label"> Transfer Reason </label></th>
+                                                <th><label class="form-label"> Working Place Name </label></th>
+                                                <th><label class="form-label"> Modify </label></th>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="container-fluid"
+                                             data-th-each="employeeWorkingPlaceDetail : ${employeeDetail.employeeWorkingPlaces}">
+
+                                            <!--                                      <div data-th-replace="~{promotion/promotion-detail :: promotionDetail1}" ></div >-->
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-<!--                  System Details-->
-              <div class="col-md-6" >
-                  <div class="card" >
-                    <div class="card-header" >
-                      <a class="collapsed card-link" data-toggle="collapse"
-                         data-parent="#card-987460" href="#card-element-475526" >System Details</a >
-                        <spam style="float: right">  <a data-th-href="${'/employee/edit/' + employeeDetail.id}" class="btn btn-sm btn-default" ><i
-                                class="fa fa-edit" ></i ></a ></spam>
-                    </div >
-                    <div id="card-element-475526" class="collapse" >
-                      <div class="card-body" >
-                        <table class="table table-borderless table-hover">
-                          <tbody>
-                        <!--ID-->
-                        <tr>
+            </div>
+        </div>
 
-                         <th> <label class="control-label" for="id" >ID :</label ></th>
-                         <td> <p id="id" data-th-text="${employeeDetail.id}"
-                             class="display_detail" ></p >
-                          </td></tr>
-                        <!--Created By-->
-                        <tr>
-                          <th> <label class="control-label" for="createdBy" >Created By :</label ></th>
-                          <td><p id="createdBy" data-th-text="${employeeDetail.createdBy}"
-                             class="display_detail" ></p >
-                          </td></tr>
-                        <!--Created At-->
-                        <tr>
-                          <th>  <label class="control-label" for="createdAt" >Created At :</label ></th>
-                          <td><p id="createdAt"
-                             data-th-text="${#temporals.format(employeeDetail.createdAt, 'dd-MM-yyyy HH:mm')}"
-                             class="display_detail" ></p >
-                          </td></tr>
-                        <!--Updated By-->
-                        <tr>
-                          <th> <label class="control-label" for="updatedBy" >Updated By :</label ></th>
-                          <td><p id="updatedBy" data-th-text="${employeeDetail.updatedBy}"
-                             class="display_detail" ></p >
-                          </td></tr>
-                        <!--Updated At-->
-                        <tr>
-                        <th> <label class="control-label" for="updatedAt" >Updated At :</label ></th>
-                        <td> <p id="updatedAt" data-th-text="${{employeeDetail.updatedAt}}"
-                             class="display_detail" ></p >
-                        </td></tr>
+        <!-- Button trigger modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Details View -
 
-                        <!--Photo Name-->
-                        <tr>
-                          <th> <label class="control-label" for="updatedAt" >Photo Name :</label ></th>
-                          <td> <p id="imgName" data-th-text="${files.filename}" ></p > </td>
-                        </tr><tr>
-                          <th><label class="control-label" for="updatedAt" > Photo Uploaded Date
-                            :</label ></th>
-                          <td>  <p id="imgCreateAt" data-th-text="${{files.createAt}}" ></p >
-                          </td> </tr>
-                          </tbody>
+                            <img id="img" class="rounded"
+                                 style="height:50px; width:50px; border-radius: 10px"
+                                 alt="Employee images"
+                                 data-th-src="${files.url}"/>
+
+
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-borderless">
+                            <tbody>
+
+                            <tr><!--Name-->
+                                <th><label class="control-label" for="name">Name :</label></th>
+                                <td><p id="name"
+                                       data-th-text="${employeeDetail.title.title} +${' '} +${employeeDetail.name}"
+                                       class="display_detail"></p></td>
+                            </tr>
+                            <tr><!--Calling Name-->
+                                <th><label class="control-label" for="callingName">Calling Name
+                                    :</label></th>
+                                <td><p id="callingName" data-th-text="${employeeDetail.callingName}"
+                                       class="display_detail"></p></td>
+                            </tr>
+                            <tr><!--NIC No-->
+                                <th><label class="control-label" for="nic">NIC No :</label></th>
+                                <td><p id="nic" data-th-text="${employeeDetail.nic}"
+                                       class="display_detail"></p></td>
+
+
+                            <tr>
+                                <th><!--Gender-->
+                                    <label class="control-label" for="gender">Gender :</label></th>
+                                <td><p id="gender" data-th-text="${employeeDetail.gender.gender}"
+                                       class="display_detail"></p></td>
+
+                            <tr>
+                                <th><!--Birth date-->
+
+                                    <label class="control-label" for="dateOfBirth">Birth date :</label></th>
+                                <td><p id="dateOfBirth" data-th-text="${employeeDetail.dateOfBirth}"
+                                       class="display_detail">Error Birthday</p></td>
+
+                            <tr>
+                                <th><!--Blood Group-->
+
+                                    <label class="control-label" for="bloodGroup">Blood Group :</label></th>
+                                <td><p id="bloodGroup"
+                                       data-th-text="${employeeDetail.bloodGroup.bloodGroup}"
+                                       class="display_detail">
+                                </p></td>
+
+                            <tr>
+                                <th> <!--Civil State-->
+
+                                    <label class="control-label" for="civilStatus">Civil State :</label></th>
+                                <td><p id="civilStatus"
+                                       data-th-text="${employeeDetail.civilStatus.civilStatus}"
+                                       class="display_detail"></p></td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    <!--Address-->
+
+                                    <label class="control-label" for="address">Address :</label></th>
+                                <td><p id="address" class="display_detail "
+                                       data-th-utext="${employeeDetail.address}"></p></td>
+                            </tr>
+
+                            <!--Mobile One No-->
+
+                            <th><label class="control-label" for="mobileOne">Mobile One No :</label></th>
+                            <td><p id="mobileOne" data-th-text="${employeeDetail.mobileOne}"
+                                   class="display_detail"></p></td>
+                            </tr>
+
+                            <!--Mobile Two No-->
+
+                            <th><label class="control-label" for="mobileTwo">Mobile Two No :</label></th>
+                            <td><p id="mobileTwo" data-th-text="${employeeDetail.mobileTwo}"
+                                   class="display_detail"></p></td>
+                            </tr>
+
+                            <!--Land No-->
+
+                            <th><label class="control-label" for="land">Land No :</label></th>
+                            <td><p id="land" data-th-text="${employeeDetail.land}"
+                                   class="display_detail"></p></td>
+                            </tr>
+
+                            <!--Email-->
+
+                            <th><label class="control-label" for="email">Email :</label></th>
+                            <td><p id="email" data-th-text="${employeeDetail.email}"
+                                   class="display_detail"></p></td>
+                            </tr>
+
+                            <!--Office Email-->
+
+                            <th><label class="control-label" for="officeEmail">Office Email
+                                :</label></th>
+                            <td><p id="officeEmail" data-th-text="${employeeDetail.officeEmail}"
+                                   class="display_detail"></p></td>
+                            </tr>
+
+                            <tr>
+                                <th><label class="control-label" for="payRoleNumber">EPF No :</label></th>
+                                <td><p id="payRoleNumber" data-th-text="${employeeDetail.epf}"
+                                       class="display_detail"></p></td>
+                            </tr>
+                            <!--Designation-->
+                            <tr>
+                                <th><label class="control-label" for="designation">Designation :</label></th>
+                                <td><p id="designation"
+                                       data-th-if="${employeeDetail.designation !=null}"
+                                       data-th-text="${employeeDetail.designation.name}"
+                                       class="display_detail">
+                                </p></td>
+                            </tr>
+                            <!--Employee Status-->
+                            <tr>
+                                <th><label class="control-label" for="employeeStatus">Employee Status
+                                    :</label></th>
+                                <td><p id="employeeStatus"
+                                       data-th-text="${employeeDetail.employeeStatus.employeeStatus}"
+                                       class="display_detail"></p></td>
+                            </tr>
+
+                            <tr>
+                                <th><label class="control-label" for="dateOfAssignment">Date Of Assignment:</label></th>
+                                <td><p id="dateOfAssignment" data-th-text="${{employeeDetail.dateOfAssignment}}"
+                                       class="display_detail"></p></td>
+                            </tr>
+
+                            <tr>
+
+                                <th><label class="control-label" for="id">ID :</label></th>
+                                <td><p id="id" data-th-text="${employeeDetail.id}"
+                                       class="display_detail"></p>
+                                </td>
+                            </tr>
+                            <!--Created By-->
+                            <tr>
+                                <th><label class="control-label" for="createdBy">Created By :</label></th>
+                                <td><p id="createdBy" data-th-text="${employeeDetail.createdBy}"
+                                       class="display_detail"></p>
+                                </td>
+                            </tr>
+                            <!--Created At-->
+                            <tr>
+                                <th><label class="control-label" for="createdAt">Created At :</label></th>
+                                <td><p id="createdAt"
+                                       data-th-text="${#temporals.format(employeeDetail.createdAt, 'dd-MM-yyyy HH:mm')}"
+                                       class="display_detail"></p>
+                                </td>
+                            </tr>
+                            <!--Updated By-->
+                            <tr>
+                                <th><label class="control-label" for="updatedBy">Updated By :</label></th>
+                                <td><p id="updatedBy" data-th-text="${employeeDetail.updatedBy}"
+                                       class="display_detail"></p>
+                                </td>
+                            </tr>
+                            <!--Updated At-->
+                            <tr>
+                                <th><label class="control-label" for="updatedAt">Updated At :</label></th>
+                                <td><p id="updatedAt" data-th-text="${{employeeDetail.updatedAt}}"
+                                       class="display_detail"></p>
+                                </td>
+                            </tr>
+
+                            <!--Photo Name-->
+                            <tr>
+                                <th><label class="control-label" for="updatedAt">Photo Name :</label></th>
+                                <td><p id="imgName" data-th-text="${files.filename}"></p></td>
+                            </tr>
+                            <tr>
+                                <th><label class="control-label" for="updatedAt"> Photo Uploaded Date
+                                    :</label></th>
+                                <td><p id="imgCreateAt" data-th-text="${{files.createAt}}"></p>
+                                </td>
+                            </tr>
+                            </tbody>
                         </table>
-                      </div >
-                    </div >
-                  </div >
-                </div >
-              </div >
-            <div class="row" >
-            <div class="col-md-12" >
-             <div class="accordion" id="accordion" >
-              <div class="card" >
-                <div class="card-header" id="headingOne" >
-                  <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
-                          data-target="#collapseOne" aria-expanded="false"
-                          aria-controls="collapseOne" >Dependant
-                  </button >
-                    <spam style="float: right">  <a data-th-href="${'/dependent/add/' + employeeDetail.id}" class="btn btn-sm btn-default" >
-                         <i class="fa fa-plus" ></i > </a ></spam>
-                </div >
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                     data-parent="#accordion" >
-                  <div class="card-body" >
 
+                        <table class="table table-striped table-hover">
+                            <thead>Dependant</thead>
+                            <tr>
+                                <th>Relationship</th>
+                                <th>Name</th>
 
-                    <table class="table table-striped table-hover" >
-                      <thead >
-                      <tr >
-                        <th >S/No</th >
-                        <th >Relationship</th >
-                        <th >Name</th >
-                        <th >NIC</th >
-                        <th >Inside or Out</th >
-                        <th >Status</th >
-                        <th >View</th >
-                      </tr >
-                      </thead >
-                      <tbody >
-                      <tr data-th-each="dependentEmployee, index : ${employeeDetail.dependentEmployees}" >
-                        <td data-th-text="${index.count}" ></td >
-                        <td data-th-text="${dependentEmployee.relationship.relationship}" ></td >
-                        <td data-th-text="${dependentEmployee.dependent.name}" ></td >
-                        <td data-th-text="${dependentEmployee.dependent.nic}" ></td >
-                        <td data-th-text="${dependentEmployee.insideOrOut.insideOrOut}" ></td >
-                        <td data-th-text="${dependentEmployee.dependent.currentStatus.currentStatus}" ></td >
-                        <td ><a data-th-href="${'/dependent/edit/'+dependentEmployee.dependent.id}"
-                                type="button" class="btn btn-success" >Edit</a >
-                          <a data-th-href="${'/dependent/'+dependentEmployee.dependent.id}"
-                             type="button" class="btn btn-success" >View</a >
-                        </td >
-                      </tr >
-                      </tbody >
-                    </table >
+                                <th>Status</th>
 
+                            </tr>
+                            <tbody>
+                            <tr data-th-each="dependentEmployee, index : ${employeeDetail.dependentEmployees}">
+                                <td data-th-text="${dependentEmployee.relationship.relationship}"></td>
+                                <td data-th-text="${dependentEmployee.dependent.name}"></td>
+                                <td data-th-text="${dependentEmployee.dependent.currentStatus.currentStatus}"></td>
 
-                  </div >
-                </div >
-              </div >
-             </div>
-            </div></div>
-            <div class="row" >
-                  <div class="col-md-12" >
-              <div class="card" >
-                <div class="card-header" id="headingTwo" >
-                  <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
-                          data-target="#collapseTwo"
-                          aria-expanded="false" aria-controls="collapseTwo" >Education
-                  </button >
-                    <spam style="float: right">  <a data-th-href="${'/qualification/add/' + employeeDetail.id}" class="btn btn-sm btn-default" >
-                          <i class="fa fa-plus" ></i ></a ></spam>
-                </div >
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                     data-parent="#accordion" >
-                  <div class="card-body" >
-                    <div class="container-fluid" data-th-each="qualificationDetail : ${employeeDetail.qualifications}" >
-                      <a data-th-href="${'/qualification/edit/'+ qualificationDetail.id}" class="btn btn-primary" > <i
-                            class="fa fa-list" ></i >&nbsp; View List </a >
-                      <div data-th-replace="~{qualification/qualification-detail :: qualificationDetail}" ></div >
-                    </div >
-                  </div >
-                </div >
-              </div ></div></div>
-              <div class="row" >
-                <div class="col-md-12" >
-              <div class="card" >
-                <div class="card-header" id="headingThree" >
-                  <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
-                          data-target="#collapseThree"
-                          aria-expanded="false" aria-controls="collapseTwo" ><i class="fa fa-arrow-down">&nbsp;</i> &nbsp;&nbsp;Promotion
-                  </button >
-                <spam style="float: right">  <a data-th-href="${'/promotion/add/' + employeeDetail.id}" class="btn btn-sm btn-default" ><i
-                            class="fa fa-plus" ></i ></a ></spam>
-                </div >
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                     data-parent="#accordion" >
-                  <div class="card-body" >
-                      <table class="table table-borderless table-hover">
-                          <tbody>
-                          <tr>
-                              <th> <label class="form-label" > Id </label ></th>
-                              <th> <label class="form-label" > Promotion Name </label ></th>
-                              <th><label class="form-label" > Remark </label ></th>
-                              <th><label class="form-label" > Effected Dte </label ></th>
-                              <th> <label class="form-label" > Action </label >
-                              </th></tr></tbody></table>
-                    <div class="container-fluid" data-th-each="promotionDetail : ${employeeDetail.promotions}" >
+                            </tr>
+                            </tbody>
+                        </table>
+                        </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary hidden-print" onclick="print()"><span
+                                class="glyphicon glyphicon-print" aria-hidden="true"></span> Print
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-                      <div data-th-replace="~{promotion/promotion-detail :: promotionDetail1}" ></div >
-                      <hr >
-                    </div >
-                  </div >
-                </div >
-              </div >
+                    </div>
                 </div>
-                  </div >
+            </div>
+        </div>
 
-           </div>
-          </div>
-          </div >
-
-      <!-- Button trigger modal -->
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Details View -
-
-                              <img id="img" class="rounded"
-                                   style="height:50px; width:50px; border-radius: 10px"
-                                   alt="Employee images"
-                                   data-th-src="${files.url}" />
+        <div class="col-12">
+            <div class="text-right">
+                <div text-right>
+                    <div class="container-fluid formBorder align-right">
+                        <a href="/employee" class="btn btn-sm btn-primary"> <i class="fa fa-list"></i> View List</a>
 
 
-                      </h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      <table class="table table-borderless">
-                          <tbody>
-
-                          <tr><!--Name-->
-                              <th><label class="control-label" for="name" >Name :</label > </th>
-                              <td> <p id="name"
-                                      data-th-text="${employeeDetail.title.title} +${' '} +${employeeDetail.name}"
-                                      class="display_detail" ></p ></td>
-                          </tr>
-                          <tr><!--Calling Name-->
-                              <th> <label class="control-label" for="callingName" >Calling Name
-                                  :</label ></th>
-                              <td> <p id="callingName" data-th-text="${employeeDetail.callingName}"
-                                      class="display_detail" ></p ></td>
-                          </tr>
-                          <tr><!--NIC No-->
-                              <th><label class="control-label" for="nic" >NIC No :</label > </th>
-                              <td> <p id="nic" data-th-text="${employeeDetail.nic}"
-                                      class="display_detail" ></p ></td>
+                        <a type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            <span style="color: white"> <i class="fa fa-print"></i> Employee print view</span>
+                        </a>
 
 
-                          <tr><th><!--Gender-->
-                              <label class="control-label" for="gender" >Gender :</label ></th>
-                              <td>  <p id="gender" data-th-text="${employeeDetail.gender.gender}"
-                                       class="display_detail" ></p ></td>
+                        <a data-th-href="${'/employee/add'}" class="btn btn-sm btn-success"
+                           tabindex=""><i class="fas fa-user"></i>&nbsp;Add Employee </a>
 
-                          <tr><th><!--Birth date-->
-
-                              <label class="control-label" for="dateOfBirth" >Birth date :</label ></th>
-                              <td> <p id="dateOfBirth" data-th-text="${employeeDetail.dateOfBirth}"
-                                      class="display_detail" >Error Birthday</p ></td>
-
-                          <tr><th><!--Blood Group-->
-
-                              <label class="control-label" for="bloodGroup" >Blood Group :</label ></th>
-                              <td> <p id="bloodGroup"
-                                      data-th-text="${employeeDetail.bloodGroup.bloodGroup}"
-                                      class="display_detail" >
-                              </p ></td>
-
-                          <tr><th> <!--Civil State-->
-
-                              <label class="control-label" for="civilStatus" >Civil State :</label ></th>
-                              <td> <p id="civilStatus"
-                                      data-th-text="${employeeDetail.civilStatus.civilStatus}"
-                                      class="display_detail" ></p ></td>
-                          </tr>
-
-                          <tr><th>
-                              <!--Address-->
-
-                              <label class="control-label" for="address" >Address :</label ></th>
-                              <td> <p id="address" class="display_detail "
-                                      data-th-utext="${employeeDetail.address}" ></p ></td></tr>
-
-                          <!--Mobile One No-->
-
-                          <th><label class="control-label" for="mobileOne" >Mobile One No :</label ></th>
-                          <td><p id="mobileOne" data-th-text="${employeeDetail.mobileOne}"
-                                 class="display_detail" ></p ></td></tr>
-
-                          <!--Mobile Two No-->
-
-                          <th><label class="control-label" for="mobileTwo" >Mobile Two No :</label ></th>
-                          <td> <p id="mobileTwo" data-th-text="${employeeDetail.mobileTwo}"
-                                  class="display_detail" ></p ></td></tr>
-
-                          <!--Land No-->
-
-                          <th> <label class="control-label" for="land" >Land No :</label ></th>
-                          <td><p id="land" data-th-text="${employeeDetail.land}"
-                                 class="display_detail" ></p ></td></tr>
-
-                          <!--Email-->
-
-                          <th><label class="control-label" for="email" >Email :</label ></th>
-                          <td> <p id="email" data-th-text="${employeeDetail.email}"
-                                  class="display_detail" ></p ></td></tr>
-
-                          <!--Office Email-->
-
-                          <th><label class="control-label" for="officeEmail" >Office Email
-                              :</label ></th>
-                          <td> <p id="officeEmail" data-th-text="${employeeDetail.officeEmail}"
-                                  class="display_detail" ></p ></td></tr>
-
-                          <tr>
-                              <th>  <label class="control-label" for="payRoleNumber" >EPF No :</label ></th>
-                              <td><p id="payRoleNumber" data-th-text="${employeeDetail.epf}"
-                                     class="display_detail" ></p ></td></tr>
-                          <!--Designation-->
-                          <tr>
-                              <th>  <label class="control-label" for="designation" >Designation :</label ></th>
-                              <td> <p id="designation"
-                                      data-th-if="${employeeDetail.designation !=null}"
-                                      data-th-text="${employeeDetail.designation.name}"
-                                      class="display_detail" >
-                              </p ></td></tr>
-                          <!--Employee Status-->
-                          <tr>
-                              <th>  <label class="control-label" for="employeeStatus" >Employee Status
-                                  :</label ></th>
-                              <td><p id="employeeStatus"
-                                     data-th-text="${employeeDetail.employeeStatus.employeeStatus}"
-                                     class="display_detail" ></p ></td>
-                          </tr>
-
-                          <tr>
-                              <th> <label class="control-label" for="dateOfAssignment" >Date Of Assignment:</label ></th>
-                              <td>  <p id="dateOfAssignment" data-th-text="${{employeeDetail.dateOfAssignment}}"
-                                       class="display_detail" ></p ></td>
-                          </tr>
-
-                          <tr>
-
-                              <th> <label class="control-label" for="id" >ID :</label ></th>
-                              <td> <p id="id" data-th-text="${employeeDetail.id}"
-                                      class="display_detail" ></p >
-                              </td></tr>
-                          <!--Created By-->
-                          <tr>
-                              <th> <label class="control-label" for="createdBy" >Created By :</label ></th>
-                              <td><p id="createdBy" data-th-text="${employeeDetail.createdBy}"
-                                     class="display_detail" ></p >
-                              </td></tr>
-                          <!--Created At-->
-                          <tr>
-                              <th>  <label class="control-label" for="createdAt" >Created At :</label ></th>
-                              <td><p id="createdAt"
-                                     data-th-text="${#temporals.format(employeeDetail.createdAt, 'dd-MM-yyyy HH:mm')}"
-                                     class="display_detail" ></p >
-                              </td></tr>
-                          <!--Updated By-->
-                          <tr>
-                              <th> <label class="control-label" for="updatedBy" >Updated By :</label ></th>
-                              <td><p id="updatedBy" data-th-text="${employeeDetail.updatedBy}"
-                                     class="display_detail" ></p >
-                              </td></tr>
-                          <!--Updated At-->
-                          <tr>
-                              <th> <label class="control-label" for="updatedAt" >Updated At :</label ></th>
-                              <td> <p id="updatedAt" data-th-text="${{employeeDetail.updatedAt}}"
-                                      class="display_detail" ></p >
-                              </td></tr>
-
-                          <!--Photo Name-->
-                          <tr>
-                              <th> <label class="control-label" for="updatedAt" >Photo Name :</label ></th>
-                              <td> <p id="imgName" data-th-text="${files.filename}" ></p > </td>
-                          </tr><tr>
-                              <th><label class="control-label" for="updatedAt" > Photo Uploaded Date
-                                  :</label ></th>
-                              <td>  <p id="imgCreateAt" data-th-text="${{files.createAt}}" ></p >
-                              </td> </tr>
-                          </tbody></table>
-
-                          <table class="table table-striped table-hover" >
-                              <thead >Dependant</thead>
-                              <tr >
-                                  <th >Relationship</th >
-                                  <th >Name</th >
-
-                                  <th >Status</th >
-
-                              </tr >
-                           <tbody >
-                              <tr data-th-each="dependentEmployee, index : ${employeeDetail.dependentEmployees}" >
-                                  <td data-th-text="${dependentEmployee.relationship.relationship}" ></td >
-                                  <td data-th-text="${dependentEmployee.dependent.name}" ></td >
-                                  <td data-th-text="${dependentEmployee.dependent.currentStatus.currentStatus}" ></td >
-
-                              </tr >
-                              </tbody >
-                          </table >
-                          </tbody>
-                      </table>
-                  </div>
-                  <div class="modal-footer">
-                      <button class="btn btn-primary hidden-print" onclick="print()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                      </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="col-12">
-          <div class="text-right">
-              <div text-right>
-      <div class="container-fluid formBorder align-right" >
-            <a href="/employee" class="btn btn-sm btn-primary" > <i class="fa fa-list" ></i > View List</a >
-
-
-          <a type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal">
-              <span style="color: white"> <i class="fa fa-print"></i > Employee print view</span>
-          </a>
-
-
-            <a  data-th-href="${'/employee/add'}" class="btn btn-sm btn-success"
-               tabindex="" ><i class="fas fa-user" ></i >&nbsp;Add Employee </a >
-
-            <a data-th-href="${'/employee/edit/' + employeeDetail.id}"
-               class="btn btn-sm btn-primary" ><i class="fa fa-edit" ></i >&nbsp;Edit</a >
-            <a data-th-href="${'/employee/remove/' + employeeDetail.id}" data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
-               class="btn btn-sm btn-danger" ><i class="fa fa-trash" ></i >
-              Delete</a >
-<!--            <a data-th-href="${'/employee/' + employeeDetail.id++}" class="btn btn-sm btn-success"-->
-<!--               tabindex="" ><i class="fa fa-backward" ></i >&nbsp;Back </a >-->
-            <a data-th-href="${'/employee/' + employeeDetail.id--}" class="btn btn-sm btn-success"
-               tabindex="" ><i class="fa fa-forward" ></i >&nbsp;Next  </a >
-            </a >
-          </div ></div></div>
-        </div >
-  </div ><!-- content-wrapper end -->
-  <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
-</div ><!-- wrapper end -->
-<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div ><!-- script Fragment -->
+                        <a data-th-href="${'/employee/edit/' + employeeDetail.id}"
+                           class="btn btn-sm btn-primary"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+                        <a data-th-href="${'/employee/remove/' + employeeDetail.id}"
+                           data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                           class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>
+                            Delete</a>
+                        <!--            <a data-th-href="${'/employee/' + employeeDetail.id++}" class="btn btn-sm btn-success"-->
+                        <!--               tabindex="" ><i class="fa fa-backward" ></i >&nbsp;Back </a >-->
+                        <a data-th-href="${'/employee/' + employeeDetail.id--}" class="btn btn-sm btn-success"
+                           tabindex=""><i class="fa fa-forward"></i>&nbsp;Next </a>
+                        </a >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- content-wrapper end -->
+    <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+</div><!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
 <script>
-    function print(){
-    var prtContent = document.getElementById("exampleModal");
-    var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
-    WinPrint.document.write(prtContent.innerHTML);
-    WinPrint.document.close();
-    WinPrint.focus();
-    WinPrint.print();
-    
+    function print() {
+        var prtContent = document.getElementById("exampleModal");
+        var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+        WinPrint.document.write(prtContent.innerHTML);
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+
     }
 </script>
-</body >
-</html >
+</body>
+</html>

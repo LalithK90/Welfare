@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+  <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+  <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+  <div class="content-wrapper" ><!-- content-wrapper Start -->
+    <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section ><!-- content-header Start -->
+    <!--action button layer---------------------------------------------------------     -->
+    <div class="row m-1">
+      <div class="col-12">
+        <div class="text-right">
+          <div text-right>
+            <button type="button" class="btn btn-info btn-sm mr-1">
+              <a  data-th-href="${'/workingPlace'}" >
+                <span class="info-box-icon text-white"><i class="fa fa-backward mr-1" ></i ></span >
+                <span class="text-white"> View Working Place List </span></a></button>
+
+              <button type="button" class="btn btn-success btn-sm">
+                <a  data-th-href="${'/home'}" >
+                  <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
+                  <span class="text-white"> Home </span></a>
+              </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  <div class="col-sm-12 flex-column " >
+    <form data-th-action="${addStatus==true?'/employeeWorkingPlace/save' :'/employeeWorkingPlace/update'}" method="post"
+          data-th-object="${employeeWorkingPlace}"
+          class="mt-3" >
+
+      <input data-th-name="${'employee.id'}" data-th-value="${employeeDetail.id}" class="form-control" type="hidden"
+             readonly />
+      <!--Id-->
+      <div id="idStatus" data-th-if="${addStatus==false}" class="form-row text-right" >
+        <div class="col-md-4" >
+          <label class="control-label" for="id" >ID :</label >
+        </div >
+        <div class="col-md-8" >
+          <input id="id" data-th-field="*{id}" class="form-control" type="text" readonly />
+        </div >
+      </div >
+      <!--Institute -->
+      <div class="form-row text-right" >
+        <div class="col-md-4" >
+          <label class="control-label" for="workingPlace" >Working Place :</label >
+        </div >
+        <div class="col-md-8" >
+          <select id="workingPlace" data-th-field="*{workingPlace}" class="form-control" tabindex="19"
+                  required >
+            <option value="" >Please select</option >
+            <option data-th-each="workingPlace : ${workingPlaces}"
+                    data-th-text="${workingPlace.name}"
+                    data-th-value="${workingPlace.id}" ></option >
+          </select >
+        </div >
+      </div >
+
+      <!--start At-->
+      <div class="form-row text-right" >
+        <div class="col-md-4" >
+          <label class="control-label" for="startAt" >Start At :</label >
+        </div >
+        <div class="col-md-8" >
+          <input type="date" class="form-control " onchange="dateMatch()"
+                 data-th-field="*{startAt}" id="startAt" required >
+
+          <span data-th-errors="*{startAt}"
+                data-th-if="${#fields.hasErrors('startAt')}" class="error" >Error Employee code
+                            </span >
+        </div >
+      </div >
+      <!--end At-->
+      <div class="form-row text-right" >
+        <div class="col-md-4" >
+          <label class="control-label" for="endAt" >End At :</label >
+        </div >
+        <div class="col-md-8" >
+          <input type="date" class="form-control " onchange="dateMatch()"
+                 data-th-field="*{endAt}" id="endAt" required >
+
+          <span data-th-errors="*{endAt}"
+                data-th-if="${#fields.hasErrors('endAt')}" class="error" >Error Employee code
+                            </span >
+        </div >
+      </div >
+      <!--Change reason-->
+      <div class="form-row text-right" >
+        <div class="col-md-4" >
+          <label class="control-label" for="employeeStatus" >Change Reason :</label >
+        </div >
+        <div class="col-md-8" >
+          <select id="employeeStatus" data-th-field="*{workingPlaceChangeReason}" class="form-control" tabindex="19"
+                  required >
+            <option value="" >Please select</option >
+            <option data-th-each="workingPlaceChangeReason : ${workingPlaceChangeReasons}"
+                    data-th-text="${workingPlaceChangeReason.workingPlaceChangeReason}"
+                    data-th-value="${workingPlaceChangeReason}" ></option >
+          </select >
+        </div >
+      </div >
+      <!--remarks-->
+      <div class="form-row text-right" >
+        <div class="col-md-4" >
+          <label class="control-label" for="remarks" >Remarks :</label >
+        </div >
+        <div class="col-md-8" >
+          <input id="remarks" data-th-field="*{remarks}" class="form-control" tabindex="4"
+                 type="text" required />
+          <span id="codeE" data-th-errors="*{remarks}"
+                data-th-if="${#fields.hasErrors('remarks')}" class="error" >Error Employee code
+                            </span >
+        </div >
+      </div >
+      <div class="form-group col-md-12 col-sm-12 text-left flex-column " >
+        <!--Button-->
+        <div class="form-group col-md-12 col-sm-12 text-center flex-column " >
+          <button class="btn btn-success" type="submit" tabindex="21" >
+            <i class="fa fa-save " style="font-size: 20px" ></i >&nbsp; &nbsp;<span
+                data-th-text="${addStatus==true?'Save': 'Update'}" ></span >
+          </button >
+          <button class="btn btn-danger" type="reset" >
+            <i class="fa fa-redo" ></i > <span id="reset" >Reset</span >
+          </button >
+        </div >
+      </div >
+      <div class="form-row" >
+        <label id="errorLabel" data-th-if="${#fields.hasErrors('*')}" data-th-text="'Errors: '" >Errors: </label >
+        <ul >
+          <li id="error" data-th-each="err : ${#fields.errors('*')}" data-th-text="${err}" class="error" ></li >
+        </ul >
+      </div >
+    </form >
+
+  </div >
+
+</div >
+<div data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+
+
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
+<script >
+    function dateMatch() {
+        let startDateTime = $(`#startAt`).val();
+        let endDateTime = $(`#endAt`).val();
+        if (startDateTime !== "" && endDateTime !== "") {
+            if (Date.parse(startDateTime) > Date.parse(endDateTime)) {
+                swal({
+                    title: "Could you accept those days.. !",
+                    icon: "warning",
+                    text: "Please check your date time \n End Date Time can not be less than Start Date Time",
+                })
+                $(`#endAt`).val(startDateTime);
+            }
+        }
+    }
+</script >
+</body >
+</html >
