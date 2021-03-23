@@ -88,13 +88,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         .antMatchers("/mainWindow").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
                                         .antMatchers("/user/**").hasRole("ADMIN")
                                         .antMatchers("/district").hasRole("MEMBER")
-                                        .antMatchers("/district/add").hasRole("ADMIN")
-                                        .antMatchers("/district/save").hasRole("ADMIN")
-                                        .antMatchers("/district/update").hasRole("ADMIN")
-                                        .antMatchers("/district/{{id}}").hasRole("ADMIN")
-                                        .antMatchers("/district/edit/{{id}}").hasRole("ADMIN")
-                                        .antMatchers("/district/delete/{{id}}").hasRole("ADMIN")
-//                                        .antMatchers("/district/getDistrict/{{province}}").hasRole("CASHIER")
 
                                         .antMatchers("/dependent").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
                                         .antMatchers("/dependent/add").hasRole("SECRETORY")
