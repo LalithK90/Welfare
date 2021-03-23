@@ -1,11 +1,12 @@
 package lk.avsec_welfare.asset.working_place.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.district.entity.District;
 import lk.avsec_welfare.asset.employee_working_place.entity.EmployeeWorkingPlace;
-import lk.avsec_welfare.asset.working_place.entity.Enum.AirportType;
-import lk.avsec_welfare.asset.working_place.entity.Enum.ShortName;
-import lk.avsec_welfare.asset.working_place.entity.Enum.WorkingPlaceSection;
+import lk.avsec_welfare.asset.working_place.entity.enums.AirportType;
+import lk.avsec_welfare.asset.working_place.entity.enums.ShortName;
+import lk.avsec_welfare.asset.working_place.entity.enums.WorkingPlaceSection;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

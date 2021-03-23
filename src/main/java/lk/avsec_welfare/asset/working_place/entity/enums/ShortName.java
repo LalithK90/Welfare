@@ -1,4 +1,4 @@
-package lk.avsec_welfare.asset.working_place.entity.Enum;
+package lk.avsec_welfare.asset.working_place.entity.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
