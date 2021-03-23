@@ -1,6 +1,7 @@
 package lk.avsec_welfare.asset.dependent.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.dependent.entity.Enum.InsideOrOut;
 import lk.avsec_welfare.asset.dependent.entity.Enum.Relationship;
 import lk.avsec_welfare.asset.employee.entity.Employee;

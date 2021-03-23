@@ -1,5 +1,6 @@
 package lk.avsec_welfare.asset.dependent.service;
 
+import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.dependent.dao.DependentEmployeeDao;
 import lk.avsec_welfare.asset.dependent.entity.Dependent;
 import lk.avsec_welfare.asset.dependent.entity.DependentEmployee;
@@ -9,6 +10,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 // spring transactional annotation need to tell spring to this method work through the project
@@ -22,7 +24,7 @@ public class DependentEmployeeService implements AbstractService< DependentEmplo
 
 
   public List< DependentEmployee > findAll() {
-    return dependentEmployeeDao.findAll();
+    return dependentEmployeeDao.findAll().stream().filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE)).collect(Collectors.toList());
   }
 
   public DependentEmployee findById(Integer id) {
@@ -30,11 +32,16 @@ public class DependentEmployeeService implements AbstractService< DependentEmplo
   }
 
   public DependentEmployee persist(DependentEmployee dependent) {
+    if ( dependent.getId() == null ) {
+      dependent.setLiveDead(LiveDead.ACTIVE);
+    }
     return dependentEmployeeDao.save(dependent);
   }
 
   public boolean delete(Integer id) {
-    dependentEmployeeDao.deleteById(id);
+    DependentEmployee dependentEmployee = dependentEmployeeDao.getOne(id);
+    dependentEmployee.setLiveDead(LiveDead.STOP);
+    dependentEmployeeDao.save(dependentEmployee);
     return false;
   }
 
@@ -53,7 +60,7 @@ public class DependentEmployeeService implements AbstractService< DependentEmplo
   }
 
   public DependentEmployee findByDependentAndEmployee(Dependent dependent, Employee employee) {
-      return dependentEmployeeDao.findByDependentAndEmployeeOne(dependent, employee);
+    return dependentEmployeeDao.findByDependentAndEmployeeOne(dependent, employee);
 
   }
 
