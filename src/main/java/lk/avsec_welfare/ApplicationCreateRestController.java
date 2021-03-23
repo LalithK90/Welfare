@@ -1,9 +1,6 @@
 package lk.avsec_welfare;
 
-import lk.avsec_welfare.asset.common_asset.model.enums.BloodGroup;
-import lk.avsec_welfare.asset.common_asset.model.enums.CivilStatus;
-import lk.avsec_welfare.asset.common_asset.model.enums.Gender;
-import lk.avsec_welfare.asset.common_asset.model.enums.Title;
+import lk.avsec_welfare.asset.common_asset.model.enums.*;
 import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.asset.employee.entity.enums.EmployeeStatus;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
@@ -54,6 +51,7 @@ public class ApplicationCreateRestController {
         employee.setCallingName("Admin");
         employee.setName("123456789V");
         employee.setMobileOne("0750000000");
+        employee.setLiveDead(LiveDead.STOP);
         employee.setTitle(Title.DR);
         employee.setGender(Gender.MALE);
         employee.setBloodGroup(BloodGroup.AP);
@@ -69,6 +67,7 @@ public class ApplicationCreateRestController {
         user.setEmployee(employeeDb);
         user.setUsername("admin");
         user.setPassword("admin");
+        user.setLiveDead(LiveDead.ACTIVE);
         String message = "Username:- " + user.getUsername() + "\n Password:- " + user.getPassword();
         user.setEnabled(true);
         user.setRoles(roleService.findAll()

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Service
 // spring transactional annotation need to tell spring to this method work through the project
-@CacheConfig( cacheNames = "dependency" )
+@CacheConfig( cacheNames = "dependent" )
 public class DependentService implements AbstractService< Dependent, Integer > {
   private final DependentDao dependentDao;
 
@@ -23,7 +23,10 @@ public class DependentService implements AbstractService< Dependent, Integer > {
 
 
   public List< Dependent > findAll() {
-    return dependentDao.findAll().stream().filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE)).collect(Collectors.toList());
+    return dependentDao.findAll()
+        .stream()
+        .filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE))
+        .collect(Collectors.toList());
   }
 
   public Dependent findById(Integer id) {
@@ -49,11 +52,6 @@ public class DependentService implements AbstractService< Dependent, Integer > {
     return null;
   }
 
-/*    public List<Dependent> findByEmployee(Employee employee) {
-        List<Dependent> dependents = dependentDao.findByEmployee(employee);
-        System.out.println("length  "+dependents.size());
-        return dependents;
-    }*/
 
   public Dependent findByNic(String nic) {
     return dependentDao.findByNic(nic);
