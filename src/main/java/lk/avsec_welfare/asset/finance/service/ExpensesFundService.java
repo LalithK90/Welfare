@@ -1,5 +1,6 @@
 package lk.avsec_welfare.asset.finance.service;
 
+import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.finance.dao.ExpensesFundDao;
 import lk.avsec_welfare.asset.finance.entity.ExpensesFund;
 import lk.avsec_welfare.util.interfaces.AbstractService;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ExpensesFundService implements AbstractService<ExpensesFund, Integer> {
@@ -21,7 +23,7 @@ public class ExpensesFundService implements AbstractService<ExpensesFund, Intege
     }
 
     public List<ExpensesFund> findAll() {
-        return expensesFundDao.findAll();
+        return expensesFundDao.findAll().stream().filter(x->x.getLiveDead().equals(LiveDead.ACTIVE)).collect(Collectors.toList());
     }
 
     public ExpensesFund findById(Integer id) {
@@ -29,11 +31,16 @@ public class ExpensesFundService implements AbstractService<ExpensesFund, Intege
     }
 
     public ExpensesFund persist(ExpensesFund expensesFund) {
+        if ( expensesFund.getId() == null ){
+            expensesFund.setLiveDead(LiveDead.ACTIVE);
+        }
         return expensesFundDao.save(expensesFund);
     }
 
     public boolean delete(Integer id) {
-        expensesFundDao.deleteById(id);
+        ExpensesFund expensesFund = expensesFundDao.getOne(id);
+        expensesFund.setLiveDead(LiveDead.STOP);
+        expensesFundDao.save(expensesFund);
         return true;
     }
 
