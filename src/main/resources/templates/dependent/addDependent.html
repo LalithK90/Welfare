@@ -1,194 +1,177 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
 <body class="hold-transition sidebar-mini layout-fixed" >
 <div class="wrapper" ><!-- wrapper start -->
-    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
-    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
-    <div class="content-wrapper" ><!-- content-wrapper Start -->
-        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section ><!-- content-header Start -->
-        <!--action button layer---------------------------------------------------------     -->
-        <div class="row m-1">
-            <div class="col-12">
-                <div class="text-right">
-                    <div text-right>
-                        <button type="button" class="btn btn-info btn-sm">
-                            <a  data-th-href="${'/employee/add'}" >
-                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
-                                <span class="text-white"> Add Employee </span></a>
-                        </button>
-                        <!--                      <button type="button" class="btn btn-success btn-sm">-->
-                        <!--                          <a  data-th-href="${'/employee'}" >-->
-                        <!--                              <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >-->
-                        <!--                              <span class="text-white"> View Employee </span></a>-->
-                        <!--                      </button>-->
-                        <!--                      <button type="button" class="btn btn-warning btn-sm hide" onclick="myEdit()">-->
-                        <!--                          //                         <a  data-th-href="${'/designation/edit/'}" >-->
-                        <!--                          <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >-->
-                        <!--                          <span class="text-white"> Edit Employee </span></a>-->
-                        <!--                      </button>-->
-                        <!--                      <button type="button" class="btn btn-danger btn-sm " display="none" onclick="myDelete()">-->
-                        <!--                          // <a  data-th-href="${'/designation/remove/'}" >-->
-                        <!--                          <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >-->
-                        <!--                          <span class="text-white"> Delete Employee </span></a>-->
-                        <!--                      </button>-->
-                        <button type="button" class="btn btn-success btn-sm">
-                            <a  data-th-href="${'/home'}" >
-                                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
-                                <span class="text-white"> Home </span></a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--form action end button---------------------------------------------------------     -->
+  <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+  <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+  <div class="content-wrapper" ><!-- content-wrapper Start -->
+    <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+                                <!-- content-header Start -->
+                                <!--action button layer---------------------------------------------------------     -->
+    <div class="row m-1" >
+      <div class="col-12" >
+        <div class="text-right" >
+          <div text-right >
+            <button type="button" class="btn btn-info btn-sm" >
+              <a data-th-href="${'/employee/add'}" >
+                <span class="info-box-icon text-white" ><i class="fa fa-plus mr-1" ></i ></span >
+                <span class="text-white" > Add Employee </span ></a >
+            </button >
+            <button type="button" class="btn btn-success btn-sm" >
+              <a data-th-href="${'/home'}" >
+                <span class="info-box-icon text-white" ><i class="fas fa-home mr-1" ></i ></span >
+                <span class="text-white" > Home </span ></a >
+            </button >
+          </div >
+        </div >
+      </div >
+    </div >
+                                <!--form action end button---------------------------------------------------------     -->
 
 
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
+    <div class="content-header" >
+      <div class="container-fluid" >
+        <div class="row" >
+          <div class="col-md-12" >
+            <div class="row" >
 
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-body">
-<!--                                        <h4>Dependent Control </h4>-->
-                                        <form th:action="${addStatus==false?'/dependent/save' :'/dependent/update'}"
-                                              method="post" th:object="${dependent}">
-                                            <input type="hidden" data-th-value="${dependent.employee.id}" data-th-name="${'employee'}">
-                                            <!--Id-->
-                                            <div class="form-group row" th:if="${addStatus==true}">
-                                                <!--<input type="hidden" data-th-value="${dependent.employee}" data-th-name="${'employee'}">-->
+              <div class="col-md-12" >
+                <div class="card" >
+                  <div class="card-body" >
+                    <!--                                        <h4>Dependent Control </h4>-->
+                    <form th:action="${addStatus==false?'/dependent/save' :'/dependent/update'}"
+                          method="post" th:object="${dependent}" >
+                      <input type="hidden" data-th-value="${dependent.employee.id}" data-th-name="${'employee'}" >
+                      <!--Id-->
+                      <div class="form-group row" th:if="${addStatus==true}" >
+                        <!--<input type="hidden" data-th-value="${dependent.employee}" data-th-name="${'employee'}">-->
+                        <label for="id" class="form-label " > Id </label >
+                        <input type="text" class="form-control" th:field="*{id}" id="id" readonly >
+                      </div >
+                      <!--relationship-->
+                      <div class="form-group row" >
+                        <label th:for="${'relationship'}" class="form-label " >
+                          relationship </label >
+                        <select class="form-control" th:field="*{relationship}" required >
+                          <option value="" selected >Please Select</option >
+                          <option th:each="relationship : ${relationship}"
+                                  th:text="${relationship.relationship}"
+                                  th:value="${relationship}" >
+                          </option >
+                        </select >
+                      </div >
+                      <div class="form-group" id="showWorkingPlace" th:if="${addStatus==false}" >
+                        <label class="form-check" > Working Place </label >
+                        <div class="form-group" >
+                          <div class="form-check" >
+                            <input type="radio" class="form-check-input"
+                                   name="workingPlaceRadio" id="exampleRadios1"
+                                   value="AASL" >
+                            <label class="form-check-label"
+                                   for="exampleRadios1" >AASL</label >
+                          </div >
 
-                                                <label for="id" class="form-label "> Id </label>
+                          <div class="form-check" >
+                            <input type="radio" class="form-check-input"
+                                   name="workingPlaceRadio" id="exampleRadios2"
+                                   value="OTHER" >
+                            <label class="form-check-label"
+                                   for="exampleRadios2" >Other</label >
+                          </div >
+                        </div >
+                        <!--                                                EPF-->
+                        <div class="form-group row" id="employeeEpf" >
+                          <label class="form-label " > Employee EPF Number </label >
+                          <input type="text" class="form-control" th:field="*{epfNumber}" >
+                        </div >
+                      </div >
 
-                                                <input type="text" class="form-control" th:field="*{id}" id="id"
-                                                       readonly>
-                                            </div>
-                                            <!--relationship-->
-                                            <div class="form-group row">
-                                                <label th:for="${'relationship'}" class="form-label ">
-                                                    relationship </label>
-                                                <select class="form-control" onchange="relationShipChange()"
-                                                        th:field="*{relationship}" required>
-                                                    <option value="" selected>Please Select</option>
-                                                    <option th:each="relationship : ${relationship}"
-                                                            th:text="${relationship.relationship}"
-                                                            th:value="${relationship}">
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group" id="showWorkingPlace" th:if="${addStatus==false}">
-                                                <label class="form-check"> Working Place </label>
-                                                <div class="form-group">
-                                                    <div class="form-check">
-                                                        <input type="radio" class="form-check-input"
-                                                               name="workingPlaceRadio" id="exampleRadios1"
-                                                               value="AASL">
-                                                        <label class="form-check-label"
-                                                               for="exampleRadios1">AASL</label>
-                                                    </div>
+                      <div class="container-fluid" id="showUnEmployee" >
+                        <!--Name-->
+                        <div class="form-group row" >
+                          <label th:for="${'name'}" class="form-label " > Name </label >
 
-                                                    <div class="form-check">
-                                                        <input type="radio" class="form-check-input"
-                                                               name="workingPlaceRadio" id="exampleRadios2"
-                                                               value="OTHER">
-                                                        <label class="form-check-label"
-                                                               for="exampleRadios2">Other</label>
-                                                    </div>
-                                                </div>
-<!--                                                EPF-->
-                                                <div class="form-group row" id="employeeEpf">
-                                                    <label class="form-label "> Employee EPF Number </label>
-                                                    <input type="text" class="form-control" th:field="*{epfNumber}">
-                                                </div>
-                                            </div>
+                          <input type="text" class="form-control" th:field="*{name}" >
+                          <p class="text-danger" th:if="${#fields.hasErrors('name')}"
+                             th:errors="*{name}" >Error Name</p >
+                        </div >
+                        <!--Date of Birth-->
+                        <div class="form-group row" >
+                          <label th:for="${'dob'}" class="form-label " > Date of Birth </label >
+                          <input type="date" class="form-control" th:field="*{dob}" >
+                          <p class="text-danger" th:if="${#fields.hasErrors('dob')}"
+                             th:errors="*{dob}" >Error dob</p >
+                        </div >
+                        <!--nic-->
+                        <div class="form-group row" >
+                          <label th:for="${'nic'}" class="form-label " > NIC No </label >
 
-                                            <div class="container-fluid" id="showUnEmployee">
-                                                <!--Name-->
-                                                <div class="form-group row">
-                                                    <label th:for="${'name'}" class="form-label "> Name </label>
+                          <input type="text" maxlength="12"
+                                 minlength="10" class="form-control" th:field="*{nic}" >
+                          <p class="text-danger" th:if="${#fields.hasErrors('nic')}"
+                             th:errors="*{nic}" >Error NIC</p >
+                        </div >
+                        <!--currentStatus-->
+                        <div class="form-group row" data-th-if="${addStatus==true}" >
+                          <label th:for="${'currentStatus'}" class="form-label " > Current
+                                                                                   Status
+                                                                                   No </label >
+                          <select class="form-control" th:field="*{currentStatus}" >
+                            <option th:each="currentStatus : ${currentStatus}"
+                                    th:text="${currentStatus.currentStatus}"
+                                    th:value="${currentStatus}" >
 
-                                                    <input type="text" class="form-control" th:field="*{name}">
-                                                    <p class="text-danger" th:if="${#fields.hasErrors('name')}"
-                                                       th:errors="*{name}">Error Name</p>
-                                                </div>
-                                                <!--Date of Birth-->
-                                                <div class="form-group row">
-                                                    <label th:for="${'dob'}" class="form-label "> Date of Birth </label>
-                                                    <input type="date" class="form-control" th:field="*{dob}">
-                                                    <p class="text-danger" th:if="${#fields.hasErrors('dob')}"
-                                                       th:errors="*{dob}">Error dob</p>
-                                                </div>
-                                                <!--nic-->
-                                                <div class="form-group row">
-                                                    <label th:for="${'nic'}" class="form-label "> NIC No </label>
-
-                                                    <input type="text" class="form-control" th:field="*{nic}">
-                                                    <p class="text-danger" th:if="${#fields.hasErrors('nic')}"
-                                                       th:errors="*{nic}">Error NIC</p>
-                                                </div>
-                                                <!--currentStatus-->
-                                                <div class="form-group row" data-th-if="${addStatus==true}">
-                                                    <label th:for="${'currentStatus'}" class="form-label "> Current
-                                                        Status
-                                                        No </label>
-                                                    <select class="form-control" th:field="*{currentStatus}">
-                                                        <option th:each="currentStatus : ${currentStatus}"
-                                                                th:text="${currentStatus.currentStatus}"
-                                                                th:value="${currentStatus}">
-
-                                                        </option>
-                                                        <p class="text-danger"
-                                                           th:if="${#fields.hasErrors('currentStatus')}"
-                                                           th:errors="*{currentStatus}">Error Current Status</p>
-                                                    </select>
+                            </option >
+                            <p class="text-danger"
+                               th:if="${#fields.hasErrors('currentStatus')}"
+                               th:errors="*{currentStatus}" >Error Current Status</p >
+                          </select >
 
 
-                                                </div>
-                                                <!--Remark-->
-                                                <div class="form-group row">
-                                                    <label th:for="${'Remark'}" class="form-label"> Remark </label>
+                        </div >
+                        <!--Remark-->
+                        <div class="form-group row" >
+                          <label th:for="${'Remark'}" class="form-label" > Remark </label >
 
-                                                    <input type="text" class="form-control" th:field="*{Remark}"
-                                                           >
-                                                    <p class="text-danger" th:if="${#fields.hasErrors('Remark')}"
-                                                       th:errors="*{Remark}">Error Remark</p>
-                                                </div>
-<!--                                                update Status-->
-                                                <div class="form-group" id="updateStatus"
-                                                     th:if="${addStatus}">
-                                                    <label class="control-label" for="createdBy">Created By
-                                                        :</label>
-                                                    <input id="createdBy" th:field="*{createdBy}"
-                                                           class="form-control" type="text"
-                                                           readonly/>
-                                                </div>
-                                            </div>
-<!--                                            button-->
+                          <input type="text" class="form-control" th:field="*{Remark}"
+                          >
+                          <p class="text-danger" th:if="${#fields.hasErrors('Remark')}"
+                             th:errors="*{Remark}" >Error Remark</p >
+                        </div >
+                        <!--                                                update Status-->
+                        <div class="form-group" id="updateStatus"
+                             th:if="${addStatus}" >
+                          <label class="control-label" for="createdBy" >Created By
+                                                                        :</label >
+                          <input id="createdBy" th:field="*{createdBy}"
+                                 class="form-control" type="text"
+                                 readonly />
+                        </div >
+                      </div >
+                      <!--                                            button-->
 
-                                            <div class="form-group row">
-                                                <button type="submit" class="btn btn-primary">
-                                                    <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i>
-                                                    <span
-                                                            th:text="${addStatus==false?'Save' : 'Update'}"></span>
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!-- content-wrapper end -->
-    </div>
-    <div  data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
-</div><!-- wrapper end -->
-<div  data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
-<script th:if="${addStatus==false}">
+                      <div class="form-group row" >
+                        <button type="submit" class="btn btn-primary" >
+                          <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}" ></i >
+                          <span
+                                th:text="${addStatus==false?'Save' : 'Update'}" ></span >
+                        </button >
+                      </div >
+                    </form >
+                  </div >
+                </div >
+              </div >
+            </div >
+          </div >
+        </div >
+      </div >
+    </div ><!-- content-wrapper end -->
+  </div >
+  <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
+</div ><!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div ><!-- script Fragment -->
+<script th:if="${addStatus==false}" >
 
     $("#showWorkingPlace").css("display", "none");
     $("#showUnEmployee").css("display", "none");
@@ -208,13 +191,13 @@
         if ($(this).val() === "AASL") {
             $("#employeeEpf").css("display", "");
             $("#showUnEmployee").css("display", "none");
-            $("#epfNumber").prop("required", true).attr('name','epfNumber');
+            $("#epfNumber").prop("required", true).attr('name', 'epfNumber');
         } else {
             $("#employeeEpf").css("display", "none");
             $("#epfNumber").prop("required", false).removeAttr('name');
             $("#showUnEmployee").css("display", "");
         }
     });
-</script>
-</body>
-</html>
+</script >
+</body >
+</html >
