@@ -1,7 +1,6 @@
 package lk.AVSEC.Welfare.asset.employee.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import lk.AVSEC.Welfare.asset.a_shop_management.branch.entity.Branch;
 import lk.AVSEC.Welfare.asset.common_asset.model.Enum.*;
 import lk.AVSEC.Welfare.asset.common_asset.model.FileInfo;
 import lk.AVSEC.Welfare.asset.dependent.entity.DependentEmployee;
@@ -19,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.dom4j.Branch;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -145,9 +145,6 @@ public class Employee extends AuditEntity {
 
     @OneToMany( mappedBy = "employee" )
     private List< Qualification > qualifications;
-
-    @ManyToOne
-    private Branch branch;
 
     @ManyToMany( mappedBy = "employees" )
     private List< EmailMessage > emailMessages;

@@ -1,8 +1,6 @@
 package lk.AVSEC.Welfare.asset.employee.controller;
 
-import lk.AVSEC.Welfare.asset.common_asset.model.Enum.*;
-import lk.AVSEC.Welfare.asset.common_asset.service.CommonService;
-import lk.AVSEC.Welfare.asset.dependent.entity.Enum.CurrentStatus;
+import lk.AVSEC.Welfare.asset.common_asset.model.Enum.*;import lk.AVSEC.Welfare.asset.dependent.entity.Enum.CurrentStatus;
 import lk.AVSEC.Welfare.asset.dependent.entity.Enum.Relationship;
 import lk.AVSEC.Welfare.asset.dependent.service.DependentEmployeeService;
 import lk.AVSEC.Welfare.asset.dependent.service.DependentService;
@@ -19,6 +17,7 @@ import lk.AVSEC.Welfare.asset.userManagement.entity.User;
 import lk.AVSEC.Welfare.asset.userManagement.service.UserService;
 import lk.AVSEC.Welfare.asset.working_place.service.WorkingPlaceService;
 import lk.AVSEC.Welfare.util.service.DateTimeAgeService;
+import lk.AVSEC.Welfare.util.service.MakeAutoGenerateNumberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -40,29 +39,29 @@ public class EmployeeController {
     private final EmployeeFilesService employeeFilesService;
     private final DateTimeAgeService dateTimeAgeService;
     private final WorkingPlaceService workingPlaceService;
-    private final CommonService commonService;
     private final DependentEmployeeService dependentEmployeeService;
     private final UserService userService;
     private final DesignationService designationService;
     private final DependentService dependentService;
+    private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
 
     @Autowired
     public EmployeeController(EmployeeService employeeService, EmployeeFilesService employeeFilesService,
                               DateTimeAgeService dateTimeAgeService, WorkingPlaceService workingPlaceService,
-                              CommonService commonService,
                               DependentEmployeeService dependentEmployeeService, UserService userService,
                               DesignationService designationService,
-                              DependentService dependentService) {
+                              DependentService dependentService,
+                              MakeAutoGenerateNumberService makeAutoGenerateNumberService) {
         this.employeeService = employeeService;
         this.employeeFilesService = employeeFilesService;
 
         this.dateTimeAgeService = dateTimeAgeService;
         this.workingPlaceService = workingPlaceService;
-        this.commonService = commonService;
         this.dependentEmployeeService = dependentEmployeeService;
         this.userService = userService;
         this.designationService = designationService;
         this.dependentService = dependentService;
+        this.makeAutoGenerateNumberService = makeAutoGenerateNumberService;
     }
 //----> Employee details management - start <----//
 
@@ -151,9 +150,9 @@ public class EmployeeController {
             model.addAttribute("employee", employee);
             return commonThings(model);
         }
-        employee.setMobileOne(commonService.commonMobileNumberLengthValidator(employee.getMobileOne()));
-        employee.setMobileTwo(commonService.commonMobileNumberLengthValidator(employee.getMobileTwo()));
-        employee.setLand(commonService.commonMobileNumberLengthValidator(employee.getLand()));
+        employee.setMobileOne(makeAutoGenerateNumberService.phoneNumberLengthValidator(employee.getMobileOne()));
+        employee.setMobileTwo(makeAutoGenerateNumberService.phoneNumberLengthValidator(employee.getMobileTwo()));
+        employee.setLand(makeAutoGenerateNumberService.phoneNumberLengthValidator(employee.getLand()));
 
         //after save employee files and save employee
         Employee employeeSaved = employeeService.persist(employee);
