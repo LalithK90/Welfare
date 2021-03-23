@@ -1,4 +1,4 @@
-package lk.avsec_welfare.asset.employee.entity.Enum;
+package lk.avsec_welfare.asset.employee.entity.enums;
 
 public enum EmployeeStatus {
     WORKING("Working"),

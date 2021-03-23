@@ -1,4 +1,4 @@
-package lk.avsec_welfare.asset.grievances.entity.Enum;
+package lk.avsec_welfare.asset.grievances.entity.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

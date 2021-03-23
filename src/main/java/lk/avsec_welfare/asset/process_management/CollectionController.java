@@ -1,7 +1,7 @@
 package lk.avsec_welfare.asset.process_management;
 
 import lk.avsec_welfare.asset.employee.entity.Employee;
-import lk.avsec_welfare.asset.employee.entity.Enum.WelfarePosition;
+import lk.avsec_welfare.asset.employee.entity.enums.WelfarePosition;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.finance.entity.Instalment;
 import lk.avsec_welfare.asset.finance.service.InstalmentService;

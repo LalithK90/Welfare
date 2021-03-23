@@ -5,7 +5,7 @@ import lk.avsec_welfare.asset.common_asset.model.enums.CivilStatus;
 import lk.avsec_welfare.asset.common_asset.model.enums.Gender;
 import lk.avsec_welfare.asset.common_asset.model.enums.Title;
 import lk.avsec_welfare.asset.employee.entity.Employee;
-import lk.avsec_welfare.asset.employee.entity.Enum.EmployeeStatus;
+import lk.avsec_welfare.asset.employee.entity.enums.EmployeeStatus;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.userManagement.entity.Role;
 import lk.avsec_welfare.asset.userManagement.entity.User;

@@ -1,7 +1,7 @@
 package lk.avsec_welfare.asset.grievances.dao;
 
-import lk.avsec_welfare.asset.grievances.entity.Enum.GrievancesStatus;
-import lk.avsec_welfare.asset.grievances.entity.Enum.SolutionType;
+import lk.avsec_welfare.asset.grievances.entity.enums.GrievancesStatus;
+import lk.avsec_welfare.asset.grievances.entity.enums.SolutionType;
 import lk.avsec_welfare.asset.grievances.entity.Grievance;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

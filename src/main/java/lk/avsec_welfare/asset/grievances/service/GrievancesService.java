@@ -1,8 +1,9 @@
 package lk.avsec_welfare.asset.grievances.service;
 
+import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.grievances.dao.GrievancesDao;
-import lk.avsec_welfare.asset.grievances.entity.Enum.GrievancesStatus;
-import lk.avsec_welfare.asset.grievances.entity.Enum.SolutionType;
+import lk.avsec_welfare.asset.grievances.entity.enums.GrievancesStatus;
+import lk.avsec_welfare.asset.grievances.entity.enums.SolutionType;
 import lk.avsec_welfare.asset.grievances.entity.Grievance;
 import lk.avsec_welfare.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,72 +15,78 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 // spring transactional annotation need to tell spring to this method work through the project
-@CacheConfig(cacheNames = "grievances")
-public class GrievancesService implements AbstractService<Grievance, Integer> {
+@CacheConfig( cacheNames = "grievances" )
+public class GrievancesService implements AbstractService< Grievance, Integer > {
 
-    private final GrievancesDao grievancesDao;
+  private final GrievancesDao grievancesDao;
 
-    @Autowired
-    public GrievancesService(GrievancesDao grievancesDao) {
+  @Autowired
+  public GrievancesService(GrievancesDao grievancesDao) {
 
-        this.grievancesDao = grievancesDao;
+    this.grievancesDao = grievancesDao;
+  }
+
+  @Cacheable
+  public List< Grievance > findAll() {
+    return grievancesDao.findAll().stream().filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE)).collect(Collectors.toList());
+  }
+
+  @Cacheable
+  public Grievance findById(Integer id) {
+    return grievancesDao.getOne(id);
+  }
+
+  @Caching( evict = {@CacheEvict( value = "grievances", allEntries = true )},
+      put = {@CachePut( value = "grievances", key = "#grievance.id" )} )
+  @Transactional
+  public Grievance persist(Grievance grievance) {
+    if ( grievance.getId() == null ) {
+      grievance.setSolutionType(SolutionType.PR);
+      grievance.setGrievancesStatus(GrievancesStatus.SCTY);
+      grievance.setLiveDead(LiveDead.ACTIVE);
     }
 
-    @Cacheable
-    public List<Grievance> findAll() {
+    return grievancesDao.save(grievance);
+  }
 
-        return grievancesDao.findAll();
-    }
+  @CacheEvict( allEntries = true )
+  public boolean delete(Integer id) {
+    Grievance grievance = grievancesDao.getOne(id);
+    grievance.setLiveDead(LiveDead.STOP);
+    grievancesDao.save(grievance);
+    return false;
+  }
 
-    @Cacheable
-    public Grievance findById(Integer id) {
-        return grievancesDao.getOne(id);
-    }
+  @Cacheable
+  public List< Grievance > search(Grievance grievance) {
+    ExampleMatcher matcher = ExampleMatcher
+        .matching()
+        .withIgnoreCase()
+        .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+    Example< Grievance > grievancesExample = Example.of(grievance, matcher);
+    return grievancesDao.findAll(grievancesExample);
+  }
 
-    @Caching(evict = {@CacheEvict(value = "grievances", allEntries = true)},
-            put = {@CachePut(value = "grievances", key = "#grievance.id")})
-    @Transactional
-    public Grievance persist(Grievance grievance) {
-        if (grievance.getId() == null) {
-            grievance.setSolutionType(SolutionType.PR);
-            grievance.setGrievancesStatus(GrievancesStatus.SCTY);
-        }
+  public boolean isGrievancesPresent(Grievance grievance) {
+    return grievancesDao.equals(grievance);
+  }
 
-        return grievancesDao.save(grievance);
-    }
+  public List< Grievance > findBySolutionTypeAndCreatedByAndCreatedAtBetween(SolutionType pr, String userName,
+                                                                             LocalDateTime form, LocalDateTime to) {
+    return grievancesDao.findBySolutionTypeAndCreatedByAndCreatedAtBetween(pr, userName, form, to);
+  }
 
-    @CacheEvict(allEntries = true)
-    public boolean delete(Integer id) {
-        grievancesDao.deleteById(id);
-        return false;
-    }
+  public List< Grievance > findBySolutionTypeAndGrievancesStatusAndCreatedAtBetween(SolutionType cl,
+                                                                                    GrievancesStatus grievancesStatus
+      , LocalDateTime form, LocalDateTime to) {
+    return grievancesDao.findBySolutionTypeAndGrievancesStatusAndCreatedAtBetween(cl, grievancesStatus, form, to);
+  }
 
-    @Cacheable
-    public List<Grievance> search(Grievance grievance) {
-        ExampleMatcher matcher = ExampleMatcher
-                .matching()
-                .withIgnoreCase()
-                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
-        Example<Grievance> grievancesExample = Example.of(grievance, matcher);
-        return grievancesDao.findAll(grievancesExample);
-    }
-
-    public boolean isGrievancesPresent(Grievance grievance) {
-        return grievancesDao.equals(grievance);
-    }
-
-    public List<Grievance> findBySolutionTypeAndCreatedByAndCreatedAtBetween(SolutionType pr, String userName, LocalDateTime form, LocalDateTime to) {
-       return grievancesDao.findBySolutionTypeAndCreatedByAndCreatedAtBetween(pr, userName, form, to);
-    }
-
-    public List<Grievance> findBySolutionTypeAndGrievancesStatusAndCreatedAtBetween(SolutionType cl, GrievancesStatus grievancesStatus, LocalDateTime form, LocalDateTime to) {
-    return grievancesDao.findBySolutionTypeAndGrievancesStatusAndCreatedAtBetween(cl,grievancesStatus,form,to);
-    }
-
-  public List< Grievance> findByCreatedBy(String userName) {
-  return grievancesDao.findByCreatedBy(userName);
-    }
+  public List< Grievance > findByCreatedBy(String userName) {
+    return grievancesDao.findByCreatedBy(userName);
+  }
 }
