@@ -1,99 +1,115 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
 <body class="hold-transition sidebar-mini layout-fixed" >
 <div class="wrapper" ><!-- wrapper start -->
-    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
-    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
-    <div class="content-wrapper" ><!-- content-wrapper Start -->
-        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section ><!-- content-header Start -->
-        <!--action button layer---------------------------------------------------------     -->
-        <div class="row m-1">
-            <div class="col-12">
-                <div class="text-right">
-                    <div text-right>
-                        <button type="button" class="btn btn-info btn-sm">
-                            <a  data-th-href="${'/district'}" >
-                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
-                                <span class="text-white"> Veiw District</span></a>
-                        </button>
+  <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+  <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+  <div class="content-wrapper" ><!-- content-wrapper Start -->
+    <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+                                <!-- content-header Start -->
+                                <!--action button layer---------------------------------------------------------     -->
+    <div class="row m-1" >
+      <div class="col-12" >
+        <div class="text-right" >
+          <div text-right >
+            <button type="button" class="btn btn-info btn-sm" >
+              <a data-th-href="${'/district'}" >
+                <span class="info-box-icon text-white" ><i class="fa fa-plus mr-1" ></i ></span >
+                <span class="text-white" > Veiw District</span ></a >
+            </button >
 
-                        <button type="button" class="btn btn-success btn-sm">
-                            <a  data-th-href="${'/home'}" >
-                                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
-                                <span class="text-white"> Home </span></a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--form action end button---------------------------------------------------------     -->
+            <button type="button" class="btn btn-success btn-sm" >
+              <a data-th-href="${'/home'}" >
+                <span class="info-box-icon text-white" ><i class="fas fa-home mr-1" ></i ></span >
+                <span class="text-white" > Home </span ></a >
+            </button >
+          </div >
+        </div >
+      </div >
+    </div >
+                                <!--form action end button---------------------------------------------------------     -->
 
 
-        <div class="content-header">
- <div class="container-fluid">
-<div class="row">
-                                <div class="col-md-12">
-                                    <div class="row">
+    <div class="content-header" >
+      <div class="container-fluid" >
+        <div class="row" >
+          <div class="col-md-12" >
+            <div class="row" >
 
-                                        <div class="col-md-12">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h4><span id="formHeader" th:text="${addStatus==false?'New District':'Update District'}"></span> </h4>
-                                                <form th:action="${addStatus==false?'/district/save' :'/district/update'}" method="post" th:object="${district}">
+              <div class="col-md-12" >
+                <div class="card" >
+                  <div class="card-body" >
+                    <h4 ><span id="formHeader" th:text="${addStatus==false?'New District':'Update District'}" ></span >
+                    </h4 >
+                    <form th:action="${addStatus==false?'/district/save' :'/district/update'}" method="post"
+                          th:object="${district}" >
 
-                                                        <!--/* id this comment not visualize */-->
-                                                        <!--Id-->
-                                                    <table class="table table-hover table-borderless">
-                                                        <tbody>
-                                                        <tr class="form-group row" th:if="${addStatus==true}"><th>
-                                                            <th> <label for="id" class="form-label "> Id </label></th>
-                                                            <td><input type="text" class="form-control" th:field="*{id}" id="id" readonly></td>
-                                                        </tr>
-                                                        <!--Province-->
-                                                        <tr><th>
-                                                            <label th:for="${'province'}" class="form-label "> Province </label></th>
-                                                                <td>
-                                                                <select class="form-control" th:field="*{province}">
-                                                                    <option th:each="province : ${provinces}"
-                                                                            th:text="${province.province}" th:value="${province}"></option>
-                                                                </select>
-                                                                <p class="text-danger" th:if="${#fields.hasErrors('province')}"
-                                                                   th:errors="*{province}">Error Name</p></td></tr>
+                      <!--/* id this comment not visualize */-->
+                      <!--Id-->
+                      <table class="table table-hover table-borderless" >
+                        <tbody >
+                        <tr class="form-group row" th:if="${addStatus==true}" >
+                          <th >
+                          <th ><label for="id" class="form-label " > Id </label ></th >
+                          <td >
 
-                                                        <!--District name-->
-                                                        <tr><th>
+                            <input class="form-control" th:field="*{liveDead}" type="hidden" readonly/>
+                            <input type="text" class="form-control" th:field="*{id}" id="id" readonly ></td >
+                        </tr >
+                        <!--Province-->
+                        <tr >
+                          <th >
+                            <label th:for="${'province'}" class="form-label " > Province </label ></th >
+                          <td >
+                            <select class="form-control" th:field="*{province}" >
+                              <option th:each="province : ${provinces}"
+                                      th:text="${province.province}" th:value="${province}" ></option >
+                            </select >
+                            <p class="text-danger" th:if="${#fields.hasErrors('province')}"
+                               th:errors="*{province}" >Error Name</p ></td >
+                        </tr >
 
-                                                            <label th:for="${'name'}" class="form-label "> Name </label></th>
-                                                            <td>
+                        <!--District name-->
+                        <tr >
+                          <th >
 
-                                                                <input type="text" class="form-control" th:field="*{name}" >
-                                                                <p class="text-danger" th:if="${#fields.hasErrors('name')}"
-                                                                   th:errors="*{name}">Error Name</p>
-                                                            </td></tr>
+                            <label th:for="${'name'}" class="form-label " > Name </label ></th >
+                          <td >
 
-                                                        <tr><th></th>
-                                                       <td> <div class="form-group row">
-                                                                <button type="submit" class="btn btn-primary">
-                                                                    <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i> <span
-                                                                        th:text="${addStatus==false?'Save' : 'Update'}"></span>
-                                                                </button>
-                                                       </div></td></tr>
-                                                        </tbody>
-                                                    </table>
+                            <input type="text" class="form-control" th:field="*{name}" >
+                            <p class="text-danger" th:if="${#fields.hasErrors('name')}"
+                               th:errors="*{name}" >Error Name</p >
+                          </td >
+                        </tr >
 
-                                                </form>
+                        <tr >
+                          <th ></th >
+                          <td >
+                            <div class="form-group row" >
+                              <button type="submit" class="btn btn-primary" >
+                                <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}" ></i > <span
+                                    th:text="${addStatus==false?'Save' : 'Update'}" ></span >
+                              </button >
+                            </div >
+                          </td >
+                        </tr >
+                        </tbody >
+                      </table >
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
- </div></div>
-                    </div><!-- content-wrapper end -->
-                    <div  data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
-                    </div><!-- wrapper end -->
-                    <div  data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></div><!-- script Fragment -->
-                    </body>
-                    </html>
+                    </form >
+
+                  </div >
+                </div >
+              </div >
+            </div >
+          </div >
+        </div >
+      </div >
+    </div >
+  </div ><!-- content-wrapper end -->
+  <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
+</div ><!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div ><!-- script Fragment -->
+</body >
+</html >
