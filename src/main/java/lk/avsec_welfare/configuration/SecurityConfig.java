@@ -87,7 +87,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                            .antMatchers("/employee/**").hasRole("ADMIN")
                                         .antMatchers("/mainWindow").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
                                         .antMatchers("/user/**").hasRole("ADMIN")
-                                        .antMatchers("/district/**").hasRole("MEMBER")
+                                        .antMatchers("/district/**").hasAnyRole("MEMBER", "ADMIN")
 
                                         .antMatchers("/dependent/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
 
@@ -98,7 +98,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         .antMatchers("/district/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
 
 
-                                        .antMatchers("/emailMessage/**").hasRole("MEMBER")
+                                        .antMatchers("/emailMessage/**").hasAnyRole("MEMBER", "ADMIN")
 
                                         .antMatchers("/employee/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
 
@@ -123,7 +123,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                                         .antMatchers("/user/**").hasAnyRole("HOSS","PRESIDENT","ADMIN")
 
-                                        .antMatchers("/workingPlace/**").hasRole("MEMBER")
+                                        .antMatchers("/workingPlace/**").hasAnyRole("MEMBER", "ADMIN")
                                         .antMatchers("/employeeWorkingPlace/**").hasRole("ADMIN")
 
                                         .antMatchers("/briefing/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")

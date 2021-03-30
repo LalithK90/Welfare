@@ -99,9 +99,9 @@
                         <a data-th-href="${'/employee/edit/' + employee.id}"
                            class="btn btn-warning btn-sm" ><i
                               class="fa fa-edit" ></i >&nbsp;Edit</a >
-                        <a data-th-href="${'/employee/remove/' + employee.id}"
+                        <a data-th-id="${'/employee/remove/' + employee.id}"
                            data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
-                           class="btn btn-danger btn-sm" ><i class="fa fa-trash" ></i >
+                           class="btn btn-danger btn-sm" onclick="confirmDelete(this)" ><i class="fa fa-trash" ></i >
                           Delete</a >
                         <a data-th-href="${'/dependent/add/' + employee.id}" class="btn btn-info btn-sm" ><i
                               class="fa fa-users" ></i >
@@ -146,9 +146,5 @@
 <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
 </div ><!-- wrapper end -->
 <div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div ><!-- script Fragment -->
-<script >
-    $(".alert").alert();
-</script >
 </body >
 </html >
-

@@ -485,10 +485,10 @@
                                     <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
                                             data-target="#collapseFour"
                                             aria-expanded="false" aria-controls="collapseTwo"><i
-                                            class="fa fa-arrow-down">&nbsp;</i> &nbsp;&nbsp;Promotion
+                                            class="fa fa-arrow-down">&nbsp;</i> &nbsp;&nbsp;Working Place Histry
                                     </button>
                                     <spam style="float: right"><a
-                                            data-th-href="${'/workingPlace/add/' + employeeDetail.id}"
+                                            data-th-href="${'/employeeWorkingPlace/add/' + employeeDetail.id}"
                                             class="btn btn-sm btn-default"><i
                                             class="fa fa-plus"></i></a></spam>
                                 </div>
@@ -496,23 +496,31 @@
                                      data-parent="#accordion">
                                     <div class="card-body">
                                         <table class="table table-borderless table-hover">
-                                            <tbody>
+                                            <thead>
                                             <tr>
                                                 <th><label class="form-label"> Id </label></th>
-                                                <th><label class="form-label"> Start At </label></th>
-                                                <th><label class="form-label"> End At </label></th>
+                                                <th><label class="form-label"> Date From</label></th>
+                                                <th><label class="form-label"> Date Upto</label></th>
                                                 <th><label class="form-label"> Transfer Reason </label></th>
-                                                <th><label class="form-label"> Working Place Name </label></th>
-                                                <th><label class="form-label"> Modify </label></th>
+                                                <th><label class="form-label"> Working Place</label></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr data-th-each="employeeWorkingPlace, index : ${employeeWorkingPlaces}">
+                                                <td style="width: 30%" class="display_detail"
+                                                    th:text="${index.count}"></td>
+                                                <td style="width: 30%" class="display_detail"
+                                                    th:text="${employeeWorkingPlace.startAt}"></td>
+                                                <td style="width: 25%" class="display_detail"
+                                                    th:text="${employeeWorkingPlace.endAt}"></td>
+                                                <td style="width: 20%" class="display_detail"
+                                                    th:text="${employeeWorkingPlace.workingPlaceChangeReason.workingPlaceChangeReason}"></td>
+                                                <td style="width: 5%" class="display_detail"
+                                                    th:text="${employeeWorkingPlace.workingPlace.name}"></td>
+
                                             </tr>
                                             </tbody>
                                         </table>
-                                        <div class="container-fluid"
-                                             data-th-each="employeeWorkingPlaceDetail : ${employeeDetail.employeeWorkingPlaces}">
-
-                                            <!--                                      <div data-th-replace="~{promotion/promotion-detail :: promotionDetail1}" ></div >-->
-                                            <hr>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

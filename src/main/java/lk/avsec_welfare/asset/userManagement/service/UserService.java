@@ -45,10 +45,12 @@ public class UserService implements AbstractService< User, Integer > {
   @Transactional
   public User persist(User user) {
     user.setUsername(user.getUsername().toLowerCase());
+    if ( user.getId() != null ) {
+      user.setLiveDead(LiveDead.ACTIVE);
+    }
     if ( user.getPassword() != null ) {
       user.setPassword(passwordEncoder.encode(user.getPassword()));
     } else {
-      user.setLiveDead(LiveDead.ACTIVE);
       user.setPassword(userDao.getOne(user.getId()).getPassword());
     }
     return userDao.save(user);

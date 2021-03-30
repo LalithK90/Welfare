@@ -155,8 +155,9 @@
                                                 <div class="form-row">
                                                     <label class="control-label col-md-4" for="username">User Name :</label>
                                                     <div class="col-md-8">
-                                                        <input class="form-control" th:field="*{username}" id="username"
+                                                        <input class="form-control" th:field="*{username}" id="username" data-th-readonly="${addStatus==false}"
                                                                placeholder="Enter User Name Here" required type="text"/>
+                                                         <input type="text" class="form-control" th:field="*{liveDead}" hidden >
                                                     </div>
                                                 </div>
                                                 <!--Password-->

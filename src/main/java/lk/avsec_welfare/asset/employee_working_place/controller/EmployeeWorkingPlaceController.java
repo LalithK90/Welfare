@@ -68,7 +68,18 @@ public class EmployeeWorkingPlaceController {
       Employee employee = employeeService.findById(employeeWorkingPlace.getEmployee().getId());
       return commonThing(model, employee, employeeWorkingPlace,true);
     }
+
+    Employee employee = employeeService.findById(employeeWorkingPlace.getEmployee().getId());
+    if(employee.getWorkingPlace()==null){
+      employee.setWorkingPlace(employeeWorkingPlace.getWorkingPlace());
+
+    }else{
+      employeeWorkingPlace.getWorkingPlace();
+    }
+
+employeeWorkingPlace.setEmployee(employee);
     employeeWorkingPlaceService.persist(employeeWorkingPlace);
+    employeeService.persist(employee);
     return "redirect:/employee";
   }
 

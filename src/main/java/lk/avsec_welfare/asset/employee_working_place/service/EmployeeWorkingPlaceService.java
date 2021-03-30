@@ -51,4 +51,8 @@ public class EmployeeWorkingPlaceService implements AbstractService<EmployeeWork
     Example< EmployeeWorkingPlace > employeeInstituteExample = Example.of(employeeInstitute, matcher);
     return employeeWorkingPlaceDao.findAll(employeeInstituteExample);
   }
+
+    public List<EmployeeWorkingPlace> findByEmployee(Employee employee) {
+    return employeeWorkingPlaceDao.findByEmployee(employee);
+    }
 }
