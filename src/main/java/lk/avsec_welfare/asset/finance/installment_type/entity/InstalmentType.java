@@ -1,7 +1,8 @@
-package lk.avsec_welfare.asset.finance.entity;
+package lk.avsec_welfare.asset.finance.installment_type.entity;
 
 import lk.avsec_welfare.asset.finance.entity.Enum.CollectionType;
 import lk.avsec_welfare.asset.finance.entity.Enum.ExpenseOrReceived;
+import lk.avsec_welfare.asset.finance.instalment.entity.Instalment;
 import lk.avsec_welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,6 +34,6 @@ public class InstalmentType extends AuditEntity {
     private BigDecimal amount;
 
     @OneToMany(mappedBy = "instalmentType")
-    private List<Instalment> instalments;
+    private List< Instalment > instalments;
 
 }

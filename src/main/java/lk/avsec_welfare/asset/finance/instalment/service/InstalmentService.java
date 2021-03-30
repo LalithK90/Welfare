@@ -1,9 +1,9 @@
-package lk.avsec_welfare.asset.finance.service;
+package lk.avsec_welfare.asset.finance.instalment.service;
 
 import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.employee.entity.Employee;
-import lk.avsec_welfare.asset.finance.dao.InstalmentDao;
-import lk.avsec_welfare.asset.finance.entity.Instalment;
+import lk.avsec_welfare.asset.finance.instalment.dao.InstalmentDao;
+import lk.avsec_welfare.asset.finance.instalment.entity.Instalment;
 import lk.avsec_welfare.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;

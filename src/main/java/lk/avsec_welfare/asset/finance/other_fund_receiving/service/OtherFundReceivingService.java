@@ -1,8 +1,8 @@
-package lk.avsec_welfare.asset.finance.service;
+package lk.avsec_welfare.asset.finance.other_fund_receiving.service;
 
 
-import lk.avsec_welfare.asset.finance.dao.OtherFundReceivingDao;
-import lk.avsec_welfare.asset.finance.entity.OtherFundReceiving;
+import lk.avsec_welfare.asset.finance.other_fund_receiving.dao.OtherFundReceivingDao;
+import lk.avsec_welfare.asset.finance.other_fund_receiving.entity.OtherFundReceiving;
 import lk.avsec_welfare.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;

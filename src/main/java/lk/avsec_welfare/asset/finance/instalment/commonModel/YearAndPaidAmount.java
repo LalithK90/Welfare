@@ -1,4 +1,4 @@
-package lk.avsec_welfare.asset.process_management.commonModel;
+package lk.avsec_welfare.asset.finance.instalment.commonModel;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -2,6 +2,7 @@ package lk.avsec_welfare.asset.finance.service;
 
 
 import lk.avsec_welfare.asset.finance.dao.MainAccountDao;
+import lk.avsec_welfare.asset.finance.entity.Enum.FundType;
 import lk.avsec_welfare.asset.finance.entity.MainAccount;
 import lk.avsec_welfare.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,9 @@ public class MainAccountService implements AbstractService<MainAccount, Integer>
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
         Example<MainAccount> debitExample = Example.of(mainAccount, matcher);
         return mainAccountDao.findAll(debitExample);
+    }
+
+    public MainAccount findByFundType(FundType fundType) {
+    return mainAccountDao.findByFundType(fundType);
     }
 }

@@ -1,6 +1,7 @@
-package lk.avsec_welfare.asset.finance.entity;
+package lk.avsec_welfare.asset.finance.other_fund_receiving.entity;
 
 import lk.avsec_welfare.asset.finance.entity.Enum.OtherFundReceivingType;
+import lk.avsec_welfare.asset.finance.entity.MainAccount;
 import lk.avsec_welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +28,6 @@ public class OtherFundReceiving extends AuditEntity {
     private OtherFundReceivingType fundReceivingType;
 
    @OneToMany(mappedBy = "otherFundReceiving")
-    private List<MainAccount> mainAccounts;
+    private List< MainAccount > mainAccounts;
 
 }

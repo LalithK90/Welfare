@@ -1,7 +1,6 @@
 package lk.avsec_welfare.asset.finance.entity;
 
-import lk.avsec_welfare.asset.finance.entity.Enum.ExpenseOrReceived;
-import lk.avsec_welfare.asset.finance.entity.Enum.OtherFundReceivingType;
+import lk.avsec_welfare.asset.finance.entity.Enum.FundType;
 import lk.avsec_welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,29 +16,12 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MainAccount extends AuditEntity {
+  @Enumerated( EnumType.STRING )
+  private FundType fundType;
 
-    private String type;
+  private String remark;
 
-    private String remark;
-
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal amount;
-
-    @Enumerated(EnumType.STRING)
-    private ExpenseOrReceived expenseOrReceived;
-
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private Instalment instalment;
-
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private OtherFundReceiving otherFundReceiving;
-
-    @Transient
-    private OtherFundReceivingType otherFundReceivingType;
-
-    @Transient
-    private InstalmentType instalmentType;
-
-
+  @Column( nullable = false, precision = 10, scale = 2 )
+  private BigDecimal amount;
 
 }
