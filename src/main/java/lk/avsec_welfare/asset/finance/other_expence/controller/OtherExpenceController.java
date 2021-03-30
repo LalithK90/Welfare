@@ -39,7 +39,7 @@ public class OtherExpenceController {
 
   @GetMapping( "/add" )
   public String addFrom(Model model) {
-    model.addAttribute("otherExpenceType", new OtherExpence());
+    model.addAttribute("otherExpence", new OtherExpence());
     model.addAttribute("otherExpenceTypes", OtherExpenceType.values());
     return "otherExpence/addOtherExpence";
   }

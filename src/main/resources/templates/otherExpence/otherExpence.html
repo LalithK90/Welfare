@@ -46,11 +46,11 @@
                     <tbody >
                     <tr data-th-each="otherExpenceType, index : ${otherExpenceTypes}" >
                       <td data-th-text="${index.count}" ></td >
-                      <td data-th-text="${otherExpence.otherExpenceType.otherExpenceType}" ></td >
-                      <td data-th-text="${otherExpence.amount}" ></td >
-                      <td data-th-text="${otherExpence.remark}" ></td >
-                      <td data-th-text="${otherExpence.createdBy}" ></td >
-                      <td data-th-text="${{otherExpence.createdAt}}" ></td >
+                      <td data-th-text="${otherExpenceType.otherExpenceType.otherExpenceType}" ></td >
+                      <td data-th-text="${otherExpenceType.amount}" ></td >
+                      <td data-th-text="${otherExpenceType.remark}" ></td >
+                      <td data-th-text="${otherExpenceType.createdBy}" ></td >
+                      <td data-th-text="${{otherExpenceType.createdAt}}" ></td >
                     </tr >
                     </tbody >
                   </table >
