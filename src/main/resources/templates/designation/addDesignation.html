@@ -54,7 +54,10 @@
                         <tr class="form-group" th:if="${addStatus==true}" >
                           <th >
                             <label for="id" class="form-label " > Id </label ></th >
-                          <td ><input type="text" class="form-control" th:field="*{id}" id="id" readonly ></td >
+                          <td >
+                            <input type="text" class="form-control" th:field="*{id}" id="id" readonly >
+                            <input type="text" class="form-control" th:field="*{liveDead}" hidden >
+                          </td >
                         </tr >
                         <!--Name-->
                         <tr >

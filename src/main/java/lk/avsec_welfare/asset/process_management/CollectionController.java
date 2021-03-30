@@ -11,6 +11,7 @@ import lk.avsec_welfare.asset.process_management.commonModel.YearAndPaidAmount;
 import lk.avsec_welfare.asset.userManagement.entity.User;
 import lk.avsec_welfare.asset.userManagement.service.UserService;
 import lk.avsec_welfare.asset.working_place.entity.WorkingPlace;
+import lk.avsec_welfare.asset.working_place.service.WorkingPlaceService;
 import lk.avsec_welfare.util.service.OperatorService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -31,17 +32,19 @@ public class CollectionController {
     private final EmployeeService employeeService;
     private final InstalmentTypeService instalmentTypeService;
     private final InstalmentService instalmentService;
+    private final WorkingPlaceService workingPlaceService;
     private final MainAccountService mainAccountService;
     private final UserService userService;
     private final OperatorService operatorService;
 
 
     public CollectionController(EmployeeService employeeService, InstalmentTypeService instalmentTypeService,
-                                InstalmentService instalmentService, MainAccountService mainAccountService,
+                                InstalmentService instalmentService, WorkingPlaceService workingPlaceService, MainAccountService mainAccountService,
                                 UserService userService, OperatorService operatorService) {
         this.employeeService = employeeService;
         this.instalmentTypeService = instalmentTypeService;
         this.instalmentService = instalmentService;
+        this.workingPlaceService = workingPlaceService;
         this.mainAccountService = mainAccountService;
         this.userService = userService;
         this.operatorService = operatorService;
@@ -51,7 +54,7 @@ public class CollectionController {
     public String allEmployee(Model model) {
         User user =
                 userService.findById(userService.findByUserIdByUserName(SecurityContextHolder.getContext().getAuthentication().getName()));
-        WorkingPlace workingPlace = user.getEmployee().getWorkingPlace();
+        WorkingPlace workingPlace = workingPlaceService.findById(user.getEmployee().getWorkingPlace().getId());
         WelfarePosition welfarePosition = user.getEmployee().getWelfarePosition();
         if (welfarePosition != null) {
             //member and other person can not view employee who need to pay
@@ -111,7 +114,7 @@ public class CollectionController {
         return "processManagement/addInstalment";
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public String saveInstalment(@Valid @ModelAttribute Instalment instalment, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "redirect:/collection/".concat(String.valueOf(instalment.getEmployee().getId()));
