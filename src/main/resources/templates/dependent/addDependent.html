@@ -48,6 +48,7 @@
                         <!--<input type="hidden" data-th-value="${dependent.employee}" data-th-name="${'employee'}">-->
                         <label for="id" class="form-label " > Id </label >
                         <input type="text" class="form-control" th:field="*{id}" id="id" readonly >
+                        <input class="form-control" th:field="*{liveDead}" type="hidden" readonly/>
                       </div >
                       <!--relationship-->
                       <div class="form-group row" >

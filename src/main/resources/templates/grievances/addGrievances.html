@@ -17,21 +17,6 @@
                                 <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
                                 <span class="text-white"> Add Employee </span></a>
                         </button>
-                        <!--                      <button type="button" class="btn btn-success btn-sm">-->
-                        <!--                          <a  data-th-href="${'/employee'}" >-->
-                        <!--                              <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >-->
-                        <!--                              <span class="text-white"> View Employee </span></a>-->
-                        <!--                      </button>-->
-                        <!--                      <button type="button" class="btn btn-warning btn-sm hide" onclick="myEdit()">-->
-                        <!--                          //                         <a  data-th-href="${'/designation/edit/'}" >-->
-                        <!--                          <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >-->
-                        <!--                          <span class="text-white"> Edit Employee </span></a>-->
-                        <!--                      </button>-->
-                        <!--                      <button type="button" class="btn btn-danger btn-sm " display="none" onclick="myDelete()">-->
-                        <!--                          // <a  data-th-href="${'/designation/remove/'}" >-->
-                        <!--                          <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >-->
-                        <!--                          <span class="text-white"> Delete Employee </span></a>-->
-                        <!--                      </button>-->
                         <button type="button" class="btn btn-success btn-sm">
                             <a  data-th-href="${'/home'}" >
                                 <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
@@ -49,41 +34,6 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-<!--                            <div class="col-md-3">-->
-<!--                                <div class="card">-->
-<!--                                    <div class="card-body">-->
-<!--                                        <h4>Grievances</h4>-->
-<!--                                        <form role="form">-->
-<!--                                            <div class="form-group">-->
-<!--                                                <h1 class="m-0 text-dark"><span id="formHeader"-->
-<!--                                                                                th:text="${addStatus==false?'New Grievances':'Update Grievances'}"></span>-->
-<!--                                                </h1>-->
-<!--                                                <span id="formHeader"-->
-<!--                                                      th:text="${addStatus==false?'New Grievances':'Update Grievances'}"></span>-->
-<!--                                                <a class="btn btn-success" id="newGrievances" style="width:100%"-->
-<!--                                                   th:href="${'/grievances/add'}">-->
-<!--                                                    <i class="fa fa-grievance-plus" style="font-size: 18px;"></i> &nbsp;-->
-<!--                                                    Add Grievances </a>-->
-
-<!--                                            </div>-->
-<!--                                            <div class="form-group">-->
-<!--                                                <a class="btn btn-warning" id="newGrievances" style="width:100%"-->
-<!--                                                   th:href="${'/grievances'}">-->
-<!--                                                    <i class="fa fa-grievance-plus" style="font-size: 18px;"></i> &nbsp;-->
-<!--                                                    View Grievances </a>-->
-<!--                                            </div>-->
-<!--                                            <div class="form-group">-->
-<!--                                                <button type="button" class="btn btn-primary" style="width:100%"-->
-<!--                                                        ;data-toggle="modal" data-target="#modalScrollableBody">-->
-<!--                                                    <i class="fa fa-grievance-plus" style="font-size: 18px;"></i> Read-->
-<!--                                                    Circular-->
-<!--                                                </button>-->
-<!--                                            </div>-->
-
-<!--                                        </form>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
@@ -102,6 +52,7 @@
                                                 <label for="id" class="form-label "> Id </label>
                                                 <input type="text" class="form-control" th:field="*{id}" id="id"
                                                        readonly>
+                                                <input class="form-control" th:field="*{liveDead}" type="hidden" readonly/>
                                             </div>
                                             <!--Description-->
                                             <div class="form-group">
