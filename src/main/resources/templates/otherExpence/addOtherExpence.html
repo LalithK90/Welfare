@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+  <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+  <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+  <div class="content-wrapper" ><!-- content-wrapper Start -->
+    <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+                                <!-- Form Header  Path -->
+    <section data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}" ></section >
+                                <!-- Small Box Set -->
+
+
+    <div class="content-header" >
+      <div class="container-fluid" >
+        <div class="row" >
+          <div class="col-md-12" >
+            <div class="row" >
+              <div class="col-md-3" >
+                <div class="card" >
+                  <div class="card-body" >
+                    <h4 >First sud Header</h4 >
+                    </div >
+                </div >
+              </div >
+              <div class="col-md-9" >
+                <div class="card" >
+                  <div class="card-body" >
+                    <h4 >Secondary Header </h4 ></div >
+                    <form action="/otherExpence" role="form" method="post"
+                          data-th-object="${otherExpence}" >
+                        <!--fundReceivingType-->
+                        <div class="form-group" >
+                            <label data-th-for="${fundReceivingType}" >Fund Receiving Type :</label >
+                            <!--Radio button-->
+                            <div class="col" >
+                                <div class="custom-control custom-checkbox custom-control-inline "
+                                     data-th-each="otherExpenceType,index : ${otherExpenceTypes}" >
+                                    <input class="custom-control-input" tabindex="-1" required
+                                           data-th-name="${'otherExpenceType'}"
+                                           data-th-value="${otherExpenceType}"
+                                           data-th-id="${index.index}+${otherExpenceType}"
+                                           type="radio"
+                                           data-th-checked="${otherExpenceType==otherExpenceType}" />
+                                    <label class="custom-control-label" tabindex="-1"
+                                           data-th-for="${index.index}+${otherExpenceType}"
+                                           data-th-text="${otherExpenceType.otherExpenceType}" > radio
+                                    </label >
+                                </div >
+                            </div >
+                            <!--Amount-->
+                            <div class="col" >
+                                <label class="control-label" for="amount" >Amount
+                                                                           :</label >
+
+                                <input id="amount" data-th-field="*{amount}"
+                                       class="form-control mobile" tabindex="18"
+                                       type="number"
+                                       required />
+                                <span class="error" data-th-errors="*{amount}"
+                                      data-th-if="${#fields.hasErrors('amount')}"
+                                >Error Mobile Number</span >
+
+                            </div >
+                            <!--    remark-->
+                            <div class="col" >
+                                <label class="control-label" for="remark" >Remark
+                                                                           :</label >
+
+                                <textarea id="remark" data-th-field="*{amount}"
+                                          class="form-control mobile" tabindex="18"
+                                          required ></textarea >
+                                <span class="error" data-th-errors="*{amount}"
+                                      data-th-if="${#fields.hasErrors('amount')}"
+                                >Error Mobile Number</span >
+
+                            </div >
+                        </div >
+                        <div class="card-footer " >
+                            <button type="submit" class="btn btn-primary float-right ml-2" tabindex="28" >
+                                <i data-th-class="${addStatus==true?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}" ></i >
+                                <span data-th-text="${addStatus==true?'Save' : 'Update'}" ></span >
+                            </button >
+
+                            <button type="clear" class="btn btn-primary float-right" >
+                                <i data-th-class="${addStatus==true?'fa fa-save mr-1':'fa fa-thumbs-down mr-1'}" ></i >
+                                <span data-th-text="${addStatus==true?'Clear' : 'Reset'}" ></span >
+                            </button >
+                        </div >
+                    </form >
+
+
+                </div >
+              </div >
+            </div >
+          </div >
+        </div >
+      </div >
+    </div >
+  </div ><!-- content-wrapper end -->
+  <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
+</div ><!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div ><!-- script Fragment -->
+</body >
+</html >

@@ -126,7 +126,13 @@ public class CollectionController {
     }
     Instalment instalmentDb = instalmentService.persist(instalment);
     MainAccount mainAccount = mainAccountService.findByFundType(FundType.INSTALMENTS);
-    mainAccount.setAmount(operatorService.addition(instalmentDb.getAmount(), mainAccount.getAmount()));
+    if ( mainAccount == null ) {
+      mainAccount = new MainAccount();
+      mainAccount.setAmount(instalmentDb.getAmount());
+      mainAccount.setFundType(FundType.INSTALMENTS);
+    } else {
+      mainAccount.setAmount(operatorService.addition(instalmentDb.getAmount(), mainAccount.getAmount()));
+    }
     mainAccountService.persist(mainAccount);
     return "redirect:/collection";
   }

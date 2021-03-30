@@ -8,6 +8,7 @@ import lombok.Getter;
 public enum FundType {
   INSTALMENTS("Instalments"),
   OTHER_FUN_RE("Other Found Receiving"),
-  EXP("Expence");
+  EXP("Expense"),
+  OTHEXP("Other Expense");
   private final String foundReceivedType;
 }

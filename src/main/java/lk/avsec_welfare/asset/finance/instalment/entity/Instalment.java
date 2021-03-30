@@ -30,9 +30,6 @@ public class Instalment extends AuditEntity {
     @ManyToOne
     private Employee employee;
 
-    @OneToMany(mappedBy = "instalment")
-    private List< MainAccount > mainAccounts;
-
     @Enumerated(EnumType.STRING)
     private LiveDead liveDead;
 
