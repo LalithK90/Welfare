@@ -1,7 +1,7 @@
-package lk.avsec_welfare.asset.finance.service;
+package lk.avsec_welfare.asset.finance.installment_type.service;
 
-import lk.avsec_welfare.asset.finance.dao.InstalmentTypeDao;
-import lk.avsec_welfare.asset.finance.entity.InstalmentType;
+import lk.avsec_welfare.asset.finance.installment_type.dao.InstalmentTypeDao;
+import lk.avsec_welfare.asset.finance.installment_type.entity.InstalmentType;
 import lk.avsec_welfare.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;

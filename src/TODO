@@ -93,3 +93,7 @@ GET http://localhost/briefing/add                           admin / President / 
 GET http://localhost/briefing/{{id}}                        admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
 GET http://localhost/briefing/edit/{{id}}                   admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
 GET http://localhost/briefing/delete/{{id}}                 admin / President / Vice President/ Secretory/ Vice Secretory/ Treasure / Agent/ Member
+
+
+
+When add dependant, Sys footer part not loarded

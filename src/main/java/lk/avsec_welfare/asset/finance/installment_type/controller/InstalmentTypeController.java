@@ -1,9 +1,9 @@
-package lk.avsec_welfare.asset.finance.controller;
+package lk.avsec_welfare.asset.finance.installment_type.controller;
 
 import lk.avsec_welfare.asset.finance.entity.Enum.CollectionType;
 import lk.avsec_welfare.asset.finance.entity.Enum.ExpenseOrReceived;
-import lk.avsec_welfare.asset.finance.service.InstalmentTypeService;
-import lk.avsec_welfare.asset.finance.entity.InstalmentType;
+import lk.avsec_welfare.asset.finance.installment_type.service.InstalmentTypeService;
+import lk.avsec_welfare.asset.finance.installment_type.entity.InstalmentType;
 import lk.avsec_welfare.util.interfaces.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
