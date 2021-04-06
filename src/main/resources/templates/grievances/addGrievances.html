@@ -94,7 +94,7 @@
                           <div class="custom-control" style="display: inline"
                                th:each="priority, index : ${priorities}" >
                             <input type="radio" class="custom-control" required
-                                   th:field="*{priority}"
+                                   th:name="${'priority'}"
                                    th:value="${priority}" th:id="${priority}+${index.index}"
                                    style="display: inline" />
                             <label class="" th:for="${priority}+${index.index}"
@@ -107,27 +107,35 @@
                         </div >
                         <!--grievancesStatus-->
                         <div class="form-group" >
-                          <label class="control-label" for="designation" >Grievances Status
+                          <label class="control-label" th:for="${'grievancesStatus'}" >Grievances Status
                                                                           :</label >
-                          <select id="designation" th:field="*{grievancesStatus}"
-                                  class="form-control" tabindex="12" >
-                            <option value="" >Please select</option >
-                            <option th:each="grievancesStatus : ${grievancesStatuses}"
-                                    th:text="${grievancesStatus.grievancesStatus}"
-                                    th:value="${grievancesStatus}" ></option >
-                          </select >
+                          <div class="custom-control" style="display: inline"
+                               th:each="grievancesStatus, index : ${grievancesStatuses}" >
+                            <input type="radio" class="custom-control" required
+                                   th:name="${'grievancesStatus'}"
+                                   th:value="${grievancesStatus}" th:id="${grievancesStatus}+${index.index}"
+                                   style="display: inline" />
+                            <label class="" th:for="${grievancesStatus}+${index.index}"
+                                   th:text="${grievancesStatus.grievancesStatus}" style="display: inline" >
+                              radio
+                            </label >
+                          </div >
                         </div >
                         <!--solutionType-->
                         <div class="form-group" >
-                          <label class="control-label" for="designation" >Grievances Status
+                          <label class="control-label" th:for="${'solutionType'}" >Final Decision to this grievance
                                                                           :</label >
-                          <select id="designation" th:field="*{solutionType}"
-                                  class="form-control" tabindex="12" >
-                            <option value="" >Please select</option >
-                            <option th:each="solutionType : ${solutionTypes}"
-                                    th:text="${solutionType.solutionType}"
-                                    th:value="${solutionType}" ></option >
-                          </select >
+                          <div class="custom-control" style="display: inline"
+                               th:each="solutionType, index : ${solutionTypes}" >
+                            <input type="radio" class="custom-control" required
+                                   th:name="${'solutionType'}"
+                                   th:value="${solutionType}" th:id="${solutionType}+${index.index}"
+                                   style="display: inline" />
+                            <label class="" th:for="${solutionType}+${index.index}"
+                                   th:text="${solutionType.solutionType}" style="display: inline" >
+                              radio
+                            </label >
+                          </div >
                         </div >
                       </div >
                       <div class="form-group" >

@@ -139,11 +139,9 @@ public class GrievancesController implements AbstractController< Grievance, Inte
         employeeService.findById(userService.findByUserName(grievance.getCreatedBy()).getEmployee().getId());
     model.addAttribute("grievancesDetail", grievance);
     model.addAttribute("employeeDetail", employee);
-    // model.addAttribute("employeeWorkingPlaces", employeeWorkingPlaceService.findByEmployee(employee));
     model.addAttribute("addStatus", false);
     model.addAttribute("contendHeader", "Employee View Details");
     model.addAttribute("files", employeeFilesService.employeeFileDownloadLinks(employee));
-    // model.addAttribute("dependentEmployees", dependentEmployeeService.findByEmployee(employee));
     return "grievances/grievances-detail";
   }
 
@@ -168,9 +166,7 @@ public class GrievancesController implements AbstractController< Grievance, Inte
 
       grievanceStateChangeService.persist(grievanceStateChange);
     }
-
     redirectAttributes.addFlashAttribute("grievancesDetail", grievancesService.persist(grievance));
-
     return "redirect:/grievances";
   }
 
