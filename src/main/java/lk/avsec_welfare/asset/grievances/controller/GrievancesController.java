@@ -3,6 +3,7 @@ package lk.avsec_welfare.asset.grievances.controller;
 
 import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.asset.employee.entity.enums.BoardOfDirectors;
+import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.grievances.entity.enums.GrievancesStatus;
 import lk.avsec_welfare.asset.grievances.entity.enums.Priority;
 import lk.avsec_welfare.asset.grievances.entity.enums.SolutionType;
@@ -28,24 +29,24 @@ import java.util.List;
 @Controller
 @RequestMapping( "/grievances" )
 public class GrievancesController implements AbstractController< Grievance, Integer > {
-  //todo there is something to change
   private final GrievancesService grievancesService;
   private final UserService userService;
   private final DateTimeAgeService dateTimeAgeService;
   private final GrievanceStateChangeService grievanceStateChangeService;
+  private final EmployeeService employeeService;
 
   @Autowired
   public GrievancesController(GrievancesService grievancesService, UserService userService,
                               DateTimeAgeService dateTimeAgeService,
-                              GrievanceStateChangeService grievanceStateChangeService) {
+                              GrievanceStateChangeService grievanceStateChangeService, EmployeeService employeeService) {
     this.grievancesService = grievancesService;
     this.userService = userService;
     this.dateTimeAgeService = dateTimeAgeService;
     this.grievanceStateChangeService = grievanceStateChangeService;
+    this.employeeService = employeeService;
   }
 
   private String commonThing(Model model, Boolean booleanValue, Grievance grievanceObject) {
-
     model.addAttribute("priorities", Priority.values());
     model.addAttribute("addStatus", booleanValue);
     model.addAttribute("grievances", grievanceObject);
@@ -123,12 +124,16 @@ public class GrievancesController implements AbstractController< Grievance, Inte
 
   @GetMapping( "/{id}" )
   public String findById(@PathVariable Integer id, Model model) {
-    model.addAttribute("grievancesDetail", grievancesService.findById(id));
+    Grievance grievance = grievancesService.findById(id);
+    Employee employee = employeeService.findById( userService.findByUserName(grievance.getCreatedBy()).getEmployee().getId());
+    model.addAttribute("grievancesDetail", grievance);
+    model.addAttribute("employeeDetail", employee);
     return "grievances/grievances-detail";
   }
 
   @GetMapping( "/edit/{id}" )
   public String edit(@PathVariable Integer id, Model model) {
+    model.addAttribute("grievancesStatuses", GrievancesStatus.values());
     return commonThing(model, true, grievancesService.findById(id));
   }
 
@@ -146,8 +151,12 @@ public class GrievancesController implements AbstractController< Grievance, Inte
       grievanceStateChange.setCommentedBy(userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getEmployee().getCallingName());
 
       grievanceStateChangeService.persist(grievanceStateChange);
+    } else {
+      Grievance grievanceDb = grievancesService.findById(grievance.getId());
+
+      redirectAttributes.addFlashAttribute("grievancesDetail", grievancesService.persist(grievance));
     }
-    redirectAttributes.addFlashAttribute("grievancesDetail", grievancesService.persist(grievance));
+
     return "redirect:/grievances";
   }
 

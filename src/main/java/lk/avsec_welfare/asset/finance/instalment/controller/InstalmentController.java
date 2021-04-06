@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping( "/collection" )
-public class CollectionController {
+public class InstalmentController {
   private final EmployeeService employeeService;
   private final InstalmentTypeService instalmentTypeService;
   private final InstalmentService instalmentService;
@@ -45,7 +45,7 @@ public class CollectionController {
   private final OperatorService operatorService;
 
 
-  public CollectionController(EmployeeService employeeService, InstalmentTypeService instalmentTypeService,
+  public InstalmentController(EmployeeService employeeService, InstalmentTypeService instalmentTypeService,
                               InstalmentService instalmentService, WorkingPlaceService workingPlaceService,
                               MainAccountService mainAccountService,
                               UserService userService, OperatorService operatorService) {
