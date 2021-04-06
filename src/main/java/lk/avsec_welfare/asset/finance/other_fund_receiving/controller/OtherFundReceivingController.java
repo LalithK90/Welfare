@@ -1,11 +1,11 @@
 package lk.avsec_welfare.asset.finance.other_fund_receiving.controller;
 
-import lk.avsec_welfare.asset.finance.entity.Enum.FundType;
-import lk.avsec_welfare.asset.finance.entity.Enum.OtherFundReceivingType;
-import lk.avsec_welfare.asset.finance.entity.MainAccount;
+import lk.avsec_welfare.asset.finance.main_account.entity.Enum.FundType;
+import lk.avsec_welfare.asset.finance.main_account.entity.Enum.OtherFundReceivingType;
+import lk.avsec_welfare.asset.finance.main_account.entity.MainAccount;
 import lk.avsec_welfare.asset.finance.other_fund_receiving.entity.OtherFundReceiving;
 import lk.avsec_welfare.asset.finance.other_fund_receiving.service.OtherFundReceivingService;
-import lk.avsec_welfare.asset.finance.service.MainAccountService;
+import lk.avsec_welfare.asset.finance.main_account.service.MainAccountService;
 import lk.avsec_welfare.util.service.OperatorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

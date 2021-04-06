@@ -2,7 +2,6 @@ package lk.avsec_welfare.asset.finance.instalment.entity;
 
 import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.employee.entity.Employee;
-import lk.avsec_welfare.asset.finance.entity.MainAccount;
 import lk.avsec_welfare.asset.finance.installment_type.entity.InstalmentType;
 import lk.avsec_welfare.asset.finance.instalment.entity.enums.InstalmentStatus;
 import lk.avsec_welfare.util.audit.AuditEntity;
@@ -13,7 +12,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
 
 @Entity
 @Getter

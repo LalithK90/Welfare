@@ -1,8 +1,8 @@
-package lk.avsec_welfare.asset.finance.service;
+package lk.avsec_welfare.asset.finance.main_account.service;
 
 import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
-import lk.avsec_welfare.asset.finance.dao.ExpensesFundDao;
-import lk.avsec_welfare.asset.finance.entity.ExpensesFund;
+import lk.avsec_welfare.asset.finance.main_account.dao.ExpensesFundDao;
+import lk.avsec_welfare.asset.finance.main_account.entity.ExpensesFund;
 import lk.avsec_welfare.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;

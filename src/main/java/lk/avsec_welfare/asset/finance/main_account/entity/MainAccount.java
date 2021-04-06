@@ -1,6 +1,6 @@
-package lk.avsec_welfare.asset.finance.entity;
+package lk.avsec_welfare.asset.finance.main_account.entity;
 
-import lk.avsec_welfare.asset.finance.entity.Enum.FundType;
+import lk.avsec_welfare.asset.finance.main_account.entity.Enum.FundType;
 import lk.avsec_welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

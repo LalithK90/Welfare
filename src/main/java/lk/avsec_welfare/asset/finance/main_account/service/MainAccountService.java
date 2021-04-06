@@ -1,9 +1,9 @@
-package lk.avsec_welfare.asset.finance.service;
+package lk.avsec_welfare.asset.finance.main_account.service;
 
 
-import lk.avsec_welfare.asset.finance.dao.MainAccountDao;
-import lk.avsec_welfare.asset.finance.entity.Enum.FundType;
-import lk.avsec_welfare.asset.finance.entity.MainAccount;
+import lk.avsec_welfare.asset.finance.main_account.dao.MainAccountDao;
+import lk.avsec_welfare.asset.finance.main_account.entity.Enum.FundType;
+import lk.avsec_welfare.asset.finance.main_account.entity.MainAccount;
 import lk.avsec_welfare.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;

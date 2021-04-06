@@ -1,7 +1,6 @@
 package lk.avsec_welfare.asset.finance.other_fund_receiving.entity;
 
-import lk.avsec_welfare.asset.finance.entity.Enum.OtherFundReceivingType;
-import lk.avsec_welfare.asset.finance.entity.MainAccount;
+import lk.avsec_welfare.asset.finance.main_account.entity.Enum.OtherFundReceivingType;
 import lk.avsec_welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +9,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
 
 @Entity
 @Getter

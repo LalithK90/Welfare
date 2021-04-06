@@ -1,7 +1,7 @@
 package lk.avsec_welfare.asset.finance.installment_type.controller;
 
-import lk.avsec_welfare.asset.finance.entity.Enum.CollectionType;
-import lk.avsec_welfare.asset.finance.entity.Enum.ExpenseOrReceived;
+import lk.avsec_welfare.asset.finance.main_account.entity.Enum.CollectionType;
+import lk.avsec_welfare.asset.finance.main_account.entity.Enum.ExpenseOrReceived;
 import lk.avsec_welfare.asset.finance.installment_type.service.InstalmentTypeService;
 import lk.avsec_welfare.asset.finance.installment_type.entity.InstalmentType;
 import lk.avsec_welfare.util.interfaces.AbstractController;

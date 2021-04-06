@@ -1,6 +1,6 @@
-package lk.avsec_welfare.asset.finance.dao;
+package lk.avsec_welfare.asset.finance.main_account.dao;
 
-import lk.avsec_welfare.asset.finance.entity.ExpensesFund;
+import lk.avsec_welfare.asset.finance.main_account.entity.ExpensesFund;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package lk.avsec_welfare.asset.finance.entity.Enum;
+package lk.avsec_welfare.asset.finance.main_account.entity.Enum;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
