@@ -19,7 +19,7 @@
                 <a href="#" class="d-block">W B Prasad</a>
             </div>
         </div>
-
+<!--        <a data-sec-authorize="hasAnyAuthority('ROLE_MANAGER', 'ROLE_CASHIER')"  data-th-href="@{'/customer'}" class="nav-link text-primary"> Customer Management </a>-->
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -63,12 +63,14 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                        <li class="nav-item" data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                             <a href="/employee" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>View Employee</p>
                             </a>
                         </li>
+
+
                         <li class="nav-item">
                             <a href="/employee/add" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -82,7 +84,7 @@
                                 <p>View Designation</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item"instalmentType>
                             <a href="/designation/add" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Designation</p>
@@ -149,53 +151,31 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/additionalPayment" class="nav-link">
+                            <a href="/instalmentType" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Additional Payment</p>
+                                <p>InstalmentType</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/addPaymentType" class="nav-link">
+                            <a href="/otherFundReceiving" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Payment Type</p>
+                                <p>Other Fund Receiving</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/financialYears" class="nav-link">
+                            <a href="/otherExpence" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Financial Year</p>
+                                <p>Other Expence</p>
                             </a>
                         </li>
+
+
                         <li class="nav-item">
-                            <a href="/paymentsSection" class="nav-link">
+                            <a href="/collection" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Payments Section</p>
+                                <p>Collection View</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/paymentView" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Payment View</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/receivingExpenses" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Receiving Expenses</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/setPayment" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Set Payment</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/feeType" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Test Case</p>
-                            </a>
-                        </li>
+
                     </ul>
                 </li><!--Account Mgt-->
                 <li class="nav-item has-treeview">
