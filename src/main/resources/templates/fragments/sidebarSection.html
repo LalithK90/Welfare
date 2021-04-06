@@ -63,12 +63,14 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                        <li class="nav-item" data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                             <a href="/employee" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>View Employee</p>
                             </a>
                         </li>
+
+
                         <li class="nav-item">
                             <a href="/employee/add" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -166,6 +168,7 @@
                                 <p>Other Expence</p>
                             </a>
                         </li>
+
 
                         <li class="nav-item">
                             <a href="/collection" class="nav-link">
