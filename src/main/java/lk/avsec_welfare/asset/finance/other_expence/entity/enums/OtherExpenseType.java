@@ -13,5 +13,5 @@ public enum OtherExpenseType {
   SOCIALIST("Social Works"),
   RELIGIONS("Religions");
 
-  private final String otherExpenceType;
+  private final String otherExpenseType;
 }
