@@ -38,14 +38,14 @@
                         <div class="custom-control custom-checkbox custom-control-inline "
                              data-th-each="otherExpenceType,index : ${otherExpenceTypes}" >
                           <input class="custom-control-input" tabindex="-1" required
-                                 data-th-name="${'otherExpenceType'}"
+                                 data-th-name="${'otherExpenseType'}"
                                  data-th-value="${otherExpenceType}"
                                  data-th-id="${index.index}+${otherExpenceType}"
                                  type="radio"
                                  data-th-checked="${otherExpenceType==otherExpenceType}" />
                           <label class="custom-control-label" tabindex="-1"
                                  data-th-for="${index.index}+${otherExpenceType}"
-                                 data-th-text="${otherExpenceType.otherExpenceType}" > radio
+                                 data-th-text="${otherExpenceType.otherExpenseType}" > radio
                           </label >
                         </div >
                       </div >
