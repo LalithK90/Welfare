@@ -176,7 +176,7 @@ public class CollectionController {
 
     model.addAttribute("instalmentTreasure", instalmentTreasure);
 
-    return "processManagement/allTresureCollection";
+    return "processManagement/allTreasureCollection";
   }
 
   @PostMapping( "/treasure" )
