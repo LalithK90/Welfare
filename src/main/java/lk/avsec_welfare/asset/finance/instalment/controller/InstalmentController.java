@@ -139,9 +139,7 @@ public class InstalmentController {
     }
 
 
-    Instalment instalmentDb = instalmentService.persist(instalment);
-//todo email
-    // ammunt is received by agent
+    instalmentService.persist(instalment);
 
     return "redirect:/collection";
   }
@@ -155,7 +153,8 @@ public class InstalmentController {
     model.addAttribute("total", collectionAmounts.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
     return "processManagement/allCollection";
   }
-//todo
+
+  //todo
   @GetMapping( "/treasure" )
   public String collectionTreasure(Model model) {
     List< Instalment > instalments = instalmentService.findByInstalmentStatus(InstalmentStatus.AGC);
@@ -180,8 +179,8 @@ public class InstalmentController {
   }
 
   @PostMapping( "/treasure" )
-  public String collectionTreasurePersist(@ModelAttribute InstalmentTreasure instalmentTreasure ,Model model) {
-    List<BigDecimal> allCollectionAmounts = new ArrayList<>();
+  public String collectionTreasurePersist(@ModelAttribute InstalmentTreasure instalmentTreasure, Model model) {
+    List< BigDecimal > allCollectionAmounts = new ArrayList<>();
 
     for ( InstalmentApprove instalmentApprove : instalmentTreasure.getInstalmentApproves() ) {
       Instalment instalment = instalmentService.findById(instalmentApprove.getInstalment().getId());
@@ -195,7 +194,9 @@ public class InstalmentController {
       mainAccount.setAmount(allCollectionAmounts.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
       mainAccount.setFundType(FundType.INSTALMENTS);
     } else {
-      mainAccount.setAmount(operatorService.addition(allCollectionAmounts.stream().reduce(BigDecimal.ZERO, BigDecimal::add), mainAccount.getAmount()));
+      mainAccount.setAmount(operatorService.addition(allCollectionAmounts.stream().reduce(BigDecimal.ZERO,
+                                                                                          BigDecimal::add),
+                                                     mainAccount.getAmount()));
     }
     mainAccountService.persist(mainAccount);
 
