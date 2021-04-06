@@ -86,10 +86,10 @@ public class GrievancesController implements AbstractController< Grievance, Inte
 //solution type, date range, grievance Status
     System.out.println("grivence   " + grievancesStatus.getGrievancesStatus());
 
-    if ( employee.getBoardOfDirectors().equals(WelfarePosition.HOSS) ||
-        employee.getBoardOfDirectors().equals(WelfarePosition.DHOSS) ||
-        employee.getBoardOfDirectors().equals(WelfarePosition.PRE) ||
-        employee.getBoardOfDirectors().equals(WelfarePosition.SCTY) ) {
+    if ( employee.getWelfarePosition().equals(WelfarePosition.HOSS) ||
+        employee.getWelfarePosition().equals(WelfarePosition.DHOSS) ||
+        employee.getWelfarePosition().equals(WelfarePosition.PRE) ||
+        employee.getWelfarePosition().equals(WelfarePosition.SCTY) ) {
 
       List< Grievance > toPending =
           grievancesService.findBySolutionTypeAndGrievancesStatusAndCreatedAtBetween(SolutionType.PR, grievancesStatus,
