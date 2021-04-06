@@ -83,7 +83,7 @@ public class GrievancesController implements AbstractController< Grievance, Inte
     LocalDate to = dateTimeAgeService.getCurrentDate();
     LocalDate form = to.minusDays(30);
 //solution type, date range, grievance Status
-    System.out.println("grivence   "+grievancesStatus.getGrievancesStatus());
+    System.out.println("grivence   " + grievancesStatus.getGrievancesStatus());
 
     if ( employee.getBoardOfDirectors().equals(BoardOfDirectors.HOSS) ||
         employee.getBoardOfDirectors().equals(BoardOfDirectors.DHOSS) ||
@@ -167,11 +167,9 @@ public class GrievancesController implements AbstractController< Grievance, Inte
       grievanceStateChange.setCommentedBy(userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getEmployee().getCallingName());
 
       grievanceStateChangeService.persist(grievanceStateChange);
-    } else {
-      Grievance grievanceDb = grievancesService.findById(grievance.getId());
-
-      redirectAttributes.addFlashAttribute("grievancesDetail", grievancesService.persist(grievanceDb));
     }
+
+    redirectAttributes.addFlashAttribute("grievancesDetail", grievancesService.persist(grievance));
 
     return "redirect:/grievances";
   }
