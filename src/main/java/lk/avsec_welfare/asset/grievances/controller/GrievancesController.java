@@ -28,7 +28,7 @@ import java.util.List;
 @Controller
 @RequestMapping( "/grievances" )
 public class GrievancesController implements AbstractController< Grievance, Integer > {
-  //todo there is something to change
+
   private final GrievancesService grievancesService;
   private final UserService userService;
   private final DateTimeAgeService dateTimeAgeService;
@@ -77,10 +77,13 @@ public class GrievancesController implements AbstractController< Grievance, Inte
     LocalDate to = dateTimeAgeService.getCurrentDate();
     LocalDate form = to.minusDays(30);
 //solution type, date range, grievance Status
+    System.out.println("grivence   "+grievancesStatus.getGrievancesStatus());
+
     if ( employee.getBoardOfDirectors().equals(BoardOfDirectors.HOSS) ||
         employee.getBoardOfDirectors().equals(BoardOfDirectors.DHOSS) ||
         employee.getBoardOfDirectors().equals(BoardOfDirectors.PRE) ||
         employee.getBoardOfDirectors().equals(BoardOfDirectors.SCTY) ) {
+      System.out.println("i heehhr  e  rh");
 
       List< Grievance > toPending =
           grievancesService.findBySolutionTypeAndGrievancesStatusAndCreatedAtBetween(SolutionType.PR, grievancesStatus,
@@ -91,9 +94,11 @@ public class GrievancesController implements AbstractController< Grievance, Inte
 
       if ( toPending.size() != 0 ) {
         model.addAttribute("toPending", toPending);
+        System.out.println(" pending  ");
       }
       if ( toClose.size() != 0 ) {
         model.addAttribute("toClose", toClose);
+        System.out.println(" to close");
       }
     }
     List< Grievance > personalToPending =
