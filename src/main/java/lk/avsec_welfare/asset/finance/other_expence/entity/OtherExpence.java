@@ -1,6 +1,6 @@
 package lk.avsec_welfare.asset.finance.other_expence.entity;
 
-import lk.avsec_welfare.asset.finance.other_expence.entity.enums.OtherExpenceType;
+import lk.avsec_welfare.asset.finance.other_expence.entity.enums.OtherExpenseType;
 import lk.avsec_welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,7 +26,7 @@ public class OtherExpence extends AuditEntity {
     private String remark;
 
    @Enumerated(EnumType.STRING)
-    private OtherExpenceType otherExpenceType;
+    private OtherExpenseType otherExpenseType;
 
 
 }

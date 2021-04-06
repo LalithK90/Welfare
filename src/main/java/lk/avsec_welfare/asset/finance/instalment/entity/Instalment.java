@@ -4,6 +4,7 @@ import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.asset.finance.entity.MainAccount;
 import lk.avsec_welfare.asset.finance.installment_type.entity.InstalmentType;
+import lk.avsec_welfare.asset.finance.instalment.entity.enums.InstalmentStatus;
 import lk.avsec_welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +24,9 @@ public class Instalment extends AuditEntity {
 
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal amount;
+
+    @Enumerated(EnumType.STRING)
+    private InstalmentStatus instalmentStatus;
 
     @ManyToOne
     private InstalmentType instalmentType;

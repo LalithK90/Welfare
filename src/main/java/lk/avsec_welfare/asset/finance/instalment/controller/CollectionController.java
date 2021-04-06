@@ -81,7 +81,6 @@ public class CollectionController {
   @GetMapping( "/{id}" )
   public String employeePayment(@PathVariable Integer id, Model model) {
     Employee employee = employeeService.findById(id);
-    //todo need to find payment history and available balance need show
     List< Instalment > paidInstalments = instalmentService.findByEmployee(employee);
     List< String > paidYears = new ArrayList<>();
     //set all years on employee must pay
@@ -92,8 +91,7 @@ public class CollectionController {
     paidYears.stream().distinct().collect(Collectors.toList());
     //year and paid amount
     List< YearAndPaidAmount > yearAndPaidAmounts = new ArrayList<>();
-    //Map<Year,BigDecimal>
-    //need to create year and total payment for particular year
+
     for ( String paidYear : paidYears ) {
       BigDecimal paidAmountForYear = BigDecimal.ZERO;
       BigDecimal yearAmount = BigDecimal.ZERO;
@@ -107,7 +105,7 @@ public class CollectionController {
       yearAndPaidAmount.setPaidAmount(paidAmountForYear);
       yearAndPaidAmount.setYear(paidYear);
       yearAndPaidAmount.setYearAmount(yearAmount);
-      yearAndPaidAmount.setPendingAmount(operatorService.subtraction(yearAmount, paidAmountForYear));
+      yearAndPaidAmount.setPendingAmount(operatorService.subtraction(paidAmountForYear, yearAmount));
       yearAndPaidAmounts.add(yearAndPaidAmount);
     }
     model.addAttribute("yearAndPaidAmounts", yearAndPaidAmounts);
@@ -124,7 +122,12 @@ public class CollectionController {
     if ( bindingResult.hasErrors() ) {
       return "redirect:/collection/".concat(String.valueOf(instalment.getEmployee().getId()));
     }
+    //toddo
+ String username =    SecurityContextHolder.getContext().getAuthentication().getName();
+
     Instalment instalmentDb = instalmentService.persist(instalment);
+
+
     MainAccount mainAccount = mainAccountService.findByFundType(FundType.INSTALMENTS);
     if ( mainAccount == null ) {
       mainAccount = new MainAccount();
