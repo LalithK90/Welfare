@@ -1,5 +1,8 @@
 package lk.avsec_welfare.asset.dependent.controller;
 
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import lk.avsec_welfare.asset.dependent.entity.Dependent;
 import lk.avsec_welfare.asset.dependent.entity.DependentEmployee;
 import lk.avsec_welfare.asset.dependent.entity.Enum.CurrentStatus;
@@ -11,6 +14,7 @@ import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.userManagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +22,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
@@ -159,6 +165,31 @@ public class DependentController {
     return "redirect:/dependent";
   }
 
+
+  @GetMapping( "/{id}" )
+  @ResponseBody
+  public MappingJacksonValue findByGrade(@PathVariable( "id" ) Integer id) {
+
+    List< DependentEmployee > dependentEmployee = dependentEmployeeService.findByEmployee(employeeService.findById(id));
+
+    List< Dependent > dependents = new ArrayList<>();
+
+    dependentEmployee.forEach(x -> {
+      dependents.add(x.getDependent());
+    });
+
+    MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(dependents);
+
+    SimpleBeanPropertyFilter forBatch = SimpleBeanPropertyFilter
+        .filterOutAllExcept("id", "name");
+
+    FilterProvider filters = new SimpleFilterProvider()
+        .addFilter("Dependent", forBatch);
+
+    mappingJacksonValue.setFilters(filters);
+
+    return mappingJacksonValue;
+  }
 
 }
 /*

@@ -1,5 +1,6 @@
 package lk.avsec_welfare.asset.finance.death_donation.controller;
 
+import lk.avsec_welfare.asset.dependent.controller.DependentController;
 import lk.avsec_welfare.asset.dependent.entity.Dependent;
 import lk.avsec_welfare.asset.dependent.service.DependentService;
 import lk.avsec_welfare.asset.employee.entity.Employee;
@@ -7,12 +8,15 @@ import lk.avsec_welfare.asset.employee.service.EmployeeFilesService;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.finance.death_donation.entity.DeathDonation;
 import lk.avsec_welfare.asset.finance.death_donation.service.DeathDonationService;
+import lk.avsec_welfare.asset.finance.main_account.entity.Enum.FundType;
+import lk.avsec_welfare.asset.finance.main_account.entity.MainAccount;
 import lk.avsec_welfare.asset.finance.main_account.service.MainAccountService;
+import lk.avsec_welfare.util.service.OperatorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 @Controller
 @RequestMapping( "/deathDonation" )
@@ -22,15 +26,17 @@ public class DeathDonationController {
   private final DependentService dependentService;
   private final MainAccountService mainAccountService;
   private final EmployeeFilesService employeeFilesService;
+  private final OperatorService operatorService;
 
   public DeathDonationController(DeathDonationService deathDonationService, EmployeeService employeeService,
                                  DependentService dependentService, MainAccountService mainAccountService,
-                                 EmployeeFilesService employeeFilesService) {
+                                 EmployeeFilesService employeeFilesService, OperatorService operatorService) {
     this.deathDonationService = deathDonationService;
     this.employeeService = employeeService;
     this.dependentService = dependentService;
     this.mainAccountService = mainAccountService;
     this.employeeFilesService = employeeFilesService;
+    this.operatorService = operatorService;
   }
 
   @GetMapping
@@ -54,12 +60,54 @@ public class DeathDonationController {
     return "deathDonation/deathDonation-detail";
   }
 
-  @GetMapping("/add")
-  public String addForm(Model model){
+  @GetMapping( "/add" )
+  public String addForm(Model model) {
     model.addAttribute("deathDonation", new DeathDonation());
     model.addAttribute("employees", employeeService.findAll());
-    //todo ->
+    model.addAttribute("addStatus", false);
+    model.addAttribute("dependentFindUrl", MvcUriComponentsBuilder
+        .fromMethodName(DependentController.class, "findByEmployee", "")
+        .build()
+        .toString());
     return "deathDonation/addDeathDonation";
+  }
+
+  @GetMapping( "/edit/{id}" )
+  public String editForm(@PathVariable( "id" ) Integer id, Model model) {
+    model.addAttribute("deathDonation", deathDonationService.findById(id));
+    model.addAttribute("employees", employeeService.findAll());
+    model.addAttribute("addStatus", true);
+    model.addAttribute("dependentFindUrl", MvcUriComponentsBuilder
+        .fromMethodName(DependentController.class, "findByEmployee", "")
+        .build()
+        .toString());
+    return "deathDonation/addDeathDonation";
+  }
+
+  @PostMapping(value = {"/save","/edit"})
+  public String persist(@ModelAttribute DeathDonation deathDonation, BindingResult bindingResult,Model model){
+    if ( bindingResult.hasErrors() ){
+      model.addAttribute("deathDonation", deathDonation);
+      model.addAttribute("employees", employeeService.findAll());
+      model.addAttribute("addStatus", true);
+      model.addAttribute("dependentFindUrl", MvcUriComponentsBuilder
+          .fromMethodName(DependentController.class, "findByEmployee", "")
+          .build()
+          .toString());
+      return "deathDonation/addDeathDonation";
+    }
+   DeathDonation deathDonationDb = deathDonationService.persist(deathDonation);
+    MainAccount mainAccount = mainAccountService.findByFundType(FundType.DEAD);
+    if ( mainAccount == null ) {
+      mainAccount = new MainAccount();
+      mainAccount.setAmount(deathDonationDb.getAmount());
+      mainAccount.setFundType(FundType.DEAD);
+    } else {
+      mainAccount.setAmount(operatorService.addition(deathDonationDb.getAmount(),
+                                                     mainAccount.getAmount()));
+    }
+    mainAccountService.persist(mainAccount);
+    return "redirect:/deathDonation";
   }
 
 }
