@@ -38,7 +38,7 @@
               <div class="col-md-12" >
                 <div class="accordion" id="accordion" >
                   <!--User pending-->
-                  <div class="card" th:if="${#lists.isEmpty(toPending)}" >
+                  <div class="card" th:if="${not #lists.isEmpty(toPending)}" >
                     <div class="card-header" id="headingOne" >
                       <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
                               aria-expanded="true"
@@ -99,7 +99,7 @@
                     </div >
                   </div >
                   <!--User finished-->
-                  <div class="card" th:if="${#lists.isEmpty(toClose)}" >
+                  <div class="card" th:if="${not #lists.isEmpty(toClose)}" >
                     <div class="card-header" id="headingTwo" >
                       <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
                               data-target="#collapseTwo"
@@ -165,7 +165,7 @@
                     </div >
                   </div >
                   <!--Personal Pending-->
-                  <div class="card" th:if="${#lists.isEmpty(personalToPending)}" >
+                  <div class="card" th:if="${not #lists.isEmpty(personalToPending)}" >
                     <div class="card-header" id="headingThree" >
                       <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
                               data-target="#collapseThree"
@@ -231,7 +231,7 @@
                     </div >
                   </div >
                   <!--Personal finished-->
-                  <div class="card" th:if="${#lists.isEmpty(personalToClose)}" >
+                  <div class="card" th:if="${not #lists.isEmpty(personalToClose)}" >
                     <div class="card-header" id="headingFour" >
                       <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
                               data-target="#collapseFour"
