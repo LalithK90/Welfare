@@ -154,7 +154,7 @@ public class GrievancesController implements AbstractController< Grievance, Inte
     } else {
       Grievance grievanceDb = grievancesService.findById(grievance.getId());
 
-      redirectAttributes.addFlashAttribute("grievancesDetail", grievancesService.persist(grievance));
+      redirectAttributes.addFlashAttribute("grievancesDetail", grievancesService.persist(grievanceDb));
     }
 
     return "redirect:/grievances";
