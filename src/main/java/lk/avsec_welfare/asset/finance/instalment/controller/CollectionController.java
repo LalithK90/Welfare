@@ -1,12 +1,16 @@
 package lk.avsec_welfare.asset.finance.instalment.controller;
 
 import lk.avsec_welfare.asset.employee.entity.Employee;
+import lk.avsec_welfare.asset.employee.entity.enums.BoardOfDirectors;
 import lk.avsec_welfare.asset.employee.entity.enums.WelfarePosition;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.finance.entity.Enum.FundType;
 import lk.avsec_welfare.asset.finance.entity.Enum.OtherFundReceivingType;
 import lk.avsec_welfare.asset.finance.entity.MainAccount;
+import lk.avsec_welfare.asset.finance.instalment.commonModel.InstalmentApprove;
+import lk.avsec_welfare.asset.finance.instalment.commonModel.InstalmentTreasure;
 import lk.avsec_welfare.asset.finance.instalment.entity.Instalment;
+import lk.avsec_welfare.asset.finance.instalment.entity.enums.InstalmentStatus;
 import lk.avsec_welfare.asset.finance.instalment.service.InstalmentService;
 import lk.avsec_welfare.asset.finance.installment_type.service.InstalmentTypeService;
 import lk.avsec_welfare.asset.finance.service.MainAccountService;
@@ -122,22 +126,80 @@ public class CollectionController {
     if ( bindingResult.hasErrors() ) {
       return "redirect:/collection/".concat(String.valueOf(instalment.getEmployee().getId()));
     }
-    //toddo
- String username =    SecurityContextHolder.getContext().getAuthentication().getName();
+
+    Employee employee =
+        userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getEmployee();
+
+    if ( employee.getBoardOfDirectors().equals(BoardOfDirectors.AGT) ) {
+      instalment.setInstalmentStatus(InstalmentStatus.AGC);
+    }
+
+    if ( employee.getBoardOfDirectors().equals(BoardOfDirectors.TRS) ) {
+      instalment.setInstalmentStatus(InstalmentStatus.TA);
+    }
+
 
     Instalment instalmentDb = instalmentService.persist(instalment);
+//todo email
+    // ammunt is received by agent
 
+    return "redirect:/collection";
+  }
+
+  @GetMapping( "/agent" )
+  public String collectionAgent(Model model) {
+    List< Instalment > instalments = instalmentService.findByInstalmentStatus(InstalmentStatus.AGC);
+    model.addAttribute("instalments", instalments);
+    List< BigDecimal > collectionAmounts = new ArrayList<>();
+    instalments.forEach(x -> collectionAmounts.add(x.getAmount()));
+    model.addAttribute("total", collectionAmounts.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
+    return "processManagement/allCollection";
+  }
+//todo
+  @GetMapping( "/treasure" )
+  public String collectionTreasure(Model model) {
+    List< Instalment > instalments = instalmentService.findByInstalmentStatus(InstalmentStatus.AGC);
+
+    List< InstalmentApprove > instalmentApproves = new ArrayList<>();
+
+    List< BigDecimal > collectionAmounts = new ArrayList<>();
+    instalments.forEach(x -> {
+      InstalmentApprove instalmentApprove = new InstalmentApprove();
+      instalmentApprove.setInstalment(x);
+      instalmentApproves.add(instalmentApprove);
+      collectionAmounts.add(x.getAmount());
+    });
+
+    InstalmentTreasure instalmentTreasure = new InstalmentTreasure();
+    instalmentTreasure.setInstalmentApproves(instalmentApproves);
+    instalmentTreasure.setTotal(collectionAmounts.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
+
+    model.addAttribute("instalmentTreasure", instalmentTreasure);
+
+    return "processManagement/allTreasureCollection";
+  }
+
+  @PostMapping( "/treasure" )
+  public String collectionTreasurePersist(@ModelAttribute InstalmentTreasure instalmentTreasure ,Model model) {
+    List<BigDecimal> allCollectionAmounts = new ArrayList<>();
+
+    for ( InstalmentApprove instalmentApprove : instalmentTreasure.getInstalmentApproves() ) {
+      Instalment instalment = instalmentService.findById(instalmentApprove.getInstalment().getId());
+      instalment.setInstalmentStatus(InstalmentStatus.TA);
+      allCollectionAmounts.add(instalmentService.persist(instalment).getAmount());
+    }
 
     MainAccount mainAccount = mainAccountService.findByFundType(FundType.INSTALMENTS);
     if ( mainAccount == null ) {
       mainAccount = new MainAccount();
-      mainAccount.setAmount(instalmentDb.getAmount());
+      mainAccount.setAmount(allCollectionAmounts.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
       mainAccount.setFundType(FundType.INSTALMENTS);
     } else {
-      mainAccount.setAmount(operatorService.addition(instalmentDb.getAmount(), mainAccount.getAmount()));
+      mainAccount.setAmount(operatorService.addition(allCollectionAmounts.stream().reduce(BigDecimal.ZERO, BigDecimal::add), mainAccount.getAmount()));
     }
     mainAccountService.persist(mainAccount);
-    return "redirect:/collection";
+
+    return "redirect:/collection/treasure";
   }
 
 }
