@@ -1,10 +1,9 @@
 package lk.avsec_welfare.asset.finance.other_expence.controller;
 
 import lk.avsec_welfare.asset.finance.entity.Enum.FundType;
-import lk.avsec_welfare.asset.finance.entity.Enum.OtherFundReceivingType;
 import lk.avsec_welfare.asset.finance.entity.MainAccount;
 import lk.avsec_welfare.asset.finance.other_expence.entity.OtherExpence;
-import lk.avsec_welfare.asset.finance.other_expence.entity.enums.OtherExpenceType;
+import lk.avsec_welfare.asset.finance.other_expence.entity.enums.OtherExpenseType;
 import lk.avsec_welfare.asset.finance.other_expence.service.OtherExpenceService;
 import lk.avsec_welfare.asset.finance.service.MainAccountService;
 import lk.avsec_welfare.util.service.OperatorService;
@@ -40,7 +39,7 @@ public class OtherExpenceController {
   @GetMapping( "/add" )
   public String addFrom(Model model) {
     model.addAttribute("otherExpence", new OtherExpence());
-    model.addAttribute("otherExpenceTypes", OtherExpenceType.values());
+    model.addAttribute("otherExpenceTypes", OtherExpenseType.values());
     return "otherExpence/addOtherExpence";
   }
 

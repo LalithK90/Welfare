@@ -36,7 +36,7 @@
                     <thead class="thead-inverse" >
                     <tr >
                       <th >Index</th >
-                      <th >Other Expences Type</th >
+                      <th >Other Expenses Type</th >
                       <th >Amount</th >
                       <th >Remark</th >
                       <th >Created By</th >
@@ -46,7 +46,7 @@
                     <tbody >
                     <tr data-th-each="otherExpenceType, index : ${otherExpenceTypes}" >
                       <td data-th-text="${index.count}" ></td >
-                      <td data-th-text="${otherExpenceType.otherExpenceType.otherExpenceType}" ></td >
+                      <td data-th-text="${otherExpenceType.otherExpenseType.otherExpenseType}" ></td >
                       <td data-th-text="${otherExpenceType.amount}" ></td >
                       <td data-th-text="${otherExpenceType.remark}" ></td >
                       <td data-th-text="${otherExpenceType.createdBy}" ></td >
