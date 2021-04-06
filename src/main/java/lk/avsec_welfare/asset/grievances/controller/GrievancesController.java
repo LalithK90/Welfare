@@ -3,6 +3,7 @@ package lk.avsec_welfare.asset.grievances.controller;
 
 import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.asset.employee.entity.enums.BoardOfDirectors;
+import lk.avsec_welfare.asset.employee.service.EmployeeFilesService;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.grievances.entity.enums.GrievancesStatus;
 import lk.avsec_welfare.asset.grievances.entity.enums.Priority;
@@ -34,16 +35,20 @@ public class GrievancesController implements AbstractController< Grievance, Inte
   private final DateTimeAgeService dateTimeAgeService;
   private final GrievanceStateChangeService grievanceStateChangeService;
   private final EmployeeService employeeService;
+  private final EmployeeFilesService employeeFilesService;
+
 
   @Autowired
   public GrievancesController(GrievancesService grievancesService, UserService userService,
                               DateTimeAgeService dateTimeAgeService,
-                              GrievanceStateChangeService grievanceStateChangeService, EmployeeService employeeService) {
+                              GrievanceStateChangeService grievanceStateChangeService,
+                              EmployeeService employeeService, EmployeeFilesService employeeFilesService) {
     this.grievancesService = grievancesService;
     this.userService = userService;
     this.dateTimeAgeService = dateTimeAgeService;
     this.grievanceStateChangeService = grievanceStateChangeService;
     this.employeeService = employeeService;
+    this.employeeFilesService = employeeFilesService;
   }
 
   private String commonThing(Model model, Boolean booleanValue, Grievance grievanceObject) {
@@ -125,9 +130,15 @@ public class GrievancesController implements AbstractController< Grievance, Inte
   @GetMapping( "/{id}" )
   public String findById(@PathVariable Integer id, Model model) {
     Grievance grievance = grievancesService.findById(id);
-    Employee employee = employeeService.findById( userService.findByUserName(grievance.getCreatedBy()).getEmployee().getId());
+    Employee employee =
+        employeeService.findById(userService.findByUserName(grievance.getCreatedBy()).getEmployee().getId());
     model.addAttribute("grievancesDetail", grievance);
     model.addAttribute("employeeDetail", employee);
+    // model.addAttribute("employeeWorkingPlaces", employeeWorkingPlaceService.findByEmployee(employee));
+    model.addAttribute("addStatus", false);
+    model.addAttribute("contendHeader", "Employee View Details");
+    model.addAttribute("files", employeeFilesService.employeeFileDownloadLinks(employee));
+    // model.addAttribute("dependentEmployees", dependentEmployeeService.findByEmployee(employee));
     return "grievances/grievances-detail";
   }
 
