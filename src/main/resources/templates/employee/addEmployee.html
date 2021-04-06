@@ -34,8 +34,11 @@
                     <!-- <h4>
                        <div data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"/>
                      </h4>-->
+
                     <form data-th-action="${addStatus==true?'/employee/save' :'/employee/update'}"
                           method="post" data-th-object="${employee}" enctype="multipart/form-data" >
+
+
                       <!--Employee personal data-->
                       <div class="row" >
                         <!--left side-->
@@ -60,10 +63,13 @@
                               <select id="title" data-th-field="*{title}"
                                       class="form-control col-2"
                                       autofocus="autofocus" required >
+
                                 <option data-th-each="titles : ${title}"
                                         data-th-text="${titles.title}"
                                         data-th-value="${titles}"
-                                        data-th-selected="${titles==employee.title?'selected':'unselected'}" ></option >
+                                        data-th-selected="${titles==employee.title?'selected':'unselected'}" >
+
+                                </option >
                               </select >
                               <input id="name" data-th-field="*{name}"
                                      class="form-control col-10"
