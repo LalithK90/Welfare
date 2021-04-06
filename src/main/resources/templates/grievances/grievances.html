@@ -1,32 +1,33 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
 <body class="hold-transition sidebar-mini layout-fixed" >
 <div class="wrapper" ><!-- wrapper start -->
   <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
   <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
   <div class="content-wrapper" ><!-- content-wrapper Start -->
-    <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section ><!-- content-header Start -->
-    <!--action button layer---------------------------------------------------------     -->
-    <div class="row m-1">
-      <div class="col-12">
-        <div class="text-right">
-          <div text-right>
-            <button type="button" class="btn btn-info btn-sm">
-              <a  data-th-href="${'/employee/add'}" >
-                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
-                <span class="text-white"> Add Employee </span></a>
-            </button>
-            <button type="button" class="btn btn-success btn-sm">
-              <a  data-th-href="${'/home'}" >
-                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
-                <span class="text-white"> Home </span></a>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--form action end button---------------------------------------------------------     -->
+    <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+                                <!-- content-header Start -->
+                                <!--action button layer---------------------------------------------------------     -->
+    <div class="row m-1" >
+      <div class="col-12" >
+        <div class="text-right" >
+          <div text-right >
+            <button type="button" class="btn btn-info btn-sm" >
+              <a data-th-href="${'/employee/add'}" >
+                <span class="info-box-icon text-white" ><i class="fa fa-plus mr-1" ></i ></span >
+                <span class="text-white" > Add Employee </span ></a >
+            </button >
+            <button type="button" class="btn btn-success btn-sm" >
+              <a data-th-href="${'/home'}" >
+                <span class="info-box-icon text-white" ><i class="fas fa-home mr-1" ></i ></span >
+                <span class="text-white" > Home </span ></a >
+            </button >
+          </div >
+        </div >
+      </div >
+    </div >
+                                <!--form action end button---------------------------------------------------------     -->
 
 
     <div class="content-header" >
@@ -37,7 +38,7 @@
               <div class="col-md-12" >
                 <div class="accordion" id="accordion" >
                   <!--User pending-->
-                  <div class="card" >
+                  <div class="card" th:if="${#lists.isEmpty(toPending)}" >
                     <div class="card-header" id="headingOne" >
                       <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
                               aria-expanded="true"
@@ -98,7 +99,7 @@
                     </div >
                   </div >
                   <!--User finished-->
-                  <div class="card" >
+                  <div class="card" th:if="${#lists.isEmpty(toClose)}" >
                     <div class="card-header" id="headingTwo" >
                       <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
                               data-target="#collapseTwo"
@@ -164,7 +165,7 @@
                     </div >
                   </div >
                   <!--Personal Pending-->
-                  <div class="card" >
+                  <div class="card" th:if="${#lists.isEmpty(personalToPending)}" >
                     <div class="card-header" id="headingThree" >
                       <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
                               data-target="#collapseThree"
@@ -172,7 +173,7 @@
                       </button >
                     </div >
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion" >
-                                    <!--if not empty list-->
+                      <!--if not empty list-->
                       <div class="card-body" th:if="${not #lists.isEmpty(personalToPending)}" >
                         <table class="table" >
                           <thead class="thead-inverse" >
@@ -230,7 +231,7 @@
                     </div >
                   </div >
                   <!--Personal finished-->
-                  <div class="card" >
+                  <div class="card" th:if="${#lists.isEmpty(personalToClose)}" >
                     <div class="card-header" id="headingFour" >
                       <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
                               data-target="#collapseFour"
@@ -238,7 +239,7 @@
                       </button >
                     </div >
                     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion" >
-                                  <!--if not empty list-->
+                      <!--if not empty list-->
                       <div class="card-body" th:if="${not #lists.isEmpty(personalToClose)}" >
                         <table class="table" >
                           <thead class="thead-inverse" >
@@ -304,9 +305,9 @@
     </div >
   </div >
 </div ><!-- content-wrapper end -->
-<div  data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
+<div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
        <!-- wrapper end -->
-<div  data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div ><!-- script Fragment -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div ><!-- script Fragment -->
 </body >
 </html >
 

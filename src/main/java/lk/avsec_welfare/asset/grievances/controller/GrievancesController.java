@@ -3,6 +3,7 @@ package lk.avsec_welfare.asset.grievances.controller;
 
 import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.asset.employee.entity.enums.BoardOfDirectors;
+import lk.avsec_welfare.asset.employee.entity.enums.WelfarePosition;
 import lk.avsec_welfare.asset.employee.service.EmployeeFilesService;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.grievances.entity.enums.GrievancesStatus;
@@ -66,7 +67,7 @@ public class GrievancesController implements AbstractController< Grievance, Inte
     GrievancesStatus grievancesStatus;
     //log ing user -> switch
     //status check
-    switch ( employee.getBoardOfDirectors().toString() ) {
+    switch ( employee.getWelfarePosition().toString() ) {
       case "HOSS":
         grievancesStatus = GrievancesStatus.HOSS;
         break;
@@ -85,11 +86,10 @@ public class GrievancesController implements AbstractController< Grievance, Inte
 //solution type, date range, grievance Status
     System.out.println("grivence   " + grievancesStatus.getGrievancesStatus());
 
-    if ( employee.getBoardOfDirectors().equals(BoardOfDirectors.HOSS) ||
-        employee.getBoardOfDirectors().equals(BoardOfDirectors.DHOSS) ||
-        employee.getBoardOfDirectors().equals(BoardOfDirectors.PRE) ||
-        employee.getBoardOfDirectors().equals(BoardOfDirectors.SCTY) ) {
-      System.out.println("i heehhr  e  rh");
+    if ( employee.getBoardOfDirectors().equals(WelfarePosition.HOSS) ||
+        employee.getBoardOfDirectors().equals(WelfarePosition.DHOSS) ||
+        employee.getBoardOfDirectors().equals(WelfarePosition.PRE) ||
+        employee.getBoardOfDirectors().equals(WelfarePosition.SCTY) ) {
 
       List< Grievance > toPending =
           grievancesService.findBySolutionTypeAndGrievancesStatusAndCreatedAtBetween(SolutionType.PR, grievancesStatus,
@@ -100,11 +100,11 @@ public class GrievancesController implements AbstractController< Grievance, Inte
 
       if ( toPending.size() != 0 ) {
         model.addAttribute("toPending", toPending);
-        System.out.println(" pending  ");
+
       }
       if ( toClose.size() != 0 ) {
         model.addAttribute("toClose", toClose);
-        System.out.println(" to close");
+
       }
     }
     List< Grievance > personalToPending =
@@ -163,7 +163,6 @@ public class GrievancesController implements AbstractController< Grievance, Inte
       grievanceStateChange.setRemark(grievance.getRemark());
       grievanceStateChange.setGrievance(grievance);
       grievanceStateChange.setCommentedBy(userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getEmployee().getCallingName());
-
       grievanceStateChangeService.persist(grievanceStateChange);
     }
     redirectAttributes.addFlashAttribute("grievancesDetail", grievancesService.persist(grievance));
