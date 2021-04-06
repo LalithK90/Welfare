@@ -161,10 +161,10 @@ public class EmployeeController {
 
         if ( employee.getId() == null ) {
             Employee lastEmployee = employeeService.lastEmployee();
-            if ( lastEmployee.getCode() == null ) {
+            if ( lastEmployee.getDepartmentIdNumber() == null ) {
                 employee.setDepartmentIdNumber("AVE" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
             } else {
-                employee.setDepartmentIdNumber("AVE" + makeAutoGenerateNumberService.numberAutoGen(lastEmployee.getCode().substring(3)).toString());
+                employee.setDepartmentIdNumber("AVE" + makeAutoGenerateNumberService.numberAutoGen(lastEmployee.getDepartmentIdNumber().substring(3)).toString());
             }
         }
 
