@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+    <div class="content-wrapper" ><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section ><!-- content-header Start -->
+        <!--action button layer---------------------------------------------------------     -->
+        <div class="row m-1">
+            <div class="col-12">
+                <div class="text-right">
+                    <div text-right>
+                        <button type="button" class="btn btn-info btn-sm">
+                            <a  data-th-href="${'/employee/add'}" >
+                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
+                                <span class="text-white"> Add Employee </span></a>
+                        </button>
+                        <!--                      <button type="button" class="btn btn-success btn-sm">-->
+                        <!--                          <a  data-th-href="${'/employee'}" >-->
+                        <!--                              <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >-->
+                        <!--                              <span class="text-white"> View Employee </span></a>-->
+                        <!--                      </button>-->
+                        <!--                      <button type="button" class="btn btn-warning btn-sm hide" onclick="myEdit()">-->
+                        <!--                          //                         <a  data-th-href="${'/designation/edit/'}" >-->
+                        <!--                          <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >-->
+                        <!--                          <span class="text-white"> Edit Employee </span></a>-->
+                        <!--                      </button>-->
+                        <!--                      <button type="button" class="btn btn-danger btn-sm " display="none" onclick="myDelete()">-->
+                        <!--                          // <a  data-th-href="${'/designation/remove/'}" >-->
+                        <!--                          <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >-->
+                        <!--                          <span class="text-white"> Delete Employee </span></a>-->
+                        <!--                      </button>-->
+                        <button type="button" class="btn btn-success btn-sm">
+                            <a  data-th-href="${'/home'}" >
+                                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
+                                <span class="text-white"> Home </span></a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--form action end button---------------------------------------------------------     -->
+
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <!-- /employee/add-->
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <a data-th-href="${'/employee/add'}">
+                                    <div class="info-box bg-success">
+                                        <span class="info-box-icon"><i class="fas fa-user"></i></span>
+                                        Add <br/>Employee
+                                    </div>
+                                </a></div>
+                            <!-- /employee/View-->
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <!--
+                                                                <a data-th-href="${'/employee/add'}">-->
+                                <div class="info-box bg-info" data-toggle="modal" data-target="#modal">
+                                    <span class="info-box-icon"><i class="fas fa-folder-open"></i></span>
+                                    View <br/>Employee
+                                </div>
+                                <!--</a>--></div>
+                            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle"
+                                 aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalTitle">View Employee</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Enter EPF No <input type="text">
+                                            <p><a data-th-href="${'/employee/' + 1}">enter</a></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary">Action</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /employee/Edit-->
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <a data-th-href="${'/employee/add'}">
+                                    <div class="info-box bg-warning">
+                                        <span class="info-box-icon"><i class="fas fa-edit"></i></span>
+                                        Edit <br/>Employee
+                                    </div>
+                                </a></div>
+                            <!--/employee/Delete-->
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <a data-th-href="${'/employee/add'}">
+                                    <div class="info-box bg-danger">
+                                        <span class="info-box-icon"><i class="fas fa-trash"></i></span>
+                                        Edit <br/>Employee
+                                    </div>
+                                </a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <!--<div class="card-body">
+                                    <h4>Secondary Header </h4>-->
+                                <div class="card-body"><div class="container-fluid table-responsive" data-th-if="${not #lists.isEmpty(employees)}">
+                                    <table id="example2" class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th> Index</th>
+                                            <th> EPF No</th>
+                                            <th> Name</th>
+                                            <th> Mobile</th>
+                                            <th> Designation</th>
+                                            <th> Status</th>
+                                            <th> Modify</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr data-th-each="employee, rowCount : ${employees}">
+                                            <td data-th-text="${rowCount.count}"></td>
+                                            <!--<td><div class="user-panel mt-0 pb-0 mb-0 d-flex">
+                                                <div class="image">
+                                                    <img data-th-src="${files.url}" class="img-circle elevation-2"
+                                                    alt="User
+                                                     Image">
+                                                </div></div></td>-->
+                                            <td>
+                                                <div class="user-panel mt-0 pb-0 mb-0 d-flex">
+                                                    <div class="image">
+                                                        <img src="/img/prasad.jpg" class="img-circle elevation-2"
+                                                             alt="User Image">
+                                                    </div>
+                                                    <div class="info">
+                                                        <a href="#" class="d-block">W B Prasad</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <!-- <td data-th-text="${employee.epf}"></td>-->
+                                            <td data-th-text="${employee.name}"></td>
+                                            <td data-th-text="${employee.mobileOne}"></td>
+                                            <td data-th-if="${employee.designation != null}"
+                                                data-th-text="${employee.designation.name}"></td>
+                                            <td data-th-if="${employee.designation == null}"
+                                                data-th-text="${'Not mentioned'}"></td>
+                                            <td data-th-text="${employee.employeeStatus.employeeStatus}"></td>
+                                            <td>
+                                                <a data-th-href="${'/collection/' + employee.id}"
+                                                   class="btn btn-success btn-sm"><i
+                                                        class="fa fa-folder-open"></i>&nbsp;Add Instalment</a>
+
+                                            </td>                                        </tr>
+                                    </table>
+                                </div>
+                                    <div class="container-fluid" data-th-if="${ #lists.isEmpty(employees)}">
+                                        <span data-th-text="${message}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content-wrapper end -->
+<footer data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></footer><!-- footer Section -->
+<!-- wrapper end -->
+<script data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}"></script><!-- script Fragment -->
+</body>
+</html>
