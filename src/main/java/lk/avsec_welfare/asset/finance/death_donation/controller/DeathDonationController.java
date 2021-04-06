@@ -54,5 +54,12 @@ public class DeathDonationController {
     return "deathDonation/deathDonation-detail";
   }
 
+  @GetMapping("/add")
+  public String addForm(Model model){
+    model.addAttribute("deathDonation", new DeathDonation());
+    model.addAttribute("employees", employeeService.findAll());
+    //todo ->
+    return "deathDonation/addDeathDonation";
+  }
 
 }
