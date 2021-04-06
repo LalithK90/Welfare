@@ -159,6 +159,15 @@ public class EmployeeController {
         employee.setMobileTwo(makeAutoGenerateNumberService.phoneNumberLengthValidator(employee.getMobileTwo()));
         employee.setLand(makeAutoGenerateNumberService.phoneNumberLengthValidator(employee.getLand()));
 
+        if ( employee.getId() == null ) {
+            Employee lastEmployee = employeeService.lastEmployee();
+            if ( lastEmployee.getCode() == null ) {
+                employee.setDepartmentIdNumber("AVE" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
+            } else {
+                employee.setDepartmentIdNumber("AVE" + makeAutoGenerateNumberService.numberAutoGen(lastEmployee.getCode().substring(3)).toString());
+            }
+        }
+
         //after save employee files and save employee
         Employee employeeSaved = employeeService.persist(employee);
         //if employee state is not working he or she cannot access to the system
