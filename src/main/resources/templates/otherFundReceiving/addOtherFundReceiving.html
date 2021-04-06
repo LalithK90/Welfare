@@ -7,27 +7,39 @@
   <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
   <div class="content-wrapper" ><!-- content-wrapper Start -->
     <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
-                                <!-- Form Header  Path -->
-    <section data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}" ></section >
-                                <!-- Small Box Set -->
+    <!-- Form Header  Path -->
+    <!--    <section data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}" ></section >-->
+    <!-- Small Box Set -->
+    <!--action button layer---------------------------------------------------------     -->
+    <div class="row m-1">
+      <div class="col-12">
+        <div class="text-right">
+          <div text-right>
+            <button type="button" class="btn btn-info btn-sm">
+              <a  data-th-href="${'/otherFundReceiving'}" >
+                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
+                <span class="text-white"> Add Other Fund Receiving </span></a>
+            </button>
+            <button type="button" class="btn btn-success btn-sm">
+              <a  data-th-href="${'/home'}" >
+                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
+                <span class="text-white"> Home </span></a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--form action end button---------------------------------------------------------     -->
 
 
     <div class="content-header" >
       <div class="container-fluid" >
         <div class="row" >
           <div class="col-md-12" >
-            <div class="row" >
-              <div class="col-md-3" >
+
                 <div class="card" >
                   <div class="card-body" >
-                    <h4 >First sud Header</h4 >
-                  </div >
-                </div >
-              </div >
-              <div class="col-md-9" >
-                <div class="card" >
-                  <div class="card-body" >
-                    <h4 >Secondary Header </h4 ></div >
+                    <h4 >Secondary Header </h4 >
                   <form action="/otherFundReceiving" role="form" method="post"
                         data-th-object="${otherFundReceiving}" >
                     <!--fundReceivingType-->
