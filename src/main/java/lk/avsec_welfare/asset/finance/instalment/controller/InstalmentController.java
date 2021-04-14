@@ -153,7 +153,6 @@ public class InstalmentController {
     return "processManagement/allCollection";
   }
 
-  //todo
   @GetMapping( "/treasure" )
   public String collectionTreasure(Model model) {
     List< Instalment > instalments = instalmentService.findByInstalmentStatus(InstalmentStatus.AGC);
