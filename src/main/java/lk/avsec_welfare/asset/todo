@@ -1,0 +1,4 @@
+* Employee controller create employee no but entity class not respond it
+* Affter fill promotion it will direct promotion page should rederect to employee module (by myself)
+* In working place should show short code
+* Medical duplicate - give error msg(need validate in HTML)

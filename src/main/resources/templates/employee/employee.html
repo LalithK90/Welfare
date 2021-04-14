@@ -93,11 +93,12 @@
                       <td data-th-if="${employee.designation == null}" data-th-text="${'Not mentioned'}" ></td >
 <!--                      <td data-th-text="${employee.employeeStatus.employeeStatus}" ></td >-->
                       <td >
+<!--                          data-th-if='${#authorization.expression("hasAnyRole('ROLE_ADMIN','ROLE_HOSS','ROLE_PRESIDENT', 'ROLE_SECRETORY','ROLE_TREASURE', 'ROLE_AGENT','ROLE_MEMBER')")}-->
                         <a data-th-href="${'/employee/' + employee.id}"
-                           class="btn btn-success btn-sm" ><i
+                              class="btn btn-success btn-sm" ><i
                               class="fa fa-folder-open" ></i >&nbsp;View</a >
                         <a data-th-href="${'/employee/edit/' + employee.id}"
-                           class="btn btn-warning btn-sm" ><i
+                             class="btn btn-warning btn-sm" ><i
                               class="fa fa-edit" ></i >&nbsp;Edit</a >
                         <a data-th-id="${'/employee/remove/' + employee.id}"
                            data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
@@ -115,7 +116,9 @@
                           <a data-th-href="${'/employeeWorkingPlace/add/' + employee.id}" class="btn btn-info btn-sm" ><i
                                   class="fa fa-address-card" ></i >
                               Working Place</a >
-                        <!--data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"-->
+                        <!--data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN','ROLE_HOSS','ROLE_PRESIDENT', 'ROLE_SECRETORY','ROLE_TREASURE', 'ROLE_AGENT','ROLE_MEMBER'')')}"-->
+
+
                       </td >
                     </tr >
                   </table >
