@@ -50,7 +50,7 @@
                       <div class="form-group row" >
                         <label th:for="${'employees'}" class="form-label " >
                           Employee Name </label >
-                        <select class="form-control" th:field="*{employees}" required >
+                        <select class="form-control" th:field="*{employee}" required >
                           <option value="" selected >Please Select</option >
                           <option th:each="employee : ${employees}"
                                   th:text="${employee.name}"
@@ -64,7 +64,6 @@
                           Dependent Name </label >
                         <select id="dependent" class="form-control" th:field="*{dependent}" required >
                           <option value="" selected >Please Select</option >
-                          </option >
                         </select >
                       </div >
                       <!--Amount-->
@@ -109,14 +108,15 @@
 <!-- wrapper end -->
 <div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div >
 <!-- script Fragment -->
-<input type="hidden" id="dependentFindUrl" name="" data-th-value="${dependentFindUrl}">
+<input type="hidden" id="dependentFindUrl" name="" data-th-value="${dependentFindUrl}" >
 <script >
-    $("#dependent").change(function () {
-        let url = $("#dependentFindUrl").val()+$(this).val();
+    $("#employee").change(function () {
+        let url = $("#dependentFindUrl").val() + $(this).val();
         $.ajax({
             type: 'GET',
             url: url,
             success: function (resp) {
+                $("#dependent").empty();
                 addOptionTag(resp);
             },
             error: function (err) {
@@ -130,7 +130,6 @@
     });
 
     function addOptionTag(resp) {
-        $("#dependent").empty();
         $("#dependent").append(`<option value="">Please Select</option>`);
         for (let i = 0; i < resp.length; i++) {
             $("#dependent").append(`<option value="${resp[i].id}">${resp[i].name}</option>`);

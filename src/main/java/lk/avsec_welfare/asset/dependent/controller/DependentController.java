@@ -11,6 +11,7 @@ import lk.avsec_welfare.asset.dependent.entity.Enum.Relationship;
 import lk.avsec_welfare.asset.dependent.service.DependentEmployeeService;
 import lk.avsec_welfare.asset.dependent.service.DependentService;
 import lk.avsec_welfare.asset.employee.entity.Employee;
+import lk.avsec_welfare.asset.employee.entity.LiveOrNot;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.userManagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -166,17 +167,15 @@ public class DependentController {
   }
 
 
-  @GetMapping( "/{id}" )
+  @GetMapping( "/employee/{id}" )
   @ResponseBody
-  public MappingJacksonValue findByGrade(@PathVariable( "id" ) Integer id) {
+  public MappingJacksonValue findByEmployee(@PathVariable( "id" ) Integer id) {
 
-    List< DependentEmployee > dependentEmployee = dependentEmployeeService.findByEmployee(employeeService.findById(id));
+    List< DependentEmployee > dependentEmployee = dependentEmployeeService.findByEmployeeAndLiveOrNot(employeeService.findById(id), LiveOrNot.LIVE);
 
     List< Dependent > dependents = new ArrayList<>();
 
-    dependentEmployee.forEach(x -> {
-      dependents.add(x.getDependent());
-    });
+    dependentEmployee.forEach(x -> dependents.add(x.getDependent()));
 
     MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(dependents);
 

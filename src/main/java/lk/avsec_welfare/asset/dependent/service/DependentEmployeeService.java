@@ -5,6 +5,7 @@ import lk.avsec_welfare.asset.dependent.dao.DependentEmployeeDao;
 import lk.avsec_welfare.asset.dependent.entity.Dependent;
 import lk.avsec_welfare.asset.dependent.entity.DependentEmployee;
 import lk.avsec_welfare.asset.employee.entity.Employee;
+import lk.avsec_welfare.asset.employee.entity.LiveOrNot;
 import lk.avsec_welfare.util.interfaces.AbstractService;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,7 @@ public class DependentEmployeeService implements AbstractService< DependentEmplo
   public DependentEmployee persist(DependentEmployee dependent) {
     if ( dependent.getId() == null ) {
       dependent.setLiveDead(LiveDead.ACTIVE);
+      dependent.setLiveOrNot(LiveOrNot.LIVE);
     }
     return dependentEmployeeDao.save(dependent);
   }
@@ -62,6 +64,10 @@ public class DependentEmployeeService implements AbstractService< DependentEmplo
   public DependentEmployee findByDependentAndEmployee(Dependent dependent, Employee employee) {
     return dependentEmployeeDao.findByDependentAndEmployeeOne(dependent, employee);
 
+  }
+
+  public List< DependentEmployee> findByEmployeeAndLiveOrNot(Employee employee, LiveOrNot liveOrNot) {
+    return dependentEmployeeDao.findByEmployeeAndLiveOrNot(employee, liveOrNot);
   }
 
 

@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 // spring transactional annotation need to tell spring to this method work through the project
-@CacheConfig( cacheNames = "employee" )
+
 public class EmployeeService implements AbstractService< Employee, Integer > {
 
   private final EmployeeDao employeeDao;
@@ -27,19 +27,17 @@ public class EmployeeService implements AbstractService< Employee, Integer > {
     this.employeeDao = employeeDao;
   }
 
-  @Cacheable
+
   public List< Employee > findAll() {
     return employeeDao.findAll().stream().filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE)).collect(Collectors.toList());
   }
 
-  @Cacheable
+
   public Employee findById(Integer id) {
     return employeeDao.getOne(id);
   }
 
-  @Caching( evict = {@CacheEvict( value = "employee", allEntries = true )},
-      put = {@CachePut( value = "employee", key = "#employee.id" )} )
-  @Transactional
+
   public Employee persist(Employee employee) {
     if ( employee.getBoardOfDirectors() == null ) {
       employee.setBoardOfDirectors(BoardOfDirectors.MBR);
@@ -48,7 +46,7 @@ public class EmployeeService implements AbstractService< Employee, Integer > {
     return employeeDao.save(employee);
   }
 
-  @CacheEvict( allEntries = true )
+
   public boolean delete(Integer id) {
     Employee employee = employeeDao.getOne(id);
     employee.setLiveDead(LiveDead.STOP);
@@ -56,7 +54,7 @@ public class EmployeeService implements AbstractService< Employee, Integer > {
     return false;
   }
 
-  @Cacheable
+
   public List< Employee > search(Employee employee) {
     ExampleMatcher matcher = ExampleMatcher
         .matching()
@@ -75,7 +73,7 @@ public class EmployeeService implements AbstractService< Employee, Integer > {
     return employeeDao.findFirstByOrderByIdDesc();
   }
 
-  @Cacheable
+
   public Employee findByNic(String nic) {
     return employeeDao.findByNic(nic);
   }

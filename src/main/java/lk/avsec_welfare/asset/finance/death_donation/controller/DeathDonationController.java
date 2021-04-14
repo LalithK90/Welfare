@@ -2,8 +2,11 @@ package lk.avsec_welfare.asset.finance.death_donation.controller;
 
 import lk.avsec_welfare.asset.dependent.controller.DependentController;
 import lk.avsec_welfare.asset.dependent.entity.Dependent;
+import lk.avsec_welfare.asset.dependent.entity.DependentEmployee;
+import lk.avsec_welfare.asset.dependent.service.DependentEmployeeService;
 import lk.avsec_welfare.asset.dependent.service.DependentService;
 import lk.avsec_welfare.asset.employee.entity.Employee;
+import lk.avsec_welfare.asset.employee.entity.LiveOrNot;
 import lk.avsec_welfare.asset.employee.service.EmployeeFilesService;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.finance.death_donation.entity.DeathDonation;
@@ -27,16 +30,19 @@ public class DeathDonationController {
   private final MainAccountService mainAccountService;
   private final EmployeeFilesService employeeFilesService;
   private final OperatorService operatorService;
+  private final DependentEmployeeService dependentEmployeeService;
 
   public DeathDonationController(DeathDonationService deathDonationService, EmployeeService employeeService,
                                  DependentService dependentService, MainAccountService mainAccountService,
-                                 EmployeeFilesService employeeFilesService, OperatorService operatorService) {
+                                 EmployeeFilesService employeeFilesService, OperatorService operatorService,
+                                 DependentEmployeeService dependentEmployeeService) {
     this.deathDonationService = deathDonationService;
     this.employeeService = employeeService;
     this.dependentService = dependentService;
     this.mainAccountService = mainAccountService;
     this.employeeFilesService = employeeFilesService;
     this.operatorService = operatorService;
+    this.dependentEmployeeService = dependentEmployeeService;
   }
 
   @GetMapping
@@ -84,9 +90,9 @@ public class DeathDonationController {
     return "deathDonation/addDeathDonation";
   }
 
-  @PostMapping(value = {"/save","/edit"})
-  public String persist(@ModelAttribute DeathDonation deathDonation, BindingResult bindingResult,Model model){
-    if ( bindingResult.hasErrors() ){
+  @PostMapping( value = {"/save", "/edit"} )
+  public String persist(@ModelAttribute DeathDonation deathDonation, BindingResult bindingResult, Model model) {
+    if ( bindingResult.hasErrors() ) {
       model.addAttribute("deathDonation", deathDonation);
       model.addAttribute("employees", employeeService.findAll());
       model.addAttribute("addStatus", true);
@@ -96,7 +102,7 @@ public class DeathDonationController {
           .toString());
       return "deathDonation/addDeathDonation";
     }
-   DeathDonation deathDonationDb = deathDonationService.persist(deathDonation);
+    DeathDonation deathDonationDb = deathDonationService.persist(deathDonation);
     MainAccount mainAccount = mainAccountService.findByFundType(FundType.DEAD);
     if ( mainAccount == null ) {
       mainAccount = new MainAccount();
@@ -107,6 +113,13 @@ public class DeathDonationController {
                                                      mainAccount.getAmount()));
     }
     mainAccountService.persist(mainAccount);
+
+    DependentEmployee dependentEmployee =
+        dependentEmployeeService.findByDependentAndEmployee(deathDonationDb.getDependent(),
+                                                            deathDonationDb.getEmployee());
+    dependentEmployee.setLiveOrNot(LiveOrNot.NOT);
+    dependentEmployeeService.persist(dependentEmployee);
+
     return "redirect:/deathDonation";
   }
 
