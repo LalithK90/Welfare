@@ -11,9 +11,10 @@ import lk.avsec_welfare.asset.dependent.entity.Enum.Relationship;
 import lk.avsec_welfare.asset.dependent.service.DependentEmployeeService;
 import lk.avsec_welfare.asset.dependent.service.DependentService;
 import lk.avsec_welfare.asset.employee.entity.Employee;
-import lk.avsec_welfare.asset.employee.entity.LiveOrNot;
+import lk.avsec_welfare.asset.dependent.entity.Enum.BenefitedNot;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.userManagement.service.UserService;
+import lk.avsec_welfare.util.service.DateTimeAgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
@@ -35,15 +36,18 @@ public class DependentController {
   private final DependentEmployeeService dependentEmployeeService;
   private final UserService userService;
   private final EmployeeService employeeService;
+  private final DateTimeAgeService dateTimeAgeService;
 
 
   @Autowired
   public DependentController(DependentService dependentService, DependentEmployeeService dependentEmployeeService,
-                             UserService userService, EmployeeService employeeService) {
+                             UserService userService, EmployeeService employeeService,
+                             DateTimeAgeService dateTimeAgeService) {
     this.dependentService = dependentService;
     this.dependentEmployeeService = dependentEmployeeService;
     this.userService = userService;
     this.employeeService = employeeService;
+    this.dateTimeAgeService = dateTimeAgeService;
   }
 
   private String commonThing(Model model, Boolean booleanValue, Dependent dependentObject) {
@@ -171,11 +175,16 @@ public class DependentController {
   @ResponseBody
   public MappingJacksonValue findByEmployee(@PathVariable( "id" ) Integer id) {
 
-    List< DependentEmployee > dependentEmployee = dependentEmployeeService.findByEmployeeAndLiveOrNot(employeeService.findById(id), LiveOrNot.LIVE);
+    List< DependentEmployee > dependentEmployee =
+        dependentEmployeeService.findByEmployee(employeeService.findById(id)).stream().filter(x -> x.getBenefitedNot().equals(BenefitedNot.LIVE)).collect(Collectors.toList());
 
     List< Dependent > dependents = new ArrayList<>();
 
-    dependentEmployee.forEach(x -> dependents.add(x.getDependent()));
+    dependentEmployee.forEach(x -> {
+      if ( dateTimeAgeService.getAge(x.getDependent().getDob()) <= 18){
+        dependents.add(x.getDependent());
+      }
+    });
 
     MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(dependents);
 

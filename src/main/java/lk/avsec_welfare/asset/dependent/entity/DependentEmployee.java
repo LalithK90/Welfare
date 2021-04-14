@@ -3,9 +3,9 @@ package lk.avsec_welfare.asset.dependent.entity;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.dependent.entity.Enum.InsideOrOut;
+import lk.avsec_welfare.asset.dependent.entity.Enum.BenefitedNot;
 import lk.avsec_welfare.asset.dependent.entity.Enum.Relationship;
 import lk.avsec_welfare.asset.employee.entity.Employee;
-import lk.avsec_welfare.asset.employee.entity.LiveOrNot;
 import lk.avsec_welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,7 +27,7 @@ public class DependentEmployee extends AuditEntity {
     private Relationship relationship;
 
     @Enumerated(EnumType.STRING)
-    private LiveOrNot liveOrNot;
+    private BenefitedNot benefitedNot;
 
     @Enumerated(EnumType.STRING)
     private LiveDead liveDead;

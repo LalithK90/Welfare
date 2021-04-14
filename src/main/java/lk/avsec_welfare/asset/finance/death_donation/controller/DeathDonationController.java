@@ -6,7 +6,7 @@ import lk.avsec_welfare.asset.dependent.entity.DependentEmployee;
 import lk.avsec_welfare.asset.dependent.service.DependentEmployeeService;
 import lk.avsec_welfare.asset.dependent.service.DependentService;
 import lk.avsec_welfare.asset.employee.entity.Employee;
-import lk.avsec_welfare.asset.employee.entity.LiveOrNot;
+import lk.avsec_welfare.asset.dependent.entity.Enum.BenefitedNot;
 import lk.avsec_welfare.asset.employee.service.EmployeeFilesService;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.finance.death_donation.entity.DeathDonation;
@@ -117,7 +117,7 @@ public class DeathDonationController {
     DependentEmployee dependentEmployee =
         dependentEmployeeService.findByDependentAndEmployee(deathDonationDb.getDependent(),
                                                             deathDonationDb.getEmployee());
-    dependentEmployee.setLiveOrNot(LiveOrNot.NOT);
+    dependentEmployee.setBenefitedNot(BenefitedNot.NOT);
     dependentEmployeeService.persist(dependentEmployee);
 
     return "redirect:/deathDonation";
