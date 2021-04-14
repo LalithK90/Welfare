@@ -13,63 +13,23 @@
                 <div class="text-right">
                     <div text-right>
                         <button type="button" class="btn btn-info btn-sm">
-                            <a  data-th-href="${'/employee/add'}" >
+                            <a  data-th-href="${'/user/add'}" >
                                 <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
-                                <span class="text-white"> Add Employee </span></a>
+                                <span class="text-white">  Add User </span></a>
                         </button>
-                        <!--                      <button type="button" class="btn btn-success btn-sm">-->
-                        <!--                          <a  data-th-href="${'/employee'}" >-->
-                        <!--                              <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >-->
-                        <!--                              <span class="text-white"> View Employee </span></a>-->
-                        <!--                      </button>-->
-                        <!--                      <button type="button" class="btn btn-warning btn-sm hide" onclick="myEdit()">-->
-                        <!--                          //                         <a  data-th-href="${'/designation/edit/'}" >-->
-                        <!--                          <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >-->
-                        <!--                          <span class="text-white"> Edit Employee </span></a>-->
-                        <!--                      </button>-->
-                        <!--                      <button type="button" class="btn btn-danger btn-sm " display="none" onclick="myDelete()">-->
-                        <!--                          // <a  data-th-href="${'/designation/remove/'}" >-->
-                        <!--                          <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >-->
-                        <!--                          <span class="text-white"> Delete Employee </span></a>-->
-                        <!--                      </button>-->
-                        <button type="button" class="btn btn-success btn-sm">
-                            <a  data-th-href="${'/home'}" >
-                                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
-                                <span class="text-white"> Home </span></a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--form action end button---------------------------------------------------------     -->
 
-
-
-
-
-        <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="content-header">
                             <div class="row">
-                                <div class="col-md-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4>First sud Header</h4>
-                                            <form role="form">
-                                                <a class="btn btn-success" id="newUser" th:href="${'/user/add'}">
-                                                    <i class="fa fa-user-plus" style="font-size: 18px;"></i> &nbsp; Add User </a>
+                                <div class="col-md-12" >
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card">
+                                                <!--<div class="card-body">
+                                                    <h4>Secondary Header </h4>-->
+                                                <div class="card-body" >
 
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4>Secondary Header </h4>
-                                            <div class="row" id="userListTable" th:if="${not #lists.isEmpty(users)}">
-                                                <table class="table table-hover table-striped" id="myTable">
+                                                    <table id="myTable" class="table table-hover table-striped" >
+                                                        <div class="row" id="userListTable" th:if="${not #lists.isEmpty(users)}">
                                                     <thead class="thead-inverse">
                                                     <tr>
                                                         <th>Index</th>
@@ -85,8 +45,10 @@
                                                         <th th:text="${user.username}"></th>
                                                         <th th:text="${user.enabled==true?'Active':'Blocked'}"></th>
                                                         <th th:text="${{user.createdAt}}"></th>
-                                                        <th><a class="btn btn-success btn-sm" id="userView"><i
-                                                                class="fa fa-folder-open" th:href="${'/user/' + user.id}"></i>&nbsp;View</a>
+                                                        <th><a id="userView" data-th-href="${'/user/' + user.id}"
+                                                               class="btn btn-success btn-sm" ><i
+                                                                    class="fa fa-folder-open" ></i >&nbsp;View</a >
+
                                                             <a class="btn btn-primary btn-sm" id="userEdit" th:href="${'/user/edit/' + user.id}"><i
                                                                     class="fa fa-edit"></i>&nbsp;Edit</a>
                                                             <a class="btn btn-danger btn-sm" id="userRemove" th:href="${'/user/remove/' + user.id}"
@@ -97,6 +59,7 @@
                                                         </th>
                                                     </tr>
                                                     </tbody>
+                                                        </div>
                                                 </table>
                                             </div>
                                             <div class="row" id="userNotList" th:if="${ #lists.isEmpty(users)}">
@@ -112,6 +75,8 @@
                                                 </div>
 
                                         </div>
+                                                    </div>
+                                                </div>
 
 
                                     </div>

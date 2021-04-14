@@ -84,7 +84,7 @@ public class GrievancesController implements AbstractController< Grievance, Inte
     LocalDate to = dateTimeAgeService.getCurrentDate();
     LocalDate form = to.minusDays(30);
 //solution type, date range, grievance Status
-    System.out.println("grivence   " + grievancesStatus.getGrievancesStatus());
+    System.out.println("grivence11111   " + grievancesStatus.getGrievancesStatus());
 
     if ( employee.getWelfarePosition().equals(WelfarePosition.HOSS) ||
         employee.getWelfarePosition().equals(WelfarePosition.DHOSS) ||
@@ -165,6 +165,9 @@ public class GrievancesController implements AbstractController< Grievance, Inte
       grievanceStateChange.setCommentedBy(userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getEmployee().getCallingName());
       grievanceStateChangeService.persist(grievanceStateChange);
     }
+    System.out.println("greavances GrievancesStatus"+grievance.getGrievancesStatus());
+    System.out.println("greavances Priority"+grievance.getPriority());
+    System.out.println("greavances Solution Type"+grievance.getSolutionType());
     redirectAttributes.addFlashAttribute("grievancesDetail", grievancesService.persist(grievance));
     return "redirect:/grievances";
   }

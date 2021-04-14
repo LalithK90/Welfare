@@ -1,11 +1,2 @@
 todo
-instalmentTypeAdd form
-dependent view page
-workingPlace view page
-
-
-
-Error occur
-* Add Dependant
-
-Working place need to set on emoployee module
+Grievances add ok but close comment cant see end user also can edit

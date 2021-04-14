@@ -36,12 +36,14 @@ public class UserController {
     @GetMapping
     public String userPage(Model model) {
         model.addAttribute("users", userService.findAll());
+        model.addAttribute("contendHeader", "User List");
         return "user/user";
     }
 
     @GetMapping( value = "/{id}" )
     public String userView(@PathVariable( "id" ) Integer id, Model model) {
         model.addAttribute("userDetail", userService.findById(id));
+        model.addAttribute("contendHeader", "User View Details");
         return "user/user-detail";
     }
 
@@ -49,6 +51,7 @@ public class UserController {
         model.addAttribute("employeeDetailShow", true);
         model.addAttribute("employeeNotFoundShow", false);
         model.addAttribute("roleList", roleService.findAll());
+        model.addAttribute("contendHeader", "User");
         /*model.addAttribute("districtUrl", MvcUriComponentsBuilder
                 .fromMethodName(WorkingPlaceRestController.class, "getDistrict", "")
                 .build()
@@ -64,6 +67,7 @@ public class UserController {
     public String editUserFrom(@PathVariable( "id" ) Integer id, Model model) {
         model.addAttribute("user", userService.findById(id));
         model.addAttribute("addStatus", false);
+        model.addAttribute("contendHeader", "User Edit Details");
         return commonCode(model);
     }
 
@@ -72,6 +76,7 @@ public class UserController {
         model.addAttribute("addStatus", true);
         model.addAttribute("employeeDetailShow", false);
         model.addAttribute("employee", new Employee());
+        model.addAttribute("contendHeader", "Add User");
         return "user/addUser";
     }
 

@@ -13,25 +13,11 @@
                 <div class="text-right">
                     <div text-right>
                         <button type="button" class="btn btn-info btn-sm">
-                            <a  data-th-href="${'/employee/add'}" >
+                            <a  data-th-href="${'/user'}" >
                                 <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
-                                <span class="text-white"> Add Employee </span></a>
+                                <span class="text-white"> View User </span></a>
                         </button>
-                        <!--                      <button type="button" class="btn btn-success btn-sm">-->
-                        <!--                          <a  data-th-href="${'/employee'}" >-->
-                        <!--                              <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >-->
-                        <!--                              <span class="text-white"> View Employee </span></a>-->
-                        <!--                      </button>-->
-                        <!--                      <button type="button" class="btn btn-warning btn-sm hide" onclick="myEdit()">-->
-                        <!--                          //                         <a  data-th-href="${'/designation/edit/'}" >-->
-                        <!--                          <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >-->
-                        <!--                          <span class="text-white"> Edit Employee </span></a>-->
-                        <!--                      </button>-->
-                        <!--                      <button type="button" class="btn btn-danger btn-sm " display="none" onclick="myDelete()">-->
-                        <!--                          // <a  data-th-href="${'/designation/remove/'}" >-->
-                        <!--                          <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >-->
-                        <!--                          <span class="text-white"> Delete Employee </span></a>-->
-                        <!--                      </button>-->
+
                         <button type="button" class="btn btn-success btn-sm">
                             <a  data-th-href="${'/home'}" >
                                 <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
@@ -50,30 +36,16 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4>First sud Header</h4>
-                                        <form role="form">
-       <span id="formHeader"
-             th:text="${userDetail.employee.title.title}+${' '}+${userDetail.employee.name}"></span>
-
-                                            <a href="/user" class="btn btn-primary">
-                                                <i class="fa fa-list"></i>&nbsp; View List
-                                            </a>
-
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4>Secondary Header </h4>
-                                        <div class="container-fluid bg-dark formBorder">
+                                        <h4> User Detail of <span id="formHeader"
+                                                   th:text="${userDetail.employee.title.title}+${' '}+${userDetail.employee.name}"></span> </h4>
+                                        <div class="container-fluid formBorder">
                                             <div class="row">
                                                 <!--Left Side-->
-                                                <div class="form-group col-md-6 col-sm-6 text-left flex-column">
+                                                <div class="form-group col-md-12">
+
                                                     <div class="form-row">
                                                         <!--id-->
                                                         <div class="col-md-4">
@@ -92,9 +64,7 @@
                                                             <strong><span id="userName" th:text="${userDetail.username}"></span></strong>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!--Right Side-->
-                                                <div class="form-group col-md-6 col-sm-6 text-left flex-column">
+
                                                     <!--Employee Details-->
                                                     <div class="form-row">
                                                         <div class="col-md-4">
@@ -102,7 +72,17 @@
                                                         </div>
                                                         <div class="col-md-8">
                                                             <strong><span id="employeeName"
-                                                                          th:text="${userDetail.employee.name}+ ${' - '}+${userDetail.employee.nic}"></span></strong>
+                                                                          th:text="${userDetail.employee.name}"></span></strong>
+<!--                                                                          th:text="${userDetail.employee.name}+ ${' - '}+${userDetail.employee.nic}"></span></strong>-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="col-md-4">
+                                                            <label class="control-label">Employee NIC :</label>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <strong><span id="employeeNameNIC"
+                                                                          th:text="${userDetail.employee.nic}"></span></strong>
                                                         </div>
                                                     </div>
                                                     <!--Created date-->
@@ -115,16 +95,16 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-row">
-                                                        <div class="col-md-2">
+                                                        <div class="col-md-4">
                                                             <label class="control-label">Roles :</label>
                                                         </div>
-                                                        <div class="col-md-10">
+                                                        <div class="col-md-6">
                                                             <table class="table table-responsive">
                                                                 <thead>
-                                                                <tr>
-                                                                    <th>No</th>
-                                                                    <th>Name</th>
-                                                                </tr>
+<!--                                                                <tr>-->
+<!--                                                                    <th>No</th>-->
+<!--                                                                    <th>Name</th>-->
+<!--                                                                </tr>-->
                                                                 </thead>
                                                                 <tbody>
                                                                 <tr th:each="roles, count : ${userDetail.roles}">
