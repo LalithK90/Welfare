@@ -1,5 +1,6 @@
 package lk.avsec_welfare.asset.employee.controller;
 
+import lk.avsec_welfare.asset.briefing.service.BriefingService;
 import lk.avsec_welfare.asset.common_asset.model.enums.*;
 import lk.avsec_welfare.asset.dependent.entity.Enum.CurrentStatus;
 import lk.avsec_welfare.asset.dependent.entity.Enum.Relationship;
@@ -54,7 +55,7 @@ public class EmployeeController {
                               EmployeeWorkingPlaceService employeeWorkingPlaceService, DependentEmployeeService dependentEmployeeService, UserService userService,
                               DesignationService designationService,
                               DependentService dependentService,
-                              MakeAutoGenerateNumberService makeAutoGenerateNumberService) {
+                              BriefingService briefingService, MakeAutoGenerateNumberService makeAutoGenerateNumberService) {
         this.employeeService = employeeService;
         this.employeeFilesService = employeeFilesService;
 

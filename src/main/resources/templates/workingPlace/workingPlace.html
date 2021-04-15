@@ -45,9 +45,10 @@
                                                         <thead class="thead-inverse">
                                                         <tr>
                                                             <th>Index</th>
-                                                            <th>Province</th>
-                                                            <th>Contact No</th>
+                                                            <th>Working Section</th>
                                                             <th>WorkingPlace</th>
+                                                            <th>Working District</th>
+                                                            <th>Contact No</th>
                                                             <th>Email</th>
                                                             <th>Action</th>
                                                         </tr>
@@ -56,9 +57,11 @@
                                                         <tr data-th-each="workingPlace, rowCount : ${workingPlaces}"
                                                             scope="row">
                                                             <td data-th-text="${rowCount.count}"></td>
+
+                                                            <td data-th-text="${workingPlace.workingPlaceSection}"></td>
+                                                            <td data-th-text="${workingPlace.shortName}"></td>
                                                             <td data-th-text="${workingPlace.district.name}"></td>
                                                             <td data-th-text="${workingPlace.phoneNumber}"></td>
-                                                            <td data-th-text="${workingPlace.shortName.shortName}"></td>
                                                             <td data-th-text="${workingPlace.email}"></td>
                                                             <td><a class="btn btn-success btn-sm"
                                                                    data-th-href="${'/workingPlace/' + workingPlace.id}"

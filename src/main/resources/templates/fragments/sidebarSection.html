@@ -63,7 +63,7 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item" data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                        <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_SECRETORY'',''ROLE_HOSS'',''ROLE_PRESIDENT'')')}">
                             <a href="/employee" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>View Employee</p>
