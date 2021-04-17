@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+  <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+  <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+  <div class="content-wrapper" ><!-- content-wrapper Start -->
+    <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+
+    <!--form action button---------------------------------------------------------     -->
+    <div class="row m-1" >
+      <div class="col-12" >
+        <div class="text-right" >
+          <div text-right >
+            <button type="button" class="btn btn-success btn-sm mr-lg-1" >
+              <a data-th-href="${'/employee'}" >
+                <span class="info-box-icon text-white" ><i class="fas fa-folder-open mr-1" ></i ></span >
+                <span class="text-white" > View Employee </span ></a >
+            </button >
+          </div >
+        </div >
+      </div >
+    </div >
+
+  <div data-th-replace="~{censure/employeeDetail :: employeeDetailsFragment}" ></div >
+  <div class="row" >
+    <div class="col-md-12" >
+      <div class="container-fluid" data-th-fragment="censuresDetail" >
+        <!--Id-->
+        <div id="idStatus" class="form-row text-right" >
+          <div class="col-md-4" >
+            <label class="control-label" for="id" >ID :</label >
+          </div >
+          <div class="col-md-8" >
+            <p id="id" data-th-text="${id}" ></p >
+          </div >
+        </div >
+        <!--refNumber-->
+        <div id="" data-th-if="${addStatus==false}" class="form-row text-right" >
+          <div class="col-md-4" >
+            <label class="control-label" for="abc" >Ref Number :</label >
+          </div >
+          <div class="col-md-8" >
+            <p id="abc" data-th-text="${refNumber}" ></p >
+          </div >
+        </div >
+        <!--Punishment -->
+        <div class="form-row text-right" >
+          <div class="col-md-4" >
+            <label class="control-label" for="punishment" >Punishment :</label >
+          </div >
+          <div class="col-md-8" >
+            <p id="punishment" data-th-text="${punishment.name}" ></p >
+          </div >
+        </div >
+        <!--Punishment -->
+        <div class="form-row text-right" >
+          <div class="col-md-4" >
+            <label class="control-label" for="offence" >Offence :</label >
+          </div >
+          <div class="col-md-8" >
+            <p id="offence" data-th-text="${offence.name}" ></p >
+          </div >
+        </div >
+        <!--Incident Date-->
+        <div class="form-row text-right" >
+          <div class="col-md-4" >
+            <label class="control-label" for="incidentDate" >Incident Date :</label >
+          </div >
+          <div class="col-md-8" >
+            <p data-th-text="${incidentDate}" id="incidentDate" ></p >
+          </div >
+        </div >
+        <!--description-->
+        <div class="form-row text-right" >
+          <div class="col-md-4" >
+            <label class="control-label" for="description" >Description :</label >
+          </div >
+          <div class="col-md-8" >
+            <p id="description" data-th-text="${description}" ></p >
+          </div >
+        </div >
+      </div >
+    </div >
+  </div >
+</div >
+<!--images-->
+<div class="form-group col-md-12 col-sm-12 text-left flex-column " >
+  <div class="col" id="photoDetails" >
+    <div >
+      <label class="control-label " >Photo Details : </label >
+    </div >
+    <div class="row" >
+      <div class="col" id="filesList" data-th-each="file, rowStat: ${files}" >
+        <div class="col" >
+          <div class="alert alert-warning alert-dismissible fade show" role="alert" >
+            <div class="card text-center" >
+              <div class="card-body" >
+                <img id="img" class="rounded"
+                     style="height: 150px; widdata-th- 150px; border-radius: 10px"
+                     alt="Employee images" data-th-src="${file.url}" />
+              </div >
+              <div class="card-footer bg-secondary text-light text-center" >
+                <p id="imgName" data-th-text="${file.filename}" ></p >
+                <span > Uploaded Date :
+                                            <p id="imgCreateAt" data-th-text="${{file.createAt}}" ></p >
+                                            </span >
+              </div >
+            </div >
+          </div >
+        </div >
+      </div >
+    </div >
+  </div >
+</div >
+<!--button-->
+<div class="form-group col-md-12 col-sm-12 text-center flex-column ">
+  <a href="/censure">
+    <button class="btn btn-outline-secondary" type="button" tabindex="10">
+      <i class="fa fa-arrow-circle-left " style="font-size: 20px"></i>&nbsp; &nbsp;Back
+    </button>
+  </a>
+</div>
+  <script >
+    $(document).ready(function () {
+      $("#punishment, #offence").select2({
+        data: $(this).val()
+      }).addClass('form-control').addClass("text-left").addClass("text-dark");
+
+      imageSrcAttributeCheck();
+
+      $("input[name='offenceType']").prop("checked", false);
+    });
+
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        let reader = new FileReader();
+
+        reader.onload = function (e) {
+          $('#image').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
+      }
+    }
+
+    //display selected image
+    $("#imgUpload").change(function () {
+      $("#image").toggle('show');
+      readURL(this);
+
+    });
+
+    //image is not -> showing area hide
+    function imageSrcAttributeCheck() {
+      let attribute = $("#image").attr("src");
+      if (attribute === '') {
+        $("#image").toggle('hide');
+      }
+    }
+
+    $(".offenceType").change(function () {
+      $("#offence").find('option').remove();
+      $.ajax({
+        type: 'GET',
+        url: $("#offenceUrl").val() + $(this).val(),
+        success: function (resp) {
+          $("#offence").append(`<option value="">Please select</option>`);
+          $.each(resp, function () {
+            $("#offence").append(`<option value="${this.id}">${this.name}</option>`);
+          });
+          $("#offence").select2({
+            data: $(this).val()
+          }).addClass('form-control');
+        },
+        error: function (err) {
+          console.log(err);
+        }
+      });
+    });
+
+    $("#offence").change(function () {
+      $("#punishment").find('option').remove();
+      $.ajax({
+        type: 'GET',
+        url: $("#punishmentFindUrl").val() + $(this).val(),
+        success: function (resp) {
+          $("#punishment").append(`<option value="">Please select</option>`);
+          $.each(resp, function () {
+            $("#punishment").append(`<option value="${this.id}">${this.name}</option>`);
+          });
+          $("#punishment").select2({
+            data: $(this).val()
+          }).addClass('form-control');
+        },
+        error: function (err) {
+          console.log(err);
+        }
+      });
+    });
+
+  </script >

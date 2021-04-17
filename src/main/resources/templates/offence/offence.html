@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+  <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+  <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+  <div class="content-wrapper" ><!-- content-wrapper Start -->
+    <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section ><!-- content-header Start -->
+    <!--action button layer---------------------------------------------------------     -->
+    <div class="row m-1">
+      <div class="col-12">
+        <div class="text-right">
+          <div text-right>
+            <button type="button" class="btn btn-info btn-sm">
+              <a  data-th-href="${'/offence/add'}" >
+                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
+                <span class="text-white"> Add Offence</span></a>
+            </button>
+            <button type="button" class="btn btn-success btn-sm">
+              <a  data-th-href="${'/home'}" >
+                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
+                <span class="text-white"> Home </span></a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--form action end button---------------------------------------------------------     -->
+    <div class="content-header">
+      <div class="row">
+        <div class="col-md-12" >
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body" id="instituteListPresent" data-th-if="${not #lists.isEmpty(offences)}" >
+                  <h4>Secondary Header </h4>
+                    <table class="table table-hover table-striped" id="myTable" >
+        <thead >
+        <tr >
+          <th > Index</th >
+          <th > Type</th >
+          <th > Description</th >
+          <th > Modify</th >
+        </tr >
+        </thead >
+        <tbody >
+        <tr data-th-each="offence, rowCount : ${offences}" >
+          <th data-th-text="${rowCount.count}" ></th >
+          <th data-th-text="${offence.offenceType.offenceType}" ></th >
+          <th data-th-text="${offence.name}" ></th >
+          <th >
+            <a data-th-href="${'/offence/edit/' + offence.id}" class="btn btn-success btn-sm" >
+                <i class="fa fa-edit" style="font-size: 15px" ></i >&nbsp;Edit</a >
+            <a data-th-href="${'/offence/delete/' + offence.id}"
+               data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="btn btn-danger btn-sm" >
+              <i class="fa fa-trash" style="font-size: 15px" ></i > Delete</a >
+          </th >
+        </tr >
+        </tbody >
+      </table >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div >
+  </div >
+  <!--Error-->
+  <div class="row" data-th-if="${ #lists.isEmpty(offences)}" >
+    <div class="col-sm-12" >
+      <div class="alert alert-warning alert-dismissible fade show" role="alert" >
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+          <span aria-hidden="true" >&times;</span >
+        </button >
+        <h3 class="text-center text-danger" >
+          <strong >There is no offence upto now please add offence to the system using "New" button.</strong >
+        </h3 >
+      </div >
+    </div >
+
+  </div >
+</div >
+  </div >
+  <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
+</div ><!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" >
+  <script >
+    /*active boostrap alert - start*/
+    $(".alert").alert();
+    /*active boostrap alert - end*/
+  </script >
+</div>
+</div ><!-- script Fragment -->
+</body >
+</html >

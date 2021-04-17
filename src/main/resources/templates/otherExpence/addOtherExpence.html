@@ -79,7 +79,7 @@
                                                                  :</label >
 
                       <textarea id="remark" data-th-field="*{amount}"
-                                class="form-control mobile" tabindex="18"
+                                class="form-control mobile" tabindex="18" placeholder="Log No, EPF NO, Description "
                                 required ></textarea >
                       <span class="error" data-th-errors="*{amount}"
                             data-th-if="${#fields.hasErrors('amount')}"
@@ -89,12 +89,12 @@
                     <div class="card-footer " >
                       <button type="submit" class="btn btn-primary float-right ml-2" tabindex="28" >
                         <i data-th-class="${addStatus==true?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}" ></i >
-                        <span data-th-text="${addStatus==true?'Save' : 'Update'}" ></span >
+                        <span data-th-text="${addStatus==true?'Update' : 'Save'}" ></span >
                       </button >
 
                       <button type="clear" class="btn btn-primary float-right" >
                         <i data-th-class="${addStatus==true?'fa fa-save mr-1':'fa fa-thumbs-down mr-1'}" ></i >
-                        <span data-th-text="${addStatus==true?'Clear' : 'Reset'}" ></span >
+                        <span data-th-text="${addStatus==true?'Reset' : 'Clear'}" ></span >
                       </button >
                     </div >
                   </form >
