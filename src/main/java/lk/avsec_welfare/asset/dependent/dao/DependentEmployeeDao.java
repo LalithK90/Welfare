@@ -3,6 +3,7 @@ package lk.avsec_welfare.asset.dependent.dao;
 import lk.avsec_welfare.asset.dependent.entity.Dependent;
 import lk.avsec_welfare.asset.dependent.entity.DependentEmployee;
 import lk.avsec_welfare.asset.employee.entity.Employee;
+import lk.avsec_welfare.asset.dependent.entity.Enum.BenefitedNot;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +16,7 @@ public interface DependentEmployeeDao extends JpaRepository<DependentEmployee, I
     Dependent findByDependent(Dependent dependent);
 
     DependentEmployee findByDependentAndEmployeeOne(Dependent dependent, Employee employee);
+
 
 
 /*//select * from district where province = ?1

@@ -2,12 +2,12 @@ package lk.avsec_welfare.asset.finance.other_expence.controller;
 
 
 
-import lk.avsec_welfare.asset.finance.entity.Enum.FundType;
-import lk.avsec_welfare.asset.finance.entity.MainAccount;
+import lk.avsec_welfare.asset.finance.main_account.entity.Enum.FundType;
+import lk.avsec_welfare.asset.finance.main_account.entity.MainAccount;
 import lk.avsec_welfare.asset.finance.other_expence.entity.OtherExpence;
 import lk.avsec_welfare.asset.finance.other_expence.entity.enums.OtherExpenseType;
 import lk.avsec_welfare.asset.finance.other_expence.service.OtherExpenceService;
-import lk.avsec_welfare.asset.finance.service.MainAccountService;
+import lk.avsec_welfare.asset.finance.main_account.service.MainAccountService;
 import lk.avsec_welfare.util.service.OperatorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

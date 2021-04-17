@@ -4,6 +4,7 @@ import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.dependent.dao.DependentDao;
 import lk.avsec_welfare.asset.dependent.entity.Dependent;
 import lk.avsec_welfare.asset.dependent.entity.Enum.CurrentStatus;
+import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.util.interfaces.AbstractService;
 import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;

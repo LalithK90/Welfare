@@ -1,5 +1,8 @@
 package lk.avsec_welfare.asset.dependent.controller;
 
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import lk.avsec_welfare.asset.dependent.entity.Dependent;
 import lk.avsec_welfare.asset.dependent.entity.DependentEmployee;
 import lk.avsec_welfare.asset.dependent.entity.Enum.CurrentStatus;
@@ -8,9 +11,12 @@ import lk.avsec_welfare.asset.dependent.entity.Enum.Relationship;
 import lk.avsec_welfare.asset.dependent.service.DependentEmployeeService;
 import lk.avsec_welfare.asset.dependent.service.DependentService;
 import lk.avsec_welfare.asset.employee.entity.Employee;
+import lk.avsec_welfare.asset.dependent.entity.Enum.BenefitedNot;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.userManagement.service.UserService;
+import lk.avsec_welfare.util.service.DateTimeAgeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +24,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
@@ -28,15 +36,18 @@ public class DependentController {
   private final DependentEmployeeService dependentEmployeeService;
   private final UserService userService;
   private final EmployeeService employeeService;
+  private final DateTimeAgeService dateTimeAgeService;
 
 
   @Autowired
   public DependentController(DependentService dependentService, DependentEmployeeService dependentEmployeeService,
-                             UserService userService, EmployeeService employeeService) {
+                             UserService userService, EmployeeService employeeService,
+                             DateTimeAgeService dateTimeAgeService) {
     this.dependentService = dependentService;
     this.dependentEmployeeService = dependentEmployeeService;
     this.userService = userService;
     this.employeeService = employeeService;
+    this.dateTimeAgeService = dateTimeAgeService;
   }
 
   private String commonThing(Model model, Boolean booleanValue, Dependent dependentObject) {
@@ -159,6 +170,34 @@ public class DependentController {
     return "redirect:/dependent";
   }
 
+
+  @GetMapping( "/employee/{id}" )
+  @ResponseBody
+  public MappingJacksonValue findByEmployee(@PathVariable( "id" ) Integer id) {
+
+    List< DependentEmployee > dependentEmployee =
+        dependentEmployeeService.findByEmployee(employeeService.findById(id)).stream().filter(x -> x.getBenefitedNot().equals(BenefitedNot.LIVE)).collect(Collectors.toList());
+
+    List< Dependent > dependents = new ArrayList<>();
+
+    dependentEmployee.forEach(x -> {
+      if ( dateTimeAgeService.getAge(x.getDependent().getDob()) <= 18){
+        dependents.add(x.getDependent());
+      }
+    });
+
+    MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(dependents);
+
+    SimpleBeanPropertyFilter forBatch = SimpleBeanPropertyFilter
+        .filterOutAllExcept("id", "name");
+
+    FilterProvider filters = new SimpleFilterProvider()
+        .addFilter("Dependent", forBatch);
+
+    mappingJacksonValue.setFilters(filters);
+
+    return mappingJacksonValue;
+  }
 
 }
 /*

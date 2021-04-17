@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+  <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+  <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+  <div class="content-wrapper" ><!-- content-wrapper Start -->
+    <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+                                <!-- content-header Start -->
+                                <!--action button layer---------------------------------------------------------     -->
+    <div class="row m-1" >
+      <div class="col-12" >
+        <div class="text-right" >
+          <div text-right >
+            <button type="button" class="btn btn-info btn-sm" >
+              <a data-th-href="${'/employee/add'}" >
+                <span class="info-box-icon text-white" ><i class="fa fa-plus mr-1" ></i ></span >
+                <span class="text-white" > Add Employee </span ></a >
+            </button >
+            <button type="button" class="btn btn-success btn-sm" >
+              <a data-th-href="${'/home'}" >
+                <span class="info-box-icon text-white" ><i class="fas fa-home mr-1" ></i ></span >
+                <span class="text-white" > Home </span ></a >
+            </button >
+          </div >
+        </div >
+      </div >
+    </div >
+                                <!--form action end button---------------------------------------------------------     -->
+
+
+    <div class="content-header" >
+      <div class="container-fluid" >
+        <div class="row" >
+          <div class="col-md-12" >
+            <div class="row" >
+
+              <div class="col-md-12" >
+                <div class="card" >
+                  <div class="card-body" >
+                    <form th:action="${addStatus==false?'/deathDonation/save' :'/deathDonation/update'}"
+                          method="post" th:object="${deathDonation}" >
+                      <!--Id-->
+                      <div class="form-group row" th:if="${addStatus==true}" >
+                        <label for="id" class="form-label " > Id </label >
+                        <input type="text" class="form-control" th:field="*{id}" id="id" readonly />
+                      </div >
+                      <!--Employee Name-->
+                      <div class="form-group row" >
+                        <label th:for="${'employees'}" class="form-label " >
+                          Employee Name </label >
+                        <select class="form-control" th:field="*{employee}" required >
+                          <option value="" selected >Please Select</option >
+                          <option th:each="employee : ${employees}"
+                                  th:text="${employee.name}"
+                                  th:value="${employee.id}" >
+                          </option >
+                        </select >
+                      </div >
+                      <!--Dependent Name-->
+                      <div class="form-group row" >
+                        <label th:for="${'dependent'}" class="form-label " >
+                          Dependent Name </label >
+                        <select id="dependent" class="form-control" th:field="*{dependent}" required >
+                          <option value="" selected >Please Select</option >
+                        </select >
+                      </div >
+                      <!--Amount-->
+                      <div class="form-group row" >
+                        <label th:for="${'amount'}" class="form-label " >
+                          Amount </label >
+                        <input id="amount" th:field="*{amount}"
+                               class="form-control col-10"
+                               type="text" tabindex="2" required />
+                        <span th:errors="*{amount}"
+                              th:if="${#fields.hasErrors('amount')}"
+                              class="error" >Error Name</span >
+                      </div >
+                      <!--Remark new-->
+                      <div class="form-group" >
+                        <label th:for="${'remark'}" class="form-label " > Remark </label >
+                        <textarea type="text" class="form-control" th:field="*{remark}"
+                                  required ></textarea >
+                      </div >
+                      <!--button-->
+                      <div class="form-group row" >
+                        <button type="submit" class="btn btn-primary" >
+                          <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}" ></i >
+                          <span
+                                th:text="${addStatus==false?'Save' : 'Update'}" ></span >
+                        </button >
+                      </div >
+                    </form >
+                  </div >
+                </div >
+              </div >
+            </div >
+          </div >
+        </div >
+      </div >
+    </div >
+                                <!-- content-wrapper end -->
+  </div >
+  <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div >
+                      <!-- footer Section -->
+</div >
+<!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div >
+<!-- script Fragment -->
+<input type="hidden" id="dependentFindUrl" name="" data-th-value="${dependentFindUrl}" >
+<script >
+    $("#employee").change(function () {
+        let url = $("#dependentFindUrl").val() + $(this).val();
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function (resp) {
+                $("#dependent").empty();
+                addOptionTag(resp);
+            },
+            error: function (err) {
+                console.log(err);
+                swal({
+                    title: "There is no more dependent who selected to this benifit",
+                    icon: "warning",
+                });
+            }
+        });
+    });
+
+    function addOptionTag(resp) {
+        $("#dependent").append(`<option value="">Please Select</option>`);
+        for (let i = 0; i < resp.length; i++) {
+            $("#dependent").append(`<option value="${resp[i].id}">${resp[i].name}</option>`);
+        }
+    }
+</script >
+</body >
+</html >

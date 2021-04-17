@@ -14,15 +14,17 @@ $(document).ready(function () {
 
 
     /*//--------------- data table short using - data table plugin ------- start //*/
-    $("#myTable").DataTable({
-        "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
-        "ordering": false,
-        stateSave: true,
-    });
+    if ($("#myTable").val()) {
+        $("#myTable").DataTable({
+            "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+            "ordering": false,
+            stateSave: true,
+        });
+    }
     /*//--------------- data table short using - data table plugin ------- start //*/
 
     /*When edit employee if there is a nic number need to select relevant gender*/
-    if ($("#nic").val() !== null || $("#nic").val() === undefined){
+    if ($("#nic").val()){
         $("input:radio[name=gender]").filter(`[value=${calculateGender($("#nic").val())}]`).prop('checked',true);
     }
 
@@ -546,16 +548,6 @@ let deleteAllTableRow = function (tableName) {
     }
 };
 
-/*jquery - ui function*/
-//$( "input" ).checkboxradio;
-
-$(function () {
-    $("#").resizable({
-        autoHide: true,
-        aspectRatio: true,
-        ghost: true,
-    });
-});
 
 //$( ".login" ).draggable();
 //$( "#dateOfBirth" ).datepicker;
@@ -651,7 +643,7 @@ if (mm < 10) {
     mm = '0' + mm;
 }
 today = mm + '-' + dd + '-' + yyyy;
-console.log(today);
+
 document.getElementById("headerDate").innerText = today;
 
 /*
