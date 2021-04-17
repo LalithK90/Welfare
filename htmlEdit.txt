@@ -1,5 +1,19 @@
 todo
-Grievances add ok but close comment cant see end user also can edit
 
+* Employee controller create employee no but entity class not respond it
+* Affter fill promotion it will direct promotion page should rederect to employee module (by myself)
+* In working place should show short code
+* Medical duplicate - give error msg(need validate in HTML)
+* Grievances add ok but close comment cant see end user also can edit
+* addInstalment.html need to add Name for line 21
+* add user -> liveDead field not update (Active)
+* Side bar section add loging data with photo
+* NIC EPF Duplicate come to error page it not mention at application
+
+
+employeeWorkingPlace
+instalmentType
+otherExpence
+otherFundReceiving
 
 <a data-sec-authorize="hasAnyAuthority('ROLE_HOSS','ROLE_PRESIDENT','ROLE_TREASURE', 'ROLE_AGENT','ROLE_MEMBER')"  data-th-href="@{'/employee'}" class="nav-link text-primary"> Employee Management </a>

@@ -1,6 +1,7 @@
 package lk.avsec_welfare.asset.employee.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import lk.avsec_welfare.asset.censure.entitiy.Censure;
 import lk.avsec_welfare.asset.common_asset.model.enums.*;
 import lk.avsec_welfare.asset.common_asset.model.FileInfo;
 import lk.avsec_welfare.asset.dependent.entity.DependentEmployee;
@@ -145,6 +146,9 @@ public class Employee extends AuditEntity {
 
   @OneToMany( mappedBy = "employee" )
   private List< Qualification > qualifications;
+
+  @OneToMany( mappedBy = "employee" )
+  private List<Censure> censures;
 
   @OneToMany( mappedBy = "employeeOne" )
   private List< DependentEmployee > dependentEmployees;
