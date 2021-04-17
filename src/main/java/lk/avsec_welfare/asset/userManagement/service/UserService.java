@@ -45,7 +45,7 @@ public class UserService implements AbstractService< User, Integer > {
   @Transactional
   public User persist(User user) {
     user.setUsername(user.getUsername().toLowerCase());
-    if ( user.getId() != null ) {
+    if ( user.getId() == null ) {
       user.setLiveDead(LiveDead.ACTIVE);
     }
     if ( user.getPassword() != null ) {
@@ -59,7 +59,7 @@ public class UserService implements AbstractService< User, Integer > {
   @CacheEvict( allEntries = true )
   public boolean delete(Integer id) {
     User user = userDao.getOne(id);
-    user.setLiveDead(LiveDead.ACTIVE);
+    user.setLiveDead(LiveDead.STOP);
     userDao.save(user);
     return false;
   }
