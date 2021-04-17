@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+    <div class="content-wrapper" ><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+
+        <!--form action button---------------------------------------------------------     -->
+        <div class="row m-1" >
+            <div class="col-12" >
+                <div class="text-right" >
+                    <div text-right >
+                        <button type="button" class="btn btn-success btn-sm mr-lg-1" >
+                            <a data-th-href="${'/employee'}" >
+                                <span class="info-box-icon text-white" ><i class="fas fa-folder-open mr-1" ></i ></span >
+                                <span class="text-white" > View Employee </span ></a >
+                        </button >
+                    </div >
+                </div >
+            </div >
+        </div >
+<!--heading Area-->
+<div class="container-fluid  ">
+    <div class="row text-center ">
+        <!--View List Button-->
+        <div class="col">
+            <a class="btn btn-primary" href="/punishment">
+                <i class="fa fa-list" style="font-size: 20px"></i>&nbsp;&nbsp;View List
+            </a>
+        </div>
+        <!--Category Name-->
+        <div class="col">
+            <h2  class="text-center">
+                <strong>
+                    <span data-th-text="${punishmentDetail.punishmentType.punishmentType}"></span>
+                </strong>
+            </h2>
+        </div>
+        <!--Home Button-->
+        <div class="col">
+            <a class="btn btn-primary" href="/home">
+                <i class="fa fa-home" style="font-size: 20px"></i> &nbsp;&nbsp;Home
+            </a>
+        </div>
+    </div>
+</div>
+<!--details-->
+<div class="container-fluid " >
+    <div class="col-sm-12 flex-column " data-th-fragment="punishmentDetailsFragment">
+        <div class="row">
+            <div class="form-group col-md-12 col-sm-12 text-center flex-column ">
+                <!--id-->
+                <div class="form-row text-right">
+                    <div class="col-md-4">
+                        <label class="control-label" for="id">ID :</label>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="display_detail" id="id" data-th-text="${punishmentDetail.id}"></p>
+                    </div>
+                </div>
+                <!--Prison Type-->
+                <div class="form-row text-right">
+                    <div class="col-md-4">
+                        <label class="control-label" for="mainCategory">Main Category :</label>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="display_detail" id="mainCategory"
+                           data-th-text="${punishmentDetail.getOffenceType.prisonType}"></p>
+                    </div>
+                </div>
+                <!--Name-->
+                <div class="form-row text-right">
+                    <div class="col-md-4">
+                        <label class="control-label">Name :</label>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="display_detail"
+                           data-th-utext="${punishmentDetail.name}"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--Back Button-->
+    <div class="form-group col-md-12 col-sm-12 text-center flex-column ">
+        <a href="/punishment">
+            <button class="btn btn-dark" tabindex="10" type="button">
+                <i class="fas fa-arrow-circle-left" style="font-size: 20px"></i>&nbsp; &nbsp;Back
+            </button>
+        </a>
+    </div>
+    <br/>
+</div>
+
+
+    </div >
+    <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
+</div ><!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div ><!-- script Fragment -->
+</body >
+</html >

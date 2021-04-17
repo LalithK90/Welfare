@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+    <div class="content-wrapper" ><!-- content-wrapper Start -->
+        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section ><!-- content-header Start -->
+        <!--action button layer---------------------------------------------------------     -->
+        <div class="row m-1">
+            <div class="col-12">
+                <div class="text-right">
+                    <div text-right>
+                        <button type="button" class="btn btn-info btn-sm">
+                            <a  data-th-href="${'/offence'}" >
+                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
+                                <span class="text-white"> View Offence </span></a>
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm">
+                            <a  data-th-href="${'/home'}" >
+                                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
+                                <span class="text-white"> Home </span></a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--form action end button---------------------------------------------------------     -->
+
+        <div class="content-header">
+            <div class="row">
+                <div class="col-md-12" >
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                               <div class="card-body" >
+                                   <h4><span data-th-text="${addStatus==true?'Add New Offence':'Update Offence Details'}"></span></h4>
+
+
+
+
+                    <!--Id-->
+            <table class="table table-hover table-borderless" >
+                <form class="form-horizontal" data-th-action="${addStatus==true?'/offence/save':'/offence/update'}"
+                      data-th-object="${offence}" enctype="multipart/form-data" method="POST">
+                <input data-th-field="*{id}" data-th-if="${addStatus==false}" hidden type="text"/>
+                <tr>
+                    <th>
+                        <label class="control-label" for="mainOffence">Offence Type :</label>
+                    </th>
+                    <td>
+                        <select class="form-control" data-th-field="*{offenceType}" id="mainOffence" required
+                                style="font-size: large" tabindex="4">
+                            <option value="">Please select</option>
+                            <option data-th-each="offenceType : ${offenceTypes}"
+                                    data-th-text="${offenceType.offenceType}"
+                                    data-th-value="${offenceType}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label class="control-label" data-th-for="${'name'}">Name :</label>
+                    </th>
+                    <td>
+                        <input id="name" data-th-field="*{name}"
+                               class="form-control"
+                               type="text" tabindex="2" required />
+                        <span id="nameError" data-th-errors="*{name}"
+                              data-th-if="${#fields.hasErrors('name')}"
+                              class="error" >Error Name</span >
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+
+                    </th>
+                    <td>
+                        <button class="btn btn-primary btn-sm" type="button">
+                            <i class="fas fa-arrow-circle-left" style="font-size: 20px"></i>&nbsp;&nbsp;Back
+                        </button>
+                        <button class="btn btn-success btn-sm ml-5" tabindex="21" type="submit">
+                            <i class="fa fa-save " style="font-size: 20px"></i>&nbsp;&nbsp;<span
+                                data-th-text="${addStatus==true?'Save': 'Update'}"
+                                id="submit"></span>
+                        </button>
+                        <button class="btn btn-warning btn-sm ml-5" tabindex="21" type="reset">
+                            <i class="far fa-times-circle" style="font-size: 20px"></i>&nbsp;&nbsp;Cancel
+                        </button>
+                    </td>
+                </tr>
+                <div class="form-row">
+                    <label data-th-if="${#fields.hasErrors('*')}" data-th-text="'Errors: '"
+                           id="errorLabel">Errors: </label>
+                    <ul>
+                        <li class="error" data-th-each="err: ${#fields.errors('*')}" data-th-text="${err}"
+                            id="error"></li>
+                    </ul>
+                </div>
+                </form>
+            </table>
+
+
+
+    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--footer include-->
+
+    </div >
+    <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
+</div ><!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div ><!-- script Fragment -->
+</body >
+</html >

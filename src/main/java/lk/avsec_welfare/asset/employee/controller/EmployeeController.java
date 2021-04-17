@@ -1,6 +1,7 @@
 package lk.avsec_welfare.asset.employee.controller;
 
 import lk.avsec_welfare.asset.briefing.service.BriefingService;
+import lk.avsec_welfare.asset.censure.service.CensureService;
 import lk.avsec_welfare.asset.common_asset.model.enums.*;
 import lk.avsec_welfare.asset.dependent.entity.Enum.CurrentStatus;
 import lk.avsec_welfare.asset.dependent.entity.Enum.Relationship;
@@ -39,6 +40,7 @@ import java.util.*;
 @RequestMapping("/employee")
 public class EmployeeController {
     private final EmployeeService employeeService;
+    private final CensureService censureService;
     private final EmployeeFilesService employeeFilesService;
     private final DateTimeAgeService dateTimeAgeService;
     private final WorkingPlaceService workingPlaceService;
@@ -53,7 +55,7 @@ public class EmployeeController {
     public EmployeeController(EmployeeService employeeService, EmployeeFilesService employeeFilesService,
                               DateTimeAgeService dateTimeAgeService, WorkingPlaceService workingPlaceService,
                               EmployeeWorkingPlaceService employeeWorkingPlaceService, DependentEmployeeService dependentEmployeeService, UserService userService,
-                              DesignationService designationService,
+                              DesignationService designationService,CensureService censureService,
                               DependentService dependentService,
                               BriefingService briefingService, MakeAutoGenerateNumberService makeAutoGenerateNumberService) {
         this.employeeService = employeeService;
@@ -64,6 +66,7 @@ public class EmployeeController {
         this.employeeWorkingPlaceService = employeeWorkingPlaceService;
         this.dependentEmployeeService = dependentEmployeeService;
         this.userService = userService;
+        this.censureService = censureService;
         this.designationService = designationService;
         this.dependentService = dependentService;
         this.makeAutoGenerateNumberService = makeAutoGenerateNumberService;
@@ -77,6 +80,7 @@ public class EmployeeController {
         model.addAttribute("civilStatus", CivilStatus.values());
         model.addAttribute("employeeStatus", EmployeeStatus.values());
         model.addAttribute("designation", designationService.findAll());
+        model.addAttribute("employees", employeeService.findAll());
         model.addAttribute("bloodGroup", BloodGroup.values());
         model.addAttribute("nationality", Nationality.values());
         model.addAttribute("religion", Religion.values());
@@ -129,8 +133,10 @@ public class EmployeeController {
     @GetMapping(value = "/edit/{id}")
     public String editEmployeeForm(@PathVariable("id") Integer id, Model model) {
         Employee employee = employeeService.findById(id);
+        employee.setCensures(censureService.findByEmployee(employee));
         model.addAttribute("employee", employee);
         model.addAttribute("newEmployee", employee.getEpf());
+
         model.addAttribute("addStatus", false);
         model.addAttribute("contendHeader", "Employee Edit Details");
         model.addAttribute("file", employeeFilesService.employeeFileDownloadLinks(employee));
@@ -144,6 +150,28 @@ public class EmployeeController {
         model.addAttribute("employee", new Employee());
         model.addAttribute("contendHeader", "Employee Add");
         return commonThings(model);
+    }
+    @GetMapping( value = "/findAll" )
+    public String findAllForm(Model model) {
+        model.addAttribute("employee", new Employee());
+        return "employee/findEmployee";
+    }
+
+    @PostMapping( value = "/findAll" )
+    public String findAll(@ModelAttribute( "employee" ) Employee employee, Model model) {
+
+        List< Employee > employees = employeeService.search(employee);
+
+        if ( employees == null ) {
+            model.addAttribute("employeeNotFound", "There is not employee in the system according to the provided details" +
+                    " or that employee already be a user in the system" +
+                    " \n Could you please search again !!");
+        } else {
+            model.addAttribute("employees", employees);
+        }
+
+        model.addAttribute("employee", new Employee());
+        return "employee/findEmployee";
     }
 
 

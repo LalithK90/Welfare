@@ -17,21 +17,7 @@
                               <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
                               <span class="text-white"> Add Employee </span></a>
                       </button>
-<!--                      <button type="button" class="btn btn-success btn-sm">-->
-<!--                          <a  data-th-href="${'/employee'}" >-->
-<!--                              <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >-->
-<!--                              <span class="text-white"> View Employee </span></a>-->
-<!--                      </button>-->
-<!--                      <button type="button" class="btn btn-warning btn-sm hide" onclick="myEdit()">-->
-<!--                          //                         <a  data-th-href="${'/designation/edit/'}" >-->
-<!--                          <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >-->
-<!--                          <span class="text-white"> Edit Employee </span></a>-->
-<!--                      </button>-->
-<!--                      <button type="button" class="btn btn-danger btn-sm " display="none" onclick="myDelete()">-->
-<!--                          // <a  data-th-href="${'/designation/remove/'}" >-->
-<!--                          <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >-->
-<!--                          <span class="text-white"> Delete Employee </span></a>-->
-<!--                      </button>-->
+
                       <button type="button" class="btn btn-success btn-sm">
                           <a  data-th-href="${'/home'}" >
                               <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
@@ -89,7 +75,7 @@
                       </td >
                       <td data-th-text="${employee.name}" ></td >
 <!--                      <td data-th-text="${employee.mobileOne}" ></td >-->
-                      <td data-th-if="${employee.designation != null}" data-th-text="${employee.designation.name}" ></td >
+                      <td data-th-if="${employee.designation != null}" data-th-text="${employee.designation.shortName}" ></td >
                       <td data-th-if="${employee.designation == null}" data-th-text="${'Not mentioned'}" ></td >
 <!--                      <td data-th-text="${employee.employeeStatus.employeeStatus}" ></td >-->
                       <td >
@@ -113,6 +99,8 @@
                         <a data-th-href="${'/qualification/add/' + employee.id}" class="btn btn-info btn-sm" ><i
                               class="fa fa-address-card" ></i >
                           Qualification</a >
+                          <a data-th-href="${'/censure/add/' + employee.id}" class="btn btn-info btn-sm" ><i
+                                  class="fa fa-edit" ></i >&nbsp;Censure</a >
                           <a data-th-href="${'/employeeWorkingPlace/add/' + employee.id}" class="btn btn-info btn-sm" ><i
                                   class="fa fa-address-card" ></i >
                               Working Place</a >

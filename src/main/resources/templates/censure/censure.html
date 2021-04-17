@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+  <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+  <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+  <div class="content-wrapper" ><!-- content-wrapper Start -->
+    <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+
+    <!--form action button---------------------------------------------------------     -->
+    <div class="row m-1" >
+      <div class="col-12" >
+        <div class="text-right" >
+          <div text-right >
+            <button type="button" class="btn btn-success btn-sm mr-lg-1" >
+              <a data-th-href="${'/employee'}" >
+                <span class="info-box-icon text-white" ><i class="fas fa-folder-open mr-1" ></i ></span >
+                <span class="text-white" > View Employee </span ></a >
+            </button >
+          </div >
+        </div >
+      </div >
+    </div >
+<!--heading Area-->
+<div class="container-fluid  form-Border" >
+  <div class="row text-center " >
+    <div class="col" >
+      <a href="/home" id="btnHome" class="btn btn-outline-info" >
+        &nbsp;Back To Home&nbsp;
+      </a >
+    </div >
+
+    <div class="col" >
+      <a class="btn btn-info" href="/employee/findAll" ><i class="fa fa-plus" ></i >
+        &nbsp;Add New</a >
+    </div >
+
+  </div >
+  <div class="row text-center" >
+    <div class="col" >
+      <h4 class="text-info text-center" >
+        <strong >
+          Employee Censure Management
+        </strong >
+      </h4 >
+    </div >
+  </div >
+</div >
+<div class="container-fluid  text-center" >
+
+  <table class="table table-hover table-striped" id="myTable" data-th-if="${not #lists.isEmpty(censures)}" >
+    <thead class="thead-inverse" >
+    <tr >
+      <th >Index</th >
+      <th >Ref Number</th >
+      <th >Employee Name</th >
+      <th >Incident Date</th >
+      <th >Offence</th >
+      <th >Modify</th >
+    </tr >
+    </thead >
+    <tbody >
+    <tr data-th-each="censure, rowCount : ${censures}" scope="row" >
+      <th data-th-text="${rowCount.count}" ></th >
+      <th data-th-text="${censure.refNumber}" ></th >
+      <th data-th-text="${censure.employee.name}" ></th >
+      <th data-th-text="${{censure.incidentDate}}" ></th >
+      <th data-th-text="${censure.offence.name}" ></th >
+      <th >
+        <a class="btn btn-primary btn-sm" data-th-href="${'/censure/edit/' + censure.id}" ><i
+              class="fa fa-edit" ></i >&nbsp;Edit</a >
+        <a class="btn btn-danger btn-sm" data-th-href="${'/censure/remove/' + censure.id}"
+           data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" ><i aria-hidden="true"
+                                                                                    class="fa fa-trash" ></i >
+          Delete</a >
+
+      </th >
+    </tr >
+    </tbody >
+  </table >
+
+  <!--if empty list-->
+  <div class="row" id="qualificationNotList" data-th-if="${ #lists.isEmpty(censures)}" >
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" >
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+        <span aria-hidden="true" >&times;</span >
+      </button >
+      <h3 class="text-center text-danger" >
+        <strong >There is no censure upto know please add censure to the system
+                 using add button.
+        </strong >
+      </h3 >
+    </div >
+  </div >
+</div >
+
+  </div >
+  <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
+</div ><!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div ><!-- script Fragment -->
+</body >
+</html >
