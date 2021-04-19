@@ -1,7 +1,11 @@
 
 <html xmlns:v="urn:schemas-microsoft-com:vml"
 xmlns:o="urn:schemas-microsoft-com:office:office"
-xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:w="urn:schemas-microsoft-com:office:word"![Capture](https://user-images.githubusercontent.com/9116177/115271000-84148d00-a15a-11eb-87fb-24e42131b08c.PNG)
+![Capture2](https://user-images.githubusercontent.com/9116177/115271026-8971d780-a15a-11eb-98dc-c90257c325eb.PNG)
+![Capture3](https://user-images.githubusercontent.com/9116177/115271041-8b3b9b00-a15a-11eb-999e-8f45b23cc413.PNG)
+![Uploading Capture4.PNG…]()
+
 xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
 xmlns="http://www.w3.org/TR/REC-html40">
 
