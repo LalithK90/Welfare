@@ -1,6 +1,7 @@
 package lk.avsec_welfare.asset.report;
 
 import lk.avsec_welfare.asset.common_asset.model.TwoDate;
+import lk.avsec_welfare.asset.finance.death_donation.entity.DeathDonation;
 import lk.avsec_welfare.asset.finance.death_donation.service.DeathDonationService;
 import lk.avsec_welfare.asset.finance.instalment.service.InstalmentService;
 import lk.avsec_welfare.asset.finance.main_account.entity.Enum.OtherFundReceivingType;
@@ -15,7 +16,6 @@ import lk.avsec_welfare.asset.userManagement.entity.User;
 import lk.avsec_welfare.asset.userManagement.service.RoleService;
 import lk.avsec_welfare.asset.userManagement.service.UserService;
 import lk.avsec_welfare.util.service.DateTimeAgeService;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -170,12 +170,11 @@ public class ReportController {
     LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(startDate);
     LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(endDate);
 
-    Role role = roleService.findByRoleName("AGENT");
-    List< User > users = role.getUsers();
-//todo
+    List< DeathDonation > deathDonations = deathDonationService.findByCreatedAtIsBetween(startDateTime, endDateTime);
 
   //  model.addAttribute("otherFundReceivingTypeAmounts", otherFundReceivingTypeAmounts);
 
+    model.addAttribute
     return "report/otherFundReceivingType";
   }
 
