@@ -9,6 +9,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -40,10 +41,14 @@ public class DeathDonationService implements AbstractService< DeathDonation, Int
 
     public List< DeathDonation > search(DeathDonation otherExpence) {
         ExampleMatcher matcher = ExampleMatcher
-                .matching()
-                .withIgnoreCase()
-                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+            .matching()
+            .withIgnoreCase()
+            .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
         Example< DeathDonation > debitExample = Example.of(otherExpence, matcher);
         return deathDonationDao.findAll(debitExample);
+    }
+
+    public List< DeathDonation > search(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        return deathDonationDao.findByCreatedAtIsBetween(startDateTime, endDateTime);
     }
 }

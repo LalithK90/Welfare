@@ -9,6 +9,8 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -45,5 +47,9 @@ public class OtherFundReceivingService implements AbstractService<OtherFundRecei
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
         Example<OtherFundReceiving> debitExample = Example.of(otherFundReceiving, matcher);
         return otherFundReceivingDao.findAll(debitExample);
+    }
+
+  public List<OtherFundReceiving> findByCreatedAtIsBetween(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+  return otherFundReceivingDao.findByCreatedAtIsBetween(startDateTime, endDateTime);
     }
 }

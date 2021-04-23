@@ -1,18 +1,19 @@
 package lk.avsec_welfare.asset.censure.controller;
 
 import lk.avsec_welfare.asset.censure.entitiy.Censure;
-import lk.avsec_welfare.asset.censure.entitiy.Censure;
 import lk.avsec_welfare.asset.censure.service.CensureService;
 import lk.avsec_welfare.asset.censure_file.entity.CensureFiles;
 import lk.avsec_welfare.asset.censure_file.service.CensureFilesService;
-import lk.avsec_welfare.asset.employee.controller.EmployeeController;
+import lk.avsec_welfare.asset.dependent.service.DependentEmployeeService;
+import lk.avsec_welfare.asset.employee.entity.Employee;
+import lk.avsec_welfare.asset.employee.service.EmployeeFilesService;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
+import lk.avsec_welfare.asset.employee_working_place.service.EmployeeWorkingPlaceService;
 import lk.avsec_welfare.asset.offence.controller.OffenceController;
 import lk.avsec_welfare.asset.offence.entity.enums.OffenceType;
 import lk.avsec_welfare.asset.offence.service.OffenceService;
 import lk.avsec_welfare.asset.punishment.controller.PunishmentController;
 import lk.avsec_welfare.asset.punishment.service.PunishmentService;
-import lk.avsec_welfare.util.interfaces.AbstractController;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,21 +27,30 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/censure")
-public abstract class CensureController implements AbstractController< Censure, Integer> {
+public class CensureController  {
     private final CensureService censureService;
     private final CensureFilesService censureFilesService;
     private final EmployeeService employeeService;
     private final PunishmentService punishmentService;
     private final OffenceService offenceService;
+    private final EmployeeFilesService employeeFilesService;
+    private final EmployeeWorkingPlaceService employeeWorkingPlaceService;
+    private final DependentEmployeeService dependentEmployeeService;
 
     public CensureController(CensureService censureService,
                              CensureFilesService censureFilesService, EmployeeService employeeService,
-                             PunishmentService punishmentService, OffenceService offenceService) {
+                             PunishmentService punishmentService, OffenceService offenceService,
+                             EmployeeFilesService employeeFilesService,
+                             EmployeeWorkingPlaceService employeeWorkingPlaceService,
+                             DependentEmployeeService dependentEmployeeService) {
         this.censureService = censureService;
         this.censureFilesService = censureFilesService;
         this.employeeService = employeeService;
         this.punishmentService = punishmentService;
         this.offenceService = offenceService;
+        this.employeeFilesService = employeeFilesService;
+        this.employeeWorkingPlaceService = employeeWorkingPlaceService;
+        this.dependentEmployeeService = dependentEmployeeService;
     }
 
 
@@ -68,11 +78,13 @@ public abstract class CensureController implements AbstractController< Censure, 
 
     @GetMapping("/add/{id}")
     public String form(@PathVariable("id")Integer id , Model model) {
-        model.addAttribute("employeeDetail", employeeService.findById(id));
+        Employee employee = employeeService.findById(id);
+        model.addAttribute("employeeDetail", employee);
         model.addAttribute("addStatus", true);
+
+
         model.addAttribute("offenceTypes", OffenceType.values());
-       // model.addAttribute("offences", offenceService.findAll());
-      //  model.addAttribute("punishments", punishmentService.findAll());
+
         model.addAttribute("censure", new Censure());
         model.addAttribute("punishmentFindUrl", MvcUriComponentsBuilder
             .fromMethodName(PunishmentController.class, "findByOffence", "")
