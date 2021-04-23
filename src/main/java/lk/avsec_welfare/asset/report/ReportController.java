@@ -8,10 +8,13 @@ import lk.avsec_welfare.asset.finance.death_donation.service.DeathDonationServic
 import lk.avsec_welfare.asset.finance.instalment.service.InstalmentService;
 import lk.avsec_welfare.asset.finance.main_account.entity.Enum.OtherFundReceivingType;
 import lk.avsec_welfare.asset.finance.main_account.service.MainAccountService;
+import lk.avsec_welfare.asset.finance.other_expence.entity.OtherExpence;
+import lk.avsec_welfare.asset.finance.other_expence.entity.enums.OtherExpenseType;
 import lk.avsec_welfare.asset.finance.other_expence.service.OtherExpenceService;
 import lk.avsec_welfare.asset.finance.other_fund_receiving.entity.OtherFundReceiving;
 import lk.avsec_welfare.asset.finance.other_fund_receiving.service.OtherFundReceivingService;
 import lk.avsec_welfare.asset.grievances.service.GrievancesService;
+import lk.avsec_welfare.asset.report.model.OtherExpenseCountAmount;
 import lk.avsec_welfare.asset.report.model.OtherFundReceivingTypeAmount;
 import lk.avsec_welfare.asset.userManagement.entity.Role;
 import lk.avsec_welfare.asset.userManagement.entity.User;
@@ -120,6 +123,95 @@ public class ReportController {
     return "report/otherFundReceivingType";
   }
 
+  @GetMapping( "/deathDonation" )
+  public String deathDonation(Model model) {
+    LocalDate localDate = LocalDate.now();
+    String message = "This report is belongs to " + localDate;
+    TwoDate twoDate = new TwoDate();
+    twoDate.setEndDate(localDate);
+    twoDate.setStartDate(localDate);
+
+    return commonDeathDonation(twoDate, model, message);
+  }
+
+  @PostMapping( "/deathDonation" )
+  public String deathDonationSearch(@ModelAttribute TwoDate twoDate, Model model) {
+    String message = "This report is belongs from " + twoDate.getStartDate() + " to " + twoDate.getEndDate();
+    model.addAttribute("message", message);
+    return commonDeathDonation(twoDate, model, message);
+  }
+
+  private String commonDeathDonation(TwoDate twoDate, Model model, String message) {
+    LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
+    LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
+
+    List< DeathDonation > deathDonations = deathDonationService.findByCreatedAtIsBetween(startDateTime, endDateTime);
+
+    if ( twoDate.getId() == null ) {
+      model.addAttribute("deathDonations", deathDonations);
+    } else {
+      Employee employee = employeeService.findById(twoDate.getId());
+      model.addAttribute("deathDonations",
+                         deathDonations.stream().filter(x -> x.getEmployee().equals(employee)).collect(Collectors.toList()));
+      model.addAttribute("employeeDetail", employee);
+      message =
+          message + " \n This report is belongs to epf number " + employee.getEpf() + " name " + employee.getName();
+    }
+    model.addAttribute("message", message);
+    model.addAttribute("employees", employeeService.findAll());
+    return "report/otherFundReceivingType";
+  }
+
+
+  //5. expense types  vs  amounts
+  @GetMapping( "/otherExpense" )
+  public String otherExpense(Model model) {
+    LocalDate localDate = LocalDate.now();
+    String message = "This report is belongs to " + localDate;
+    model.addAttribute("message", message);
+    TwoDate twoDate = new TwoDate();
+    twoDate.setEndDate(localDate);
+    twoDate.setStartDate(localDate);
+    return commonDeathDonation(twoDate, model);
+  }
+
+
+  @PostMapping( "/otherExpense" )
+  public String otherExpenseSearch(@ModelAttribute TwoDate twoDate, Model model) {
+    String message = "This report is belongs from " + twoDate.getStartDate() + " to " + twoDate.getEndDate();
+    model.addAttribute("message", message);
+    return commonDeathDonation(twoDate, model);
+  }
+
+  private String commonOtherExpense(TwoDate twoDate, Model model) {
+    LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
+    LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
+
+
+    List< OtherExpence > otherExpenses = otherExpenceService.findByCreatedAtIsBetween(startDateTime, endDateTime);
+    List< OtherExpenseCountAmount > otherExpenseCountAmounts = new ArrayList<>();
+    for ( OtherExpenseType otherExpenseType : OtherExpenseType.values() ) {
+      OtherExpenseCountAmount otherExpenseCountAmount = new OtherExpenseCountAmount();
+      otherExpenseCountAmount.setOtherExpenseType(otherExpenseType);
+      List< OtherExpence > otherExpenseByOtherExpenseType =
+          otherExpenses.stream().filter(x -> x.getOtherExpenseType().equals(otherExpenseType)).collect(Collectors.toCollection());
+      otherExpenseCountAmount.setRecordCounter(otherExpenseByOtherExpenseType.size());
+      List< BigDecimal > otherExpenceByOtherExpenseTypeAmount = new ArrayList<>();
+
+      otherExpenseByOtherExpenseType.forEach(x -> otherExpenceByOtherExpenseTypeAmount.add(x.getAmount()));
+      otherExpenseCountAmount.setAmount(otherExpenceByOtherExpenseTypeAmount.stream().reduce(BigDecimal.ZERO,
+                                                                                             BigDecimal::add));
+      otherExpenseCountAmounts.add(otherExpenseCountAmount);
+
+    }
+
+
+    model.addAttribute("otherExpenseCountAmounts", otherExpenseCountAmounts);
+
+    return "report/otherFundReceivingType";
+  }
+
+
   //2. agent vise collection reporting
 
   @GetMapping( "/agentVise" )
@@ -154,78 +246,6 @@ public class ReportController {
   }
 
   //3. death donation
-  @GetMapping( "/deathDonation" )
-  public String deathDonation(Model model) {
-    LocalDate localDate = LocalDate.now();
-    String message = "This report is belongs to " + localDate;
-    TwoDate twoDate = new TwoDate();
-    twoDate.setEndDate(localDate);
-    twoDate.setStartDate(localDate);
-
-    return commonDeathDonation(twoDate, model, message);
-  }
-
-
-  @PostMapping( "/deathDonation" )
-  public String deathDonationSearch(@ModelAttribute TwoDate twoDate, Model model) {
-    String message = "This report is belongs from " + twoDate.getStartDate() + " to " + twoDate.getEndDate();
-    model.addAttribute("message", message);
-    return commonDeathDonation(twoDate, model, message);
-  }
-
-  private String commonDeathDonation(TwoDate twoDate, Model model, String message) {
-    LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
-    LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
-
-    List< DeathDonation > deathDonations = deathDonationService.findByCreatedAtIsBetween(startDateTime, endDateTime);
-
-    if ( twoDate.getId() == null ) {
-      model.addAttribute("deathDonations", deathDonations);
-    } else {
-      Employee employee = employeeService.findById(twoDate.getId());
-      model.addAttribute("deathDonations",
-                         deathDonations.stream().filter(x -> x.getEmployee().equals(employee)).collect(Collectors.toList()));
-      model.addAttribute("employeeDetail", employee);
-      message =
-          message + " \n This report is belongs to epf number " + employee.getEpf() + " name " + employee.getName();
-    }
-    model.addAttribute("message", message);
-    model.addAttribute("employees", employeeService.findAll());
-    return "report/otherFundReceivingType";
-  }
-
-  //5. expense types  vs  amounts
-  @GetMapping( "/otherExpense" )
-  public String otherExpense(Model model) {
-    LocalDate localDate = LocalDate.now();
-    String message = "This report is belongs to " + localDate;
-    model.addAttribute("message", message);
-    TwoDate twoDate = new TwoDate();
-    twoDate.setEndDate(localDate);
-    twoDate.setStartDate(localDate);
-    return commonDeathDonation(twoDate, model);
-  }
-
-
-  @PostMapping( "/otherExpense" )
-  public String otherExpenseSearch(@ModelAttribute TwoDate twoDate, Model model) {
-    String message = "This report is belongs from " + twoDate.getStartDate() + " to " + twoDate.getEndDate();
-    model.addAttribute("message", message);
-    return commonDeathDonation(twoDate, model);
-  }
-
-  private String commonOtherExpense(LocalDate startDate, LocalDate endDate, Model model) {
-    LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(startDate);
-    LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(endDate);
-
-    Role role = roleService.findByRoleName("AGENT");
-    List< User > users = role.getUsers();
-//todo
-
-//    model.addAttribute("otherFundReceivingTypeAmounts", otherFundReceivingTypeAmounts);
-
-    return "report/otherFundReceivingType";
-  }
 
 
 }

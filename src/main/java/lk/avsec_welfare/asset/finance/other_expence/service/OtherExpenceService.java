@@ -9,6 +9,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -40,10 +41,14 @@ public class OtherExpenceService implements AbstractService< OtherExpence, Integ
 
     public List< OtherExpence > search(OtherExpence otherExpence) {
         ExampleMatcher matcher = ExampleMatcher
-                .matching()
-                .withIgnoreCase()
-                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+            .matching()
+            .withIgnoreCase()
+            .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
         Example< OtherExpence > debitExample = Example.of(otherExpence, matcher);
         return otherExpenceDao.findAll(debitExample);
+    }
+
+    public List< OtherExpence > findByCreatedAtIsBetween(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        return otherExpenceDao.findByCreatedAtIsBetween(startDateTime, endDateTime);
     }
 }
