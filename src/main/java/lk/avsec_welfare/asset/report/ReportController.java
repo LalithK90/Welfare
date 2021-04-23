@@ -1,6 +1,8 @@
 package lk.avsec_welfare.asset.report;
 
 import lk.avsec_welfare.asset.common_asset.model.TwoDate;
+import lk.avsec_welfare.asset.employee.entity.Employee;
+import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.finance.death_donation.entity.DeathDonation;
 import lk.avsec_welfare.asset.finance.death_donation.service.DeathDonationService;
 import lk.avsec_welfare.asset.finance.instalment.service.InstalmentService;
@@ -42,12 +44,14 @@ public class ReportController {
   private final GrievancesService grievancesService;
   private final DateTimeAgeService dateTimeAgeService;
   private final RoleService roleService;
+  private final EmployeeService employeeService;
 
   public ReportController(MainAccountService mainAccountService, UserService userService,
                           DeathDonationService deathDonationService, InstalmentService instalmentService,
                           OtherExpenceService otherExpenceService,
                           OtherFundReceivingService otherFundReceivingService, GrievancesService grievancesService,
-                          DateTimeAgeService dateTimeAgeService, RoleService roleService) {
+                          DateTimeAgeService dateTimeAgeService, RoleService roleService,
+                          EmployeeService employeeService) {
     this.mainAccountService = mainAccountService;
     this.userService = userService;
     this.deathDonationService = deathDonationService;
@@ -57,6 +61,7 @@ public class ReportController {
     this.grievancesService = grievancesService;
     this.dateTimeAgeService = dateTimeAgeService;
     this.roleService = roleService;
+    this.employeeService = employeeService;
   }
 
   //1. main account service according to type
@@ -72,15 +77,15 @@ public class ReportController {
     LocalDate localDate = LocalDate.now();
     String message = "This report is belongs to " + localDate;
     model.addAttribute("message", message);
-    return commonOtherFundReceivingType(localDate, localDate,model);
+    return commonOtherFundReceivingType(localDate, localDate, model);
   }
 
 
   @PostMapping( "/otherFundReceivingType" )
   public String donationReportSearch(@ModelAttribute TwoDate twoDate, Model model) {
-    String message = "This report is belongs from " + twoDate.getStartDate() + " to "+ twoDate.getEndDate();
+    String message = "This report is belongs from " + twoDate.getStartDate() + " to " + twoDate.getEndDate();
     model.addAttribute("message", message);
-    return commonOtherFundReceivingType(twoDate.getStartDate(), twoDate.getEndDate(),model);
+    return commonOtherFundReceivingType(twoDate.getStartDate(), twoDate.getEndDate(), model);
   }
 
   private String commonOtherFundReceivingType(LocalDate startDate, LocalDate endDate, Model model) {
@@ -122,15 +127,15 @@ public class ReportController {
     LocalDate localDate = LocalDate.now();
     String message = "This report is belongs to " + localDate;
     model.addAttribute("message", message);
-    return commonAgentVise(localDate, localDate,model);
+    return commonAgentVise(localDate, localDate, model);
   }
 
 
   @PostMapping( "/agentVise" )
   public String agentViseSearch(@ModelAttribute TwoDate twoDate, Model model) {
-    String message = "This report is belongs from " + twoDate.getStartDate() + " to "+ twoDate.getEndDate();
+    String message = "This report is belongs from " + twoDate.getStartDate() + " to " + twoDate.getEndDate();
     model.addAttribute("message", message);
-    return commonAgentVise(twoDate.getStartDate(), twoDate.getEndDate(),model);
+    return commonAgentVise(twoDate.getStartDate(), twoDate.getEndDate(), model);
   }
 
   private String commonAgentVise(LocalDate startDate, LocalDate endDate, Model model) {
@@ -143,8 +148,7 @@ public class ReportController {
 //todo
 
 
-
-  //  model.addAttribute("otherFundReceivingTypeAmounts", otherFundReceivingTypeAmounts);
+    //  model.addAttribute("otherFundReceivingTypeAmounts", otherFundReceivingTypeAmounts);
 
     return "report/agent";
   }
@@ -154,27 +158,39 @@ public class ReportController {
   public String deathDonation(Model model) {
     LocalDate localDate = LocalDate.now();
     String message = "This report is belongs to " + localDate;
-    model.addAttribute("message", message);
-    return commonDeathDonation(localDate, localDate,model);
+    TwoDate twoDate = new TwoDate();
+    twoDate.setEndDate(localDate);
+    twoDate.setStartDate(localDate);
+
+    return commonDeathDonation(twoDate, model, message);
   }
 
 
   @PostMapping( "/deathDonation" )
   public String deathDonationSearch(@ModelAttribute TwoDate twoDate, Model model) {
-    String message = "This report is belongs from " + twoDate.getStartDate() + " to "+ twoDate.getEndDate();
+    String message = "This report is belongs from " + twoDate.getStartDate() + " to " + twoDate.getEndDate();
     model.addAttribute("message", message);
-    return commonDeathDonation(twoDate.getStartDate(), twoDate.getEndDate(),model);
+    return commonDeathDonation(twoDate, model, message);
   }
 
-  private String commonDeathDonation(LocalDate startDate, LocalDate endDate, Model model) {
-    LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(startDate);
-    LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(endDate);
+  private String commonDeathDonation(TwoDate twoDate, Model model, String message) {
+    LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
+    LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
 
     List< DeathDonation > deathDonations = deathDonationService.findByCreatedAtIsBetween(startDateTime, endDateTime);
 
-  //  model.addAttribute("otherFundReceivingTypeAmounts", otherFundReceivingTypeAmounts);
-
-    model.addAttribute
+    if ( twoDate.getId() == null ) {
+      model.addAttribute("deathDonations", deathDonations);
+    } else {
+      Employee employee = employeeService.findById(twoDate.getId());
+      model.addAttribute("deathDonations",
+                         deathDonations.stream().filter(x -> x.getEmployee().equals(employee)).collect(Collectors.toList()));
+      model.addAttribute("employeeDetail", employee);
+      message =
+          message + " \n This report is belongs to epf number " + employee.getEpf() + " name " + employee.getName();
+    }
+    model.addAttribute("message", message);
+    model.addAttribute("employees", employeeService.findAll());
     return "report/otherFundReceivingType";
   }
 
@@ -184,15 +200,18 @@ public class ReportController {
     LocalDate localDate = LocalDate.now();
     String message = "This report is belongs to " + localDate;
     model.addAttribute("message", message);
-    return commonDeathDonation(localDate, localDate,model);
+    TwoDate twoDate = new TwoDate();
+    twoDate.setEndDate(localDate);
+    twoDate.setStartDate(localDate);
+    return commonDeathDonation(twoDate, model);
   }
 
 
   @PostMapping( "/otherExpense" )
   public String otherExpenseSearch(@ModelAttribute TwoDate twoDate, Model model) {
-    String message = "This report is belongs from " + twoDate.getStartDate() + " to "+ twoDate.getEndDate();
+    String message = "This report is belongs from " + twoDate.getStartDate() + " to " + twoDate.getEndDate();
     model.addAttribute("message", message);
-    return commonDeathDonation(twoDate.getStartDate(), twoDate.getEndDate(),model);
+    return commonDeathDonation(twoDate, model);
   }
 
   private String commonOtherExpense(LocalDate startDate, LocalDate endDate, Model model) {
