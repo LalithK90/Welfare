@@ -10,8 +10,12 @@ import lk.avsec_welfare.asset.finance.other_fund_receiving.entity.OtherFundRecei
 import lk.avsec_welfare.asset.finance.other_fund_receiving.service.OtherFundReceivingService;
 import lk.avsec_welfare.asset.grievances.service.GrievancesService;
 import lk.avsec_welfare.asset.report.model.OtherFundReceivingTypeAmount;
+import lk.avsec_welfare.asset.userManagement.entity.Role;
+import lk.avsec_welfare.asset.userManagement.entity.User;
+import lk.avsec_welfare.asset.userManagement.service.RoleService;
 import lk.avsec_welfare.asset.userManagement.service.UserService;
 import lk.avsec_welfare.util.service.DateTimeAgeService;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,12 +41,13 @@ public class ReportController {
   private final OtherFundReceivingService otherFundReceivingService;
   private final GrievancesService grievancesService;
   private final DateTimeAgeService dateTimeAgeService;
+  private final RoleService roleService;
 
   public ReportController(MainAccountService mainAccountService, UserService userService,
                           DeathDonationService deathDonationService, InstalmentService instalmentService,
                           OtherExpenceService otherExpenceService,
                           OtherFundReceivingService otherFundReceivingService, GrievancesService grievancesService,
-                          DateTimeAgeService dateTimeAgeService) {
+                          DateTimeAgeService dateTimeAgeService, RoleService roleService) {
     this.mainAccountService = mainAccountService;
     this.userService = userService;
     this.deathDonationService = deathDonationService;
@@ -51,6 +56,7 @@ public class ReportController {
     this.otherFundReceivingService = otherFundReceivingService;
     this.grievancesService = grievancesService;
     this.dateTimeAgeService = dateTimeAgeService;
+    this.roleService = roleService;
   }
 
   //1. main account service according to type
@@ -67,6 +73,14 @@ public class ReportController {
     String message = "This report is belongs to " + localDate;
     model.addAttribute("message", message);
     return commonOtherFundReceivingType(localDate, localDate,model);
+  }
+
+
+  @PostMapping( "/otherFundReceivingType" )
+  public String donationReportSearch(@ModelAttribute TwoDate twoDate, Model model) {
+    String message = "This report is belongs from " + twoDate.getStartDate() + " to "+ twoDate.getEndDate();
+    model.addAttribute("message", message);
+    return commonOtherFundReceivingType(twoDate.getStartDate(), twoDate.getEndDate(),model);
   }
 
   private String commonOtherFundReceivingType(LocalDate startDate, LocalDate endDate, Model model) {
@@ -101,18 +115,99 @@ public class ReportController {
     return "report/otherFundReceivingType";
   }
 
-  @PostMapping( "/otherFundReceivingType" )
-  public String donationReportSearch(@ModelAttribute TwoDate twoDate, Model model) {
-    String message = "This report is belongs from " + twoDate.getStartDate() + " to "+ twoDate.getEndDate();
+  //2. agent vise collection reporting
+
+  @GetMapping( "/agentVise" )
+  public String agentVise(Model model) {
+    LocalDate localDate = LocalDate.now();
+    String message = "This report is belongs to " + localDate;
     model.addAttribute("message", message);
-    return commonOtherFundReceivingType(twoDate.getStartDate(), twoDate.getEndDate(),model);
+    return commonAgentVise(localDate, localDate,model);
   }
 
 
-  //2. agent vise collection reporting
+  @PostMapping( "/agentVise" )
+  public String agentViseSearch(@ModelAttribute TwoDate twoDate, Model model) {
+    String message = "This report is belongs from " + twoDate.getStartDate() + " to "+ twoDate.getEndDate();
+    model.addAttribute("message", message);
+    return commonAgentVise(twoDate.getStartDate(), twoDate.getEndDate(),model);
+  }
+
+  private String commonAgentVise(LocalDate startDate, LocalDate endDate, Model model) {
+    LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(startDate);
+    LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(endDate);
+
+    Role role = roleService.findByRoleName("AGENT");
+    List< User > users = role.getUsers();
+
+//todo
+
+
+
+  //  model.addAttribute("otherFundReceivingTypeAmounts", otherFundReceivingTypeAmounts);
+
+    return "report/agent";
+  }
+
   //3. death donation
-  //4. instalment versus payment
+  @GetMapping( "/deathDonation" )
+  public String deathDonation(Model model) {
+    LocalDate localDate = LocalDate.now();
+    String message = "This report is belongs to " + localDate;
+    model.addAttribute("message", message);
+    return commonDeathDonation(localDate, localDate,model);
+  }
+
+
+  @PostMapping( "/deathDonation" )
+  public String deathDonationSearch(@ModelAttribute TwoDate twoDate, Model model) {
+    String message = "This report is belongs from " + twoDate.getStartDate() + " to "+ twoDate.getEndDate();
+    model.addAttribute("message", message);
+    return commonDeathDonation(twoDate.getStartDate(), twoDate.getEndDate(),model);
+  }
+
+  private String commonDeathDonation(LocalDate startDate, LocalDate endDate, Model model) {
+    LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(startDate);
+    LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(endDate);
+
+    Role role = roleService.findByRoleName("AGENT");
+    List< User > users = role.getUsers();
+//todo
+
+  //  model.addAttribute("otherFundReceivingTypeAmounts", otherFundReceivingTypeAmounts);
+
+    return "report/otherFundReceivingType";
+  }
+
   //5. expense types  vs  amounts
-  //6. other expense vs amounts
-  //7. grievances vs types
+  @GetMapping( "/otherExpense" )
+  public String otherExpense(Model model) {
+    LocalDate localDate = LocalDate.now();
+    String message = "This report is belongs to " + localDate;
+    model.addAttribute("message", message);
+    return commonDeathDonation(localDate, localDate,model);
+  }
+
+
+  @PostMapping( "/otherExpense" )
+  public String otherExpenseSearch(@ModelAttribute TwoDate twoDate, Model model) {
+    String message = "This report is belongs from " + twoDate.getStartDate() + " to "+ twoDate.getEndDate();
+    model.addAttribute("message", message);
+    return commonDeathDonation(twoDate.getStartDate(), twoDate.getEndDate(),model);
+  }
+
+  private String commonOtherExpense(LocalDate startDate, LocalDate endDate, Model model) {
+    LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(startDate);
+    LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(endDate);
+
+    Role role = roleService.findByRoleName("AGENT");
+    List< User > users = role.getUsers();
+//todo
+
+//    model.addAttribute("otherFundReceivingTypeAmounts", otherFundReceivingTypeAmounts);
+
+    return "report/otherFundReceivingType";
+  }
+
+
 }

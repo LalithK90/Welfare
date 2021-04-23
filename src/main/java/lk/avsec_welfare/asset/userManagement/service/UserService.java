@@ -31,7 +31,8 @@ public class UserService implements AbstractService< User, Integer > {
 
   @Cacheable
   public List< User > findAll() {
-    return userDao.findAll().stream().filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE)).collect(Collectors.toList());
+    return userDao.findAll()
+        .stream().filter(x -> x.getLiveDead().equals(LiveDead.ACTIVE)).collect(Collectors.toList());
   }
 
   @Cacheable
