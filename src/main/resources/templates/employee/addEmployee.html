@@ -31,16 +31,15 @@
               <div class="col-md-12" >
                 <div class="card" >
                   <div class="card-body" >
-                    <!-- <h4>
-                       <div data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"/>
-                     </h4>-->
-
+                   <h4 data-th-text="${addStatus==true?'Employee Add' :'Employee Update'}"></h4>
+                    <hr/>
                     <form data-th-action="${addStatus==true?'/employee/save' :'/employee/update'}"
                           method="post" data-th-object="${employee}" enctype="multipart/form-data" >
 
 
                       <!--Employee personal data-->
                       <div class="row" >
+
                         <!--left side-->
                         <div class="col-md-6" ><!--Left Side-->
                                                <!--ID -->
@@ -511,6 +510,14 @@
                                  readonly />
                         </div >
                         <hr >
+<!--                        Error Massage------------------------- -->
+                        <div class="form-row" >
+                          <label id="errorLabel" data-th-if="${#fields.hasErrors('*')}" data-th-text="'Errors: '" >Errors: </label >
+                          <ul >
+                            <li id="error" data-th-each="err : ${#fields.errors('*')}" data-th-text="${err}" class="error" ></li >
+                          </ul >
+                        </div >
+<!--                        Error Massage end --------------------------------->
 
                       </div >
                       <div class="card-footer " >

@@ -48,6 +48,7 @@ public class DeathDonationController {
   @GetMapping
   public String findAll(Model model) {
     model.addAttribute("deathDonations", deathDonationService.findAll());
+    model.addAttribute("contendHeader", "Death Donation View Details");
     return "deathDonation/deathDonation";
   }
 
@@ -59,7 +60,7 @@ public class DeathDonationController {
     model.addAttribute("deathDonationDetail", deathDonation);
     model.addAttribute("employeeDetail", employee);
     model.addAttribute("addStatus", false);
-    model.addAttribute("contendHeader", "Employee View Details");
+    model.addAttribute("contendHeader", "Death Donation View Details");
     model.addAttribute("files", employeeFilesService.employeeFileDownloadLinks(employee));
     model.addAttribute("dependentDetail", dependent);
 
@@ -71,6 +72,7 @@ public class DeathDonationController {
     model.addAttribute("deathDonation", new DeathDonation());
     model.addAttribute("employees", employeeService.findAll());
     model.addAttribute("addStatus", false);
+    model.addAttribute("contendHeader", "Death Donation Add");
     model.addAttribute("dependentFindUrl", MvcUriComponentsBuilder
         .fromMethodName(DependentController.class, "findByEmployee", "")
         .build()
@@ -83,6 +85,7 @@ public class DeathDonationController {
     model.addAttribute("deathDonation", deathDonationService.findById(id));
     model.addAttribute("employees", employeeService.findAll());
     model.addAttribute("addStatus", true);
+    model.addAttribute("contendHeader", "Death Donation Update");
     model.addAttribute("dependentFindUrl", MvcUriComponentsBuilder
         .fromMethodName(DependentController.class, "findByEmployee", "")
         .build()

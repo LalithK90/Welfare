@@ -28,7 +28,7 @@ public class BriefingController implements AbstractController< Briefing, Integer
         model.addAttribute("priorities", Priority.values());
         model.addAttribute("addStatus", booleanValue);
         model.addAttribute("briefing", briefingObject);
-//        model.addAttribute("contendHeader", "Add Briefing");
+        model.addAttribute("contendHeader", "Briefing");
         return "briefing/addBriefing";
     }
     //id, name, toWhom, notices, priority date
@@ -43,7 +43,9 @@ public class BriefingController implements AbstractController< Briefing, Integer
     @GetMapping("/add")
     public String form(Model model) {
 
+        model.addAttribute("contendHeader", "Briefing Add");
         return commonThing(model, false, new Briefing());
+
     }
 
     @GetMapping("/{id}")

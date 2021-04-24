@@ -11,12 +11,16 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
+
+
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 <img src="/img/prasad.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">W B Prasad</a>
+                <a><span data-th-text="${#authentication.name}"></span></a>
+
+
             </div>
         </div>
 <!--        <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_PRESIDENT')"  data-th-href="@{'/employee'}" class="nav-link text-primary"> Employee Management </a>-->

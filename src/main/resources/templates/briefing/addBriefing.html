@@ -13,69 +13,17 @@
                 <div class="text-right">
                     <div text-right>
                         <button type="button" class="btn btn-info btn-sm">
-                            <a  data-th-href="${'/employee/add'}" >
-                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
-                                <span class="text-white"> Add Employee </span></a>
-                        </button>
-                        <!--                      <button type="button" class="btn btn-success btn-sm">-->
-                        <!--                          <a  data-th-href="${'/employee'}" >-->
-                        <!--                              <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >-->
-                        <!--                              <span class="text-white"> View Employee </span></a>-->
-                        <!--                      </button>-->
-                        <!--                      <button type="button" class="btn btn-warning btn-sm hide" onclick="myEdit()">-->
-                        <!--                          //                         <a  data-th-href="${'/designation/edit/'}" >-->
-                        <!--                          <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >-->
-                        <!--                          <span class="text-white"> Edit Employee </span></a>-->
-                        <!--                      </button>-->
-                        <!--                      <button type="button" class="btn btn-danger btn-sm " display="none" onclick="myDelete()">-->
-                        <!--                          // <a  data-th-href="${'/designation/remove/'}" >-->
-                        <!--                          <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >-->
-                        <!--                          <span class="text-white"> Delete Employee </span></a>-->
-                        <!--                      </button>-->
-                        <button type="button" class="btn btn-success btn-sm">
-                            <a  data-th-href="${'/home'}" >
-                                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
-                                <span class="text-white"> Home </span></a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--form action end button---------------------------------------------------------     -->
-
-
-        <!--form action button---------------------------------------------------------     -->
-        <div class="row m-1">
-            <div class="col-12">
-                <div class="text-right">
-                    <div text-right>
-                        <button type="button" class="btn btn-info btn-sm">
                             <a  data-th-href="${'/briefing/add'}" >
                                 <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
                                 <span class="text-white"> Add Briefing </span></a>
                         </button>
-                        <button type="button" class="btn btn-success btn-sm disabled">
-                            <a  data-th-href="${'/briefing'}" >
-                                <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >
-                                <span class="text-white"> View Briefing </span></a>
-                        </button>
-                        <button type="button" class="btn btn-warning btn-sm" onclick="myEdit()">
-                            <!--                            <a  data-th-href="${'/designation/edit/'}" >-->
-                            <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >
-                            <span class="text-white"> Edit Briefing </span></a>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="myDelete()">
-                            <!--                            <a  data-th-href="${'/designation/remove/'}" >-->
-                            <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >
-                            <span class="text-white"> Delete Briefing </span></a>
 
-                        </button>
                     </div>
                 </div>
             </div>
-
         </div>
         <!--form action end button---------------------------------------------------------     -->
+
         <!-- Form Header/Path end-->
 <!--Page header -->
         <div class="content-header">
@@ -86,6 +34,10 @@
                             <div class="col-md-12">
 
                                 <div class="card">
+                                    <div class="card-header">
+                                        <h4 data-th-text="${addStatus==true?'Briefing Update' :'Briefing Add'}"></h4>
+
+                                    </div>
                                     <div class="card-body">
                                         <form th:action="${addStatus==false?'/briefing/save' :'/briefing/update'}" method="post" th:object="${briefing}"
                                               class="mt-3">
@@ -101,19 +53,19 @@
                                                 </tr>
                                                 <tr>
                                                     <th><label th:for="${'name'}" class="form-label "> Name </label></th>
-                                                    <td><input type="text" class="form-control" th:field="*{name}" required>
+                                                    <td><input type="text" class="form-control" th:field="*{name}" placeholder="By HOSS" required>
                                                         <p class="text-danger" th:if="${#fields.hasErrors('name')}"
                                                            th:errors="*{name}">Error Name</p></td>
                                                 </tr>
                                                 <tr>
                                                     <th><label th:for="${'toWhom'}" class="form-label "> To Whom </label></th>
-                                                    <td><input type="text" class="form-control" th:field="*{toWhom}" required>
+                                                    <td><input type="text" class="form-control" th:field="*{toWhom}" placeholder="By All" required>
                                                         <p class="text-danger" th:if="${#fields.hasErrors('toWhom')}"
                                                            th:errors="*{toWhom}">Error toWhom</p></td>
                                                 </tr>
                                                 <tr>
                                                     <th><label th:for="${'notices'}" class="form-label "> Subject </label></th>
-                                                    <td><textarea class="form-control" th:field="*{subject}"></textarea>
+                                                    <td><textarea class="form-control" th:field="*{subject}" placeholder="The Hon President Deputure on 27.02.2020"></textarea>
                                                         <p class="text-danger" th:if="${#fields.hasErrors('subject')}"
                                                            th:errors="*{subject}">Error subject</p></td>
                                                 </tr>
@@ -143,7 +95,14 @@
                                                     <td><button type="submit" class="btn btn-primary">
                                                         <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i> <span
                                                             th:text="${addStatus==false?'Save' : 'Update'}"></span>
-                                                    </button></td>
+                                                    </button>
+                                                    <button type="reset" class="btn btn-primary">
+                                                        <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-down mr-1'}"></i> <span
+                                                            th:text="${addStatus==false?'Clear' : 'Reset'}"></span>
+                                                    </button>
+                                                    <button class="btn btn-dark" type="button" tabindex="3"> <a data-th-href="${'/briefing'}">
+                                                        <span class="info-box-icon text-white"><i class="fas fa-arrow-circle-left" style="font-size: 20px"></i>&nbsp;&nbsp;Back</span></a>
+                                                    </button>
                                                 </tr>
 
                                                 </tbody>

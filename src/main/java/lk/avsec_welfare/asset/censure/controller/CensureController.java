@@ -14,6 +14,8 @@ import lk.avsec_welfare.asset.offence.entity.enums.OffenceType;
 import lk.avsec_welfare.asset.offence.service.OffenceService;
 import lk.avsec_welfare.asset.punishment.controller.PunishmentController;
 import lk.avsec_welfare.asset.punishment.service.PunishmentService;
+import lk.avsec_welfare.util.interfaces.AbstractController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,8 +26,11 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
+
 @RequestMapping("/censure")
 public class CensureController  {
     private final CensureService censureService;
@@ -61,7 +66,7 @@ public class CensureController  {
     }
 
     //When scr called file will send to
-    @GetMapping( "/file/{filename}" )
+    @GetMapping( "/file1/{filename}" )
     public ResponseEntity< byte[] > downloadFile(@PathVariable( "filename" ) String filename) {
         CensureFiles file = censureFilesService.findByNewID(filename);
         return ResponseEntity.ok()
@@ -80,6 +85,7 @@ public class CensureController  {
     public String form(@PathVariable("id")Integer id , Model model) {
         Employee employee = employeeService.findById(id);
         model.addAttribute("employeeDetail", employee);
+        model.addAttribute("contendHeader", "Censure Add");
         model.addAttribute("addStatus", true);
 
 
@@ -105,6 +111,7 @@ public class CensureController  {
         model.addAttribute("offences", offenceService.findAll());
         model.addAttribute("punishments", punishmentService.findAll());
         model.addAttribute("censure",censure );
+        model.addAttribute("contendHeader", "Censure Edit Details");
         model.addAttribute("employeeDetail",censure.getEmployee() );
         return "censure/addCensure";
     }
@@ -116,6 +123,7 @@ public class CensureController  {
             model.addAttribute("offences", offenceService.findAll());
             model.addAttribute("punishments", punishmentService.findAll());
             model.addAttribute("censure", censure);
+            model.addAttribute("contendHeader", "Censure Add");
             model.addAttribute("employeeDetail", employeeService.findById(censure.getEmployee().getId()));
             return "censure/addCensure";
         }

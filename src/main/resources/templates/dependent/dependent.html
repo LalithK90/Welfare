@@ -14,14 +14,9 @@
         <div class="text-right" >
           <div text-right >
             <button type="button" class="btn btn-info btn-sm" >
-              <a data-th-href="${'/employee/add'}" >
+              <a data-th-href="${'/dependent/add'}" >
                 <span class="info-box-icon text-white" ><i class="fa fa-plus mr-1" ></i ></span >
-                <span class="text-white" > Add Employee </span ></a >
-            </button >
-            <button type="button" class="btn btn-success btn-sm" >
-              <a data-th-href="${'/home'}" >
-                <span class="info-box-icon text-white" ><i class="fas fa-home mr-1" ></i ></span >
-                <span class="text-white" > Home </span ></a >
+                <span class="text-white" > Add Dependent </span ></a >
             </button >
           </div >
         </div >
@@ -37,9 +32,11 @@
             <div class="row" >
               <div class="col-md-12" >
                 <div class="card" >
-                  <div class="card-body table-responsive" id="dependentListTable" >
-                    <!--                                        <h4>Secondary Header </h4>-->
+                  <div class="card-header">
+                    <h4 class="breadcrumb-item active" data-th-text="${contendHeader}"></h4>
+                  </div>
                     <!--if not empty list-->
+                  <div class="card-body">
                     <table class="table table-hover table-striped table-striped" id="myTable"
                            th:if="${not #lists.isEmpty(dependents)}" >
                       <thead class="thead-inverse" >
@@ -107,6 +104,7 @@
                           <span >[[${message}]]</span ></div >
                       </div >
                     </div >
+                  </div>
                   </div >
                 </div >
               </div >
@@ -114,7 +112,7 @@
           </div >
         </div >
       </div >
-    </div >
+
 
 
   </div ><!-- content-wrapper end -->

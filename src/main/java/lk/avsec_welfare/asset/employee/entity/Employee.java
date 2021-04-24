@@ -41,6 +41,7 @@ public class Employee extends AuditEntity {
   @Size( min = 5, message = "Your name cannot be accepted" )
   private String name;
 
+  @Size( min = 2, message = "Your name cannot be accepted" )
   private String callingName;
 
   @Size( max = 12, min = 10, message = "NIC number is contained numbers between 9 and X/V or 12 " )
