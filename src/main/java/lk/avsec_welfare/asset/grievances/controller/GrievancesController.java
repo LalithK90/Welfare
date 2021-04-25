@@ -158,9 +158,9 @@ public class GrievancesController implements AbstractController< Grievance, Inte
     Employee employee =
         employeeService.findById(userService.findByUserName(grievance.getCreatedBy()).getEmployee().getId());
     model.addAttribute("grievancesDetail", grievance);
-    model.addAttribute("employeeDetail", employee);
     model.addAttribute("addStatus", false);
     model.addAttribute("contendHeader", "Grievances View Details");
+    model.addAttribute("employeeDetail", employee);
     model.addAttribute("files", employeeFilesService.employeeFileDownloadLinks(employee));
     return "grievances/grievances-detail";
   }
@@ -199,7 +199,7 @@ public class GrievancesController implements AbstractController< Grievance, Inte
   @GetMapping( "/action/{id}" )
   public String action(@PathVariable Integer id, Model model) {
     List< SolutionType > solutionTypes = new ArrayList<>();
-    solutionTypes.set(SolutionType.PRO);
+    solutionTypes.add(SolutionType.PRO);
     solutionTypes.add(SolutionType.CL);
     model.addAttribute("solutionTypes", solutionTypes);
     model.addAttribute("grievancesStatuses", GrievancesStatus.values());
