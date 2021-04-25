@@ -84,9 +84,12 @@ public class CensureController  {
     @GetMapping("/add/{id}")
     public String form(@PathVariable("id")Integer id , Model model) {
         Employee employee = employeeService.findById(id);
+        model.addAttribute("files", employeeFilesService.employeeFileDownloadLinks(employee));
         model.addAttribute("employeeDetail", employee);
-        model.addAttribute("contendHeader", "Censure Add");
-        model.addAttribute("addStatus", true);
+        model.addAttribute("employeeWorkingPlaces", employeeWorkingPlaceService.findByEmployee(employee));
+        model.addAttribute("addStatus", false);
+        model.addAttribute("dependentEmployees", dependentEmployeeService.findByEmployee(employee));
+        model.addAttribute("contendHeader", "Employee View Details");
 
 
         model.addAttribute("offenceTypes", OffenceType.values());
@@ -107,7 +110,7 @@ public class CensureController  {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
         Censure censure = censureService.findById(id);
-        model.addAttribute("addStatus", false);
+        model.addAttribute("addStatus", true);
         model.addAttribute("offences", offenceService.findAll());
         model.addAttribute("punishments", punishmentService.findAll());
         model.addAttribute("censure",censure );
@@ -119,7 +122,7 @@ public class CensureController  {
     @PostMapping(value = {"/save", "/update"})
     public String persist(@Valid @ModelAttribute Censure censure, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("addStatus", true);
+            model.addAttribute("addStatus", false);
             model.addAttribute("offences", offenceService.findAll());
             model.addAttribute("punishments", punishmentService.findAll());
             model.addAttribute("censure", censure);
