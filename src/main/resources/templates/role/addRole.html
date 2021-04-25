@@ -13,14 +13,9 @@
                 <div class="text-right">
                     <div text-right>
                         <button type="button" class="btn btn-info btn-sm">
-                            <a  data-th-href="${'/employee/add'}" >
-                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
-                                <span class="text-white"> Add Employee </span></a>
-                        </button>
-                        <button type="button" class="btn btn-success btn-sm">
-                            <a  data-th-href="${'/home'}" >
-                                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
-                                <span class="text-white"> Home </span></a>
+                            <a  data-th-href="${'/role'}" >
+                                <span class="info-box-icon text-white"><i class="fa fa-folder mr-1" ></i ></span >
+                                <span class="text-white"> View Role </span></a>
                         </button>
                     </div>
                 </div>
@@ -40,47 +35,38 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4> <span id="formHeader" th:text="${addStatus==true?'New Role ':'Update Role'}"></span> </h4>
+                                <div class="card-header" >
+                                    <h4 class="breadcrumb-item active">
+                                        <span data-th-text="${addStatus==true?'Add New Role':'Update Role'}"></span>
+                                    </h4 ></div>
+<table class="table">
+    <form id="form" class="form-horizontal" method="POST" th:action="${addStatus==true?'/role/add':'/role/update'}"
+          th:object="${role}">
+    <tr id="idHide" th:if="${addStatus==false}">
+        <th > <label class="control-label" for="id">ID :</label></th>
+        <td><input class="form-control" th:field="*{liveDead}" type="hidden" readonly/>
+            <input class="form-control" th:field="*{id}"  id="id" type="text" readonly/></td>
+    </tr>
+    <tr>
+        <th><label class="control-label" for="roleName">Name :</label></th>
+        <td>  <input id="roleName" th:field="*{roleName}" class="form-control" type="text" required/>
+            <span id="roleNameError" th:errors="*{roleName}" th:if="${#fields.hasErrors('roleName')}" class="error">Error Role Name</span>
+        </td>
+    </tr>
+    <tr>
+        <th><label id="errorLabel" th:if="${#fields.hasErrors('*')}" th:text="'Errors: '">Errors: </label>
+            <ul>
+                <li id="errorDisplay" th:each="err: ${#fields.errors('*')}" th:utext="${err}" class="error"></li>
+            </ul></th>
+        <td><button class="btn btn-success" type="submit">
+            <i class="fa fa-save" style="font-size: 20px"></i>&nbsp; &nbsp;<span
+                id="submit" th:text="${addStatus==true?'Save': 'Update'}">                        </span>
+        </button></td>
+    </tr>
+    </form>
+</table>
 
-                                <form id="form" class="form-horizontal" method="POST" th:action="${addStatus==true?'/role/add':'/role/update'}"
-                                      th:object="${role}">
-                                    <div class="form-group col-md-12 col-sm-12 text-center flex-column">
-                                        <div class="col-sm-6 col-md-6 offset-2">
-                                            <div id="idHide" th:if="${addStatus==false}" class="form-row text-right">
-                                                <div class="col-md-4">
-                                                    <label class="control-label" for="id">ID :</label>
-                                                </div>
-                                                <div class="col-md-8">
 
-                                                    <input class="form-control" th:field="*{liveDead}" type="hidden" readonly/>
-                                                    <input class="form-control" th:field="*{id}"  id="id" type="text" readonly/>
-                                                </div>
-                                            </div>
-                                            <div class="form-row text-right">
-                                                <div class="col-md-4">
-                                                    <label class="control-label" for="roleName">Name :</label>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <input id="roleName" th:field="*{roleName}" class="form-control" type="text" required/>
-                                                    <span id="roleNameError" th:errors="*{roleName}" th:if="${#fields.hasErrors('roleName')}" class="error">Error Role Name</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-12 col-sm-12 text-center flex-column">
-                                        <button class="btn btn-success" type="submit">
-                                            <i class="fa fa-save" style="font-size: 20px"></i>&nbsp; &nbsp;<span
-                                                id="submit" th:text="${addStatus==true?'Save': 'Update'}">                        </span>
-                                        </button>
-                                    </div>
-                                    <!--Error-->
-                                    <div class="form-row">
-                                        <label id="errorLabel" th:if="${#fields.hasErrors('*')}" th:text="'Errors: '">Errors: </label>
-                                        <ul>
-                                            <li id="errorDisplay" th:each="err: ${#fields.errors('*')}" th:utext="${err}" class="error"></li>
-                                        </ul>
-                                    </div>
-                                </form>
 
                             </div>
 

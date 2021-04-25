@@ -29,6 +29,7 @@ public class RoleController {
     @RequestMapping
     public String rolePage(Model model) {
         model.addAttribute("roles", roleService.findAll());
+        model.addAttribute("contendHeader", "Role View");
         return "role/role";
     }
 
@@ -38,6 +39,7 @@ public class RoleController {
     @GetMapping( value = "/{id}" )
     public String roleView(@PathVariable( "id" ) Integer id, Model model) {
         model.addAttribute("role", roleService.findById(id));
+        model.addAttribute("contendHeader", "Role Details");
         model.addAttribute("addStatus", false);
         return "role/addRole";
     }
@@ -48,6 +50,7 @@ public class RoleController {
     @GetMapping( value = "/edit/{id}" )
     public String editRoleFrom(@PathVariable( "id" ) Integer id, Model model) {
         model.addAttribute("role", roleService.findById(id));
+        model.addAttribute("contendHeader", "Role Edit Details");
         model.addAttribute("addStatus", false);
         return "role/addRole";
     }
@@ -58,6 +61,7 @@ public class RoleController {
     @GetMapping( value = {"/add"} )
     public String roleAddFrom(Model model) {
         model.addAttribute("addStatus", true);
+        model.addAttribute("contendHeader", "Add Role");
         model.addAttribute("role", new Role());
         return "role/addRole";
     }
