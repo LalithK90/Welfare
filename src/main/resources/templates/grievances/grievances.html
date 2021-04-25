@@ -66,7 +66,7 @@
                               <th ><a class="btn btn-success btn-sm" th:href="${'/grievances/' + grievance.id}"
                               ><i
                                     class="fa fa-folder-open" ></i >&nbsp;View</a >
-                                <a class="btn btn-primary btn-sm" data-th-if="${#Strings.equal(grievance.solutionType,'PRO')}"
+                                <a class="btn btn-primary btn-sm" data-th-if="${#strings.equals(grievance.solutionType,'PRO')}"
                                    th:href="${'/grievances/action/' + grievance.id}" ><i
                                       class="fa fa-edit" ></i >&nbsp;Action</a >
 
@@ -126,7 +126,7 @@
                             <th ><a class="btn btn-success btn-sm" th:href="${'/grievances/' + grievance.id}"
                             ><i
                                   class="fa fa-folder-open" ></i >&nbsp;View</a >
-                              <a class="btn btn-primary btn-sm" data-th-if="${#Strings.equal(grievance.solutionType,'PR')}"
+                              <a class="btn btn-primary btn-sm" data-th-if="${#strings.equals(grievance.solutionType,'PR')}"
                                  th:href="${'/grievances/edit/' + grievance.id}" ><i
                                     class="fa fa-edit" ></i >&nbsp;Edit</a >
                               <a class="btn btn-danger btn-sm"
@@ -192,7 +192,7 @@
                             <th ><a class="btn btn-success btn-sm" th:href="${'/grievances/' + grievance.id}"
                             ><i
                                   class="fa fa-folder-open" ></i >&nbsp;View</a >
-                              <a class="btn btn-primary btn-sm" data-th-if="${#Strings.equal(grievance.solutionType,'PR')}"
+                              <a class="btn btn-primary btn-sm" data-th-if="${#strings.equals(grievance.solutionType,'PR')}"
                                  th:href="${'/grievances/edit/' + grievance.id}" ><i
                                     class="fa fa-edit" ></i >&nbsp;Edit</a >
                               <a class="btn btn-danger btn-sm"
@@ -258,7 +258,7 @@
                             <th ><a class="btn btn-success btn-sm" th:href="${'/grievances/' + grievance.id}"
                             ><i
                                   class="fa fa-folder-open" ></i >&nbsp;View</a >
-                              <a class="btn btn-primary btn-sm" data-th-if="${#Strings.equal(grievance.solutionType,'PR')}"
+                              <a class="btn btn-primary btn-sm" data-th-if="${#strings.equals(grievance.solutionType,'PR')}"
                                  th:href="${'/grievances/edit/' + grievance.id}" ><i
                                     class="fa fa-edit" ></i >&nbsp;Edit</a >
                               <a class="btn btn-danger btn-sm"

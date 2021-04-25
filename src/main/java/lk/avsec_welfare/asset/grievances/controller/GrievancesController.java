@@ -29,6 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -184,7 +185,7 @@ public class GrievancesController implements AbstractController< Grievance, Inte
       grievanceStateChange.setCommentedBy(userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getEmployee().getCallingName());
       grievanceStateChangeService.persist(grievanceStateChange);
     }
-
+    grievance.setSolutionType(SolutionType.PR);
     redirectAttributes.addFlashAttribute("grievancesDetail", grievancesService.persist(grievance));
     return "redirect:/grievances";
   }
@@ -197,7 +198,10 @@ public class GrievancesController implements AbstractController< Grievance, Inte
 
   @GetMapping( "/action/{id}" )
   public String action(@PathVariable Integer id, Model model) {
-    model.addAttribute("solutionTypes", SolutionType.values());
+    List< SolutionType > solutionTypes = new ArrayList<>();
+    solutionTypes.set(SolutionType.PR);
+    solutionTypes.add(SolutionType.CL);
+    model.addAttribute("solutionTypes", solutionTypes);
     model.addAttribute("grievancesStatuses", GrievancesStatus.values());
     model.addAttribute("actionDetail", true);
     return commonThing(model, true, grievancesService.findById(id));
