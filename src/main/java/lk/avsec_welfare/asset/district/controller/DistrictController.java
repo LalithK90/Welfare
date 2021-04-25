@@ -39,22 +39,26 @@ public class DistrictController implements AbstractController< District, Integer
     @GetMapping
     public String findAll(Model model) {
         model.addAttribute("districts", districtService.findAll());
+        model.addAttribute("contendHeader", "District");
         return "district/district";
     }
 
     @GetMapping("/add")
     public String form(Model model) {
+        model.addAttribute("contendHeader", "Add District");
         return commonThing(model, false, new District());
     }
 
     @GetMapping("/{id}")
     public String findById(@PathVariable Integer id, Model model) {
         model.addAttribute("districtDetail", districtService.findById(id));
+        model.addAttribute("contendHeader", "District Details");
         return "district/district-detail";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
+        model.addAttribute("contendHeader", "Update District ");
         return commonThing(model, true, districtService.findById(id));
     }
 

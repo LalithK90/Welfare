@@ -38,11 +38,13 @@ public class EmployeeWorkingPlaceController {
   @GetMapping
   public String findAll(Model model) {
     model.addAttribute("employeeWorkingPlaces", employeeWorkingPlaceService.findAll());
+    model.addAttribute("contendHeader", "Working Place");
     return "employeeWorkingPlace/employeeWorkingPlace";
   }
 
   @GetMapping( "/add/{id}" )
   public String form(@PathVariable Integer id, Model model) {
+    model.addAttribute("contendHeader", "Add Working Place");
     return commonThing(model, employeeService.findById(id), new EmployeeWorkingPlace(), true);
   }
 
@@ -52,12 +54,14 @@ public class EmployeeWorkingPlaceController {
     model.addAttribute("employeeWorkingPlaceDetail", employeeWorkingPlace);
     model.addAttribute("employeeDetail", employeeWorkingPlace.getEmployee());
     model.addAttribute("instituteDetail", employeeWorkingPlace.getWorkingPlace());
+    model.addAttribute("contendHeader", "Working Place Details");
     return "employeeWorkingPlace/employeeWorkingPlace-detail.html";
   }
 
   @GetMapping( "/edit/{id}" )
   public String edit(@PathVariable Integer id, Model model) {
     EmployeeWorkingPlace employeeWorkingPlace = employeeWorkingPlaceService.findById(id);
+    model.addAttribute("contendHeader", "Update Working Place");
     return commonThing(model, employeeWorkingPlace.getEmployee(), employeeWorkingPlace,false);
   }
 

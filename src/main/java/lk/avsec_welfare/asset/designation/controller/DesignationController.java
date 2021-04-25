@@ -30,6 +30,7 @@ public class DesignationController implements AbstractController<Designation, In
         model.addAttribute("salaryScales", SalaryScale.values());
         model.addAttribute("categoryTypes", CategoryType.values());
         model.addAttribute("addStatus", booleanValue);
+        model.addAttribute("contendHeader", "Add Designation");
         model.addAttribute("designation", designationObject);
         return "designation/addDesignation";
     }
@@ -37,11 +38,13 @@ public class DesignationController implements AbstractController<Designation, In
     @GetMapping
     public String findAll(Model model) {
         model.addAttribute("designations", designationService.findAll());
+        model.addAttribute("contendHeader", "Designations");
         return "designation/designation";
     }
 
     @GetMapping("/add")
     public String form(Model model) {
+        model.addAttribute("contendHeader", "Add Designation");
         return commonThing(model, false, new Designation());
     }
 

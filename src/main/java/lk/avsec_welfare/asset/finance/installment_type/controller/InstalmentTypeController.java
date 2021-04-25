@@ -36,23 +36,28 @@ public class InstalmentTypeController implements AbstractController<InstalmentTy
     @GetMapping
     public String findAll(Model model) {
         model.addAttribute("instalmentTypeis", instalmentTypeService.findAll());
+        model.addAttribute("contendHeader", "Instalment Type");
         return "instalmentType/instalmentType";
     }
 
     @GetMapping("/add")
     public String form(Model model) {
+        model.addAttribute("contendHeader", "Add Instalment Type");
         return commonThing(model, false, new InstalmentType());
     }
 
     @GetMapping("/view/{id}")
     public String findById(@PathVariable Integer id, Model model) {
         model.addAttribute("instalmentTypeDetail", instalmentTypeService.findById(id));
+        model.addAttribute("contendHeader", "Instalment Type Detail");
         return "instalmentType/instalmentType-detail";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
+        model.addAttribute("contendHeader", "Update Instalment Type");
         return commonThing(model, true, instalmentTypeService.findById(id));
+
     }
 
     @PostMapping(value = {"/save","/update"})
