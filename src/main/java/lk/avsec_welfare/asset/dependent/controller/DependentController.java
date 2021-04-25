@@ -119,7 +119,8 @@ public class DependentController {
       Dependent dependentDB = dependentService.persist(dependent);
       redirectAttributes.addFlashAttribute("dependentDetail",
                                            dependentEmployeeService.findByDependentAndEmployee(dependentDB, employee));
-      return "redirect:/dependent";
+//      return "redirect:/dependent";
+      return "redirect:/employee";
     }
 
     // when never dependent was new, have to
