@@ -7,15 +7,24 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum WelfarePosition {
     HOSS(" Head of Security Services"),
-    DHOSS(" Deputy Head of Security Services"),
     PRE("President"),
-    VPRE(" Vice Preside"),
     SCTY("Secretory"),
-    VSCTY("Vice Secretory"),
     TRS("Treasure"),
     AGT("Agent"),
     MBR("Member"),
     OTR("Other");
+
+//    HOSS(" Head of Security Services"),
+//    DHOSS(" Deputy Head of Security Services"),
+//    PRE("President"),
+//    VPRE(" Vice Preside"),
+//    SCTY("Secretory"),
+//    VSCTY("Vice Secretory"),
+//    TRS("Treasure"),
+//    AGT("Agent"),
+//    MBR("Member"),
+//    OTR("Other");
+
 
     private final String welfarePosition;
 }
