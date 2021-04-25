@@ -1,5 +1,9 @@
 package lk.avsec_welfare.asset.common_asset.controller;
 
+import lk.avsec_welfare.asset.dependent.service.DependentEmployeeService;
+import lk.avsec_welfare.asset.employee.entity.Employee;
+import lk.avsec_welfare.asset.employee.service.EmployeeFilesService;
+import lk.avsec_welfare.asset.employee_working_place.service.EmployeeWorkingPlaceService;
 import lk.avsec_welfare.asset.userManagement.entity.PasswordChange;
 import lk.avsec_welfare.asset.userManagement.entity.User;
 import lk.avsec_welfare.asset.userManagement.service.UserService;
@@ -21,17 +25,30 @@ import java.security.Principal;
 public class ProfileController {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
+    private final EmployeeFilesService employeeFilesService;
+    private final EmployeeWorkingPlaceService employeeWorkingPlaceService;
+    private final DependentEmployeeService dependentEmployeeService;
 
     @Autowired
-    public ProfileController(UserService userService, PasswordEncoder passwordEncoder) {
+    public ProfileController(UserService userService, PasswordEncoder passwordEncoder,
+                             EmployeeFilesService employeeFilesService, EmployeeWorkingPlaceService employeeWorkingPlaceService, DependentEmployeeService dependentEmployeeService) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
+        this.employeeFilesService = employeeFilesService;
+        this.employeeWorkingPlaceService = employeeWorkingPlaceService;
+        this.dependentEmployeeService = dependentEmployeeService;
     }
 
     @GetMapping( value = "/profile" )
     public String userProfile(Model model, Principal principal) {
+        Employee employee = userService.findByUserName(principal.getName()).getEmployee();
         model.addAttribute("addStatus", true);
-        model.addAttribute("employeeDetail", userService.findByUserName(principal.getName()).getEmployee());
+        model.addAttribute("employeeDetail", employee);
+        model.addAttribute("files", employeeFilesService.employeeFileDownloadLinks(employee));
+        model.addAttribute("employeeWorkingPlaces", employeeWorkingPlaceService.findByEmployee(employee));
+        model.addAttribute("dependentEmployees", dependentEmployeeService.findByEmployee(employee));
+        model.addAttribute("contendHeader", "Employee View Details");
+
         return "employee/employee-detail";
     }
 
