@@ -3,6 +3,7 @@ package lk.avsec_welfare.asset.promotion.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
+import lk.avsec_welfare.asset.designation.entity.Designation;
 import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
@@ -24,9 +25,6 @@ import java.time.LocalDate;
 @JsonFilter("Promotion")
 public class Promotion extends AuditEntity {
 
-    @Size(min = 2, max = 60, message = "Your name length should be 13")
-    private String name;
-
     private String remark;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -37,5 +35,9 @@ public class Promotion extends AuditEntity {
 
     @ManyToOne
     private Employee employee;
+
+    @ManyToOne
+    private Designation designation;
+
 
 }

@@ -1,6 +1,11 @@
 package lk.avsec_welfare.asset.promotion.controller;
 
+import lk.avsec_welfare.asset.dependent.service.DependentEmployeeService;
+import lk.avsec_welfare.asset.designation.service.DesignationService;
+import lk.avsec_welfare.asset.employee.entity.Employee;
+import lk.avsec_welfare.asset.employee.service.EmployeeFilesService;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
+import lk.avsec_welfare.asset.employee_working_place.service.EmployeeWorkingPlaceService;
 import lk.avsec_welfare.asset.promotion.entity.Promotion;
 import lk.avsec_welfare.asset.promotion.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +23,34 @@ public class PromotionController {
 
   private final PromotionService promotionService;
   private final EmployeeService employeeService;
+  private final DesignationService designationService;
+  private final EmployeeFilesService employeeFilesService;
+  private final EmployeeWorkingPlaceService employeeWorkingPlaceService;
+  private final DependentEmployeeService dependentEmployeeService;
 
   @Autowired
-  public PromotionController(PromotionService promotionService, EmployeeService employeeService) {
+  public PromotionController(PromotionService promotionService, EmployeeService employeeService,
+                             DesignationService designationService, EmployeeFilesService employeeFilesService,
+                             EmployeeWorkingPlaceService employeeWorkingPlaceService,
+                             DependentEmployeeService dependentEmployeeService) {
     this.promotionService = promotionService;
     this.employeeService = employeeService;
+    this.designationService = designationService;
+    this.employeeFilesService = employeeFilesService;
+    this.employeeWorkingPlaceService = employeeWorkingPlaceService;
+    this.dependentEmployeeService = dependentEmployeeService;
   }
 
   private String commonThing(Model model, Boolean booleanValue, Promotion promotionObject) {
+    Employee employee = employeeService.findById(promotionObject.getEmployee().getId());
+    model.addAttribute("files", employeeFilesService.employeeFileDownloadLinks(employee));
+    model.addAttribute("employeeDetail", employee);
+    model.addAttribute("employeeWorkingPlaces", employeeWorkingPlaceService.findByEmployee(employee));
+    model.addAttribute("dependentEmployees", dependentEmployeeService.findByEmployee(employee));
+    model.addAttribute("contendHeader", "Employee View Details");
     model.addAttribute("addStatus", booleanValue);
     model.addAttribute("promotion", promotionObject);
+    model.addAttribute("designations", designationService.findAll());
     return "promotion/addPromotion";
   }
 
@@ -63,7 +86,10 @@ public class PromotionController {
     if ( bindingResult.hasErrors() ) {
       return commonThing(model, false, promotion);
     }
-    promotionService.persist(promotion);
+    Promotion promotionDb = promotionService.persist(promotion);
+    Employee employeeDb = employeeService.findById(promotionDb.getEmployee().getId());
+    employeeDb.setDesignation(promotionDb.getDesignation());
+    employeeService.persist(employeeDb);
     redirectAttributes.addFlashAttribute("employees", employeeService.findAll());
     return "redirect:/employee";
   }

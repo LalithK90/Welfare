@@ -55,7 +55,7 @@
                                                 <tbody>
                                                 <tr th:each="promotion, rowCount : ${promotions}" scope="row">
                                                     <td th:text="${rowCount.count}"></td>
-                                                    <td th:text="${promotion.name}"></td>
+                                                    <td th:text="${promotion.designation.name}"></td>
                                                     <td th:text="${promotion.remark}"></td>
                                                     <!-- Enum Test <th th:text="${promotion.relationship.relationship}"></th>-->
                                                     <td th:text="${promotion.withEffect}"></td>

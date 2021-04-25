@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // set current year to the footer
-    //document.getElementById("currentYear").innerHTML = new Date().getFullYear();
+    document.getElementById("currentYear").innerHTML = new Date().getFullYear();
 
     /*//Nav bar properties - start//*/
     /*//Nav bar properties - start//*/
