@@ -42,11 +42,18 @@
                   </a >
                 </h5 >
               </div >
-              <!--      <div id="section1ContentId" class="collapse in" role="tabpanel" aria-labelledby="section1HeaderId" >-->
-              <!--        <div class="card-body" >-->
-              <!--          <div data-th-replace="~{employee/employee-detail :: employeeDetailsFragment}" ></div >-->
-              <!--        </div >-->
-              <!--      </div >-->
+                    <div id="section1ContentId" class="collapse in" role="tabpanel" aria-labelledby="section1HeaderId" >
+                      <div class="card-header">
+                        <h3 data-th-text="${employeeDetail.title.title} +${' '} +${employeeDetail.name}"
+                            class="display_detail"></h3>
+                        <h3 data-th-if="${employeeDetail.designation !=null}"
+                            data-th-text="${employeeDetail.designation.name}" class="display_detail">
+                        </h3>
+                        <h3 data-th-text="${'EPF No - '} +${employeeDetail.epf}" class="display_detail">
+                        </h3>
+
+                      </div>
+                    </div >
             </div >
           </div >
           <div class="col-sm-12 flex-column " >
@@ -167,16 +174,16 @@
 
                   </td >
                   <td >
-                    <!--Sinhala modal button -->
+                   <!-- &lt;!&ndash;Sinhala modal button &ndash;&gt;
                     <button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target=".bd-example-modal-xl" ><i
                           class="fas fa-language" ></i > &nbsp;Singlish to Sinhala
                     </button >
-                    <!-- modal tamil button -->
+                    &lt;!&ndash; modal tamil button &ndash;&gt;
                     <button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#bd-example-modal-xl" ><i
                           class="fas fa-language" ></i > &nbsp;Tamilish to Tamil
-                    </button >
+                    </button >-->
                   </td >
                 </tr >
 
@@ -223,90 +230,93 @@
 <input type="hidden" id="punishmentFindUrl" data-th-value="${punishmentFindUrl}" >
 <input type="hidden" id="offenceUrl" data-th-value="${offenceUrl}" >
 
-
-<div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
+<!-- footer Section -->
+<div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div >
 <!-- wrapper end -->
-<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" >
-  <script data-th-src="@{/js/combo-box-search.js}" ></script >
-  <script >
-      $(document).ready(function () {
-          $("#punishment, #offence").select2({
-              data: $(this).val()
-          }).addClass('form-control').addClass("text-left").addClass("text-dark");
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div >
+<!-- script Fragment -->
+<script data-th-src="@{/js/combo-box-search.js}" ></script >
+<script >
+    $(document).ready(function () {
+        $("#punishment, #offence").select2({
+            data: $(this).val()
+        }).addClass('form-control')
+            .addClass("text-left")
+            .addClass("text-dark");
 
-          imageSrcAttributeCheck();
+        imageSrcAttributeCheck();
 
-          $("input[name='offenceType']").prop("checked", false);
-      });
+        $("input[name='offenceType']").prop("checked", false);
+    });
 
-      function readURL(input) {
-          if (input.files && input.files[0]) {
-              let reader = new FileReader();
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            let reader = new FileReader();
 
-              reader.onload = function (e) {
-                  $('#image').attr('src', e.target.result);
-              }
+            reader.onload = function (e) {
+                $('#image').attr('src', e.target.result);
+            }
 
-              reader.readAsDataURL(input.files[0]); // convert to base64 string
-          }
-      }
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+    }
 
-      //display selected image
-      $("#imgUpload").change(function () {
-          $("#image").toggle('show');
-          readURL(this);
+    //display selected image
+    $("#imgUpload").change(function () {
+        $("#image").toggle('show');
+        readURL(this);
 
-      });
+    });
 
-      //image is not -> showing area hide
-      function imageSrcAttributeCheck() {
-          let attribute = $("#image").attr("src");
-          if (attribute === '') {
-              $("#image").toggle('hide');
-          }
-      }
+    //image is not -> showing area hide
+    function imageSrcAttributeCheck() {
+        let attribute = $("#image").attr("src");
+        if (attribute === '') {
+            $("#image").toggle('hide');
+        }
+    }
 
-      $(".offenceType").change(function () {
-          $("#offence").find('option').remove();
-          $.ajax({
-              type: 'GET',
-              url: $("#offenceUrl").val() + $(this).val(),
-              success: function (resp) {
-                  $("#offence").append(`<option value="">Please select</option>`);
-                  $.each(resp, function () {
-                      $("#offence").append(`<option value="${this.id}">${this.name}</option>`);
-                  });
-                  $("#offence").select2({
-                      data: $(this).val()
-                  }).addClass('form-control');
-              },
-              error: function (err) {
-                  console.log(err);
-              }
-          });
-      });
+    $(".offenceType").change(function () {
+        $("#offence").find('option').remove();
+        console.log("asdasdhh")
+        $.ajax({
+            type: 'GET',
+            url: $("#offenceUrl").val() + $(this).val(),
+            success: function (resp) {
+                $("#offence").append(`<option value="">Please select</option>`);
+                $.each(resp, function () {
+                    $("#offence").append(`<option value="${this.id}">${this.name}</option>`);
+                });
+                $("#offence").select2({
+                    data: $(this).val()
+                }).addClass('form-control');
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    });
 
-      $("#offence").change(function () {
-          $("#punishment").find('option').remove();
-          $.ajax({
-              type: 'GET',
-              url: $("#punishmentFindUrl").val() + $(this).val(),
-              success: function (resp) {
-                  $("#punishment").append(`<option value="">Please select</option>`);
-                  $.each(resp, function () {
-                      $("#punishment").append(`<option value="${this.id}">${this.name}</option>`);
-                  });
-                  $("#punishment").select2({
-                      data: $(this).val()
-                  }).addClass('form-control');
-              },
-              error: function (err) {
-                  console.log(err);
-              }
-          });
-      });
+    $("#offence").change(function () {
+        $("#punishment").find('option').remove();
+        $.ajax({
+            type: 'GET',
+            url: $("#punishmentFindUrl").val() + $(this).val(),
+            success: function (resp) {
+                $("#punishment").append(`<option value="">Please select</option>`);
+                $.each(resp, function () {
+                    $("#punishment").append(`<option value="${this.id}">${this.name}</option>`);
+                });
+                $("#punishment").select2({
+                    data: $(this).val()
+                }).addClass('form-control');
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    });
 
-  </script >
-</div ><!-- script Fragment -->
+</script >
 </body >
 </html >
