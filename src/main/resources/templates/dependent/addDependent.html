@@ -9,20 +9,20 @@
     <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
                                 <!-- content-header Start -->
                                 <!--action button layer---------------------------------------------------------     -->
-<!--    <div class="row m-1" >-->
-<!--      <div class="col-12" >-->
-<!--        <div class="text-right" >-->
-<!--          <div text-right >-->
-<!--            <button type="button" class="btn btn-info btn-sm" >-->
-<!--              <a data-th-href="${'/employee/add'}" >-->
-<!--                <span class="info-box-icon text-white" ><i class="fa fa-plus mr-1" ></i ></span >-->
-<!--                <span class="text-white" > Add Employee </span ></a >-->
-<!--            </button >-->
-<!--  -->
-<!--          </div >-->
-<!--        </div >-->
-<!--      </div >-->
-<!--    </div >-->
+                                <!--    <div class="row m-1" >-->
+                                <!--      <div class="col-12" >-->
+                                <!--        <div class="text-right" >-->
+                                <!--          <div text-right >-->
+                                <!--            <button type="button" class="btn btn-info btn-sm" >-->
+                                <!--              <a data-th-href="${'/employee/add'}" >-->
+                                <!--                <span class="info-box-icon text-white" ><i class="fa fa-plus mr-1" ></i ></span >-->
+                                <!--                <span class="text-white" > Add Employee </span ></a >-->
+                                <!--            </button >-->
+                                <!--  -->
+                                <!--          </div >-->
+                                <!--        </div >-->
+                                <!--      </div >-->
+                                <!--    </div >-->
                                 <!--form action end button---------------------------------------------------------     -->
 
 
@@ -38,35 +38,33 @@
 
                     <h3 ><span id="formHeader"
                                th:text="${addStatus==false?'New Dependent':'Update Dependent'}" ></span ></h3 >
-                  </div>
+                  </div >
                   <div class="card-body" >
 
-                      <form th:action="${addStatus==false?'/dependent/save' :'/dependent/update'}"
-                            method="post" th:object="${dependent}" >
-                        <input type="hidden" data-th-value="${dependent.employee.id}" data-th-name="${'employee'}" >
-                      <div  th:if="${addStatus==true}" >
-                     <label for="id" class="form-label " > Id </label >
-                        <div><!--Id-->
+                    <form th:action="${addStatus==false?'/dependent/save' :'/dependent/update'}"
+                          method="post" th:object="${dependent}" >
+                      <input type="hidden" data-th-value="${dependent.employee.id}" data-th-name="${'employee'}" >
+                      <div th:if="${addStatus==true}" >
+                        <label for="id" class="form-label " > Id </label >
+                        <div ><!--Id-->
 
-                            <!--                        <input type="text" data-th-value="${dependent.employee}" data-th-name="${'employee'}">-->
+                              <!--                        <input type="text" data-th-value="${dependent.employee}" data-th-name="${'employee'}">-->
 
-                            <input type="text" class="form-control" th:field="*{id}" id="id" readonly >
-                            <input class="form-control" th:field="*{liveDead}" type="hidden" readonly/>
-                          </div>
-                      </div>
-                        <div class="form-group row" ><label th:for="${'relationship'}" class="form-label " >
-                          Relationship </label ><!--relationship-->
-
-
-                            <select class="form-control" th:field="*{relationship}" required >
-                              <option value="" selected >Please Select</option >
-                              <option th:each="relationship : ${relationship}"
-                                      th:text="${relationship.relationship}"
-                                      th:value="${relationship}" >
-                              </option >
-                            </select >
+                          <input type="text" class="form-control" th:field="*{id}" id="id" readonly >
+                          <input class="form-control" th:field="*{liveDead}" type="hidden" readonly />
+                        </div >
+                      </div >
+                      <div class="form-group row" ><label th:for="${'relationship'}" class="form-label " >
+                        Relationship </label ><!--relationship-->
 
 
+                        <select class="form-control" th:field="*{relationship}" required >
+                          <option value="" selected >Please Select</option >
+                          <option th:each="relationship : ${relationship}"
+                                  th:text="${relationship.relationship}"
+                                  th:value="${relationship}" >
+                          </option >
+                        </select >
 
 
                       </div >
@@ -157,6 +155,16 @@
                                  readonly />
                         </div >
                       </div >
+                      <!--                        Error Massage------------------------- -->
+                      <div class="form-row" >
+                        <label id="errorLabel" data-th-if="${#fields.hasErrors('*')}"
+                               data-th-text="'Errors: '" >Errors: </label >
+                        <ul >
+                          <li id="error" data-th-each="err : ${#fields.errors('*')}" data-th-text="${err}"
+                              class="error" ></li >
+                        </ul >
+                      </div >
+                      <!--                        Error Massage end --------------------------------->
                       <!--                                            button-->
 
                       <div class="form-group row align-left" >
