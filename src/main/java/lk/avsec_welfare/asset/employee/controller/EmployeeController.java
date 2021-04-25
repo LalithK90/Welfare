@@ -186,6 +186,8 @@ public class EmployeeController {
       model.addAttribute("employee", employee);
       return commonThings(model);
     }
+
+
     employee.setMobileOne(makeAutoGenerateNumberService.phoneNumberLengthValidator(employee.getMobileOne()));
     employee.setMobileTwo(makeAutoGenerateNumberService.phoneNumberLengthValidator(employee.getMobileTwo()));
     employee.setLand(makeAutoGenerateNumberService.phoneNumberLengthValidator(employee.getLand()));
@@ -198,9 +200,21 @@ public class EmployeeController {
         employee.setDepartmentIdNumber("AVE" + makeAutoGenerateNumberService.numberAutoGen(lastEmployee.getDepartmentIdNumber().substring(3)).toString());
       }
     }
+    Employee employeeSaved = null;
 
-    //after save employee files and save employee
-    Employee employeeSaved = employeeService.persist(employee);
+    try {
+      //after save employee files and save employee
+      employeeSaved = employeeService.persist(employee);
+    } catch ( Exception e ) {
+      ObjectError error = new ObjectError("subject",
+                                          "Please fix following errors which you entered .\n System message -->" + e.getCause().getCause().getMessage());
+      result.addError(error);
+      model.addAttribute("addStatus", true);
+      model.addAttribute("employee", employee);
+      return commonThings(model);
+    }
+
+
     //if employee state is not working he or she cannot access to the system
     if ( !employee.getEmployeeStatus().equals(EmployeeStatus.WORKING) ) {
       User user = userService.findUserByEmployee(employeeService.findByNic(employee.getNic()));
