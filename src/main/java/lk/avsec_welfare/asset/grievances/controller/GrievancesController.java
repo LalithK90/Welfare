@@ -199,7 +199,7 @@ public class GrievancesController implements AbstractController< Grievance, Inte
   @GetMapping( "/action/{id}" )
   public String action(@PathVariable Integer id, Model model) {
     List< SolutionType > solutionTypes = new ArrayList<>();
-    solutionTypes.set(SolutionType.PR);
+    solutionTypes.set(SolutionType.PRO);
     solutionTypes.add(SolutionType.CL);
     model.addAttribute("solutionTypes", solutionTypes);
     model.addAttribute("grievancesStatuses", GrievancesStatus.values());
