@@ -56,6 +56,7 @@ public class GrievancesController implements AbstractController< Grievance, Inte
     model.addAttribute("priorities", Priority.values());
     model.addAttribute("addStatus", booleanValue);
     model.addAttribute("grievances", grievanceObject);
+    model.addAttribute("contendHeader", "Add Grievances");
     return "grievances/addGrievances";
   }
 
@@ -123,11 +124,13 @@ public class GrievancesController implements AbstractController< Grievance, Inte
 
     model.addAttribute("form", form);
     model.addAttribute("to", to);
+    model.addAttribute("contendHeader", "Grievances");
     return "grievances/grievances";
   }
 
   @GetMapping( "/add" )
   public String form(Model model) {
+    model.addAttribute("contendHeader", "Add Grievances");
     return commonThing(model, false, new Grievance());
 
   }
@@ -140,7 +143,7 @@ public class GrievancesController implements AbstractController< Grievance, Inte
     model.addAttribute("grievancesDetail", grievance);
     model.addAttribute("employeeDetail", employee);
     model.addAttribute("addStatus", false);
-    model.addAttribute("contendHeader", "Employee View Details");
+    model.addAttribute("contendHeader", "Grievances View Details");
     model.addAttribute("files", employeeFilesService.employeeFileDownloadLinks(employee));
     return "grievances/grievances-detail";
   }

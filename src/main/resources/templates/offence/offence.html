@@ -17,11 +17,6 @@
                 <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
                 <span class="text-white"> Add Offence</span></a>
             </button>
-            <button type="button" class="btn btn-success btn-sm">
-              <a  data-th-href="${'/home'}" >
-                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
-                <span class="text-white"> Home </span></a>
-            </button>
           </div>
         </div>
       </div>
@@ -34,7 +29,9 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-body" id="instituteListPresent" data-th-if="${not #lists.isEmpty(offences)}" >
-                  <h4>Secondary Header </h4>
+                  <div class="card-header">
+                    <h4 class="breadcrumb-item active" data-th-text="${contendHeader}"></h4>
+                  </div>
                     <table class="table table-hover table-striped" id="myTable" >
         <thead >
         <tr >

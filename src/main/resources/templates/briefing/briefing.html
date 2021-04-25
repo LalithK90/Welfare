@@ -13,29 +13,9 @@
                 <div class="text-right">
                     <div text-right>
                         <button type="button" class="btn btn-info btn-sm">
-                            <a  data-th-href="${'/employee/add'}" >
+                            <a  data-th-href="${'/briefing/add'}" >
                                 <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
-                                <span class="text-white"> Add Employee </span></a>
-                        </button>
-                        <!--                      <button type="button" class="btn btn-success btn-sm">-->
-                        <!--                          <a  data-th-href="${'/employee'}" >-->
-                        <!--                              <span class="info-box-icon text-white"><i class="fas fa-folder-open mr-1" ></i ></span >-->
-                        <!--                              <span class="text-white"> View Employee </span></a>-->
-                        <!--                      </button>-->
-                        <!--                      <button type="button" class="btn btn-warning btn-sm hide" onclick="myEdit()">-->
-                        <!--                          //                         <a  data-th-href="${'/designation/edit/'}" >-->
-                        <!--                          <span class="info-box-icon text-white"><i class="fas fa-edit" ></i ></span >-->
-                        <!--                          <span class="text-white"> Edit Employee </span></a>-->
-                        <!--                      </button>-->
-                        <!--                      <button type="button" class="btn btn-danger btn-sm " display="none" onclick="myDelete()">-->
-                        <!--                          // <a  data-th-href="${'/designation/remove/'}" >-->
-                        <!--                          <span class="info-box-icon text-white"><i class="fas fa-trash mr-1" ></i ></span >-->
-                        <!--                          <span class="text-white"> Delete Employee </span></a>-->
-                        <!--                      </button>-->
-                        <button type="button" class="btn btn-success btn-sm">
-                            <a  data-th-href="${'/home'}" >
-                                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
-                                <span class="text-white"> Home </span></a>
+                                <span class="text-white"> Add Briefing </span></a>
                         </button>
                     </div>
                 </div>
@@ -56,8 +36,9 @@
                 <!-- data table start -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="breadcrumb-item active" th:text="${contendHeader}"></h3>
-                     </div>
+                    <h4 class="breadcrumb-item active" data-th-text="${contendHeader}"></h4>
+                    </div>
+
                     <!-- /.card-header -->
                     <div class="card-body">
 

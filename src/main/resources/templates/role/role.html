@@ -7,8 +7,20 @@
     <aside  data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside><!-- navbar Section -->
     <div class="content-wrapper"><!-- content-wrapper Start -->
         <section  data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
-        <!-- Form Header  Path -->
-        <section  data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section><!-- Small Box Set -->
+
+            <div class="row m-1" >
+              <div class="col-12" >
+                <div class="text-right" >
+                  <div text-right >
+                    <button type="button" class="btn btn-info btn-sm" >
+                      <a data-th-href="${'/role/add'}" >
+                        <span class="info-box-icon text-white" ><i class="fa fa-plus mr-1" ></i ></span >
+                        <span class="text-white" > Add New Role </span ></a >
+                    </button >
+                  </div >
+                </div >
+              </div >
+            </div >
 
             <div class="content-header">
                 <div class="container-fluid">
@@ -19,11 +31,9 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
-
-<!--                                            <a class="btn btn-success" id="newUser" th:href="${'/role/add'}">-->
-<!--                                                <i class="fa fa-user-plus" style="font-size: 18px;"></i> &nbsp; Add User </a>-->
-
-                                            <h4><span id="formHeader" th:text="${addStatus==true?'New Role':'Update Role'}"></span></h4>
+                                            <div class="card-header">
+                                                <h4 class="breadcrumb-item active"><span id="formHeader" th:text="${addStatus==true?'New Role':'Update Role'}"></span></h4>
+                                            </div></h4>
 
                                             <div class="card-body" id="roleListPresent" th:if="${not #lists.isEmpty(roles)}">
                                                 <div class="table-responsive">

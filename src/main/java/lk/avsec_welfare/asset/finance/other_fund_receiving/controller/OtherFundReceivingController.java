@@ -33,6 +33,7 @@ public class OtherFundReceivingController {
   @GetMapping
   public String findAll(Model model) {
     model.addAttribute("otherFundReceivings", otherFundReceivingService.findAll());
+    model.addAttribute("contendHeader", "Other Fund Receiving Details");
     return "otherFundReceiving/otherFundReceiving";
   }
 
@@ -40,6 +41,7 @@ public class OtherFundReceivingController {
   public String addFrom(Model model) {
     model.addAttribute("otherFundReceiving", new OtherFundReceiving());
     model.addAttribute("otherFundReceivingTypes", OtherFundReceivingType.values());
+    model.addAttribute("contendHeader", "Add Other Fund Receiving");
     return "otherFundReceiving/addOtherFundReceiving";
   }
 

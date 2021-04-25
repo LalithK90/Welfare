@@ -9,24 +9,20 @@
     <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
                                 <!-- content-header Start -->
                                 <!--action button layer---------------------------------------------------------     -->
-    <div class="row m-1" >
-      <div class="col-12" >
-        <div class="text-right" >
-          <div text-right >
-            <button type="button" class="btn btn-info btn-sm" >
-              <a data-th-href="${'/employee/add'}" >
-                <span class="info-box-icon text-white" ><i class="fa fa-plus mr-1" ></i ></span >
-                <span class="text-white" > Add Employee </span ></a >
-            </button >
-            <button type="button" class="btn btn-success btn-sm" >
-              <a data-th-href="${'/home'}" >
-                <span class="info-box-icon text-white" ><i class="fas fa-home mr-1" ></i ></span >
-                <span class="text-white" > Home </span ></a >
-            </button >
-          </div >
-        </div >
-      </div >
-    </div >
+<!--    <div class="row m-1" >-->
+<!--      <div class="col-12" >-->
+<!--        <div class="text-right" >-->
+<!--          <div text-right >-->
+<!--            <button type="button" class="btn btn-info btn-sm" >-->
+<!--              <a data-th-href="${'/employee/add'}" >-->
+<!--                <span class="info-box-icon text-white" ><i class="fa fa-plus mr-1" ></i ></span >-->
+<!--                <span class="text-white" > Add Employee </span ></a >-->
+<!--            </button >-->
+<!--  -->
+<!--          </div >-->
+<!--        </div >-->
+<!--      </div >-->
+<!--    </div >-->
                                 <!--form action end button---------------------------------------------------------     -->
 
 
@@ -38,29 +34,41 @@
 
               <div class="col-md-12" >
                 <div class="card" >
+                  <div class="card-header" >
+
+                    <h3 ><span id="formHeader"
+                               th:text="${addStatus==false?'New Dependent':'Update Dependent'}" ></span ></h3 >
+                  </div>
                   <div class="card-body" >
-                    <!--                                        <h4>Dependent Control </h4>-->
-                    <form th:action="${addStatus==false?'/dependent/save' :'/dependent/update'}"
-                          method="post" th:object="${dependent}" >
-                      <input type="hidden" data-th-value="${dependent.employee.id}" data-th-name="${'employee'}" >
-                      <!--Id-->
-                      <div class="form-group row" th:if="${addStatus==true}" >
-                        <!--<input type="hidden" data-th-value="${dependent.employee}" data-th-name="${'employee'}">-->
-                        <label for="id" class="form-label " > Id </label >
-                        <input type="text" class="form-control" th:field="*{id}" id="id" readonly >
-                        <input class="form-control" th:field="*{liveDead}" type="hidden" readonly/>
-                      </div >
-                      <!--relationship-->
-                      <div class="form-group row" >
-                        <label th:for="${'relationship'}" class="form-label " >
-                          relationship </label >
-                        <select class="form-control" th:field="*{relationship}" required >
-                          <option value="" selected >Please Select</option >
-                          <option th:each="relationship : ${relationship}"
-                                  th:text="${relationship.relationship}"
-                                  th:value="${relationship}" >
-                          </option >
-                        </select >
+
+                      <form th:action="${addStatus==false?'/dependent/save' :'/dependent/update'}"
+                            method="post" th:object="${dependent}" >
+                        <input type="hidden" data-th-value="${dependent.employee.id}" data-th-name="${'employee'}" >
+                      <div  th:if="${addStatus==true}" >
+                     <label for="id" class="form-label " > Id </label >
+                        <div><!--Id-->
+
+                            <!--                        <input type="text" data-th-value="${dependent.employee}" data-th-name="${'employee'}">-->
+
+                            <input type="text" class="form-control" th:field="*{id}" id="id" readonly >
+                            <input class="form-control" th:field="*{liveDead}" type="hidden" readonly/>
+                          </div>
+                      </div>
+                        <div class="form-group row" ><label th:for="${'relationship'}" class="form-label " >
+                          Relationship </label ><!--relationship-->
+
+
+                            <select class="form-control" th:field="*{relationship}" required >
+                              <option value="" selected >Please Select</option >
+                              <option th:each="relationship : ${relationship}"
+                                      th:text="${relationship.relationship}"
+                                      th:value="${relationship}" >
+                              </option >
+                            </select >
+
+
+
+
                       </div >
                       <div class="form-group" id="showWorkingPlace" th:if="${addStatus==false}" >
                         <label class="form-check" > Working Place </label >
@@ -72,7 +80,6 @@
                             <label class="form-check-label"
                                    for="exampleRadios1" >AASL</label >
                           </div >
-
                           <div class="form-check" >
                             <input type="radio" class="form-check-input"
                                    name="workingPlaceRadio" id="exampleRadios2"
@@ -152,7 +159,7 @@
                       </div >
                       <!--                                            button-->
 
-                      <div class="form-group row" >
+                      <div class="form-group row align-left" >
                         <button type="submit" class="btn btn-primary" >
                           <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}" ></i >
                           <span

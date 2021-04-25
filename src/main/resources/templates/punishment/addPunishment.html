@@ -31,9 +31,10 @@
                             <div class="col-md-12" >
                                 <div class="card" >
                                     <div class="card-body" >
-                                        <h4 >
+                                        <div class="card-header" >
+                                        <h4 class="breadcrumb-item active">
                                             <span data-th-text="${addStatus==true?'Add New Punishment':'Update Punishment Details'}"></span>
-                                        </h4 >
+                                        </h4 ></div>
                                         <table class="table table-hover table-borderless" >
         <form class="form-horizontal" data-th-action="${addStatus==true?'/punishment/save':'/punishment/update'}"
               data-th-object="${punishment}"

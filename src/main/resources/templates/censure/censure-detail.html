@@ -14,16 +14,16 @@
         <div class="text-right" >
           <div text-right >
             <button type="button" class="btn btn-success btn-sm mr-lg-1" >
-              <a data-th-href="${'/employee'}" >
+              <a data-th-href="${'/censure'}" >
                 <span class="info-box-icon text-white" ><i class="fas fa-folder-open mr-1" ></i ></span >
-                <span class="text-white" > View Employee </span ></a >
+                <span class="text-white" > View Sensure </span ></a >
             </button >
           </div >
         </div >
       </div >
     </div >
 
-  <div data-th-replace="~{censure/employeeDetail :: employeeDetailsFragment}" ></div >
+<!--  <div data-th-replace="~{censure/employeeDetail :: employeeDetailsFragment}" ></div >-->
   <div class="row" >
     <div class="col-md-12" >
       <div class="container-fluid" data-th-fragment="censuresDetail" >
@@ -122,6 +122,11 @@
     </button>
   </a>
 </div>
+
+</div >
+<div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
+</div ><!-- wrapper end -->
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" >
   <script >
     $(document).ready(function () {
       $("#punishment, #offence").select2({
@@ -201,3 +206,6 @@
     });
 
   </script >
+</div ><!-- script Fragment -->
+</body >
+</html >

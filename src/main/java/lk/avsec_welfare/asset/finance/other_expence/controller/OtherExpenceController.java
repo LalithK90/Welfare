@@ -35,6 +35,7 @@ public class OtherExpenceController {
   @GetMapping
   public String findAll(Model model) {
     model.addAttribute("otherExpenceTypes", otherExpenceService.findAll());
+    model.addAttribute("contendHeader", "Other Expences Details");
     return "otherExpence/otherExpence";
   }
 
@@ -42,6 +43,7 @@ public class OtherExpenceController {
   public String addFrom(Model model) {
     model.addAttribute("otherExpence", new OtherExpence());
     model.addAttribute("otherExpenceTypes", OtherExpenseType.values());
+    model.addAttribute("contendHeader", "Add Other Expences");
     return "otherExpence/addOtherExpence";
   }
 

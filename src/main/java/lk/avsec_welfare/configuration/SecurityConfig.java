@@ -82,23 +82,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         //to see actuator details
                                         .antMatchers(ALL_PERMIT_URL).permitAll()
                                         //this is used the normal admin to give access every url mapping
-                                        .antMatchers("/employee").hasRole("ADMIN")
+//                                        .antMatchers("/employee").hasRole("ADMIN")
                                         //Need to login for access those are
-                                           .antMatchers("/employee/**").hasRole("ADMIN")
+                                        .antMatchers("/employee/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT")
                                         .antMatchers("/mainWindow").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
                                         .antMatchers("/user/**").hasRole("ADMIN")
-                                        .antMatchers("/district/**").hasAnyRole("MEMBER", "ADMIN")
+                                        .antMatchers("/district/**").hasAnyRole("SECRETORY", "ADMIN")
 
-                                        .antMatchers("/dependent/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
-
-
-                                        .antMatchers("/designation/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
+                                        .antMatchers("/dependent/**").hasAnyRole("ADMIN","PRESIDENT","SECRETORY")
 
 
-                                        .antMatchers("/district/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
+                                        .antMatchers("/designation/**").hasAnyRole("ADMIN","PRESIDENT","SECRETORY")
 
 
-                                        .antMatchers("/emailMessage/**").hasAnyRole("MEMBER", "ADMIN")
+                                        .antMatchers("/emailMessage/**").hasAnyRole("HOSS", "ADMIN","PRESIDENT","SECRETORY")
 
                                         .antMatchers("/employee/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
 
@@ -108,9 +105,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         .antMatchers("/grievances/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
 
 
-                                        .antMatchers("/promotion/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
+                                        .antMatchers("/promotion/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY")
 
-                                        .antMatchers("/qualification/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
+                                        .antMatchers("/qualification/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY")
 
 
                                         .antMatchers("/register").hasRole("ADMIN")
@@ -123,8 +120,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                                         .antMatchers("/user/**").hasAnyRole("HOSS","PRESIDENT","ADMIN")
 
-                                        .antMatchers("/workingPlace/**").hasAnyRole("MEMBER", "ADMIN")
-                                        .antMatchers("/employeeWorkingPlace/**").hasRole("ADMIN")
+                                        .antMatchers("/workingPlace/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY")
+                                        .antMatchers("/employeeWorkingPlace/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY")
 
                                         .antMatchers("/briefing/**").hasAnyRole("ADMIN","HOSS","PRESIDENT","SECRETORY","TREASURE","AGENT","MEMBER")
                                         .anyRequest()

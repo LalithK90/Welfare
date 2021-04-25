@@ -20,11 +20,7 @@
                 <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
                 <span class="text-white"> Add Other Expenses </span></a>
             </button>
-            <button type="button" class="btn btn-success btn-sm">
-              <a  data-th-href="${'/home'}" >
-                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
-                <span class="text-white"> Home </span></a>
-            </button>
+
           </div>
         </div>
       </div>
@@ -38,11 +34,14 @@
           <div class="col-md-12" >
                 <div class="card" >
                   <div class="card-body" >
-                    <h4 >	Other Expences Type</h4 >
+                    <div class="card-header">
+                      <h4 class="breadcrumb-item active" data-th-text="${contendHeader}"></h4>
+                    </div>
                   <table id="myTable" class="table table-hover table-striped" >
                     <thead>
                     <tr >
                       <th >Index</th >
+                      <th >Date</th >
                       <th >Other Expenses Type</th >
                       <th >Amount</th >
                       <th >Remark</th >
@@ -53,6 +52,7 @@
                     <tbody >
                     <tr data-th-each="otherExpenceType, index : ${otherExpenceTypes}" >
                       <td data-th-text="${index.count}" ></td >
+                      <td data-th-text="${otherExpenceType.amount}" ></td >
                       <td data-th-text="${otherExpenceType.otherExpenseType.otherExpenseType}" ></td >
                       <td data-th-text="${otherExpenceType.amount}" ></td >
                       <td data-th-text="${otherExpenceType.remark}" ></td >

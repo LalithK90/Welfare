@@ -14,42 +14,37 @@
         <div class="text-right" >
           <div text-right >
             <button type="button" class="btn btn-success btn-sm mr-lg-1" >
-              <a data-th-href="${'/employee'}" >
+              <a data-th-href="${'/employee/findAll'}" >
                 <span class="info-box-icon text-white" ><i class="fas fa-folder-open mr-1" ></i ></span >
-                <span class="text-white" > View Employee </span ></a >
+                <span class="text-white" > Add Censure </span ></a >
             </button >
           </div >
         </div >
       </div >
     </div >
 <!--heading Area-->
+
 <div class="container-fluid  form-Border" >
-  <div class="row text-center " >
-    <div class="col" >
-      <a href="/home" id="btnHome" class="btn btn-outline-info" >
-        &nbsp;Back To Home&nbsp;
-      </a >
-    </div >
 
-    <div class="col" >
-      <a class="btn btn-info" href="/employee/findAll" ><i class="fa fa-plus" ></i >
-        &nbsp;Add New</a >
-    </div >
-
-  </div >
   <div class="row text-center" >
     <div class="col" >
       <h4 class="text-info text-center" >
-        <strong >
-          Employee Censure Management
-        </strong >
+        <h4 class="breadcrumb-item active" data-th-text="${contendHeader}"></h4>
       </h4 >
     </div >
   </div >
 </div >
-<div class="container-fluid  text-center" >
+    <div class="content-header">
+      <div class="row">
+        <div class="col-md-12" >
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="breadcrumb-item active" data-th-text="${contendHeader}"></h4>
 
-  <table class="table table-hover table-striped" id="myTable" data-th-if="${not #lists.isEmpty(censures)}" >
+                  <table id="myTable" class="table table-hover table-striped" data-th-if="${not #lists.isEmpty(censures)}" >
+
     <thead class="thead-inverse" >
     <tr >
       <th >Index</th >
@@ -94,6 +89,12 @@
     </div >
   </div >
 </div >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div >
   <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
