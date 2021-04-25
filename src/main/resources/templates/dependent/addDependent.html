@@ -165,7 +165,14 @@
                         </ul >
                       </div >
                       <!--                        Error Massage end --------------------------------->
-                      <!--                                            button-->
+                        <!--                        Error Massage------------------------- -->
+                        <div class="form-row" >
+                          <label id="errorLabel" data-th-if="${#fields.hasErrors('*')}" data-th-text="'Errors: '" >Errors: </label >
+                          <ul >
+                            <li id="error" data-th-each="err : ${#fields.errors('*')}" data-th-text="${err}" class="error" ></li >
+                          </ul >
+                        </div >
+                        <!--                        Error Massage end --------------------------------->
 
                       <div class="form-group row align-left" >
                         <button type="submit" class="btn btn-primary" >

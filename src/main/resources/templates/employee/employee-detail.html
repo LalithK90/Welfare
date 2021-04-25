@@ -20,12 +20,6 @@
                                 <span class="info-box-icon text-white"><i class="fa fa-list mr-1"></i></span>
                                 <span class="text-white"> View Employee List </span></a>
                         </button>
-
-                        <button type="button" class="btn btn-success btn-sm">
-                            <a data-th-href="${'/home'}">
-                                <span class="info-box-icon text-white"><i class="fas fa-home mr-1"></i></span>
-                                <span class="text-white"> Home </span></a>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -408,6 +402,7 @@
                             </div>
                         </div>
                     </div>
+                    <!--                  Education Details-->
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
@@ -436,48 +431,78 @@
                             </div>
                         </div>
                     </div>
+                    <!--                  Education Details-->
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                <div class="card-header" id="headingThree">
+                                <div class="card-header" id="headingTwo">
                                     <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
-                                            data-target="#collapseThree"
-                                            aria-expanded="false" aria-controls="collapseTwo"><i
-                                            class="fa fa-arrow-down">&nbsp;</i> &nbsp;&nbsp;Promotion
+                                            data-target="#collapseTwo"
+                                            aria-expanded="false" aria-controls="collapseTwo">Education
                                     </button>
                                     <spam style="float: right"><a
-                                            data-th-href="${'/promotion/add/' + employeeDetail.id}"
-                                            class="btn btn-sm btn-default"><i
-                                            class="fa fa-plus"></i></a></spam>
+                                            data-th-href="${'/qualification/add/' + employeeDetail.id}"
+                                            class="btn btn-sm btn-default">
+                                        <i class="fa fa-plus"></i></a></spam>
                                 </div>
-                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                                      data-parent="#accordion">
                                     <div class="card-body">
-                                        <table class="table table-borderless table-hover">
-                                            <tbody>
-                                            <tr>
-                                                <th><label class="form-label"> Id </label></th>
-                                                <th><label class="form-label"> Promotion Name </label></th>
-                                                <th><label class="form-label"> Remark </label></th>
-                                                <th><label class="form-label"> Effected Dte </label></th>
-                                                <th><label class="form-label"> Action </label>
-                                                </th>
-                                            </tr>
-                                            </tbody>
-                                        </table>
                                         <div class="container-fluid"
-                                             data-th-each="promotionDetail : ${employeeDetail.promotions}">
-
-                                            <div data-th-replace="~{promotion/promotion-detail :: promotionDetail1}"></div>
-                                            <hr>
+                                             data-th-each="qualificationDetail : ${employeeDetail.qualifications}">
+                                            <a data-th-href="${'/qualification/edit/'+ qualificationDetail.id}"
+                                               class="btn btn-primary"> <i
+                                                    class="fa fa-list"></i>&nbsp; View List </a>
+                                            <div data-th-replace="~{qualification/qualification-detail :: qualificationDetail}"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!--                  Censure Details-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-md-12">-->
+<!--                            <div class="card">-->
+<!--                                <div class="card-header" id="headingThree">-->
+<!--                                    <button type="button" class="btn btn-link collapsed" data-toggle="collapse"-->
+<!--                                            data-target="#collapseThree"-->
+<!--                                            aria-expanded="false" aria-controls="collapseTwo"><i-->
+<!--                                            class="fa fa-arrow-down">&nbsp;</i> &nbsp;&nbsp;Censure-->
+<!--                                    </button>-->
+<!--                                    <spam style="float: right"><a-->
+<!--                                            data-th-href="${'/censure/add/' + employeeDetail.id}"-->
+<!--                                            class="btn btn-sm btn-default"><i-->
+<!--                                            class="fa fa-plus"></i></a></spam>-->
+<!--                                </div>-->
+<!--                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"-->
+<!--                                     data-parent="#accordion">-->
+<!--                                    <div class="card-body">-->
+<!--                                        <table class="table table-borderless table-hover">-->
+<!--                                            <tbody>-->
+<!--                                            <tr>-->
+<!--                                                <th><label class="form-label"> Id </label></th>-->
+<!--                                                <th><label class="form-label"> Censure </label></th>-->
+<!--                                                <th><label class="form-label"> Remark </label></th>-->
+<!--                                                <th><label class="form-label"> Effected Dte </label></th>-->
+<!--                                                <th><label class="form-label"> Action </label>-->
+<!--                                                </th>-->
+<!--                                            </tr>-->
+<!--                                            </tbody>-->
+<!--                                        </table>-->
+<!--                                        <div class="container-fluid"-->
+<!--                                             data-th-each="censureDetail : ${employeeDetail.censure}">-->
 
+<!--                                            <div data-th-replace="~{censure/censure-detail :: censureDetail1}"></div>-->
+<!--                                            <hr>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
+                    <!--                  Working Place Histry-->
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
