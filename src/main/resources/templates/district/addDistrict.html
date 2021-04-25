@@ -19,11 +19,6 @@
                 <span class="text-white" > Veiw District</span ></a >
             </button >
 
-            <button type="button" class="btn btn-success btn-sm" >
-              <a data-th-href="${'/home'}" >
-                <span class="info-box-icon text-white" ><i class="fas fa-home mr-1" ></i ></span >
-                <span class="text-white" > Home </span ></a >
-            </button >
           </div >
         </div >
       </div >
@@ -49,13 +44,12 @@
                       <!--Id-->
                       <table class="table table-hover table-borderless" >
                         <tbody >
-                        <tr class="form-group row" th:if="${addStatus==true}" >
+                        <tr th:if="${addStatus==true}" >
                           <th >
-                          <th ><label for="id" class="form-label " > Id </label ></th >
-                          <td >
-
-                            <input class="form-control" th:field="*{liveDead}" type="hidden" readonly/>
-                            <input type="text" class="form-control" th:field="*{id}" id="id" readonly ></td >
+                            <label for="id" class="form-label " > Id </label >
+                            <input th:field="*{liveDead}" type="hidden" readonly/>
+                          </th >
+                          <td ><input type="text" class="form-control" th:field="*{id}" id="id" readonly ></td >
                         </tr >
                         <!--Province-->
                         <tr >

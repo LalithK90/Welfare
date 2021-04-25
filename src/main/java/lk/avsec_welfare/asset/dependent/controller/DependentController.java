@@ -74,6 +74,7 @@ public class DependentController {
   public String form(@PathVariable Integer id, Model model) {
     Dependent newDependent = new Dependent();
     newDependent.setEmployee(employeeService.findById(id));
+    model.addAttribute("contendHeader", "Add Dependent");
 
     return commonThing(model, false, newDependent);
   }

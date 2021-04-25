@@ -38,6 +38,7 @@ public class ProfileController {
     @GetMapping( value = "/passwordChange" )
     public String passwordChangeForm(Model model) {
         model.addAttribute("pswChange", new PasswordChange());
+        model.addAttribute("contendHeader", "Password Change");
         return "login/passwordChange";
     }
 
@@ -54,11 +55,13 @@ public class ProfileController {
 
             redirectAttributes.addFlashAttribute("message", "Congratulations .!! Success password is changed");
             redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+
             return "redirect:/home";
 
         }
         redirectAttributes.addFlashAttribute("message", "Failed");
         redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
+
         return "redirect:/passwordChange";
 
     }

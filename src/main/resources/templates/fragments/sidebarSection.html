@@ -11,12 +11,14 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
+
+
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 <img src="/img/prasad.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">W B Prasad</a>
+                <a><span data-th-text="${#authentication.name}"></span></a>
             </div>
         </div>
 <!--        <a data-sec-authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_PRESIDENT')"  data-th-href="@{'/employee'}" class="nav-link text-primary"> Employee Management </a>-->
@@ -34,7 +36,6 @@
                                 <p>Log Out</p>
                             </a>
                         </li>
-
                         <li class="nav-item">
                             <a href="/passwordChange" class="nav-link">
                                 <i class="fas fa-key"></i>
@@ -65,7 +66,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'',''ROLE_MEMBER'')')}">
                             <a href="/employee" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+<!--                                <i class="far fa-circle nav-icon"></i>-->
                                 <p>View Employee</p>
                             </a>
                         </li>
@@ -73,67 +74,75 @@
 
                         <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}">
                             <a href="/employee/add" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+<!--                                <i class="far fa-circle nav-icon"></i>-->
                                 <p>Add Employee</p>
                             </a>
                         </li>
                         <li class="dropdown-divider"></li>
                         <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'',''ROLE_MEMBER'')')}">
                             <a href="/designation" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+<!--                                <i class="far fa-circle nav-icon"></i>-->
                                 <p>View Designation</p>
                             </a>
                         </li>
                         <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}">
                             <a href="/designation/add" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+<!--                                <i class="far fa-circle nav-icon"></i>-->
                                 <p>Add Designation</p>
                             </a>
                         </li>
                         <li class="dropdown-divider"></li>
                         <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'')')}">
                             <a href="/district" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+<!--                                <i class="far fa-circle nav-icon"></i>-->
                                 <p>View District</p>
                             </a>
                         </li>
                         <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'')')}">
                             <a href="/district" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+<!--                                <i class="far fa-circle nav-icon"></i>-->
                                 <p>Add District</p>
                             </a>
                         </li>
                         <li class="dropdown-divider"></li>
                         <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'')')}">
+                            <a href="/Censure" class="nav-link">
+                                <!--                                <i class="far fa-circle nav-icon"></i>-->
+                                <p>View Censere</p>
+                            </a>
+                        </li>
+
+                        <li class="dropdown-divider"></li>
+                        <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'')')}">
                             <a href="/workingPlace" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+<!--                                <i class="far fa-circle nav-icon"></i>-->
                                 <p>View W/Station</p>
                             </a>
                         </li>
                         <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'')')}">
                             <a href="/workingPlace/add" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+<!--                                <i class="far fa-circle nav-icon"></i>-->
                                 <p>Add W/Station</p>
                             </a>
                         </li>
                         <li class="dropdown-divider"></li>
                         <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}">
                             <a href="/dependent" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+<!--                                <i class="far fa-circle nav-icon"></i>-->
                                 <p>Dependent View</p>
                             </a>
                         </li>
                         <li class="dropdown-divider"></li>
                         <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'')')}">
                             <a href="/promotion" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+<!--                                <i class="far fa-circle nav-icon"></i>-->
                                 <p>Promotion View</p>
                             </a>
                         </li>
                         <li class="dropdown-divider"></li>
                         <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}">
                             <a href="/qualification" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+<!--                                <i class="far fa-circle nav-icon"></i>-->
                                 <p>Qualification View</p>
                             </a>
                         </li>
@@ -286,7 +295,6 @@
                                 <p>View User</p>
                             </a>
                         </li>
-
                         <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'',''ROLE_MEMBER'')')}">
                             <a href="/role" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>

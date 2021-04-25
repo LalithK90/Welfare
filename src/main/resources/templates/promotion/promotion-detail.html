@@ -17,11 +17,7 @@
                 <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
                 <span class="text-white"> View Promotion </span></a>
             </button>
-            <button type="button" class="btn btn-success btn-sm">
-              <a  data-th-href="${'/home'}" >
-                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
-                <span class="text-white"> Home </span></a>
-            </button>
+
           </div>
         </div>
       </div>
@@ -38,7 +34,9 @@
               <div class="col-md-12" >
                 <div class="card" >
                   <div class="card-body" >
-                    <h4 >Promotion </h4 >
+                    <div class="card-header">
+                      <h4 class="breadcrumb-item active" data-th-text="${contendHeader}"></h4>
+                    </div>
                     <div class="container-fluid" th:fragment="promotionDetail" >
                       <table class="table table-hover table-borderless">
                         <tbody>

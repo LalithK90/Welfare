@@ -34,12 +34,14 @@ public class PunishmentController implements AbstractController<Punishment, Inte
   @GetMapping
   public String findAll(Model model) {
     model.addAttribute("punishments", punishmentService.findAll());
+    model.addAttribute("contendHeader", "Punishment View");
     return "punishment/punishment";
   }
 
   @GetMapping( "/{id}" )
   public String findById(@PathVariable Integer id, Model model) {
     model.addAttribute("punishmentDetail", punishmentService.findById(id));
+    model.addAttribute("contendHeader", "Punishment Details");
     return "punishment/punishment-detail";
   }
 
@@ -47,6 +49,7 @@ public class PunishmentController implements AbstractController<Punishment, Inte
   public String form(Model model) {
     model.addAttribute("addStatus", true);
     model.addAttribute("punishmentTypes", PunishmentType.values());
+    model.addAttribute("contendHeader", "Add Punishment");
     model.addAttribute("punishment", new Punishment());
     return "punishment/addPunishment";
   }
@@ -55,6 +58,7 @@ public class PunishmentController implements AbstractController<Punishment, Inte
   public String edit(@PathVariable Integer id, Model model) {
     model.addAttribute("addStatus", false);
     model.addAttribute("punishmentTypes", PunishmentType.values());
+    model.addAttribute("contendHeader", "Update Punishment");
     model.addAttribute("punishment", punishmentService.findById(id));
     return "punishment/addPunishment";
   }

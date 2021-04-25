@@ -17,11 +17,7 @@
                                 <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
                                 <span class="text-white"> View Offence </span></a>
                         </button>
-                        <button type="button" class="btn btn-success btn-sm">
-                            <a  data-th-href="${'/home'}" >
-                                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
-                                <span class="text-white"> Home </span></a>
-                        </button>
+
                     </div>
                 </div>
             </div>
@@ -36,10 +32,6 @@
                             <div class="card">
                                <div class="card-body" >
                                    <h4><span data-th-text="${addStatus==true?'Add New Offence':'Update Offence Details'}"></span></h4>
-
-
-
-
                     <!--Id-->
             <table class="table table-hover table-borderless" >
                 <form class="form-horizontal" data-th-action="${addStatus==true?'/offence/save':'/offence/update'}"

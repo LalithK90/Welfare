@@ -34,9 +34,9 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4>Punishment Management</h4>
-                                        <!--if not empty list-->
-
+                                        <div class="card-header">
+                                            <h4 class="breadcrumb-item active" data-th-text="${contendHeader}"></h4>
+                                        </div>
                                         <table class="table table-hover table-striped table-striped" id="myTable">
                                             <div class="row" id="instituteListPresent" data-th-if="${not #lists.isEmpty(punishments)}">
                                                 <thead class="thead-inverse" >
@@ -76,18 +76,18 @@
                 </h3>
             </div>
         </div>
-
     </div>
 </div>
 
     </div >
-    <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
-</div ><!-- wrapper end -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
+</div ><!-- wrapper end -->
+
 <div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div ><!-- script Fragment -->
 </body >
 </html >
