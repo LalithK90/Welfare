@@ -13,11 +13,14 @@ import lk.avsec_welfare.asset.grievances.entity.Grievance;
 import lk.avsec_welfare.asset.grievances.entity.GrievanceStateChange;
 import lk.avsec_welfare.asset.grievances.service.GrievanceStateChangeService;
 import lk.avsec_welfare.asset.grievances.service.GrievancesService;
+import lk.avsec_welfare.asset.userManagement.entity.Role;
+import lk.avsec_welfare.asset.userManagement.entity.User;
 import lk.avsec_welfare.asset.userManagement.service.UserService;
 import lk.avsec_welfare.util.interfaces.AbstractController;
 import lk.avsec_welfare.util.service.DateTimeAgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -63,7 +66,26 @@ public class GrievancesController implements AbstractController< Grievance, Inte
   @GetMapping
   public String findAll(Model model) {
     String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-    Employee employee = userService.findByUserName(userName).getEmployee();
+    User user = userService.findByUserName(userName);
+    Employee employee = user.getEmployee();
+
+    //date range (one month)
+    LocalDate to = dateTimeAgeService.getCurrentDate();
+    LocalDate form = to.minusDays(30);
+    boolean roleStatus = false;
+    for ( Role role : user.getRoles() ) {
+      if ( role.getRoleName().equals("ADMIN") ) {
+        roleStatus = true;
+        break;
+      }
+    }
+
+    if ( roleStatus ) {
+      model.addAttribute("form", form);
+      model.addAttribute("to", to);
+      model.addAttribute("contendHeader", "Grievances");
+      return "grievances/grievances";
+    }
 
     GrievancesStatus grievancesStatus;
     //log ing user -> switch
@@ -78,11 +100,8 @@ public class GrievancesController implements AbstractController< Grievance, Inte
       default:
         grievancesStatus = GrievancesStatus.SCTY;
     }
-    //date range (one month)
-    LocalDate to = dateTimeAgeService.getCurrentDate();
-    LocalDate form = to.minusDays(30);
+
 //solution type, date range, grievance Status
-    System.out.println("grivence11111   " + grievancesStatus.getGrievancesStatus());
 
     if ( employee.getWelfarePosition().equals(WelfarePosition.HOSS) ||
 
@@ -165,9 +184,9 @@ public class GrievancesController implements AbstractController< Grievance, Inte
       grievanceStateChange.setCommentedBy(userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getEmployee().getCallingName());
       grievanceStateChangeService.persist(grievanceStateChange);
     }
-    System.out.println("greavances GrievancesStatus"+grievance.getGrievancesStatus());
-    System.out.println("greavances Priority"+grievance.getPriority());
-    System.out.println("greavances Solution Type"+grievance.getSolutionType());
+    System.out.println("greavances GrievancesStatus" + grievance.getGrievancesStatus());
+    System.out.println("greavances Priority" + grievance.getPriority());
+    System.out.println("greavances Solution Type" + grievance.getSolutionType());
     redirectAttributes.addFlashAttribute("grievancesDetail", grievancesService.persist(grievance));
     return "redirect:/grievances";
   }
