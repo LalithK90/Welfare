@@ -72,9 +72,6 @@ public class GrievancesController implements AbstractController< Grievance, Inte
       case "HOSS":
         grievancesStatus = GrievancesStatus.HOSS;
         break;
-      case "DHOSS":
-        grievancesStatus = GrievancesStatus.DHOSS;
-        break;
       case "PRE":
         grievancesStatus = GrievancesStatus.PRE;
         break;
@@ -88,7 +85,7 @@ public class GrievancesController implements AbstractController< Grievance, Inte
     System.out.println("grivence11111   " + grievancesStatus.getGrievancesStatus());
 
     if ( employee.getWelfarePosition().equals(WelfarePosition.HOSS) ||
-        employee.getWelfarePosition().equals(WelfarePosition.DHOSS) ||
+
         employee.getWelfarePosition().equals(WelfarePosition.PRE) ||
         employee.getWelfarePosition().equals(WelfarePosition.SCTY) ) {
 
