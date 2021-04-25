@@ -2,6 +2,7 @@ package lk.avsec_welfare.asset.finance.instalment.controller;
 
 import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.asset.employee.entity.enums.BoardOfDirectors;
+import lk.avsec_welfare.asset.employee.entity.enums.EmployeeStatus;
 import lk.avsec_welfare.asset.employee.entity.enums.WelfarePosition;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.finance.main_account.entity.Enum.FundType;
@@ -68,15 +69,13 @@ public class InstalmentController {
       if ( welfarePosition.equals(WelfarePosition.OTR) || welfarePosition.equals(WelfarePosition.MBR) ) {
         model.addAttribute("message", "You have no permission to see this");
       }
-      if ( welfarePosition.equals(WelfarePosition.AGT) ) {
-        List< Employee > employees = employeeService.findAll()
-            .stream()
-            .filter((x) -> x.getWorkingPlace().equals(workingPlace))
-            .collect(Collectors.toList());
-        model.addAttribute("employees", employees);
-      } else {
-        model.addAttribute("employees", employeeService.findAll());
-      }
+
+      List< Employee > employees = employeeService.findAll()
+          .stream()
+          .filter((x) -> x.getEmployeeStatus().equals(EmployeeStatus.WORKING))
+          .collect(Collectors.toList());
+      model.addAttribute("employees", employees);
+
     }
     return "processManagement/allEmployee";
   }
