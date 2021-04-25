@@ -172,7 +172,7 @@ public class ReportController {
     TwoDate twoDate = new TwoDate();
     twoDate.setEndDate(localDate);
     twoDate.setStartDate(localDate);
-    return commonDeathDonation(twoDate, model);
+    return commonOtherExpense(twoDate, model);
   }
 
 
@@ -180,7 +180,7 @@ public class ReportController {
   public String otherExpenseSearch(@ModelAttribute TwoDate twoDate, Model model) {
     String message = "This report is belongs from " + twoDate.getStartDate() + " to " + twoDate.getEndDate();
     model.addAttribute("message", message);
-    return commonDeathDonation(twoDate, model);
+    return commonOtherExpense(twoDate, model);
   }
 
   private String commonOtherExpense(TwoDate twoDate, Model model) {
@@ -194,7 +194,7 @@ public class ReportController {
       OtherExpenseCountAmount otherExpenseCountAmount = new OtherExpenseCountAmount();
       otherExpenseCountAmount.setOtherExpenseType(otherExpenseType);
       List< OtherExpence > otherExpenseByOtherExpenseType =
-          otherExpenses.stream().filter(x -> x.getOtherExpenseType().equals(otherExpenseType)).collect(Collectors.toCollection());
+          otherExpenses.stream().filter(x -> x.getOtherExpenseType().equals(otherExpenseType)).collect(Collectors.toList());
       otherExpenseCountAmount.setRecordCounter(otherExpenseByOtherExpenseType.size());
       List< BigDecimal > otherExpenceByOtherExpenseTypeAmount = new ArrayList<>();
 
