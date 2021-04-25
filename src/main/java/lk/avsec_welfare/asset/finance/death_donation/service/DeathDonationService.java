@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class DeathDonationService implements AbstractService< DeathDonation, Integer> {
+public class DeathDonationService implements AbstractService< DeathDonation, Integer > {
 
     private final DeathDonationDao deathDonationDao;
 
@@ -49,6 +49,10 @@ public class DeathDonationService implements AbstractService< DeathDonation, Int
     }
 
     public List< DeathDonation > search(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        return deathDonationDao.findByCreatedAtIsBetween(startDateTime, endDateTime);
+    }
+
+    public List< DeathDonation > findByCreatedAtIsBetween(LocalDateTime startDateTime, LocalDateTime endDateTime) {
         return deathDonationDao.findByCreatedAtIsBetween(startDateTime, endDateTime);
     }
 }

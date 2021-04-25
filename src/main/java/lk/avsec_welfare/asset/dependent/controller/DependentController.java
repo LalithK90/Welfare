@@ -20,6 +20,7 @@ import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -99,6 +100,16 @@ public class DependentController {
   public String persist(@Valid @ModelAttribute Dependent dependent, BindingResult bindingResult,
                         RedirectAttributes redirectAttributes, Model model) {
     Employee employee = employeeService.findById(dependent.getEmployee().getId());
+
+    if ( (dependent.getRelationship().equals(Relationship.HUS) || dependent.getRelationship().equals(Relationship.WIF)) && employee.getEpf() != null ) {
+      Employee employeeDb = employeeService.findByEpf(dependent.getEpfNumber());
+      if ( employeeDb != null ) {
+        ObjectError error = new ObjectError("dependent",
+                                            "Why you try to be a dependent.");
+        bindingResult.addError(error);
+      }
+    }
+
 
     if ( bindingResult.hasErrors() ) {
       return commonThing(model, false, dependent);
@@ -182,7 +193,7 @@ public class DependentController {
     List< Dependent > dependents = new ArrayList<>();
 
     dependentEmployee.forEach(x -> {
-      if ( dateTimeAgeService.getAge(x.getDependent().getDob()) <= 18){
+      if ( dateTimeAgeService.getAge(x.getDependent().getDob()) <= 18 ) {
         dependents.add(x.getDependent());
       }
     });

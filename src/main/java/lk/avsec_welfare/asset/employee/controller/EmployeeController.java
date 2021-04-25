@@ -126,7 +126,7 @@ public class EmployeeController {
     model.addAttribute("employeeDetail", employee);
     model.addAttribute("employeeWorkingPlaces", employeeWorkingPlaceService.findByEmployee(employee));
     model.addAttribute("addStatus", false);
-     model.addAttribute("dependentEmployees", dependentEmployeeService.findByEmployee(employee));
+    model.addAttribute("dependentEmployees", dependentEmployeeService.findByEmployee(employee));
     model.addAttribute("contendHeader", "Employee View Details");
     return "employee/employee-detail";
   }
@@ -180,8 +180,7 @@ public class EmployeeController {
 
   //Employee add and update
   @PostMapping( value = {"/save", "/update"} )
-  public String addEmployee(@Valid @ModelAttribute Employee employee, BindingResult result, Model model
-                           ) {
+  public String addEmployee(@Valid @ModelAttribute Employee employee, BindingResult result, Model model) {
     if ( result.hasErrors() ) {
       model.addAttribute("addStatus", true);
       model.addAttribute("employee", employee);
