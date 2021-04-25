@@ -158,9 +158,9 @@ public class GrievancesController implements AbstractController< Grievance, Inte
     Employee employee =
         employeeService.findById(userService.findByUserName(grievance.getCreatedBy()).getEmployee().getId());
     model.addAttribute("grievancesDetail", grievance);
-    model.addAttribute("employeeDetail", employee);
     model.addAttribute("addStatus", false);
     model.addAttribute("contendHeader", "Grievances View Details");
+    model.addAttribute("employeeDetail", employee);
     model.addAttribute("files", employeeFilesService.employeeFileDownloadLinks(employee));
     return "grievances/grievances-detail";
   }
