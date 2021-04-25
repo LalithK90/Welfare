@@ -275,6 +275,13 @@
         });
     });
 
+    $(document).ready(function () {
+        let currentYear = new Date().getFullYear();
+        $(`#incidentDate`).attr('min', `${currentYear}-01-01`).attr('max', `${currentYear}-12-31`);
+
+    });
+
+
 </script >
 </body >
 </html >
