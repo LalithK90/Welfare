@@ -62,12 +62,12 @@ public class InstalmentController {
   public String allEmployee(Model model) {
     User user =
         userService.findById(userService.findByUserIdByUserName(SecurityContextHolder.getContext().getAuthentication().getName()));
-//    WorkingPlace workingPlace = workingPlaceService.findById(user.getEmployee().getWorkingPlace().getId());
     WelfarePosition welfarePosition = user.getEmployee().getWelfarePosition();
     if ( welfarePosition != null ) {
       //member and other person can not view employee who need to pay
       if ( welfarePosition.equals(WelfarePosition.OTR) || welfarePosition.equals(WelfarePosition.MBR) ) {
         model.addAttribute("message", "You have no permission to see this");
+        return "processManagement/allEmployee";
       }
 
       List< Employee > employees = employeeService.findAll()

@@ -416,51 +416,28 @@ $("#invoiceFindValue").bind("keyup", function () {
 //custom invoice search page validation - end
 
 //search form date validation - start
-const milliSecondToDay = Date.parse(new Date());
-
-$("#startDate").bind("input", function () {
+$("#startDate, #endDate").bind("click", function () {
     let startDate = document.getElementById("startDate").value;
-
-//only start date has value
-    if (startDate.length !== 0) {
-        let milliSecondStartDate = Date.parse(startDate);
-        if (milliSecondToDay > milliSecondStartDate) {
-            backgroundColourChangeGood($(this));
-        } else {
-            backgroundColourChangeBad($(this));
-        }
-    } else {
-        backgroundColourChangeNothingToChange($(this));
-    }
-});
-
-$("#endDate").bind("input", function () {
     let endDate = document.getElementById("endDate").value;
 
-//only start date has value
     if (endDate.length !== 0) {
-        let milliSecondStartDate = Date.parse(endDate);
-        if (milliSecondToDay > milliSecondStartDate) {
+        $('#startDate').attr('max', $('#endDate').val());
+    }
+    if (startDate.length !== 0) {
+        $('#endDate').attr('min', $('#startDate').val());
+    }
+
+//only start date has value
+    if (startDate.length !== 0 && endDate.length !== 0) {
+        let milliSecondStartDate = Date.parse(startDate);
+        let milliSecondEndDate = Date.parse(endDate);
+        if (milliSecondEndDate > milliSecondStartDate) {
             backgroundColourChangeGood($(this));
         } else {
             backgroundColourChangeBad($(this));
         }
     } else {
         backgroundColourChangeNothingToChange($(this));
-    }
-});
-
-$('#endDate, #startDate').on('click', function () {
-    let endValue = $('#endDate').val();
-    let startValue = $('#startDate').val();
-    console.log(" end " + endValue + "  start " + startValue);
-    if (endValue !== null) {
-        $('#startDate').attr('max', $('#endDate').val());
-        console.log("1 end " + endValue + "  start " + startValue);
-    }
-    if (startValue !== null) {
-        $('#endDate').attr('min', $('#startDate').val());
-        console.log("2 end " + endValue + "  start " + startValue);
     }
 });
 
