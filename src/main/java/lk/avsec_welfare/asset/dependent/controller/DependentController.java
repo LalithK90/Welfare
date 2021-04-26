@@ -123,10 +123,11 @@ public class DependentController {
       return "redirect:/employee";
     }
 
+    //todo: need ro chekc depedende
     // when never dependent was new, have to
     DependentEmployee dependentEmployee = new DependentEmployee();
 //if dependent has not id and dependent has epf number
-    if ( dependent.getId() == null && dependent.getEpfNumber() != null ) {
+    if ( dependent.getId() == null && dependent.getEpfNumber().length() != 0 ) {
       Employee companyEmployee = employeeService.findByEpf(dependent.getEpfNumber());
 //company employee transfer to dependent
       Dependent dependentInternal = new Dependent();
@@ -159,6 +160,7 @@ public class DependentController {
       //if dependent has not id only
       dependentEmployee.setDependent(makeDependent(dependent));
     }
+
     dependentEmployee.setEmployeeOne(employee);
     dependentEmployee.setInsideOrOut(InsideOrOut.IN);
     dependentEmployee.setRelationship(dependent.getRelationship());
@@ -170,7 +172,9 @@ public class DependentController {
     //name, nic, remark, dob, currentStatus;
     Dependent dependentNew = new Dependent();
     dependentNew.setName(dependent.getName());
-    dependentNew.setNic(dependent.getNic());
+    if ( dependent.getNic().length() != 0 ) {
+      dependentNew.setNic(dependent.getNic());
+    }
     dependentNew.setDob(dependent.getDob());
     dependentNew.setCurrentStatus(CurrentStatus.ACT);
     dependentNew.setRemark(dependent.getRemark());
