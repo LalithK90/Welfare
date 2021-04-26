@@ -62,7 +62,7 @@ public class InstalmentController {
   public String allEmployee(Model model) {
     User user =
         userService.findById(userService.findByUserIdByUserName(SecurityContextHolder.getContext().getAuthentication().getName()));
-    WorkingPlace workingPlace = workingPlaceService.findById(user.getEmployee().getWorkingPlace().getId());
+//    WorkingPlace workingPlace = workingPlaceService.findById(user.getEmployee().getWorkingPlace().getId());
     WelfarePosition welfarePosition = user.getEmployee().getWelfarePosition();
     if ( welfarePosition != null ) {
       //member and other person can not view employee who need to pay
