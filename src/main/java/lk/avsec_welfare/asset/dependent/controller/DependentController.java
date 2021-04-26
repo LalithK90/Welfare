@@ -123,8 +123,6 @@ public class DependentController {
       return "redirect:/employee";
     }
 
-    //todo: need ro chekc depedende
-    // when never dependent was new, have to
     DependentEmployee dependentEmployee = new DependentEmployee();
 //if dependent has not id and dependent has epf number
     if ( dependent.getId() == null && dependent.getEpfNumber().length() != 0 ) {
