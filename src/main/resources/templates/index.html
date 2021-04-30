@@ -1,10 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--
-	Dimension by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 <head  data-th-replace="~{fragments/headerSection :: headerSectionFragment}"></head>
 <!--<head  data-th-replace="~{fragments/headerSection :: headerSectionFragment}"></head>-->
@@ -41,10 +37,10 @@
 		<!-- Wrapper -->
 			<div id="wrapper">
 <!-- video BD -->
-<!-- <video autoplay muted loop id="myVideo">
-	<source src="img/Airport_Background.mp4" type="video/mp4">
-	Your browser does not support HTML5 video.
-  </video> -->
+<!-- <video autoplay muted loop id="myVideo">-->
+<!--	<source src="img/Airport_Background.mp4" type="video/mp4">-->
+<!--	Your browser does not support HTML5 video.-->
+<!--  </video>-->
   <!-- Footer logo -->
  <!-- <div class="content1">
 	<p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei. Id qui nemore latine molestiae, ad mutat oblique delicatissimi pro.</p>
@@ -70,9 +66,9 @@
 						<nav>
 							<ul>
 								<li><a href="#intro">Intro</a></li>
-								<li><a href="#work">Work</a></li>
-								<li><a href="#about">Sign Up</a></li>
-								<li><a href="#contact">Sign In (Company)</a></li>
+								<li><a href="#work">About</a></li>
+								<li><a href="#about">V & M </a></li>
+<!--								<li><a href="#contact">Sign In (Company)</a></li>-->
 								<li><a href="http://localhost:8080/login">Sign In</a></li>
 
 								<!--<li><a href="#elements">Elements</a></li>-->
@@ -93,9 +89,11 @@
 
 						<!-- Work -->
 							<article id="work">
-								<h2 class="major">Work</h2>
+								<h2 class="major">About</h2>
 								<span class="image main"><img src="img/pic05.jpg" alt="" /></span>
-								<p><li>Employee Management</li>
+								<p>AVSEC Welfare Society is a one of the large associations based on Civil Airports in Sri Lanka. AVSEC Welfare Society was formed in 2008 with the aim of providing welfare facilities to serving all members and for their families in order to uplift their welfare function and ensure a smooth, continuous and regular functioning of the current welfare projects and to launch more innovative welfare projects for the benefit of all ranks serving in the Aviation Security Division of AASL.</p>
+								<p>
+								<li>Employee Management</li>
 								<li>Welfare Management</li>
 								<li>Contact Management</li>
 								<li>Notification Management</li>
@@ -104,29 +102,19 @@
 
 						<!-- About -->
 							<article id="about">
-								<h2 class="major">Sign In</h2>
+								<h2 class="major">Vision & Mission</h2>
 								<span class="image main"><img src="img/pic07.jpg" alt="" /></span>
-								<form method="post" action="">
-									<div class="fields">
+
 										<div class="field half">
-											<label for="email">Email</label>
-											<input type="text" name="email" id="name" required/>
-										</div>
-										<div class="field half">
+											<h3>AVSEC Vision</h3>
+											Is to become the model for providing aviation security for the Asian region.
+											<br/><br/><br/><h3>AVSEC Mission</h3>
+											Is to assure the effective protection and safeguarding of passengers, crew, ground personnel, the traveling general public, aircraft, airports and air navigational facilities against acts of unlawful interference.
 
 										</div>
 
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send" class="primary" onclick="show();"/></li>
-										<li><input type="reset" value="Reset" /></li>
-									</ul>
-									<p id="helpMessage"  style="display: none;" ></p>
-									<div class="alert">
-										<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-										<strong></strong> We have sent an email with a confirmation link to your email address. In order to complete the sign-up process, please click the confirmation link.
-									  </div>
-								</form>
+
+
 							</article>
 
 						<!-- Contact -->
@@ -145,8 +133,10 @@
 
 									</div>
 									<ul class="actions">
-										<li><input type="submit" value="Sign In" class="primary" /></li>
-										<li><input type="reset" value="Reset" /></li>
+										<div class="alert">
+											<span class="closebtn">&times;</span>
+											<strong></strong> You are not in company server. In order to complete the sign-up process, please other wise click the sign up button.
+										</div>
 									</ul>
 								</form>
 

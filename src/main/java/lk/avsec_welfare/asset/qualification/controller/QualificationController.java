@@ -1,6 +1,7 @@
 package lk.avsec_welfare.asset.qualification.controller;
 
 import lk.avsec_welfare.asset.common_asset.model.enums.Province;
+import lk.avsec_welfare.asset.course.service.CourseService;
 import lk.avsec_welfare.asset.dependent.service.DependentEmployeeService;
 import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.asset.employee.service.EmployeeFilesService;
@@ -23,17 +24,19 @@ public class QualificationController {
 
   private final QualificationService qualificationService;
   private final EmployeeService employeeService;
+  private final CourseService courseService;
   private final EmployeeFilesService employeeFilesService;
   private final EmployeeWorkingPlaceService employeeWorkingPlaceService;
   private final DependentEmployeeService dependentEmployeeService;
 
   @Autowired
   public QualificationController(QualificationService qualificationService,
-                                 EmployeeService employeeService, EmployeeFilesService employeeFilesService,
+                                 EmployeeService employeeService, CourseService courseService, EmployeeFilesService employeeFilesService,
                                  EmployeeWorkingPlaceService employeeWorkingPlaceService,
                                  DependentEmployeeService dependentEmployeeService) {
     this.qualificationService = qualificationService;
     this.employeeService = employeeService;
+    this.courseService = courseService;
     this.employeeFilesService = employeeFilesService;
     this.employeeWorkingPlaceService = employeeWorkingPlaceService;
     this.dependentEmployeeService = dependentEmployeeService;
@@ -43,6 +46,8 @@ public class QualificationController {
     model.addAttribute("provinces", Province.values());
     model.addAttribute("addStatus", booleanValue);
     model.addAttribute("qualification", qualificationObject);
+    model.addAttribute("courses", courseService.findAll());
+
 
     Employee employee = employeeService.findById(qualificationObject.getEmployee().getId());
     model.addAttribute("files", employeeFilesService.employeeFileDownloadLinks(employee));

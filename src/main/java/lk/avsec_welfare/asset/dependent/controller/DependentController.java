@@ -189,17 +189,21 @@ public class DependentController {
   @GetMapping( "/employee/{id}" )
   @ResponseBody
   public MappingJacksonValue findByEmployee(@PathVariable( "id" ) Integer id) {
+    Employee employee = employeeService.findById(id);
 
     List< DependentEmployee > dependentEmployee =
-        dependentEmployeeService.findByEmployee(employeeService.findById(id)).stream().filter(x -> x.getBenefitedNot().equals(BenefitedNot.LIVE)).collect(Collectors.toList());
+        dependentEmployeeService.findByEmployee(employee).stream().filter(x -> x.getBenefitedNot().equals(BenefitedNot.LIVE)).collect(Collectors.toList());
 
     List< Dependent > dependents = new ArrayList<>();
 
-    dependentEmployee.forEach(x -> {
-      if ( dateTimeAgeService.getAge(x.getDependent().getDob()) <= 18 ) {
-        dependents.add(x.getDependent());
-      }
-    });
+    if (! dependentEmployee.isEmpty()) {
+      dependentEmployee.forEach(x -> {
+        Dependent dependent = dependentService.findById(x.getDependent().getId());
+        if ( dateTimeAgeService.getAge(dependent.getDob()) <= 18 ) {
+          dependents.add(dependent);
+        }
+      });
+    }
 
     MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(dependents);
 

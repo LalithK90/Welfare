@@ -54,7 +54,7 @@
                           <div id="section1ContentId" class="collapse in" role="tabpanel" aria-labelledby="section1HeaderId" >
                             <div class="card-header" >
 
-                              <section data-th-replace="~{employee/employee-detail :: employeeDetailsFragment}" ></section >
+                              <section data-th-replace="~{employee/employee-detail :: employeeHeader}" ></section >
                             </div >
                           </div >
                         </div >
@@ -82,16 +82,37 @@
                           </tr >
                           <tr >
                             <th >
-                              <label th:for="${'name'}" class="form-label " > Name </label ></th >
+                              <label th:for="${'course'}" class="form-label " > Course Name </label ></th >
+
+<td>
+                              <select id="course" data-th-field="*{course}"
+                                      class="form-control" tabindex="10" >
+                                <option value="" >Please select</option >
+                                <option data-th-each="course : ${courses}"
+                                        data-th-text="${course.name}"
+                                        data-th-value="${course.id}"
+                                        data-th-selected="${course==course?'selected':'unselected'}" ></option >
+                              </select >
+                              <p class="text-danger" th:if="${#fields.hasErrors('course')}"
+                                 th:errors="*{course}" >Error Course</p ></td >
+
+
+                            </td >
+                          </tr >
+
+                          <tr >
+                            <th >
+                              <label th:for="${'name'}" class="form-label " > Comments </label ></th >
 
                             <td ><input type="text" class="form-control" th:field="*{name}" required >
                               <p class="text-danger" th:if="${#fields.hasErrors('name')}"
                                  th:errors="*{name}" >Error Name</p >
-                            </td >
-                          </tr >
+                            </td>
+                          </tr>
+
                           <tr >
                             <th >
-                              <label th:for="${'institute'}" class="form-label " > Institute Name </label ></th >
+                              <label th:for="${'institute'}" class="form-label " > Remarks </label ></th >
                             <td >
                               <input type="text" class="form-control" th:field="*{institute}" required >
                               <p class="text-danger" th:if="${#fields.hasErrors('institute')}"
@@ -120,10 +141,17 @@
                           <tr >
                             <th ></th >
                             <td >
-                              <button type="submit" class="btn btn-primary" >
-                                <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}" ></i > <span
-                                    th:text="${addStatus==false?'Save' : 'Update'}" ></span >
+                              <button class="btn btn-success" type="submit" tabindex="21" >
+                                <i class="fa fa-save " style="font-size: 20px" ></i >&nbsp; &nbsp;<span
+                                      data-th-text="${addStatus==false?'Save': 'Update'}" ></span >
                               </button >
+                              <button class="btn btn-danger" type="reset" >
+                                <i th:class="${addStatus==false?'fa fa-redo mr-1':'fa fa-thumbs-down mr-1'}"></i> <span
+                                      th:text="${addStatus==false?'Clear' : 'Reset'}"></span>
+                              </button >
+                              <button class="btn btn-dark" type="button" tabindex="3"> <a data-th-href="${'/employee'}">
+                                <span class="info-box-icon text-white"><i class="fas fa-arrow-circle-left" style="font-size: 20px"></i>&nbsp;&nbsp;Back</span></a>
+                              </button>
                             </td >
                           </tr >
                           </tbody >

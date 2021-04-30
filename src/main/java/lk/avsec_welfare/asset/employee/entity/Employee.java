@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.avsec_welfare.asset.censure.entitiy.Censure;
 import lk.avsec_welfare.asset.common_asset.model.enums.*;
 import lk.avsec_welfare.asset.common_asset.model.FileInfo;
+import lk.avsec_welfare.asset.course.entity.Course;
 import lk.avsec_welfare.asset.dependent.entity.DependentEmployee;
 import lk.avsec_welfare.asset.designation.entity.Designation;
 import lk.avsec_welfare.asset.employee_working_place.entity.EmployeeWorkingPlace;

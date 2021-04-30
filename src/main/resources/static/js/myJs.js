@@ -14,7 +14,7 @@ $(document).ready(function () {
 
 
     /*//--------------- data table short using - data table plugin ------- start //*/
-    if ($("#myTable").val()) {
+    if ($("#myTable tr").length) {
         $("#myTable").DataTable({
             "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
             "ordering": false,
@@ -50,8 +50,10 @@ let nicRegex = /^([0-9]{9}[vV|xX])|^([0-9]{12})$/;
 let mobileRegex = /^([0][7][\d]{8}$)|^([7][\d]{8})$/;
 let landRegex = /^0((11)|(2(1|[3-7]))|(3[1-8])|(4(1|5|7))|(5(1|2|4|5|7))|(6(3|[5-7]))|([8-9]1))([2-4]|5|7|9)[0-9]{6}$/;
 let nameRegex = /^[a-zA-Z .-]{5}[ a-zA-Z.-]+$/;
+let lastNameRegex = /^[a-zA-Z .-]{1}[ a-zA-Z.-]+$/;
 let numberRegex = /^([eE][hH][sS][\d]+)$/;
 let invoiceNumberRegex = /^[0-9]{10}$/;
+// let epfRegex = /^[0-9]{5}$/;
 
 
 //Nic - data of birth - start
@@ -280,10 +282,24 @@ $("#name").bind("keyup", function () {
         backgroundColourChangeBad($(this));
     }
 });
+
+//Full Name validation
+$("#fullName").bind("keyup", function () {
+    let name = $(this).val();
+    if (nameRegex.test(name)) {
+        backgroundColourChangeGood($(this));
+    } else if (name.length === 0) {
+        backgroundColourChangeNothingToChange($(this));
+    } else {
+        backgroundColourChangeBad($(this));
+    }
+});
+
+
 //calling Name validation
 $("#callingName").bind("keyup", function () {
     let name = $(this).val();
-    if (nameRegex.test(name)) {
+    if (lastNameRegex.test(name)) {
         backgroundColourChangeGood($(this));
     } else if (name.length === 0) {
         backgroundColourChangeNothingToChange($(this));
@@ -295,6 +311,16 @@ $("#callingName").bind("keyup", function () {
 $("#invoiceNumber").bind("keyup", function () {
     let invoiceNumber = $(this).val();
     if (invoiceNumberRegex.test(invoiceNumber)) {
+        backgroundColourChangeGood($(this));
+    } else {
+        backgroundColourChangeBad($(this));
+    }
+});
+
+//epfNumber validation
+$("#epf").bind("keyup", function () {
+    let epf = $(this).val();
+    if (epfRegex.test(epf)) {
         backgroundColourChangeGood($(this));
     } else {
         backgroundColourChangeBad($(this));
@@ -561,7 +587,6 @@ $('#nrepsw, #npsw').keyup(function () {
         matchPassword.html('Password is not match value');
     }
 });
-
 //filed validator
 let checkStrength = function (password, filedId) {
     let strength = 0;
@@ -595,9 +620,7 @@ let checkStrength = function (password, filedId) {
         return ` Strong , Password length : ${password.length}`;
     }
 };
-
 //password show hide button
-
 $(".reveal").on('click', function () {
     let $pwd = $(".pwd");
     if ($pwd.attr('type') === 'password') {
@@ -607,7 +630,6 @@ $(".reveal").on('click', function () {
         $pwd.attr('type', 'password');
     }
 });
-
 /* -------headerDate-------*/
 var today = new Date();
 var dd = today.getDate();
