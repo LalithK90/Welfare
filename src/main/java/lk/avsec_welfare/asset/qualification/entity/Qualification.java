@@ -43,4 +43,6 @@ public class Qualification extends AuditEntity {
     @ManyToOne
     private Course course;
 
+
+
 }
