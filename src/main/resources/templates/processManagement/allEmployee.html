@@ -43,38 +43,20 @@
                                         <thead>
                                         <tr>
                                             <th> Index</th>
-                                            <th> EPF No</th>
-                                            <th> Name</th>
-                                            <th> Mobile</th>
                                             <th> Designation</th>
-                                            <th> Status</th>
+                                            <th> Name</th>
+                                            <th> Working Place</th>
+                                            <th> Mobile</th>
                                             <th> Modify</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr data-th-each="employee, rowCount : ${employees}">
                                             <td data-th-text="${rowCount.count}"></td>
-
-<!--                                            <td>-->
-<!--                                                <div class="user-panel mt-0 pb-0 mb-0 d-flex" >-->
-<!--                                                    <div class="image" data-th-if="${employee.fileInfo !=null}" >-->
-<!--                                                        <img id="img" class="rounded"-->
-<!--                                                             style="height:50px; width:50px;border-radius: 1px"-->
-<!--                                                             alt="Employee images"-->
-<!--                                                             data-th-src="${employee.fileInfo.url}" />-->
-<!--                                                    </div >-->
-<!--                                                    <div class="info" ></div >-->
-<!--                                                </div >-->
-<!--                                            </td>-->
-
-                                             <td data-th-text="${employee.epf}"></td>
+                                             <td data-th-text="${employee.designation.name}"></td>
                                             <td data-th-text="${employee.name}"></td>
+                                            <!--<td data-th-text="${employee.workingPlace.name}"></td>-->
                                             <td data-th-text="${employee.mobileOne}"></td>
-                                            <td data-th-if="${employee.designation != null}"
-                                                data-th-text="${employee.designation.shortName}"></td>
-                                            <td data-th-if="${employee.designation == null}"
-                                                data-th-text="${'Not mentioned'}"></td>
-                                            <td data-th-text="${employee.employeeStatus.employeeStatus}"></td>
                                             <td>
                                                 <a data-th-href="${'/collection/' + employee.id}"
                                                    class="btn btn-success btn-sm"><i

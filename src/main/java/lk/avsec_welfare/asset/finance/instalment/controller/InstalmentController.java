@@ -5,6 +5,7 @@ import lk.avsec_welfare.asset.employee.entity.enums.BoardOfDirectors;
 import lk.avsec_welfare.asset.employee.entity.enums.EmployeeStatus;
 import lk.avsec_welfare.asset.employee.entity.enums.WelfarePosition;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
+import lk.avsec_welfare.asset.finance.main_account.entity.Enum.CollectionType;
 import lk.avsec_welfare.asset.finance.main_account.entity.Enum.FundType;
 import lk.avsec_welfare.asset.finance.main_account.entity.MainAccount;
 import lk.avsec_welfare.asset.finance.instalment.commonModel.InstalmentApprove;
@@ -30,6 +31,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -84,32 +86,72 @@ public class InstalmentController {
   public String employeePayment(@PathVariable Integer id, Model model) {
     Employee employee = employeeService.findById(id);
     List< Instalment > paidInstalments = instalmentService.findByEmployee(employee);
-    List< String > paidYears = new ArrayList<>();
+    HashSet< String > paidYears = new HashSet<>();
     //set all years on employee must pay
     paidInstalments.forEach((x) -> {
       paidYears.add(x.getInstalmentType().getYear());
     });
-    //remove duplicate years on paidYears array
-    paidYears.stream().distinct().collect(Collectors.toList());
     //year and paid amount
     List< YearAndPaidAmount > yearAndPaidAmounts = new ArrayList<>();
 
     for ( String paidYear : paidYears ) {
-      BigDecimal paidAmountForYear = BigDecimal.ZERO;
-      BigDecimal yearAmount = BigDecimal.ZERO;
+      List< BigDecimal > paidAmountForYear = new ArrayList<>();
+      List< BigDecimal > paidInstalmentMandatory = new ArrayList<>();
+      List< BigDecimal > paidInstalmentOptional = new ArrayList<>();
       for ( Instalment paidInstalment : paidInstalments ) {
         if ( paidInstalment.getInstalmentType().getYear().equals(paidYear) ) {
-          yearAmount = paidInstalment.getAmount();
-          paidAmountForYear = operatorService.addition(paidAmountForYear, paidInstalment.getAmount());
+          paidAmountForYear.add(paidInstalment.getAmount());
+          if ( paidInstalment.getInstalmentType().getCollectionType().equals(CollectionType.OPT) ) {
+            paidInstalmentOptional.add(paidInstalment.getAmount());
+          }
+          if ( paidInstalment.getInstalmentType().getCollectionType().equals(CollectionType.MON) ) {
+            paidInstalmentMandatory.add(paidInstalment.getAmount());
+          }
         }
       }
+      List< BigDecimal > needToPayForYears = new ArrayList<>();
+      List< BigDecimal > needInstalmentMandatory = new ArrayList<>();
+      List< BigDecimal > needInstalmentOptional = new ArrayList<>();
+
+      instalmentTypeService.findByYear(paidYear).forEach(x -> {
+        needToPayForYears.add(x.getAmount());
+        if ( x.getCollectionType().equals(CollectionType.OPT) ) {
+          needInstalmentOptional.add(x.getAmount());
+        }
+        if ( x.getCollectionType().equals(CollectionType.MON) ) {
+          needInstalmentMandatory.add(x.getAmount());
+        }
+      });
+
+      BigDecimal paidAmount = paidAmountForYear.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+      BigDecimal paidMandatoryAmount = paidInstalmentMandatory.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+      BigDecimal paidOptionalAmount = paidInstalmentOptional.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+
+      BigDecimal needToPayForYear = needToPayForYears.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+      BigDecimal needToPayForYearMandatory = needInstalmentMandatory.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+      BigDecimal needToPayForYearOptional = needInstalmentOptional.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+
+
       YearAndPaidAmount yearAndPaidAmount = new YearAndPaidAmount();
-      yearAndPaidAmount.setPaidAmount(paidAmountForYear);
       yearAndPaidAmount.setYear(paidYear);
-      yearAndPaidAmount.setYearAmount(yearAmount);
-      yearAndPaidAmount.setPendingAmount(operatorService.subtraction(paidAmountForYear, yearAmount));
+      //totalAmount year paidAmount = amount
+      yearAndPaidAmount.setPaidAmount(paidAmount);
+      yearAndPaidAmount.setYearAmount(needToPayForYear);
+      yearAndPaidAmount.setPendingAmount(operatorService.subtraction(needToPayForYear, paidAmount));
+      //mandatoryAmount yearMandatory = amount paid
+      yearAndPaidAmount.setPaidMandatoryAmount(paidMandatoryAmount);
+      yearAndPaidAmount.setPendingMandatoryAmount(needToPayForYearMandatory);
+      yearAndPaidAmount.setPaidMandatoryAmount(operatorService.subtraction(needToPayForYearMandatory,
+                                                                           paidMandatoryAmount));
+      //optionalAmount yearOptional = amount paidOptional
+      yearAndPaidAmount.setPaidOptionalAmount(paidOptionalAmount);
+      yearAndPaidAmount.setYearOptionalAmount(needToPayForYearOptional);
+      yearAndPaidAmount.setPendingAmount(operatorService.subtraction(paidOptionalAmount, needToPayForYearOptional));
+
       yearAndPaidAmounts.add(yearAndPaidAmount);
     }
+
+
     model.addAttribute("yearAndPaidAmounts", yearAndPaidAmounts);
     model.addAttribute("employeeDetail", employee);
     model.addAttribute("instalment", new Instalment());

@@ -25,9 +25,6 @@ public class InstalmentType extends AuditEntity {
     private String year;
 
     @Enumerated(EnumType.STRING)
-    private ExpenseOrReceived expenseOrReceived;
-
-    @Enumerated(EnumType.STRING)
     private CollectionType collectionType;
 
     @Column(nullable = false, precision = 10, scale = 2)
