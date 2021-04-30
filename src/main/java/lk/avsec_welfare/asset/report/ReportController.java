@@ -75,7 +75,7 @@ public class ReportController {
     return "report/mainAccount";
   }
 
-
+//2 other fund receiving for one date and date range
   @GetMapping( "/otherFundReceivingType" )
   public String donationReport(Model model) {
     LocalDate localDate = LocalDate.now();
@@ -123,7 +123,7 @@ public class ReportController {
 
     return "report/otherFundReceivingType";
   }
-
+//3. death donation for one day and date range
   @GetMapping( "/deathDonation" )
   public String deathDonation(Model model) {
     LocalDate localDate = LocalDate.now();
@@ -164,7 +164,7 @@ public class ReportController {
   }
 
 
-  //5. expense types  vs  amounts
+  //4. other expences for one day and date range
   @GetMapping( "/otherExpense" )
   public String otherExpense(Model model) {
     LocalDate localDate = LocalDate.now();
@@ -213,7 +213,7 @@ public class ReportController {
   }
 
 
-  //2. agent vise collection reporting
+  //5. agent vise collection reporting date and date range
 
   @GetMapping( "/agentVise" )
   public String agentVise(Model model) {
@@ -262,7 +262,7 @@ public class ReportController {
     return "report/agent";
   }
 
-  //3. death donation
+
 
 
 }
