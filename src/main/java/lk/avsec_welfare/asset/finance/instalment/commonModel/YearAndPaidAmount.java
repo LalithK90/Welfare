@@ -10,8 +10,14 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 public class YearAndPaidAmount {
-    private String year;
-    private BigDecimal yearAmount;
-    private BigDecimal paidAmount;
-    private BigDecimal pendingAmount;
+  private String year;
+  private BigDecimal yearAmount;
+  private BigDecimal paidAmount;
+  private BigDecimal pendingAmount;
+  private BigDecimal yearMandatoryAmount;
+  private BigDecimal paidMandatoryAmount;
+  private BigDecimal pendingMandatoryAmount;
+  private BigDecimal yearOptionalAmount;
+  private BigDecimal paidOptionalAmount;
+  private BigDecimal pendingOptionalAmount;
 }
