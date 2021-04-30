@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" ></head >
+<body class="hold-transition sidebar-mini layout-fixed" >
+<div class="wrapper" ><!-- wrapper start -->
+  <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+  <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+  <div class="content-wrapper" ><!-- content-wrapper Start -->
+    <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+                                <!-- content-header Start -->
+                                <!--action button layer---------------------------------------------------------     -->
+    <div class="row m-1" >
+      <div class="col-12" >
+        <div class="text-right" >
+          <div text-right >
+            <button type="button" class="btn btn-info btn-sm" >
+              <a data-th-href="${'/course'}" >
+                <span class="info-box-icon text-white" ><i class="fa fa-plus mr-1" ></i ></span >
+                <span class="text-white" > View Course </span ></a >
+            </button >
+
+          </div >
+        </div >
+      </div >
+    </div >
+                                <!--form action end button---------------------------------------------------------     -->
+
+
+    <div class="content-header" >
+      <div class="container-fluid" >
+        <div class="row" >
+          <div class="col-md-12" >
+            <div class="row" >
+
+              <div class="col-md-12" >
+                <div class="card" >
+                  <div class="card-body" >
+                    <div class="card-header" >
+                      <h4 class="breadcrumb-item active" data-th-text="${contendHeader}" ></h4 >
+                    </div >
+                    <div class="container-fluid" th:fragment="courseDetail" >
+                      <table class="table table-hover table-borderless" >
+                        <tbody >
+                        <tr >
+                          <th >
+                            <label class="form-label" > Id </label ></th >
+                          <td ><p class="display_detail" th:text="${courseDetail.id}" ></p ></td >
+                        </tr >
+                        <tr >
+                          <th >
+                            <label class="form-label" > Course Name </label >
+                          <td ><p class="display_detail" th:text="${courseDetail.name}" ></p ></td >
+                          </th></tr >
+
+
+                        <tr >
+                          <th >
+                            <label class="form-label" > Institute </label >
+                          <td ><p class="display_detail" th:text="${courseDetail.institute}" ></p ></td >
+                          </th></tr >
+
+                        <tr >
+                          <th >
+                            <label class="form-label" > Remark </label >
+                          <td ><p class="display_detail" th:text="${courseDetail.remark}" ></p ></td >
+                          </th></tr >
+
+                        </tbody >
+                      </table >
+                    </div >
+                    <div class="invisible" >
+                      <div class="container-fluid" th:fragment="courseDetail1" >
+                        <table class="table table-valign-middle table-hover table-borderless" >
+                          <tbody >
+                          <tr >
+                            <td style="width: 5%" class="display_detail" th:text="${courseDetail.id}" ></td >
+                            <td style="width: 30%" class="display_detail" th:text="${courseDetail.name}" ></td >
+                            <td style="width: 25%" class="display_detail" th:text="${courseDetail.institute}" ></td >
+                            <td style="width: 20%" class="display_detail"
+                                th:text="${courseDetail.remark}" ></td >
+                            <td style="width: 20%" ><a data-th-href="${'/course/edit/'+ courseDetail.id}"
+                                                       class="btn btn-primary" > <i
+                                  class="fa fa-list" ></i >&nbsp; Edit </a ></td >
+
+                          </tr >
+
+                          </tbody >
+                        </table >
+                      </div >
+                    </div >
+                  </div >
+                </div >
+              </div >
+            </div >
+          </div >
+        </div >
+      </div >
+    </div >
+  </div ><!-- content-wrapper end -->
+  <footer data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></footer ><!-- footer Section -->
+</div ><!-- wrapper end -->
+<script data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></script ><!-- script Fragment -->
+</body >
+</html >

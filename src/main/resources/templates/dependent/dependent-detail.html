@@ -31,19 +31,18 @@
           <div class="col-md-12" >
             <div class="row" >
 
-              <div class="col-md-12" >
+              <div class="col-md-6" >
                 <div class="card" >
                   <div class="card-body" th:fragment="dependentDetail" >
                       <div class="card-header" >
-
-                          <h3 ><span id="formHeader"
-                                     th:text="${addStatus==false?'Dependent Details':'Dependent Details'}" ></span ></h3 >
+ <h3 ><span id="formHeader" th:text="${addStatus==false?'Dependent Details':'Dependent Details'}" ></span ></h3 >
                       </div>
                     <!--/* id this comment not visualize */-->
                     <!--Id-->
-                    <table>
+                    <table class="table">
                       <tbody>
-                      <tr><th>
+                      <tr>
+                          <th>
                       <label class="form-label " > Id </label ></th>
                       <td><p class="display_detail" th:text="${dependentDetail.id}" ></p >
                       </td> </tr>
@@ -65,11 +64,19 @@
                       <td></td><p class="display_detail" th:text="${dependentDetail.remark}" ></p >
                       </td> </tr>
                       </tbody></table>
-                    <h1 >Dependended Employees</h1 >
 
+                  </div>
+                </div>
+              </div>
+                <div class="col-md-6" >
+                          <div class="card" >
+                              <div class="card-body">
+                                  <div class="card-header" >
+                                      <h4 >Dependended Employees</h4 >
+                                  </div>
                     <!--Dependent Employee -->
                     <div class="container-fluid" th:each="dependentEmployee : ${dependentDetail.dependentEmployees}" >
-                      <table>
+                      <table class="table">
                         <tbody>
                         <tr><th>
                           <label class="form-label " > Relation Ship </label ></th>

@@ -30,133 +30,116 @@
         <div class="row" >
           <div class="col-md-12" >
             <div class="row" >
-
               <div class="col-md-12" >
-                <div class="card" >
-                  <table >
-                    <tbody >
-                    <tr >
-                      <th >
-                        <label class="form-label " > Amount </label ></th >
-                      <td ><p class="display_detail" th:text="${deathDonationDetail.amount}" ></p >
-                      </td >
-                    </tr >
-
-                    <tr >
-                      <th >
-                        <label class="form-label " > Remark </label ></th >
-                      <td ><p class="display_detail" th:text="${deathDonationDetail.remark}" ></p >
-                      </td >
-                    </tr >
-                    </tbody >
-                  </table >
-                </div >
+                <div data-th-replace="~{employee/employee-detail :: employeeHeader}" ></div >
               </div >
 
               <div class="col-md-12" >
-                <div class="card" >
-                  <div class="card-body" th:fragment="dependentDetail" >
-                    <h4 >Dependent Detail </h4 >
-                    <!--/* id this comment not visualize */-->
-                    <!--Id-->
-                    <table >
-                      <tbody >
-                      <tr >
-                        <th >
-                          <label class="form-label " > Id </label ></th >
-                        <td ><p class="display_detail" th:text="${dependentDetail.id}" ></p >
-                        </td >
-                      </tr >
-
-                      <tr >
-                        <th >
-                          <label class="form-label " > Name </label ></th >
-                        <td ><p class="display_detail" th:text="${dependentDetail.name}" ></p >
-                        </td >
-                      </tr >
-                      <tr >
-                        <th >
-                          <label class="form-label " > Birth date </label ></th >
-                        <td ><p class="display_detail" th:text="${dependentDetail.dob}" ></p >
-                        </td >
-                      </tr >
-                      <tr >
-                        <th >
-                          <label class="form-label " > Nic </label ></th >
-                        <td ><p class="display_detail" th:text="${dependentDetail.nic}" ></p >
-                        </td >
-                      </tr >
-                      <tr >
-                        <th >
-                          <label class="form-label " > Remark </label ></th >
-                        <td ></td >
-                        <p class="display_detail" th:text="${dependentDetail.remark}" ></p >
-                        </td> </tr >
-                      </tbody >
-                    </table >
-                    <h1 >Dependent Employees</h1 >
-
-                    <!--Dependent Employee -->
-                    <div class="container-fluid" th:each="dependentEmployee : ${dependentDetail.dependentEmployees}" >
-                      <table >
+                <div class="row" >
+                <div class="col-md-9" >
+                  <div class="card" >
+                    <div class="card-body" th:fragment="dependentDetail" >
+                      <h4 >Dependent Detail </h4 >
+                      <!--/* id this comment not visualize */-->
+                      <!--Id-->
+                      <table class="table" >
                         <tbody >
                         <tr >
                           <th >
-                            <label class="form-label " > Relation Ship </label ></th >
-                          <td ><p class="display_detail" th:text="${dependentEmployee.relationship.relationship}" ></p >
+                            <label class="form-label " > Id </label ></th >
+                          <td ><p class="display_detail" th:text="${dependentDetail.id}" ></p >
                           </td >
                         </tr >
-                        <tr >
-                          <th >
 
-                            <label class="form-label " > Internal Employee Or Not </label ></th >
-                          <td ><p class="display_detail" th:text="${dependentEmployee.insideOrOut.insideOrOut}" ></p >
+                        <tr >
+                          <th >
+                            <label class="form-label " > Name </label ></th >
+                          <td ><p class="display_detail" th:text="${dependentDetail.name}" ></p >
                           </td >
                         </tr >
                         <tr >
                           <th >
-
-                            <!--  Employee one details-->
-
-                            <label class="form-label" >Name</label ></th >
-                          <td ><p class="display_detail" th:text="${dependentEmployee.employeeOne.name}" ></p >
+                            <label class="form-label " > Birth date </label ></th >
+                          <td ><p class="display_detail" th:text="${dependentDetail.dob}" ></p >
                           </td >
                         </tr >
                         <tr >
                           <th >
-                            <label class="form-label" >NIC</label ></th >
-                          <td ><p class="display_detail" th:text="${dependentEmployee.employeeOne.nic}" ></p >
+                            <label class="form-label " > Nic </label ></th >
+                          <td ><p class="display_detail" th:text="${dependentDetail.nic}" ></p >
                           </td >
                         </tr >
                         <tr >
                           <th >
-                            <label class="form-label" >EPF No</label ></th >
-                          <td ><p class="display_detail" th:text="${dependentEmployee.employeeOne.epf}" ></p >
-                          </td >
-                        </tr >
+                            <label class="form-label " > Remark </label ></th >
+                          <td ></td >
+                          <p class="display_detail" th:text="${dependentDetail.remark}" ></p >
+                          </td> </tr >
                         </tbody >
                       </table >
+                    </div>
+                  </div>
+                </div>
+                  <div class="col-md-3">
+<div class="card">
+  <div class="card-body">
+    <div class="container-fluid" th:each="dependentEmployee : ${dependentDetail.dependentEmployees}" >
+      <table class="body" >
+        <tbody >
+        <tr >
+          <th >
+            <label class="form-label " > Relation Ship </label ></th >
+          <td class="display_detail" th:text="${dependentEmployee.relationship.relationship}" >
+          </td >
+        </tr >
+        <tr >
+          <th >
 
-                      <!--  Employee two details-->
+            <label class="form-label " > Internal Employee Or Not </label ></th >
+          <td class="display_detail" th:text="${dependentEmployee.insideOrOut.insideOrOut}" >
+          </td >
+        </tr >
+        </tbody >
+      </table >
+      <table class="table" >
+            <tbody >
+            <tr >
+              <th >
+                <label class="form-label " > Amount </label ></th >
+              <td ><p class="display_detail" th:text="${deathDonationDetail.amount}" ></p >
+              </td >
+            </tr >
 
-                    </div >
-                  </div >
-                </div >
-              </div >
+            <tr >
+              <th >
+                <label class="form-label " > Remark </label ></th >
+              <td ><p class="display_detail" th:text="${deathDonationDetail.remark}" ></p >
+              </td >
+            </tr >
+            </tbody >
+          </table >
+        </div >
+      </div>
+      <!--  Employee two details-->
+    </div >
 
-              <div class="col-md-12" >
-                <div class="card" >
-                  <div data-th-replace="~{employee/employee-detail :: employeeDetailsFragment}" ></div >
-                </div >
+  </div>
+
+</div>
+                      <!--Dependent Employee -->
+                     </div >
+
+                </div>
+              </div>
+
               </div >
             </div >
           </div >
         </div >
-      </div >
-    </div >
+
   </div ><!-- content-wrapper end -->
   <div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
-</div ><!-- wrapper end -->
+
 <div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" ></div ><!-- script Fragment -->
 </body >
 </html >

@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping( "/promotion" )
+@RequestMapping( "/promotion")
 public class PromotionController {
 
   private final PromotionService promotionService;

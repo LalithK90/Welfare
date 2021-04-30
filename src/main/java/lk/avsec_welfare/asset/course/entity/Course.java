@@ -1,46 +1,40 @@
-package lk.avsec_welfare.asset.qualification.entity;
+package lk.avsec_welfare.asset.course.entity;
+
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
-import lk.avsec_welfare.asset.course.entity.Course;
 import lk.avsec_welfare.asset.employee.entity.Employee;
 import lk.avsec_welfare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
-import java.time.LocalDate;
+
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonFilter("Qualification")
-public class Qualification extends AuditEntity {
+@JsonFilter("Course")
+public class Course extends AuditEntity {
 
-    @Size(min = 2, max = 60, message = "Your name length should be 13")
     private String name;
 
     private String institute;
 
-    private String grade;
+    private String remark;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate completeDate;
 
     @Enumerated(EnumType.STRING)
     private LiveDead liveDead;
 
-
     @ManyToOne
     private Employee employee;
-
-    @ManyToOne
-    private Course course;
 
 }

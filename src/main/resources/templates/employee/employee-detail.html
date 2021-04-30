@@ -35,8 +35,8 @@
                         <div class="col-md-9">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 data-th-text="${employeeDetail.title.title} +${' '} +${employeeDetail.name}"
-                                        class="display_detail"></h3>
+                                    <h2 data-th-text="${employeeDetail.title.title} +${' '} +${employeeDetail.name}"
+                                        class="display_detail"></h2>
                                     <h3 data-th-if="${employeeDetail.designation !=null}"
                                         data-th-text="${employeeDetail.designation.name}" class="display_detail">
                                     </h3>
@@ -775,6 +775,7 @@
                         </table>
                     </div>
                     <div class="modal-footer">
+
                         <button class="btn btn-primary hidden-print" onclick="print()"><span
                                 class="glyphicon glyphicon-print" aria-hidden="true"></span> Print
                         </button>

@@ -92,17 +92,19 @@
                                                 </tr>
                                                 <tr>
                                                     <th></th>
-                                                    <td><button type="submit" class="btn btn-primary">
-                                                        <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}"></i> <span
-                                                            th:text="${addStatus==false?'Save' : 'Update'}"></span>
-                                                    </button>
-                                                    <button type="reset" class="btn btn-primary">
-                                                        <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-down mr-1'}"></i> <span
-                                                            th:text="${addStatus==false?'Clear' : 'Reset'}"></span>
-                                                    </button>
-                                                    <button class="btn btn-dark" type="button" tabindex="3"> <a data-th-href="${'/briefing'}">
-                                                        <span class="info-box-icon text-white"><i class="fas fa-arrow-circle-left" style="font-size: 20px"></i>&nbsp;&nbsp;Back</span></a>
-                                                    </button>
+                                                    <td>
+
+                                                        <button class="btn btn-success" type="submit" tabindex="21" >
+                                                            <i class="fa fa-save " style="font-size: 20px" ></i >&nbsp; &nbsp;<span
+                                                                data-th-text="${addStatus==false?'Save': 'Update'}" ></span >
+                                                        </button >
+                                                        <button class="btn btn-danger" type="reset" >
+                                                            <i th:class="${addStatus==false?'fa fa-redo mr-1':'fa fa-thumbs-down mr-1'}"></i> <span
+                                                                th:text="${addStatus==false?'Clear' : 'Reset'}"></span>
+                                                        </button >
+                                                        <button class="btn btn-dark" type="button" tabindex="3"> <a data-th-href="${'/briefing'}">
+                                                            <span class="info-box-icon text-white"><i class="fas fa-arrow-circle-left" style="font-size: 20px"></i>&nbsp;&nbsp;Back</span></a>
+                                                        </button>
                                                 </tr>
 
                                                 </tbody>
