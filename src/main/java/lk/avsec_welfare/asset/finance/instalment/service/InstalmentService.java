@@ -11,6 +11,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,5 +62,9 @@ public class InstalmentService implements AbstractService< Instalment, Integer >
 
   public List< Instalment > findByInstalmentStatus(InstalmentStatus instalmentStatus) {
     return instalmentDao.findByInstalmentStatus(instalmentStatus);
+  }
+
+  public List< Instalment > findByCreatedAtIsBetweenAndCreatedBy(LocalDateTime startDateTime, LocalDateTime endDateTime, String username) {
+  return instalmentDao.findByCreatedAtIsBetweenAndCreatedBy(startDateTime,endDateTime,username);
   }
 }
