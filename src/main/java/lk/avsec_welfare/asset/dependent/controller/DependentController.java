@@ -103,7 +103,8 @@ public class DependentController {
 
     if ( (dependent.getRelationship().equals(Relationship.HUS) || dependent.getRelationship().equals(Relationship.WIF)) && employee.getEpf() != null ) {
       Employee employeeDb = employeeService.findByEpf(dependent.getEpfNumber());
-      if ( employeeDb != null ) {
+      Dependent dependentDb = dependentService.findByNic(employeeDb.getNic());
+      if ( dependentDb != null ) {
         ObjectError error = new ObjectError("dependent",
                                             "Why you try to be a dependent.");
         bindingResult.addError(error);
@@ -143,7 +144,7 @@ public class DependentController {
 
       redirectAttributes.addFlashAttribute("dependentDetail",
                                            dependentEmployeeService.persist(dependentEmployee));
-      return "redirect:/dependent";
+      return "redirect:/employee";
     }
 //if dependent has not id but has nic
     if ( dependent.getId() == null && dependent.getNic() != null ) {
