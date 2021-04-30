@@ -14,6 +14,7 @@ import lk.avsec_welfare.asset.finance.other_expence.service.OtherExpenceService;
 import lk.avsec_welfare.asset.finance.other_fund_receiving.entity.OtherFundReceiving;
 import lk.avsec_welfare.asset.finance.other_fund_receiving.service.OtherFundReceivingService;
 import lk.avsec_welfare.asset.grievances.service.GrievancesService;
+import lk.avsec_welfare.asset.report.model.AgentTotalAmount;
 import lk.avsec_welfare.asset.report.model.OtherExpenseCountAmount;
 import lk.avsec_welfare.asset.report.model.OtherFundReceivingTypeAmount;
 import lk.avsec_welfare.asset.userManagement.entity.Role;
@@ -237,10 +238,26 @@ public class ReportController {
     Role role = roleService.findByRoleName("AGENT");
     List< User > users = role.getUsers();
 
-//todo
+    List< AgentTotalAmount > agentTotalAmounts = new ArrayList<>();
+
+    users.forEach(x -> {
+      AgentTotalAmount agentTotalAmount = new AgentTotalAmount();
+      List< BigDecimal > agentAmount = new ArrayList<>();
+      Employee employee = userService.findByUserName(x.getUsername()).getEmployee();
+
+      instalmentService.findByCreatedAtIsBetweenAndCreatedBy(startDateTime, endDateTime, x.getUsername()).forEach(y -> {
+        agentAmount.add(y.getAmount());
+      });
+
+      agentTotalAmount.setEmployee(employee);
+      agentTotalAmount.setCount(agentAmount.size());
+      agentTotalAmount.setAmount(agentAmount.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
+
+      agentTotalAmounts.add(agentTotalAmount);
+    });
 
 
-    //  model.addAttribute("otherFundReceivingTypeAmounts", otherFundReceivingTypeAmounts);
+    model.addAttribute("agentTotalAmounts", agentTotalAmounts);
 
     return "report/agent";
   }
