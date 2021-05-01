@@ -53,7 +53,7 @@
 <!--                      <td data-th-text="${employee.employeeStatus.employeeStatus}" ></td >-->
                       <td >
 <!--                          data-th-if='${#authorization.expression("hasAnyRole('ROLE_ADMIN','ROLE_HOSS','ROLE_PRESIDENT', 'ROLE_SECRETORY','ROLE_TREASURE', 'ROLE_AGENT','ROLE_MEMBER')")}-->
-                        <a data-th-href="${'/collection/treasure' + employee.id}"
+                        <a data-th-href="${'/collection/treasure/' + employee.id}"
                               class="btn btn-success btn-sm" ><i
                               class="fa fa-folder-open" ></i >&nbsp;Accept Collection</a >
                         <!--data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN','ROLE_HOSS','ROLE_PRESIDENT', 'ROLE_SECRETORY','ROLE_TREASURE', 'ROLE_AGENT','ROLE_MEMBER'')')}"-->
