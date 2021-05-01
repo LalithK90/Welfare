@@ -1,9 +1,6 @@
 package lk.avsec_welfare.asset.common_asset.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -12,6 +9,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class TwoDate {
     @DateTimeFormat( pattern = "yyyy-MM-dd" )
     private LocalDate startDate;
