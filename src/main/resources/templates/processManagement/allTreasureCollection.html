@@ -103,7 +103,9 @@
                     <h4>Secondary Header </h4>-->
                 <form action="/collection/treasure" method="post" data-th-object="${instalmentTreasure}" data-th-if="${not #lists.isEmpty(instalmentTreasure.instalmentApproves)}" >
                   <div class="card-body" >
-                    <div class="container-fluid table-responsive"                         >
+                    <div class="card-header">
+                    <h4 class="breadcrumb-item active">Executive Budget Summary</h4></div>
+                    <div class="container-fluid table-responsive">
                       <table id="example2" class="table table-hover" >
                         <thead >
                         <tr >
