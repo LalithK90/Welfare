@@ -21,13 +21,10 @@ import java.util.Properties;
 @Service
 public class EmailService {
   private final JavaMailSender javaMailSender;
-  // to access application properties entered details
-  private final Environment environment;
 
   @Autowired
-  public EmailService(JavaMailSender javaMailSender, Environment environment) {
+  public EmailService(JavaMailSender javaMailSender) {
     this.javaMailSender = javaMailSender;
-    this.environment = environment;
   }
 
 
