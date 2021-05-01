@@ -8,6 +8,7 @@ import lk.avsec_welfare.asset.employee.service.EmployeeFilesService;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.death_donation.entity.DeathDonation;
 import lk.avsec_welfare.asset.death_donation.service.DeathDonationService;
+import lk.avsec_welfare.asset.instalment.entity.Instalment;
 import lk.avsec_welfare.asset.instalment.service.InstalmentService;
 import lk.avsec_welfare.asset.main_account.entity.Enum.FundType;
 import lk.avsec_welfare.asset.main_account.entity.Enum.OtherFundReceivingType;
@@ -24,19 +25,26 @@ import lk.avsec_welfare.asset.offence.service.OffenceService;
 import lk.avsec_welfare.asset.report.model.AgentTotalAmount;
 import lk.avsec_welfare.asset.report.model.OtherExpenseCountAmount;
 import lk.avsec_welfare.asset.report.model.OtherFundReceivingTypeAmount;
+import lk.avsec_welfare.asset.report.model.SectionEmployeeInstalmentAmount;
 import lk.avsec_welfare.asset.userManagement.entity.Role;
 import lk.avsec_welfare.asset.userManagement.entity.User;
 import lk.avsec_welfare.asset.userManagement.service.RoleService;
 import lk.avsec_welfare.asset.userManagement.service.UserService;
+import lk.avsec_welfare.asset.working_place.controller.WorkingPlaceController;
+import lk.avsec_welfare.asset.working_place.entity.WorkingPlace;
+import lk.avsec_welfare.asset.working_place.entity.enums.WorkingPlaceSection;
+import lk.avsec_welfare.asset.working_place.service.WorkingPlaceService;
 import lk.avsec_welfare.util.service.DateTimeAgeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,6 +64,7 @@ public class ReportController {
   private final DateTimeAgeService dateTimeAgeService;
   private final RoleService roleService;
   private final EmployeeService employeeService;
+  private final WorkingPlaceService workingPlaceService;
 
   public ReportController(MainAccountService mainAccountService, UserService userService,
                           DeathDonationService deathDonationService, InstalmentService instalmentService,
@@ -64,7 +73,7 @@ public class ReportController {
                           OffenceService offenceService, CensureService censureService,
                           EmployeeFilesService employeeFilesService, DateTimeAgeService dateTimeAgeService,
                           RoleService roleService,
-                          EmployeeService employeeService) {
+                          EmployeeService employeeService, WorkingPlaceService workingPlaceService) {
     this.mainAccountService = mainAccountService;
     this.userService = userService;
     this.deathDonationService = deathDonationService;
@@ -79,6 +88,7 @@ public class ReportController {
     this.dateTimeAgeService = dateTimeAgeService;
     this.roleService = roleService;
     this.employeeService = employeeService;
+    this.workingPlaceService = workingPlaceService;
   }
 
   //1. main account service according to type
@@ -352,4 +362,59 @@ public class ReportController {
     return "report/offenceEmployee";
   }
 
+  // section employee instalment amount
+  @GetMapping( "/sectionEmployeeInstalmentAmount" )
+  public String sectionEmployeeInstalmentAmount(Model model) {
+    model.addAttribute("workingPlaceSections", WorkingPlaceSection.values());
+    model.addAttribute("workingPlaceFindUrl", MvcUriComponentsBuilder
+        .fromMethodName(WorkingPlaceController.class, "findBySection", "")
+        .build()
+        .toString());
+    return "report/sectionEmployee";
+  }
+
+  @PostMapping( "/sectionEmployeeInstalmentAmount" )
+  public String sectionEmployeeInstalmentAmount(@ModelAttribute TwoDate twoDate, Model model) {
+
+    model.addAttribute("workingPlaceSections", WorkingPlaceSection.values());
+    LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
+    LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
+
+    WorkingPlace workingPlace = workingPlaceService.findById(twoDate.getId());
+
+    List< Instalment > instalments = instalmentService.findByCreatedAtIsBetween(startDateTime, endDateTime);
+
+    HashSet< Instalment > instalmentsAccordingToWorkingPlaceSection = new HashSet<>();
+    instalments.forEach(x -> {
+      WorkingPlace workingPlaceDb = workingPlaceService.findById(x.getEmployee().getWorkingPlace().getId());
+      if ( workingPlaceDb.getWorkingPlaceSection().equals(workingPlace.getWorkingPlaceSection()) ) {
+        instalmentsAccordingToWorkingPlaceSection.add(x);
+      }
+    });
+    List< SectionEmployeeInstalmentAmount > sectionEmployeeInstalmentAmounts = new ArrayList<>();
+
+    instalmentsAccordingToWorkingPlaceSection.forEach(x -> {
+      WorkingPlace workingPlaceDb = workingPlaceService.findById(x.getEmployee().getWorkingPlace().getId());
+      SectionEmployeeInstalmentAmount sectionEmployeeInstalmentAmount = new SectionEmployeeInstalmentAmount();
+      sectionEmployeeInstalmentAmount.setWorkingPlaceSection(workingPlaceDb.getWorkingPlaceSection());
+      Employee employeeDb = employeeService.findById(x.getEmployee().getId());
+      sectionEmployeeInstalmentAmount.setEmployee(employeeDb);
+
+      List< BigDecimal > employeePaidTotal = new ArrayList<>();
+
+      instalments
+          .stream()
+          .filter(z -> z.getEmployee().equals(employeeDb))
+          .collect(Collectors.toList())
+          .forEach(y -> employeePaidTotal.add(y.getAmount()));
+      sectionEmployeeInstalmentAmount.setInstalmentCount(employeePaidTotal.size());
+      sectionEmployeeInstalmentAmount.setAmount(employeePaidTotal.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
+
+      sectionEmployeeInstalmentAmounts.add(sectionEmployeeInstalmentAmount);
+
+    });
+    model.addAttribute("sectionEmployeeInstalmentAmounts", sectionEmployeeInstalmentAmounts);
+
+    return "report/sectionEmployee";
+  }
 }

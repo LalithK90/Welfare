@@ -17,4 +17,6 @@ public interface InstalmentDao extends JpaRepository< Instalment, Integer> {
   List< Instalment > findByInstalmentStatus(InstalmentStatus instalmentStatus);
 
   List< Instalment > findByCreatedAtIsBetweenAndCreatedBy(LocalDateTime startDateTime, LocalDateTime endDateTime, String username);
+
+  List<Instalment> findByCreatedAtIsBetween(LocalDateTime startDateTime, LocalDateTime endDateTime);
 }
