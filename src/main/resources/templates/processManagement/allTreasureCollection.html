@@ -115,9 +115,9 @@
                         </tr >
                         </thead >
                         <tbody >
-                        <tr data-th-each="instalment, index : ${instalmentTreasure.instalmentApproves}" >
+                        <tr data-th-each="instalment, rowCount : ${instalmentTreasure.instalmentApproves}" >
                         <td >
-                          <span data-th-text="${index.count}" ></span>
+                          <span data-th-text="${rowCount.count}" ></span>
                           <input type="hidden" data-th-field="*{instalmentTreasure.instalmentApproves[__${rowCount.index}__].instalment.id}">
                         </td >
                         <td data-th-text="${instalment.employee.epf}" ></td >
