@@ -35,6 +35,11 @@
                                         <div class="card-header">
                                             <h4 class="breadcrumb-item active" data-th-text="${contendHeader}"></h4>
                                         </div>
+                                        <div class="row" >
+                                            <div class="col" >
+                                                <p> Total Account Balance  = <span data-th-text="${(instalmentAmount+otherFundAmount+otherAmount) - (deathAmount+expensesAmount) }"></span></p>
+                                            </div >
+                                        </div >
                                     <div class="container-fluid">
                                         <table class="table table-hover" id="myTable">
                                             <thead class="thead-inverse">
@@ -45,10 +50,30 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="mainAccount, index : ${mainAccounts}">
-                                                <td th:text="${index.count}"></td>
-                                                <td th:text="${mainAccount.fundType.fundType}"></td>
-                                                <td th:text="${mainAccount.amount}"></td>
+                                            <tr >
+                                                <td th:text="${'1'}"></td>
+                                                <td th:text="${'Instalment Collection'}"></td>
+                                                <td th:text="${instalmentAmount}"></td>
+                                            </tr>
+                                            <tr >
+                                                <td th:text="${'2'}"></td>
+                                                <td th:text="${'Other Fund Receiving Collection'}"></td>
+                                                <td th:text="${otherFundAmount}"></td>
+                                            </tr>
+                                            <tr >
+                                                <td th:text="${'3'}"></td>
+                                                <td th:text="${'Other Amount Collection'}"></td>
+                                                <td th:text="${otherAmount}"></td>
+                                            </tr>
+                                            <tr >
+                                                <td th:text="${'4'}"></td>
+                                                <td th:text="${'Death Donation Collection'}"></td>
+                                                <td th:text="${deathAmount}"></td>
+                                            </tr>
+                                            <tr >
+                                                <td th:text="${'5'}"></td>
+                                                <td th:text="${'Expenses Collection'}"></td>
+                                                <td th:text="${expensesAmount}"></td>
                                             </tr>
                                             </tbody>
                                         </table>
