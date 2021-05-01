@@ -164,12 +164,12 @@ public class InstalmentController {
 
     Employee employee =
         userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getEmployee();
-
-    if ( employee.getBoardOfDirectors().equals(BoardOfDirectors.AGT) ) {
+    System.out.println();
+    if ( employee.getWelfarePosition().equals(WelfarePosition.AGT) ) {
       instalment.setInstalmentStatus(InstalmentStatus.AGC);
     }
 
-    if ( employee.getBoardOfDirectors().equals(BoardOfDirectors.TRS) ) {
+    if ( employee.getWelfarePosition().equals(WelfarePosition.TRS) ) {
       instalment.setInstalmentStatus(InstalmentStatus.TA);
     }
 
