@@ -3,6 +3,7 @@ package lk.avsec_welfare.asset.working_place.service;
 import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.working_place.dao.WorkingPlaceDao;
 import lk.avsec_welfare.asset.working_place.entity.WorkingPlace;
+import lk.avsec_welfare.asset.working_place.entity.enums.WorkingPlaceSection;
 import lk.avsec_welfare.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;
@@ -70,4 +71,7 @@ public class WorkingPlaceService implements AbstractService< WorkingPlace, Integ
   }
 
 
+  public List< WorkingPlace> findByWorkingPlaceSection(WorkingPlaceSection workingPlaceSection) {
+    return workingPlaceDao.findByWorkingPlaceSection(workingPlaceSection);
+  }
 }

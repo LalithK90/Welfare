@@ -67,4 +67,8 @@ public class InstalmentService implements AbstractService< Instalment, Integer >
   public List< Instalment > findByCreatedAtIsBetweenAndCreatedBy(LocalDateTime startDateTime, LocalDateTime endDateTime, String username) {
   return instalmentDao.findByCreatedAtIsBetweenAndCreatedBy(startDateTime,endDateTime,username);
   }
+
+  public List<Instalment> findByCreatedAtIsBetween(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+  return instalmentDao.findByCreatedAtIsBetween(startDateTime,endDateTime);
+  }
 }
