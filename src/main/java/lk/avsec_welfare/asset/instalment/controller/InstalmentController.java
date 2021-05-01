@@ -210,7 +210,9 @@ public class InstalmentController {
     List< BigDecimal > collectionAmounts = new ArrayList<>();
     instalments.forEach(x -> {
       InstalmentApprove instalmentApprove = new InstalmentApprove();
-      instalmentApprove.setInstalment(instalmentService.findById(x.getId()));
+      Instalment instalment = instalmentService.findById(x.getId());
+      instalment.setEmployee(employeeService.findById(x.getEmployee().getId()));
+      instalmentApprove.setInstalment(instalment);
       instalmentApproves.add(instalmentApprove);
 
       collectionAmounts.add(x.getAmount());
