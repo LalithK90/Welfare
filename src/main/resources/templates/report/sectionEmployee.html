@@ -117,21 +117,23 @@
 
                     <div class="container-fluid" >
                       <table class="table table-hover" id="myTable"
-                             data-th-if="${not #lists.isEmpty(otherExpenseCountAmounts)}" >
+                             data-th-if="${not #lists.isEmpty(sectionEmployeeInstalmentAmounts)}" >
                         <thead class="thead-inverse" >
                         <tr >
                           <th >Index</th >
-                          <th >Fund Source</th >
-                          <th >Record Count</th >
+                          <th >Employee Name</th >
+                          <th >Section</th >
+                          <th >Paid Count</th >
                           <th >Amount</th >
                         </tr >
                         </thead >
                         <tbody >
-                        <tr th:each="otherExpenseCountAmount, index : ${otherExpenseCountAmounts}" >
+                        <tr th:each="sectionEmployeeInstalmentAmount, index : ${sectionEmployeeInstalmentAmounts}" >
                           <td th:text="${index.count}" ></td >
-                          <td th:text="${otherExpenseCountAmount.otherExpenseType.otherExpenseType}" ></td >
-                          <td th:text="${otherExpenseCountAmount.recordCounter}" ></td >
-                          <td th:text="${otherExpenseCountAmount.amount}" ></td >
+                          <td th:text="${sectionEmployeeInstalmentAmount.employee.name}" ></td >
+                          <td th:text="${sectionEmployeeInstalmentAmount.workingPlaceSection}" ></td >
+                          <td th:text="${sectionEmployeeInstalmentAmount.instalmentCount}" ></td >
+                          <td th:text="${sectionEmployeeInstalmentAmount.amount}" ></td >
                         </tr >
                         </tbody >
                       </table >

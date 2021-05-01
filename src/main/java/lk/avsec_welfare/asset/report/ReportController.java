@@ -375,6 +375,8 @@ public class ReportController {
 
   @PostMapping( "/sectionEmployeeInstalmentAmount" )
   public String sectionEmployeeInstalmentAmount(@ModelAttribute TwoDate twoDate, Model model) {
+
+    model.addAttribute("workingPlaceSections", WorkingPlaceSection.values());
     LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
     LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
 
