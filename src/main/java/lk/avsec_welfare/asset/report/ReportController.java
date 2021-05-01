@@ -106,7 +106,7 @@ public class ReportController {
     LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(startDate);
     LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(endDate);
 
-    List< OtherFundReceiving > otherFundReceivings = otherFundReceivingService.findByCreatedAtIsBetween(startDateTime
+    List< OtherFundReceiving > otherFundReceiving = otherFundReceivingService.findByCreatedAtIsBetween(startDateTime
         , endDateTime);
 
 
@@ -116,14 +116,14 @@ public class ReportController {
       OtherFundReceivingTypeAmount otherFundReceivingTypeAmount = new OtherFundReceivingTypeAmount();
       List< BigDecimal > amounts = new ArrayList<>();
 
-      List< OtherFundReceiving > otherFundReceivingAccordingsTo = otherFundReceivings
+      List< OtherFundReceiving > otherFundReceivingAccordingTo = otherFundReceiving
           .stream()
           .filter(x -> x.getOtherFundReceivingType().equals(otherFundReceivingType))
           .collect(Collectors.toList());
 
       otherFundReceivingTypeAmount.setOtherFundReceivingType(otherFundReceivingType);
-      otherFundReceivingTypeAmount.setRecordCount(otherFundReceivingAccordingsTo.size());
-      otherFundReceivingAccordingsTo.forEach(x -> amounts.add(x.getAmount()));
+      otherFundReceivingTypeAmount.setRecordCount(otherFundReceivingAccordingTo.size());
+      otherFundReceivingAccordingTo.forEach(x -> amounts.add(x.getAmount()));
       otherFundReceivingTypeAmount.setAmount(amounts.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
 
       otherFundReceivingTypeAmounts.add(otherFundReceivingTypeAmount);
@@ -170,7 +170,7 @@ public class ReportController {
     }
     model.addAttribute("message", message);
     model.addAttribute("employees", employeeService.findAll());
-    return "report/otherFundReceivingType";
+    return "report/deathDonation";
   }
 
 
