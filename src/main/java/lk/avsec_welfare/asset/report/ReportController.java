@@ -388,7 +388,7 @@ public class ReportController {
     instalments.forEach(x -> {
       Employee employeeDB = employeeService.findById(x.getEmployee().getId());
       WorkingPlace workingPlaceDb = workingPlaceService.findById(employeeDB.getWorkingPlace().getId());
-      if ( workingPlaceDb != null && employeeDB != null ) {
+      if ( workingPlaceDb != null ) {
         if ( workingPlaceDb.getWorkingPlaceSection().equals(workingPlace.getWorkingPlaceSection()) ) {
           instalmentsAccordingToWorkingPlaceSection.add(x);
         }
