@@ -193,6 +193,7 @@ public class EmployeeController {
     employee.setLand(makeAutoGenerateNumberService.phoneNumberLengthValidator(employee.getLand()));
 
     if ( employee.getId() == null ) {
+      employee.setWorkingPlace(workingPlaceService.findById(1));
       Employee lastEmployee = employeeService.lastEmployee();
       if ( lastEmployee.getDepartmentIdNumber() == null ) {
         employee.setDepartmentIdNumber("AVE" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
