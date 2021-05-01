@@ -189,9 +189,21 @@ public class InstalmentController {
     return "processManagement/allCollection";
   }
 
-  @GetMapping( "/treasure" )
-  public String collectionTreasure(Model model) {
-    List< Instalment > instalments = instalmentService.findByInstalmentStatus(InstalmentStatus.AGC);
+
+  @GetMapping("/treasure")
+  public String findAgent(Model model){
+    model.addAttribute("employees", employeeService.findByWelfarePosition(WelfarePosition.AGT));
+
+    return "processManagement/employee";
+  }
+
+
+
+  @GetMapping( "/treasure/{id}" )
+  public String collectionTreasure(@PathVariable("id")Integer id, Model model) {
+    Employee employee = employeeService.findById(id);
+
+    List< Instalment > instalments = instalmentService.findByInstalmentStatus(InstalmentStatus.AGC).stream().filter(x->userService.findByUserName(x.getCreatedBy()).getEmployee().equals(employee)).collect(Collectors.toList());
 
     List< InstalmentApprove > instalmentApproves = new ArrayList<>();
 
@@ -205,6 +217,7 @@ public class InstalmentController {
 
     InstalmentTreasure instalmentTreasure = new InstalmentTreasure();
     instalmentTreasure.setInstalmentApproves(instalmentApproves);
+    instalmentTreasure.setEmployee(employee);
     instalmentTreasure.setTotal(collectionAmounts.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
 
     model.addAttribute("instalmentTreasure", instalmentTreasure);
