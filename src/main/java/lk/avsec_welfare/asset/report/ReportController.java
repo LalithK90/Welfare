@@ -84,8 +84,7 @@ public class ReportController {
     model.addAttribute("mainAccounts", mainAccountService.findAll());
     return "report/mainAccount";
   }
-
-//2 other fund receiving for one date and date range
+  //2 other fund receiving for one date and date range
   @GetMapping( "/otherFundReceivingType" )
   public String donationReport(Model model) {
     LocalDate localDate = LocalDate.now();
@@ -101,7 +100,6 @@ public class ReportController {
     model.addAttribute("message", message);
     return commonOtherFundReceivingType(twoDate.getStartDate(), twoDate.getEndDate(), model);
   }
-
   private String commonOtherFundReceivingType(LocalDate startDate, LocalDate endDate, Model model) {
     LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(startDate);
     LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(endDate);
@@ -133,7 +131,8 @@ public class ReportController {
 
     return "report/otherFundReceivingType";
   }
-//3. death donation for one day and date range
+
+  //3. death donation for one day and date range
   @GetMapping( "/deathDonation" )
   public String deathDonation(Model model) {
     LocalDate localDate = LocalDate.now();
@@ -151,7 +150,6 @@ public class ReportController {
     model.addAttribute("message", message);
     return commonDeathDonation(twoDate, model, message);
   }
-
   private String commonDeathDonation(TwoDate twoDate, Model model, String message) {
     LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
     LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
@@ -174,7 +172,7 @@ public class ReportController {
   }
 
 
-  //4. other expences for one day and date range
+//4. other expences for one day and date range
   @GetMapping( "/otherExpense" )
   public String otherExpense(Model model) {
     LocalDate localDate = LocalDate.now();
@@ -193,7 +191,6 @@ public class ReportController {
     model.addAttribute("message", message);
     return commonOtherExpense(twoDate, model);
   }
-
   private String commonOtherExpense(TwoDate twoDate, Model model) {
     LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
     LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
@@ -223,7 +220,7 @@ public class ReportController {
   }
 
 
-  //5. agent vise collection reporting date and date range
+//5. agent vise collection reporting date and date range
 
   @GetMapping( "/agentVise" )
   public String agentVise(Model model) {
@@ -240,7 +237,6 @@ public class ReportController {
     model.addAttribute("message", message);
     return commonAgentVise(twoDate.getStartDate(), twoDate.getEndDate(), model);
   }
-
   private String commonAgentVise(LocalDate startDate, LocalDate endDate, Model model) {
     LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(startDate);
     LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(endDate);
@@ -273,12 +269,14 @@ public class ReportController {
   }
 
 
-  //1.total students up to now
+  //1.total Employee up to now
   @GetMapping("/employee")
-  public String allEmplyeeReport( Model model) {
-    model.addAttribute("allEmplyees", employeeService.findAll());
+  public String allEmployeeReport( Model model) {
+    model.addAttribute("allEmployees", employeeService.findAll());
     return "report/allEmployee";
   }
+
+
 
 
   @PostMapping( "/employeeAllCount" )
@@ -286,7 +284,6 @@ public class ReportController {
     return commonEmployeeAllCount(model,
             employeeService.findByCreatedAtBetween(dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate()), dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate())));
   }
-
   private String commonEmployeeAllCount(Model model, List< Employee > employeesRequest) {
     model.addAttribute("twoDate", new TwoDate());
     List< Employee > employees = new ArrayList<>();

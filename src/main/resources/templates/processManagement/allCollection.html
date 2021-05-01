@@ -18,15 +18,7 @@
                 <span class="info-box-icon text-white" ><i class="fa fa-plus mr-1" ></i ></span >
                 <span class="text-white" > Add Employee </span ></a >
             </button >
-            <button type="button" class="btn btn-success btn-sm" >
-              <a data-th-href="${'/home'}" >
-                <span class="info-box-icon text-white" ><i class="fas fa-home mr-1" ></i ></span >
-                <span class="text-white" > Home </span ></a >
-            </button >
-          </div >
-        </div >
-      </div >
-    </div >
+
                                 <!--form action end button---------------------------------------------------------     -->
 
 
@@ -115,11 +107,11 @@
                       </thead >
                       <tbody >
                       <tr data-th-each="instalment, rowCount : ${instalments}" >
-                          <tr data-th-text="${rowCount.count}"></tr>
-                          <tr data-th-text="${instalment.employee.epf}"></tr>
-                          <tr data-th-text="${instalment.employee.titile.titile+' '+instalment.employee.name}"></tr>
-                          <tr data-th-text="${instalment.instalmentType.name}"></tr>
-                          <tr data-th-text="${instalment.amount}"></tr>
+                          <td data-th-text="${rowCount.count}"></td>
+                          <td data-th-text="${instalment.employee.epf}"></td>
+                          <td data-th-text="${instalment.employee.titile.titile+' '+instalment.employee.name}"></td>
+                          <td data-th-text="${instalment.instalmentType.name}"></td>
+                          <td data-th-text="${instalment.amount}"></td>
                       </tr >
                       </tbody>
                         <tfooter>

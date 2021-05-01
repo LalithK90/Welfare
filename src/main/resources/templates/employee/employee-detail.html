@@ -757,11 +757,6 @@
                         </a>
 
 
-                        <a data-th-href="${'/employee/add'}" class="btn btn-sm btn-success"
-                           tabindex=""><i class="fas fa-user"></i>&nbsp;Add Employee </a>
-
-                        <a data-th-href="${'/employee/edit/' + employeeDetail.id}"
-                           class="btn btn-sm btn-primary"><i class="fa fa-edit"></i>&nbsp;Edit</a>
                         <a data-th-href="${'/employee/remove/' + employeeDetail.id}"
                            data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
                            class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>
