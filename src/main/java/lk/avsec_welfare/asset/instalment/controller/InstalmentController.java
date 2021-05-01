@@ -1,7 +1,6 @@
 package lk.avsec_welfare.asset.instalment.controller;
 
 import lk.avsec_welfare.asset.employee.entity.Employee;
-import lk.avsec_welfare.asset.employee.entity.enums.BoardOfDirectors;
 import lk.avsec_welfare.asset.employee.entity.enums.EmployeeStatus;
 import lk.avsec_welfare.asset.employee.entity.enums.WelfarePosition;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
@@ -19,6 +18,7 @@ import lk.avsec_welfare.asset.instalment.commonModel.YearAndPaidAmount;
 import lk.avsec_welfare.asset.userManagement.entity.User;
 import lk.avsec_welfare.asset.userManagement.service.UserService;
 import lk.avsec_welfare.asset.working_place.service.WorkingPlaceService;
+import lk.avsec_welfare.util.service.EmailService;
 import lk.avsec_welfare.util.service.OperatorService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -44,12 +44,13 @@ public class InstalmentController {
   private final MainAccountService mainAccountService;
   private final UserService userService;
   private final OperatorService operatorService;
+  private final EmailService emailService;
 
 
   public InstalmentController(EmployeeService employeeService, InstalmentTypeService instalmentTypeService,
                               InstalmentService instalmentService, WorkingPlaceService workingPlaceService,
                               MainAccountService mainAccountService,
-                              UserService userService, OperatorService operatorService) {
+                              UserService userService, OperatorService operatorService, EmailService emailService) {
     this.employeeService = employeeService;
     this.instalmentTypeService = instalmentTypeService;
     this.instalmentService = instalmentService;
@@ -57,6 +58,7 @@ public class InstalmentController {
     this.mainAccountService = mainAccountService;
     this.userService = userService;
     this.operatorService = operatorService;
+    this.emailService = emailService;
   }
 
   @GetMapping
@@ -174,7 +176,15 @@ public class InstalmentController {
     }
 
 
-    instalmentService.persist(instalment);
+    Instalment instalmentDb = instalmentService.persist(instalment);
+
+    if ( instalmentDb.getInstalmentStatus().equals(InstalmentStatus.AGC) ){
+      Employee employeeDb = employeeService.findById(instalmentDb.getEmployee().getId());
+      if ( employeeDb.getEmail() != null ){
+        String message = "Dear "+employeeDb.getName() +" \n Your payment was received \n\n Amount (Rs.) "+ instalmentDb.getAmount()+"\n\n Thanks";
+        emailService.sendEmail(employeeDb.getEmail(), "Payment Received Notification",message );
+      }
+    }
 
     return "redirect:/collection";
   }
