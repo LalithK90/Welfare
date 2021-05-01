@@ -375,7 +375,7 @@ public class ReportController {
 
   @PostMapping( "/sectionEmployeeInstalmentAmount" )
   public String sectionEmployeeInstalmentAmount(@ModelAttribute TwoDate twoDate, Model model) {
-
+    System.out.println("come here "+ twoDate.toString());
     model.addAttribute("workingPlaceSections", WorkingPlaceSection.values());
     LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
     LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
@@ -386,9 +386,12 @@ public class ReportController {
 
     HashSet< Instalment > instalmentsAccordingToWorkingPlaceSection = new HashSet<>();
     instalments.forEach(x -> {
-      WorkingPlace workingPlaceDb = workingPlaceService.findById(x.getEmployee().getWorkingPlace().getId());
-      if ( workingPlaceDb.getWorkingPlaceSection().equals(workingPlace.getWorkingPlaceSection()) ) {
-        instalmentsAccordingToWorkingPlaceSection.add(x);
+      Employee employeeDB = employeeService.findById(x.getEmployee().getId());
+      WorkingPlace workingPlaceDb = workingPlaceService.findById(employeeDB.getWorkingPlace().getId());
+      if ( workingPlaceDb != null && employeeDB != null ) {
+        if ( workingPlaceDb.getWorkingPlaceSection().equals(workingPlace.getWorkingPlaceSection()) ) {
+          instalmentsAccordingToWorkingPlaceSection.add(x);
+        }
       }
     });
     List< SectionEmployeeInstalmentAmount > sectionEmployeeInstalmentAmounts = new ArrayList<>();
