@@ -22,7 +22,7 @@
             </div>
         </div>
         <!--form action end button---------------------------------------------------------     -->
-        <div >
+        <div style="display:none;" >
             <div class="row" data-th-fragment="briefingNews">
                 <tr th:each="briefing, rowCount : ${briefings}" scope="row">
                      <td th:text="${briefing.subject}"></td>
@@ -35,7 +35,7 @@
                 </tr>
             </div>
         </div>
-
+<!--briefing/ briefing line 25 to 38-->
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
