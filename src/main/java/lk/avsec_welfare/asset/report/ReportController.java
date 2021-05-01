@@ -9,6 +9,7 @@ import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.death_donation.entity.DeathDonation;
 import lk.avsec_welfare.asset.death_donation.service.DeathDonationService;
 import lk.avsec_welfare.asset.instalment.service.InstalmentService;
+import lk.avsec_welfare.asset.main_account.entity.Enum.FundType;
 import lk.avsec_welfare.asset.main_account.entity.Enum.OtherFundReceivingType;
 import lk.avsec_welfare.asset.main_account.service.MainAccountService;
 import lk.avsec_welfare.asset.other_expence.entity.OtherExpence;
@@ -60,7 +61,9 @@ public class ReportController {
                           DeathDonationService deathDonationService, InstalmentService instalmentService,
                           OtherExpenceService otherExpenceService,
                           OtherFundReceivingService otherFundReceivingService, GrievancesService grievancesService,
-                          OffenceService offenceService, CensureService censureService, EmployeeFilesService employeeFilesService, DateTimeAgeService dateTimeAgeService, RoleService roleService,
+                          OffenceService offenceService, CensureService censureService,
+                          EmployeeFilesService employeeFilesService, DateTimeAgeService dateTimeAgeService,
+                          RoleService roleService,
                           EmployeeService employeeService) {
     this.mainAccountService = mainAccountService;
     this.userService = userService;
@@ -81,9 +84,44 @@ public class ReportController {
   //1. main account service according to type
   @GetMapping( "/mainAccount" )
   public String mainAccountReport(Model model) {
-    model.addAttribute("mainAccounts", mainAccountService.findAll());
+    List< BigDecimal > instalmentAmount = new ArrayList<>();
+    mainAccountService.findAll()
+        .stream()
+        .filter(x -> x.getFundType().equals(FundType.INSTALMENTS))
+        .collect(Collectors.toList()).forEach(x -> instalmentAmount.add(x.getAmount()));
+    model.addAttribute("instalmentAmount", instalmentAmount.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
+
+    List< BigDecimal > otherFundAmount = new ArrayList<>();
+    mainAccountService.findAll()
+        .stream()
+        .filter(x -> x.getFundType().equals(FundType.OTHER_FUN_RE))
+        .collect(Collectors.toList()).forEach(x -> otherFundAmount.add(x.getAmount()));
+    model.addAttribute("otherFundAmount", otherFundAmount.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
+
+    List< BigDecimal > otherExpenseAmount = new ArrayList<>();
+    mainAccountService.findAll()
+        .stream()
+        .filter(x -> x.getFundType().equals(FundType.OTHEXP))
+        .collect(Collectors.toList()).forEach(x -> otherExpenseAmount.add(x.getAmount()));
+    model.addAttribute("otherExpenseAmount", otherExpenseAmount.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
+
+    List< BigDecimal > deathAmount = new ArrayList<>();
+    mainAccountService.findAll()
+        .stream()
+        .filter(x -> x.getFundType().equals(FundType.DEAD))
+        .collect(Collectors.toList()).forEach(x -> deathAmount.add(x.getAmount()));
+    model.addAttribute("deathAmount", deathAmount.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
+
+    List< BigDecimal > expensesAmount = new ArrayList<>();
+    mainAccountService.findAll()
+        .stream()
+        .filter(x -> x.getFundType().equals(FundType.EXP))
+        .collect(Collectors.toList()).forEach(x -> expensesAmount.add(x.getAmount()));
+    model.addAttribute("expensesAmount", expensesAmount.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
+
     return "report/mainAccount";
   }
+
   //2 other fund receiving for one date and date range
   @GetMapping( "/otherFundReceivingType" )
   public String donationReport(Model model) {
@@ -100,6 +138,7 @@ public class ReportController {
     model.addAttribute("message", message);
     return commonOtherFundReceivingType(twoDate.getStartDate(), twoDate.getEndDate(), model);
   }
+
   private String commonOtherFundReceivingType(LocalDate startDate, LocalDate endDate, Model model) {
     LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(startDate);
     LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(endDate);
@@ -150,6 +189,7 @@ public class ReportController {
     model.addAttribute("message", message);
     return commonDeathDonation(twoDate, model, message);
   }
+
   private String commonDeathDonation(TwoDate twoDate, Model model, String message) {
     LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
     LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
@@ -172,7 +212,7 @@ public class ReportController {
   }
 
 
-//4. other expences for one day and date range
+  //4. other expences for one day and date range
   @GetMapping( "/otherExpense" )
   public String otherExpense(Model model) {
     LocalDate localDate = LocalDate.now();
@@ -191,6 +231,7 @@ public class ReportController {
     model.addAttribute("message", message);
     return commonOtherExpense(twoDate, model);
   }
+
   private String commonOtherExpense(TwoDate twoDate, Model model) {
     LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate());
     LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate());
@@ -237,6 +278,7 @@ public class ReportController {
     model.addAttribute("message", message);
     return commonAgentVise(twoDate.getStartDate(), twoDate.getEndDate(), model);
   }
+
   private String commonAgentVise(LocalDate startDate, LocalDate endDate, Model model) {
     LocalDateTime startDateTime = dateTimeAgeService.dateTimeToLocalDateStartInDay(startDate);
     LocalDateTime endDateTime = dateTimeAgeService.dateTimeToLocalDateEndInDay(endDate);
@@ -270,27 +312,26 @@ public class ReportController {
 
 
   //1.total Employee up to now
-  @GetMapping("/employee")
-  public String allEmployeeReport( Model model) {
+  @GetMapping( "/employee" )
+  public String allEmployeeReport(Model model) {
     model.addAttribute("allEmployees", employeeService.findAll());
     return "report/allEmployee";
   }
 
 
-
-
   @PostMapping( "/employeeAllCount" )
   public String employeeAllCountSearch(@ModelAttribute TwoDate twoDate, Model model) {
     return commonEmployeeAllCount(model,
-            employeeService.findByCreatedAtBetween(dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate()), dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate())));
+                                  employeeService.findByCreatedAtBetween(dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate()), dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate())));
   }
+
   private String commonEmployeeAllCount(Model model, List< Employee > employeesRequest) {
     model.addAttribute("twoDate", new TwoDate());
     List< Employee > employees = new ArrayList<>();
     for ( Employee employee : employeesRequest
-            .stream()
-            .filter(x -> LiveDead.ACTIVE.equals(x.getLiveDead()))
-            .collect(Collectors.toList())
+        .stream()
+        .filter(x -> LiveDead.ACTIVE.equals(x.getLiveDead()))
+        .collect(Collectors.toList())
     ) {
       employee.setFileInfo(employeeFilesService.employeeFileDownloadLinks(employee));
       employees.add(employee);
@@ -300,7 +341,7 @@ public class ReportController {
   }
 
 
-//  offence and employee count
+  //  offence and employee count
   @GetMapping( "/offenceCount" )
   public String offenceEmployee(Model model) {
     model.addAttribute("offences", offenceService.findAll());
