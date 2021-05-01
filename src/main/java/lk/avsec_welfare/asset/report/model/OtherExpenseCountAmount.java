@@ -1,6 +1,6 @@
 package lk.avsec_welfare.asset.report.model;
 
-import lk.avsec_welfare.asset.finance.other_expence.entity.enums.OtherExpenseType;
+import lk.avsec_welfare.asset.other_expence.entity.enums.OtherExpenseType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

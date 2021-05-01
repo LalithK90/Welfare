@@ -4,12 +4,11 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.avsec_welfare.asset.censure.entitiy.Censure;
 import lk.avsec_welfare.asset.common_asset.model.enums.*;
 import lk.avsec_welfare.asset.common_asset.model.FileInfo;
-import lk.avsec_welfare.asset.course.entity.Course;
 import lk.avsec_welfare.asset.dependent.entity.DependentEmployee;
 import lk.avsec_welfare.asset.designation.entity.Designation;
 import lk.avsec_welfare.asset.employee_working_place.entity.EmployeeWorkingPlace;
-import lk.avsec_welfare.asset.finance.main_account.entity.ExpensesFund;
-import lk.avsec_welfare.asset.finance.instalment.entity.Instalment;
+import lk.avsec_welfare.asset.main_account.entity.ExpensesFund;
+import lk.avsec_welfare.asset.instalment.entity.Instalment;
 
 import lk.avsec_welfare.asset.promotion.entity.Promotion;
 import lk.avsec_welfare.asset.qualification.entity.Qualification;

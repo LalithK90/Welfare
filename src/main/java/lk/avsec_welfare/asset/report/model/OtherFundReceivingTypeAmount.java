@@ -1,6 +1,6 @@
 package lk.avsec_welfare.asset.report.model;
 
-import lk.avsec_welfare.asset.finance.main_account.entity.Enum.OtherFundReceivingType;
+import lk.avsec_welfare.asset.main_account.entity.Enum.OtherFundReceivingType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

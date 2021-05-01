@@ -107,11 +107,11 @@
                               <td data-th-text="${yearAndPaidAmount.year}" ></td >
                               <td data-th-text="${yearAndPaidAmount.yearAmount}" ></td >
                               <td data-th-text="${yearAndPaidAmount.paidAmount}" ></td >
-                              <td data-th-text="${yearAndPaidAmount.pendingAmount}" ></td >
+                              <td data-th-text="${yearAndPaidAmount.yearAmount - yearAndPaidAmount.paidAmount}" ></td >
 
                               <td data-th-text="${yearAndPaidAmount.yearMandatoryAmount}" ></td >
                               <td data-th-text="${yearAndPaidAmount.paidMandatoryAmount}" ></td >
-                              <td data-th-text="${yearAndPaidAmount.pendingMandatoryAmount}" ></td >
+                              <td data-th-text="${yearAndPaidAmount.yearMandatoryAmount - yearAndPaidAmount.paidMandatoryAmount}" ></td >
 
                               <td data-th-text="${yearAndPaidAmount.yearOptionalAmount}" ></td >
                               <td data-th-text="${yearAndPaidAmount.paidOptionalAmount}" ></td >
