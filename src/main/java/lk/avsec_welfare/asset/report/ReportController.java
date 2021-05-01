@@ -112,12 +112,6 @@ public class ReportController {
         .collect(Collectors.toList()).forEach(x -> deathAmount.add(x.getAmount()));
     model.addAttribute("deathAmount", deathAmount.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
 
-    List< BigDecimal > expensesAmount = new ArrayList<>();
-    mainAccountService.findAll()
-        .stream()
-        .filter(x -> x.getFundType().equals(FundType.EXP))
-        .collect(Collectors.toList()).forEach(x -> expensesAmount.add(x.getAmount()));
-    model.addAttribute("expensesAmount", expensesAmount.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
 
     return "report/mainAccount";
   }

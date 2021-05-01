@@ -8,7 +8,6 @@ import lombok.Getter;
 public enum FundType {
   INSTALMENTS("Instalments"),
   OTHER_FUN_RE("Other Fund Receiving"),
-  EXP("Expense"),
   DEAD("Death Donation"),
   OTHEXP("Other Expense");
   private final String fundType;
