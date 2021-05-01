@@ -101,7 +101,7 @@
               <div class="card" >
                 <!--<div class="card-body">
                     <h4>Secondary Header </h4>-->
-                <form action="/collection/treasure" method="post" data-th-object="${instalmentTreasure}" >
+                <form action="/collection/treasure" method="post" data-th-object="${instalmentTreasure}" data-th-if="${not #lists.isEmpty(instalmentTreasure.instalmentApproves)}" >
                   <div class="card-body" >
                     <div class="container-fluid table-responsive"                         >
                       <table id="example2" class="table table-hover" >
@@ -115,14 +115,15 @@
                         </tr >
                         </thead >
                         <tbody >
-                        <tr data-th-each="instalment, rowCount : ${instalmentTreasure.instalmentApproves}" >
-                        <tr data-th-text="${rowCount.count}" >
+                        <tr data-th-each="instalment, index : ${instalmentTreasure.instalmentApproves}" >
+                        <td >
+                          <span data-th-text="${index.count}" ></span>
                           <input type="hidden" data-th-field="*{instalmentTreasure.instalmentApproves[__${rowCount.index}__].instalment.id}">
-                        </tr >
-                        <tr data-th-text="${instalment.employee.epf}" ></tr >
-                        <tr data-th-text="${instalment.employee.titile.titile+' '+instalment.employee.name}" ></tr >
-                        <tr data-th-text="${instalment.instalmentType.name}" ></tr >
-                        <tr data-th-text="${instalment.amount}" ></tr >
+                        </td >
+                        <td data-th-text="${instalment.employee.epf}" ></td >
+                        <td data-th-text="${instalment.employee.titile.titile+' '+instalment.employee.name}" ></td >
+                        <td data-th-text="${instalment.instalmentType.name}" ></td >
+                        <td data-th-text="${instalment.amount}" ></td >
                         </tr >
                         </tbody >
                         <tfooter >
