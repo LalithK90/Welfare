@@ -37,7 +37,7 @@
                                         </div>
                                         <div class="row" >
                                             <div class="col" >
-                                                <p> Total Account Balance  = <span data-th-text="${(instalmentAmount+otherFundAmount+otherAmount) - (deathAmount+expensesAmount) }"></span></p>
+                                                <p> Total Account Balance  = <span data-th-text="${(instalmentAmount+otherFundAmount) - (deathAmount+expensesAmount + otherExpenseAmount) }"></span></p>
                                             </div >
                                         </div >
                                     <div class="container-fluid">
@@ -62,8 +62,8 @@
                                             </tr>
                                             <tr >
                                                 <td th:text="${'3'}"></td>
-                                                <td th:text="${'Other Amount Collection'}"></td>
-                                                <td th:text="${otherAmount}"></td>
+                                                <td th:text="${'Other Expense Amount Collection'}"></td>
+                                                <td th:text="${otherExpenseAmount}"></td>
                                             </tr>
                                             <tr >
                                                 <td th:text="${'4'}"></td>
