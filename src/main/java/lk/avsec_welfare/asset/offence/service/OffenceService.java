@@ -45,7 +45,8 @@ public class OffenceService implements AbstractService<Offence, Integer> {
         return offenceDao.findAll(instituteExample);
     }
 
-  public List<Offence> findByOffenceType(OffenceType offenceType) {
+    public List<Offence> findByOffenceType(OffenceType offenceType) {
         return offenceDao.findByOffenceType(offenceType);
-  }
+
+    }
 }

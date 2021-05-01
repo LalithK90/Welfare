@@ -4,6 +4,7 @@ import lk.avsec_welfare.asset.employee.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -16,4 +17,6 @@ public interface EmployeeDao extends JpaRepository< Employee, Integer > {
   Employee findByNic(String nic);
 
   Employee findByEpf(String epf);
+
+  List< Employee > findByCreatedAtBetween(LocalDateTime form, LocalDateTime to);
 }

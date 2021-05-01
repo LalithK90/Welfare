@@ -5,6 +5,7 @@ import lk.avsec_welfare.asset.employee.entity.EmployeeFiles;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -18,4 +19,6 @@ public interface EmployeeFilesDao extends JpaRepository< EmployeeFiles, Integer 
     EmployeeFiles findByNewId(String filename);
 
     EmployeeFiles findByEmployee(Employee employee);
+
+    List< Employee > findByCreatedAtBetween(LocalDateTime form, LocalDateTime to);
 }

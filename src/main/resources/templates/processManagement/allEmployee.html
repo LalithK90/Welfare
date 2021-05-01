@@ -12,16 +12,12 @@
             <div class="col-12">
                 <div class="text-right">
                     <div text-right>
-                        <button type="button" class="btn btn-info btn-sm">
-                            <a  data-th-href="${'/#'}" >
-                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >
-                                <span class="text-white"> Payment </span></a>
-                        </button>
-                        <button type="button" class="btn btn-success btn-sm">
-                            <a  data-th-href="${'/home'}" >
-                                <span class="info-box-icon text-white"><i class="fas fa-home mr-1" ></i ></span >
-                                <span class="text-white"> Home </span></a>
-                        </button>
+<!--                        <button type="button" class="btn btn-info btn-sm">-->
+<!--                            <a  data-th-href="${'/collection'}" >-->
+<!--                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >-->
+<!--                                <span class="text-white"> Payment </span></a>-->
+<!--                        </button>-->
+
                     </div>
                 </div>
             </div>
@@ -45,17 +41,17 @@
                                             <th> Index</th>
                                             <th> Designation</th>
                                             <th> Name</th>
-                                            <th> Working Place</th>
+<!--                                            <th> Working Place</th>-->
                                             <th> Mobile</th>
-                                            <th> Modify</th>
+                                            <th> Payments</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr data-th-each="employee, rowCount : ${employees}">
                                             <td data-th-text="${rowCount.count}"></td>
-                                             <td data-th-text="${employee.designation.name}"></td>
+                                             <td data-th-text="${employee.designation.shortName}"></td>
                                             <td data-th-text="${employee.name}"></td>
-                                            <!--<td data-th-text="${employee.workingPlace.name}"></td>-->
+<!--                                            <td data-th-text="${employee.workingPlace.name == null?'Not Assign': employee.workingPlace.name }"></td>-->
                                             <td data-th-text="${employee.mobileOne}"></td>
                                             <td>
                                                 <a data-th-href="${'/collection/' + employee.id}"

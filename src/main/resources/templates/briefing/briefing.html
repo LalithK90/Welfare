@@ -22,7 +22,19 @@
             </div>
         </div>
         <!--form action end button---------------------------------------------------------     -->
+        <div >
+            <div class="row" data-th-fragment="briefingNews">
+                <tr th:each="briefing, rowCount : ${briefings}" scope="row">
+                     <td th:text="${briefing.subject}"></td>
+                    <td th:text="${briefing.effDate}"></td>
+                    <td> <a th:href="${'/briefing/' + briefing.id}" id="briefingView">
+                        &nbsp;&nbsp; </i> View &nbsp;</a>&nbsp;&nbsp;&nbsp;
 
+
+                    </td>
+                </tr>
+            </div>
+        </div>
 
         <!-- Main content -->
         <section class="content">

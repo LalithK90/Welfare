@@ -8,7 +8,7 @@
   <div class="content-wrapper" ><!-- content-wrapper Start -->
     <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section ><!-- content-header Start -->
       <!--action button layer---------------------------------------------------------     -->
-      <div class="row m-1">
+      <div class="row m-1" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}">
           <div class="col-12">
               <div class="text-right">
                   <div text-right>
@@ -78,25 +78,38 @@
                         <a data-th-href="${'/employee/' + employee.id}"
                               class="btn btn-success btn-sm" ><i
                               class="fa fa-folder-open" ></i >&nbsp;View</a >
-                        <a data-th-href="${'/employee/edit/' + employee.id}"
+                        <a data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}"
+                            data-th-href="${'/employee/edit/' + employee.id}"
                              class="btn btn-warning btn-sm" ><i
                               class="fa fa-edit" ></i >&nbsp;Edit</a >
+
+
                         <a data-th-id="${'/employee/remove/' + employee.id}"
                            data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
                            class="btn btn-danger btn-sm" onclick="confirmDelete(this)" ><i class="fa fa-trash" ></i >
                           Delete</a >
-                        <a data-th-href="${'/dependent/add/' + employee.id}" class="btn btn-info btn-sm" ><i
+                        <a data-th-href="${'/dependent/add/' + employee.id}"
+                          data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}"
+                           class="btn btn-info btn-sm" ><i
                               class="fa fa-users" ></i >
                           Dependent</a >
-                        <a data-th-href="${'/promotion/add/' + employee.id}" class="btn btn-info btn-sm" ><i
+                        <a data-th-href="${'/promotion/add/' + employee.id}"
+                           data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}"
+                           class="btn btn-info btn-sm" ><i
                               class="fa fa-graduation-cap" ></i >
                           Promotion</a >
-                        <a data-th-href="${'/qualification/add/' + employee.id}" class="btn btn-info btn-sm" ><i
+                        <a data-th-href="${'/qualification/add/' + employee.id}"
+                           data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}"
+                           class="btn btn-info btn-sm" ><i
                               class="fa fa-address-card" ></i >
                           Qualification</a >
-                          <a data-th-href="${'/censure/add/' + employee.id}" class="btn btn-info btn-sm" ><i
+                          <a data-th-href="${'/censure/add/' + employee.id}"
+                             data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}"
+                             class="btn btn-info btn-sm" ><i
                                   class="fa fa-edit" ></i >&nbsp;Censure</a >
-                          <a data-th-href="${'/employeeWorkingPlace/add/' + employee.id}" class="btn btn-info btn-sm" ><i
+                          <a data-th-href="${'/employeeWorkingPlace/add/' + employee.id}"
+                             data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}"
+                             class="btn btn-info btn-sm" ><i
                                   class="fa fa-address-card" ></i >
                               Transfer</a >
                         <!--data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN','ROLE_HOSS','ROLE_PRESIDENT', 'ROLE_SECRETORY','ROLE_TREASURE', 'ROLE_AGENT','ROLE_MEMBER'')')}"-->

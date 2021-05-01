@@ -14,9 +14,9 @@
         <div class="text-right" >
           <div text-right >
             <button type="button" class="btn btn-info btn-sm" >
-              <a data-th-href="${'/employee/add'}" >
+              <a data-th-href="${'/collection'}" >
                 <span class="info-box-icon text-white" ><i class="fa fa-plus mr-1" ></i ></span >
-                <span class="text-white" > Add Employee </span ></a >
+                <span class="text-white" > View Collection </span ></a >
             </button >
 
           </div >
@@ -99,24 +99,24 @@
                             </td >
                           </tr >
                           <!--Expense Or Received type-->
-                          <tr >
-                            <th ><label class="control-label" th:for="${'expenseOrReceived'}" >Expense
-                                                                                               Or
-                                                                                               Received
-                                                                                               :</label ></th >
-                           <!-- <td >
-                              <div class="form-row" >
-                                <select id="expenseOrReceived" th:field="*{expenseOrReceived}"
-                                        class="form-control" tabindex="6" required >
-                                  <option value="" >Please select</option >
-                                  <option th:each="expenseOrReceived : ${expenseOrReceiveds}"
-                                          th:text="${expenseOrReceived.expenseOrReceived}"
-                                          th:value="${expenseOrReceived}"
-                                          th:selected="${expenseOrReceived==instalmentType.expenseOrReceived?'selected':'unselected'}" ></option >
-                                </select >
-                              </div >
-                            </td >-->
-                          </tr >
+<!--                          <tr >-->
+<!--                            <th ><label class="control-label" th:for="${'expenseOrReceived'}" >Expense-->
+<!--                                                                                               Or-->
+<!--                                                                                               Received-->
+<!--                                                                                               :</label ></th >-->
+<!--                            <td >-->
+<!--                              <div class="form-row" >-->
+<!--                                <select id="expenseOrReceived" th:field="*{expenseOrReceived}"-->
+<!--                                        class="form-control" tabindex="6" required >-->
+<!--                                  <option value="" >Please select</option >-->
+<!--                                  <option th:each="expenseOrReceived : ${expenseOrReceiveds}"-->
+<!--                                          th:text="${expenseOrReceived.expenseOrReceived}"-->
+<!--                                          th:value="${expenseOrReceived}"-->
+<!--                                          th:selected="${expenseOrReceived==instalmentType.expenseOrReceived?'selected':'unselected'}" ></option >-->
+<!--                                </select >-->
+<!--                              </div >-->
+<!--                            </td >-->
+<!--                          </tr >-->
                           <!--Amount-->
 
                           <tr >

@@ -1,7 +1,10 @@
 package lk.avsec_welfare.asset.report;
 
+import lk.avsec_welfare.asset.censure.service.CensureService;
 import lk.avsec_welfare.asset.common_asset.model.TwoDate;
+import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.employee.entity.Employee;
+import lk.avsec_welfare.asset.employee.service.EmployeeFilesService;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.finance.death_donation.entity.DeathDonation;
 import lk.avsec_welfare.asset.finance.death_donation.service.DeathDonationService;
@@ -14,6 +17,9 @@ import lk.avsec_welfare.asset.finance.other_expence.service.OtherExpenceService;
 import lk.avsec_welfare.asset.finance.other_fund_receiving.entity.OtherFundReceiving;
 import lk.avsec_welfare.asset.finance.other_fund_receiving.service.OtherFundReceivingService;
 import lk.avsec_welfare.asset.grievances.service.GrievancesService;
+import lk.avsec_welfare.asset.offence.entity.Offence;
+
+import lk.avsec_welfare.asset.offence.service.OffenceService;
 import lk.avsec_welfare.asset.report.model.AgentTotalAmount;
 import lk.avsec_welfare.asset.report.model.OtherExpenseCountAmount;
 import lk.avsec_welfare.asset.report.model.OtherFundReceivingTypeAmount;
@@ -24,10 +30,7 @@ import lk.avsec_welfare.asset.userManagement.service.UserService;
 import lk.avsec_welfare.util.service.DateTimeAgeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -46,6 +49,9 @@ public class ReportController {
   private final OtherExpenceService otherExpenceService;
   private final OtherFundReceivingService otherFundReceivingService;
   private final GrievancesService grievancesService;
+  private final OffenceService offenceService;
+  private final CensureService censureService;
+  private final EmployeeFilesService employeeFilesService;
   private final DateTimeAgeService dateTimeAgeService;
   private final RoleService roleService;
   private final EmployeeService employeeService;
@@ -54,7 +60,7 @@ public class ReportController {
                           DeathDonationService deathDonationService, InstalmentService instalmentService,
                           OtherExpenceService otherExpenceService,
                           OtherFundReceivingService otherFundReceivingService, GrievancesService grievancesService,
-                          DateTimeAgeService dateTimeAgeService, RoleService roleService,
+                          OffenceService offenceService, CensureService censureService, EmployeeFilesService employeeFilesService, DateTimeAgeService dateTimeAgeService, RoleService roleService,
                           EmployeeService employeeService) {
     this.mainAccountService = mainAccountService;
     this.userService = userService;
@@ -63,6 +69,10 @@ public class ReportController {
     this.otherExpenceService = otherExpenceService;
     this.otherFundReceivingService = otherFundReceivingService;
     this.grievancesService = grievancesService;
+    this.offenceService = offenceService;
+    this.censureService = censureService;
+    this.employeeFilesService = employeeFilesService;
+
     this.dateTimeAgeService = dateTimeAgeService;
     this.roleService = roleService;
     this.employeeService = employeeService;
@@ -209,7 +219,7 @@ public class ReportController {
 
     model.addAttribute("otherExpenseCountAmounts", otherExpenseCountAmounts);
 
-    return "report/otherFundReceivingType";
+    return "report/otherExpense";
   }
 
 
@@ -262,23 +272,52 @@ public class ReportController {
     return "report/agent";
   }
 
-//ok ita akin database eka drop karanna
-  // machine eke date eka january walata danna
-  // employee 12 k dann a
-  // users la 1 k ganne hema role ekatama hadanna
-  // hema employee tama dependent 2 k , qualification 2 transfer 2 wage enna danna
-  // january february march instalment danna
-  // other receieng and aother expencess 6-10k daganna
-  //death donation 2k withara danna
-  // data base eka backup ekak ganna
-  //itapase report hadanna
-  // owa danakota thawa samahara table walta data danna wenawa ne ewath danna course policetation working palce wage eawa
+
+  //1.total students up to now
+  @GetMapping("/employee")
+  public String allEmplyeeReport( Model model) {
+    model.addAttribute("allEmplyees", employeeService.findAll());
+    return "report/allEmployee";
+  }
 
 
-  //thawa html hadanna yanna epa login eke frogotten passwordlikn eka ain karanna main window eke singup eka ain karanna
-  //ok
-  //ythank
-  // thanks
+  @PostMapping( "/employeeAllCount" )
+  public String employeeAllCountSearch(@ModelAttribute TwoDate twoDate, Model model) {
+    return commonEmployeeAllCount(model,
+            employeeService.findByCreatedAtBetween(dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate()), dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate())));
+  }
 
+  private String commonEmployeeAllCount(Model model, List< Employee > employeesRequest) {
+    model.addAttribute("twoDate", new TwoDate());
+    List< Employee > employees = new ArrayList<>();
+    for ( Employee employee : employeesRequest
+            .stream()
+            .filter(x -> LiveDead.ACTIVE.equals(x.getLiveDead()))
+            .collect(Collectors.toList())
+    ) {
+      employee.setFileInfo(employeeFilesService.employeeFileDownloadLinks(employee));
+      employees.add(employee);
+    }
+    model.addAttribute("employees", employees);
+    return "report/employeeAllCount";
+  }
+
+
+//  offence and employee count
+  @GetMapping( "/offenceCount" )
+  public String offenceEmployee(Model model) {
+    model.addAttribute("offences", offenceService.findAll());
+    return "report/offenceReport";
+  }
+
+  @GetMapping( "/offenceCount/{id}" )
+  public String offenceEmployeeSearch(@PathVariable( "id" ) Integer id, Model model) {
+    List< Employee > employees = new ArrayList<>();
+    Offence offence = offenceService.findById(id);
+    model.addAttribute("offenceDetail", offence);
+    censureService.findByOffence(offence).forEach(x -> employees.add(x.getEmployee()));
+    model.addAttribute("employees", employees);
+    return "report/offenceEmployee";
+  }
 
 }
