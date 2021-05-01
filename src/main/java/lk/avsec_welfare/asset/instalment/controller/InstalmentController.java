@@ -178,11 +178,13 @@ public class InstalmentController {
 
     Instalment instalmentDb = instalmentService.persist(instalment);
 
-    if ( instalmentDb.getInstalmentStatus().equals(InstalmentStatus.AGC) ){
+    if ( instalmentDb.getInstalmentStatus().equals(InstalmentStatus.AGC) ) {
       Employee employeeDb = employeeService.findById(instalmentDb.getEmployee().getId());
-      if ( employeeDb.getEmail() != null ){
-        String message = "Dear "+employeeDb.getName() +" \n Your payment was received \n\n Amount (Rs.) "+ instalmentDb.getAmount()+"\n\n Thanks";
-        emailService.sendEmail(employeeDb.getEmail(), "Payment Received Notification",message );
+      Employee paidEmployee = userService.findByUserName(instalmentDb.getCreatedBy()).getEmployee();
+      if ( employeeDb.getEmail() != null ) {
+        String message =
+            "Dear " + employeeDb.getName() + " \n Your payment was received \n\n Amount (Rs.) " + instalmentDb.getAmount() + "\n\n Thanks \n\n" + paidEmployee.getName();
+        emailService.sendEmail(employeeDb.getEmail(), "Payment Received Notification", message);
       }
     }
 
@@ -200,20 +202,20 @@ public class InstalmentController {
   }
 
 
-  @GetMapping("/treasure")
-  public String findAgent(Model model){
+  @GetMapping( "/treasure" )
+  public String findAgent(Model model) {
     model.addAttribute("employees", employeeService.findByWelfarePosition(WelfarePosition.AGT));
 
     return "processManagement/employee";
   }
 
 
-
   @GetMapping( "/treasure/{id}" )
-  public String collectionTreasure(@PathVariable("id")Integer id, Model model) {
+  public String collectionTreasure(@PathVariable( "id" ) Integer id, Model model) {
     Employee employee = employeeService.findById(id);
 
-    List< Instalment > instalments = instalmentService.findByInstalmentStatus(InstalmentStatus.AGC).stream().filter(x->userService.findByUserName(x.getCreatedBy()).getEmployee().equals(employee)).collect(Collectors.toList());
+    List< Instalment > instalments =
+        instalmentService.findByInstalmentStatus(InstalmentStatus.AGC).stream().filter(x -> userService.findByUserName(x.getCreatedBy()).getEmployee().equals(employee)).collect(Collectors.toList());
 
     List< InstalmentApprove > instalmentApproves = new ArrayList<>();
 
@@ -227,7 +229,7 @@ public class InstalmentController {
 
       collectionAmounts.add(x.getAmount());
     });
-    System.out.println(" intsall ment aprove size "+ instalmentApproves.size());
+    System.out.println(" intsall ment aprove size " + instalmentApproves.size());
 
     InstalmentTreasure instalmentTreasure = new InstalmentTreasure();
     instalmentTreasure.setInstalmentApproves(instalmentApproves);
