@@ -49,8 +49,8 @@ public class ApplicationCreateRestController {
         employee.setEpf("0000");
         employee.setName("Admin User");
         employee.setCallingName("Admin");
-        employee.setName("123456789V");
-        employee.setMobileOne("0750000000");
+        employee.setName("System User");
+        employee.setMobileOne("0711111101");
         employee.setLiveDead(LiveDead.STOP);
         employee.setTitle(Title.DR);
         employee.setGender(Gender.MALE);

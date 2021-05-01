@@ -1,7 +1,10 @@
 package lk.avsec_welfare.asset.report;
 
+import lk.avsec_welfare.asset.censure.service.CensureService;
 import lk.avsec_welfare.asset.common_asset.model.TwoDate;
+import lk.avsec_welfare.asset.common_asset.model.enums.LiveDead;
 import lk.avsec_welfare.asset.employee.entity.Employee;
+import lk.avsec_welfare.asset.employee.service.EmployeeFilesService;
 import lk.avsec_welfare.asset.employee.service.EmployeeService;
 import lk.avsec_welfare.asset.finance.death_donation.entity.DeathDonation;
 import lk.avsec_welfare.asset.finance.death_donation.service.DeathDonationService;
@@ -14,6 +17,9 @@ import lk.avsec_welfare.asset.finance.other_expence.service.OtherExpenceService;
 import lk.avsec_welfare.asset.finance.other_fund_receiving.entity.OtherFundReceiving;
 import lk.avsec_welfare.asset.finance.other_fund_receiving.service.OtherFundReceivingService;
 import lk.avsec_welfare.asset.grievances.service.GrievancesService;
+import lk.avsec_welfare.asset.offence.entity.Offence;
+
+import lk.avsec_welfare.asset.offence.service.OffenceService;
 import lk.avsec_welfare.asset.report.model.AgentTotalAmount;
 import lk.avsec_welfare.asset.report.model.OtherExpenseCountAmount;
 import lk.avsec_welfare.asset.report.model.OtherFundReceivingTypeAmount;
@@ -24,10 +30,7 @@ import lk.avsec_welfare.asset.userManagement.service.UserService;
 import lk.avsec_welfare.util.service.DateTimeAgeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -46,6 +49,9 @@ public class ReportController {
   private final OtherExpenceService otherExpenceService;
   private final OtherFundReceivingService otherFundReceivingService;
   private final GrievancesService grievancesService;
+  private final OffenceService offenceService;
+  private final CensureService censureService;
+  private final EmployeeFilesService employeeFilesService;
   private final DateTimeAgeService dateTimeAgeService;
   private final RoleService roleService;
   private final EmployeeService employeeService;
@@ -54,7 +60,7 @@ public class ReportController {
                           DeathDonationService deathDonationService, InstalmentService instalmentService,
                           OtherExpenceService otherExpenceService,
                           OtherFundReceivingService otherFundReceivingService, GrievancesService grievancesService,
-                          DateTimeAgeService dateTimeAgeService, RoleService roleService,
+                          OffenceService offenceService, CensureService censureService, EmployeeFilesService employeeFilesService, DateTimeAgeService dateTimeAgeService, RoleService roleService,
                           EmployeeService employeeService) {
     this.mainAccountService = mainAccountService;
     this.userService = userService;
@@ -63,6 +69,10 @@ public class ReportController {
     this.otherExpenceService = otherExpenceService;
     this.otherFundReceivingService = otherFundReceivingService;
     this.grievancesService = grievancesService;
+    this.offenceService = offenceService;
+    this.censureService = censureService;
+    this.employeeFilesService = employeeFilesService;
+
     this.dateTimeAgeService = dateTimeAgeService;
     this.roleService = roleService;
     this.employeeService = employeeService;
@@ -75,7 +85,7 @@ public class ReportController {
     return "report/mainAccount";
   }
 
-
+//2 other fund receiving for one date and date range
   @GetMapping( "/otherFundReceivingType" )
   public String donationReport(Model model) {
     LocalDate localDate = LocalDate.now();
@@ -123,7 +133,7 @@ public class ReportController {
 
     return "report/otherFundReceivingType";
   }
-
+//3. death donation for one day and date range
   @GetMapping( "/deathDonation" )
   public String deathDonation(Model model) {
     LocalDate localDate = LocalDate.now();
@@ -164,7 +174,7 @@ public class ReportController {
   }
 
 
-  //5. expense types  vs  amounts
+  //4. other expences for one day and date range
   @GetMapping( "/otherExpense" )
   public String otherExpense(Model model) {
     LocalDate localDate = LocalDate.now();
@@ -209,11 +219,11 @@ public class ReportController {
 
     model.addAttribute("otherExpenseCountAmounts", otherExpenseCountAmounts);
 
-    return "report/otherFundReceivingType";
+    return "report/otherExpense";
   }
 
 
-  //2. agent vise collection reporting
+  //5. agent vise collection reporting date and date range
 
   @GetMapping( "/agentVise" )
   public String agentVise(Model model) {
@@ -262,7 +272,52 @@ public class ReportController {
     return "report/agent";
   }
 
-  //3. death donation
 
+  //1.total students up to now
+  @GetMapping("/employee")
+  public String allEmplyeeReport( Model model) {
+    model.addAttribute("allEmplyees", employeeService.findAll());
+    return "report/allEmployee";
+  }
+
+
+  @PostMapping( "/employeeAllCount" )
+  public String employeeAllCountSearch(@ModelAttribute TwoDate twoDate, Model model) {
+    return commonEmployeeAllCount(model,
+            employeeService.findByCreatedAtBetween(dateTimeAgeService.dateTimeToLocalDateStartInDay(twoDate.getStartDate()), dateTimeAgeService.dateTimeToLocalDateEndInDay(twoDate.getEndDate())));
+  }
+
+  private String commonEmployeeAllCount(Model model, List< Employee > employeesRequest) {
+    model.addAttribute("twoDate", new TwoDate());
+    List< Employee > employees = new ArrayList<>();
+    for ( Employee employee : employeesRequest
+            .stream()
+            .filter(x -> LiveDead.ACTIVE.equals(x.getLiveDead()))
+            .collect(Collectors.toList())
+    ) {
+      employee.setFileInfo(employeeFilesService.employeeFileDownloadLinks(employee));
+      employees.add(employee);
+    }
+    model.addAttribute("employees", employees);
+    return "report/employeeAllCount";
+  }
+
+
+//  offence and employee count
+  @GetMapping( "/offenceCount" )
+  public String offenceEmployee(Model model) {
+    model.addAttribute("offences", offenceService.findAll());
+    return "report/offenceReport";
+  }
+
+  @GetMapping( "/offenceCount/{id}" )
+  public String offenceEmployeeSearch(@PathVariable( "id" ) Integer id, Model model) {
+    List< Employee > employees = new ArrayList<>();
+    Offence offence = offenceService.findById(id);
+    model.addAttribute("offenceDetail", offence);
+    censureService.findByOffence(offence).forEach(x -> employees.add(x.getEmployee()));
+    model.addAttribute("employees", employees);
+    return "report/offenceEmployee";
+  }
 
 }

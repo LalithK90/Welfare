@@ -123,7 +123,7 @@
                                             <span style="font-size: large; font-weight: bold">Employee Management</span> <br/>
                                             <small><ul>
 <!--                                                <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'',''ROLE_MEMBER'')')}"><a href="/employee" style="color: #ffffff; font-size: small" >Employee</a></li>-->
-                                                <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'')')}"><a href="/employee" style="color: #ffffff; font-size: small" >Employee</a></li>
+                                                <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'',''ROLE_MEMBER'')')}"><a href="/employee" style="color: #ffffff; font-size: small" >Employee</a></li>
                                                 <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'')')}"><a href="/designation" style="color: #ffffff; font-size: small" >Designation</a></li>
                                                 <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'')')}"><a href="/workingPlace" style="color: #ffffff; font-size: small" >Work Station</a></li>
                                                 <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'')')}"><a href="/promotion" style="color: #ffffff; font-size: small" >Promotion</a></li>
@@ -145,7 +145,7 @@
                                             </div>
                                             <span style="font-size: large; font-weight: bold">Account Management</span> <br/>
                                             <small><ul>
-                                                <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'')')}"><a href="/instalment/add" style="color: #ffffff; font-size: small" >Add Instalment</a></li>
+                                                <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'',''ROLE_MEMBER'')')}"><a href="/instalment/add" style="color: #ffffff; font-size: small" >Add Instalment</a></li>
                                                 <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_SECRETORY'',''ROLE_TREASURE'')')}"><a href="/instalmentType" style="color: #ffffff; font-size: small" >Set Instrolment Type</a></li>
                                                 <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'')')}"><a href="/otherExpence" style="color: #ffffff; font-size: small" >Expence</a></li>
                                                 <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'')')}"><a href="/otherFundReceiving" style="color: #ffffff; font-size: small" >Fund Receiving</a></li>
@@ -159,12 +159,37 @@
                                             <span style="font-size: large; font-weight: bold">Notification Management</span> <br/>
 
                                             <small><ul>
-                                                <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}"><a href="/#" style="color: #ffffff; font-size: small" >Send Email</a></li>
-                                                <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'')')}"><a href="/#" style="color: #ffffff; font-size: small" >Send SMS</a></li>
-                                                <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}"><a href="/#" style="color: #ffffff; font-size: small" >Emergency Notification</a></li>
-                                                <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}"><a href="/#" style="color: #ffffff; font-size: small" >Bulk Notificationes</a></li>
-                                                <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'',''ROLE_MEMBER'')')}"><a href="/#" style="color: #ffffff; font-size: small" >View Contacts</a></li>
+                                                <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'')')}">
+                                                    <a href="/briefing" style="color: #ffffff; font-size: small" >Day Briefing</a></li>
+
+                                                <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'')')}">
+                                                    <a href="/briefing/add" style="color: #ffffff; font-size: small" >Add Briefing</a></li>
+
+
+
+
+<!--                                                -->
+<!--                                                <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}"><a href="/#" style="color: #ffffff; font-size: small" >Send Email</a></li>-->
+<!--                                                <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'')')}"><a href="/#" style="color: #ffffff; font-size: small" >Send SMS</a></li>-->
+<!--                                                <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}"><a href="/#" style="color: #ffffff; font-size: small" >Emergency Notification</a></li>-->
+<!--                                                <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}"><a href="/#" style="color: #ffffff; font-size: small" >Bulk Notificationes</a></li>-->
+<!--                                                <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'',''ROLE_MEMBER'')')}"><a href="/#" style="color: #ffffff; font-size: small" >View Contacts</a></li>-->
                                             </ul></small>
+
+                                        <div>
+                                             <span
+                                                     class="txt-rotate"
+                                                     data-period="2000"
+                                                     style="color: #0d47a1"
+                                                     data-rotate='[
+                                "/briefing/ briefing line 25 to 38  ---> mainWindow 190"
+                                ]'></span>
+
+                                        <div data-th-replace="~{briefing/briefing :: briefingNews}"></div>
+                                        </div>
+
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -187,11 +212,14 @@
                                             <span style="font-size: large; font-weight: bold">Report Management </span> <br/>
 
                                                 <small><ul>
-                                                    <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'')')}"><a href="/#" style="color: #ffffff; font-size: small" >Employee Reports</a></li>
-                                                    <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'')')}"><a href="/#" style="color: #ffffff; font-size: small" >Payment Reports</a></li>
-                                                    <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}"><a href="/#" style="color: #ffffff; font-size: small" >Grievances Reports</a></li>
-                                                    <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}"><a href="/#" style="color: #ffffff; font-size: small" >Email/SMS Reports</a></li>
-                                                    <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}"><a href="/#" style="color: #ffffff; font-size: small" >Other Reports</a></li>
+                                                    <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'',''ROLE_MEMBER'')')}"><a href="/report/employee" style="color: #ffffff; font-size: small" >Employee Reports</a></li>
+                                                    <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'')')}"><a href="/report/deathDonation" style="color: #ffffff; font-size: small" >Death Donation</a></li>
+                                                    <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'')')}"><a href="/report/employeeAllCount" style="color: #ffffff; font-size: small" >Employee All Count</a></li>
+                                                    <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}"><a href="/report/mainAccount" style="color: #ffffff; font-size: small" >Main Account</a></li>
+                                                    <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'')')}"><a href="/report/agentVise" style="color: #ffffff; font-size: small" >Agent Vise Payment</a></li>
+                                                    <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'')')}"><a href="/report/offenceCount" style="color: #ffffff; font-size: small" >Offence Summary</a></li>
+                                                    <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}"><a href="/report/otherExpense" style="color: #ffffff; font-size: small" >Other Expence Summary</a></li>
+                                                    <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}"><a href="/report/otherFundReceivingType" style="color: #ffffff; font-size: small" >Other Fund Receiving Summary</a></li>
 
                                                 </ul></small>
                                         </div>
@@ -308,6 +336,65 @@
 
 
 </script>
+
+<!--            <script>-->
+<!--                var TxtType = function(el, toRotate, period) {-->
+<!--                    this.toRotate = toRotate;-->
+<!--                    this.el = el;-->
+<!--                    this.loopNum = 0;-->
+<!--                    this.period = parseInt(period, 10) || 2000;-->
+<!--                    this.txt = '';-->
+<!--                    this.tick();-->
+<!--                    this.isDeleting = false;-->
+<!--                };-->
+
+<!--                TxtType.prototype.tick = function() {-->
+<!--                    var i = this.loopNum % this.toRotate.length;-->
+<!--                    var fullTxt = this.toRotate[i];-->
+
+<!--                    if (this.isDeleting) {-->
+<!--                        this.txt = fullTxt.substring(0, this.txt.length - 1);-->
+<!--                    } else {-->
+<!--                        this.txt = fullTxt.substring(0, this.txt.length + 1);-->
+<!--                    }-->
+
+<!--                    this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';-->
+
+<!--                    var that = this;-->
+<!--                    var delta = 200 - Math.random() * 100;-->
+
+<!--                    if (this.isDeleting) { delta /= 2; }-->
+
+<!--                    if (!this.isDeleting && this.txt === fullTxt) {-->
+<!--                        delta = this.period;-->
+<!--                        this.isDeleting = true;-->
+<!--                    } else if (this.isDeleting && this.txt === '') {-->
+<!--                        this.isDeleting = false;-->
+<!--                        this.loopNum++;-->
+<!--                        delta = 500;-->
+<!--                    }-->
+
+<!--                    setTimeout(function() {-->
+<!--                        that.tick();-->
+<!--                    }, delta);-->
+<!--                };-->
+
+<!--                window.onload = function() {-->
+<!--                    var elements = document.getElementsByClassName('typewrite');-->
+<!--                    for (var i=0; i<elements.length; i++) {-->
+<!--                        var toRotate = elements[i].getAttribute('data-type');-->
+<!--                        var period = elements[i].getAttribute('data-period');-->
+<!--                        if (toRotate) {-->
+<!--                            new TxtType(elements[i], JSON.parse(toRotate), period);-->
+<!--                        }-->
+<!--                    }-->
+<!--                    // INJECT CSS-->
+<!--                    var css = document.createElement("style");-->
+<!--                    css.type = "text/css";-->
+<!--                    css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";-->
+<!--                    document.body.appendChild(css);-->
+<!--                };-->
+<!--            </script>-->
         </div>
     </div><!-- content-wrapper end -->
     <div  data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->

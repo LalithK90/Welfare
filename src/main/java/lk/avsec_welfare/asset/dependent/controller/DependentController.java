@@ -103,7 +103,8 @@ public class DependentController {
 
     if ( (dependent.getRelationship().equals(Relationship.HUS) || dependent.getRelationship().equals(Relationship.WIF)) && employee.getEpf() != null ) {
       Employee employeeDb = employeeService.findByEpf(dependent.getEpfNumber());
-      if ( employeeDb != null ) {
+      Dependent dependentDb = dependentService.findByNic(employeeDb.getNic());
+      if ( dependentDb != null ) {
         ObjectError error = new ObjectError("dependent",
                                             "Why you try to be a dependent.");
         bindingResult.addError(error);
@@ -125,7 +126,7 @@ public class DependentController {
 
     DependentEmployee dependentEmployee = new DependentEmployee();
 //if dependent has not id and dependent has epf number
-    if ( dependent.getId() == null && dependent.getEpfNumber().length() != 0 ) {
+    if ( dependent.getId() == null && dependent.getEpfNumber() != null ) {
       Employee companyEmployee = employeeService.findByEpf(dependent.getEpfNumber());
 //company employee transfer to dependent
       Dependent dependentInternal = new Dependent();
@@ -143,7 +144,7 @@ public class DependentController {
 
       redirectAttributes.addFlashAttribute("dependentDetail",
                                            dependentEmployeeService.persist(dependentEmployee));
-      return "redirect:/dependent";
+      return "redirect:/employee";
     }
 //if dependent has not id but has nic
     if ( dependent.getId() == null && dependent.getNic() != null ) {
@@ -199,9 +200,9 @@ public class DependentController {
     if (! dependentEmployee.isEmpty()) {
       dependentEmployee.forEach(x -> {
         Dependent dependent = dependentService.findById(x.getDependent().getId());
-        if ( dateTimeAgeService.getAge(dependent.getDob()) <= 18 ) {
+       // if ( dateTimeAgeService.getAge(dependent.getDob()) <= 18 ) {
           dependents.add(dependent);
-        }
+       // }
       });
     }
 

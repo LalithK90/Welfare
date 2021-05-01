@@ -269,18 +269,66 @@
                                 <p>Employee List</p>
                             </a>
                         </li>
+
+
                         <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'',''ROLE_MEMBER'')')}">
-                            <a href="#" class="nav-link">
+                            <a href="/report/employee" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Account Reports</p>
+                                <p>Employee Reports</p>
                             </a>
                         </li>
-                        <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'',''ROLE_MEMBER'')')}">
-                            <a href="#" class="nav-link">
+
+                        <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'')')}">
+                            <a href="/report/deathDonation" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Noties</p>
+                                <p>Death Donation</p>
                             </a>
                         </li>
+
+                        <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'')')}">
+                            <a href="/report/employeeAllCount" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Employee All Count</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}">
+                            <a href="/report/mainAccount" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Main Account</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'')')}">
+                            <a href="/report/agentVise" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Agent Vise Payment</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'')')}">
+                            <a href="/report/offenceCount" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Offence Summary</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}">
+                            <a href="/report/otherExpense" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Other Expence Summary</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}">
+                            <a href="/report/otherFundReceivingType" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Other Fund Receiving Summary</p>
+                            </a>
+                        </li>
+
+
+
                     </ul>
                 </li><!--Report Mgt-->
                 <li class="nav-item has-treeview menu-open">

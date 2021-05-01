@@ -78,6 +78,7 @@ public class CensureController {
   @GetMapping( "/{id}" )
   public String findById(@PathVariable Integer id, Model model) {
     model.addAttribute("commendationDetail", censureService.findById(id));
+    model.addAttribute("censureDetail", censureService.findById(id));
     return "censure/censure-detail";
   }
 
@@ -135,10 +136,10 @@ public class CensureController {
       model.addAttribute("censure", censure);
       model.addAttribute("contendHeader", "Censure Add");
       model.addAttribute("employeeDetail", employeeService.findById(censure.getEmployee().getId()));
-      return "censure/addCensure";
+      return "redirect:/employee";
     }
     redirectAttributes.addFlashAttribute("commendationDetail", censureService.persist(censure));
-    return "redirect:/censure";
+    return "redirect:/employee";
   }
 
   @GetMapping( "/delete/{id}" )

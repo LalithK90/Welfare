@@ -1,6 +1,7 @@
 package lk.avsec_welfare.util.audit;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lk.avsec_welfare.asset.employee.entity.Employee;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -47,4 +48,5 @@ public abstract class AuditEntity {
     @Basic( optional = false )
     @Column( nullable = false )
     private String updatedBy;
+
 }

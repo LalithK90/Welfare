@@ -559,17 +559,17 @@ let deleteAllTableRow = function (tableName) {
 
 //password validator user add
 $('#password').keyup(function () {
-    $(this).attr('min', 6);
+    $(this).attr('min', 4);
     $('#result').html(checkStrength($(this).val(), $('#result')));
 });
 //new password validator
 $('#npsw').keyup(function () {
-    $(this).attr('min', 6);
+    $(this).attr('min', 4);
     $('#resultOne').html(checkStrength($(this).val(), $('#resultOne')));
 });
 //new re enter password validator
 $('#nrepsw').keyup(function () {
-    $(this).attr('min', 6);
+    $(this).attr('min', 4);
     $('#resultTwo').html(checkStrength($(this).val(), $('#resultTwo')));
 });
 //password match

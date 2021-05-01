@@ -185,7 +185,10 @@ public class GrievancesController implements AbstractController< Grievance, Inte
       grievanceStateChange.setCommentedBy(userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getEmployee().getCallingName());
       grievanceStateChangeService.persist(grievanceStateChange);
     }
-    grievance.setSolutionType(SolutionType.PR);
+    if (grievance.getId()==null) {
+      grievance.setSolutionType(SolutionType.PR);
+    }
+
     redirectAttributes.addFlashAttribute("grievancesDetail", grievancesService.persist(grievance));
     return "redirect:/grievances";
   }

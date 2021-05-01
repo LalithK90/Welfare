@@ -438,10 +438,10 @@
                                 <div class="card-header" id="headingTwo">
                                     <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
                                             data-target="#collapseTwo"
-                                            aria-expanded="false" aria-controls="collapseTwo">Education
+                                            aria-expanded="false" aria-controls="collapseTwo">Censure
                                     </button>
                                     <spam style="float: right"><a
-                                            data-th-href="${'/qualification/add/' + employeeDetail.id}"
+                                            data-th-href="${'/censure/add/' + employeeDetail.id}"
                                             class="btn btn-sm btn-default">
                                         <i class="fa fa-plus"></i></a></spam>
                                 </div>
@@ -449,58 +449,17 @@
                                      data-parent="#accordion">
                                     <div class="card-body">
                                         <div class="container-fluid"
-                                             data-th-each="qualificationDetail : ${employeeDetail.qualifications}">
-                                            <a data-th-href="${'/qualification/edit/'+ qualificationDetail.id}"
+                                             data-th-each="censureDetail : ${employeeDetail.censures}">
+                                            <a data-th-href="${'/censure/edit/'+ censureDetail.id}"
                                                class="btn btn-primary"> <i
-                                                    class="fa fa-list"></i>&nbsp; View List </a>
-                                            <div data-th-replace="~{qualification/qualification-detail :: qualificationDetail}"></div>
+                                                    class="fa fa-list"></i>&nbsp; Edit List </a>
+                                            <div data-th-replace="~{censure/censure-detail :: censuresDetail}"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--                  Censure Details-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-md-12">-->
-<!--                            <div class="card">-->
-<!--                                <div class="card-header" id="headingThree">-->
-<!--                                    <button type="button" class="btn btn-link collapsed" data-toggle="collapse"-->
-<!--                                            data-target="#collapseThree"-->
-<!--                                            aria-expanded="false" aria-controls="collapseTwo"><i-->
-<!--                                            class="fa fa-arrow-down">&nbsp;</i> &nbsp;&nbsp;Censure-->
-<!--                                    </button>-->
-<!--                                    <spam style="float: right"><a-->
-<!--                                            data-th-href="${'/censure/add/' + employeeDetail.id}"-->
-<!--                                            class="btn btn-sm btn-default"><i-->
-<!--                                            class="fa fa-plus"></i></a></spam>-->
-<!--                                </div>-->
-<!--                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"-->
-<!--                                     data-parent="#accordion">-->
-<!--                                    <div class="card-body">-->
-<!--                                        <table class="table table-borderless table-hover">-->
-<!--                                            <tbody>-->
-<!--                                            <tr>-->
-<!--                                                <th><label class="form-label"> Id </label></th>-->
-<!--                                                <th><label class="form-label"> Censure </label></th>-->
-<!--                                                <th><label class="form-label"> Remark </label></th>-->
-<!--                                                <th><label class="form-label"> Effected Dte </label></th>-->
-<!--                                                <th><label class="form-label"> Action </label>-->
-<!--                                                </th>-->
-<!--                                            </tr>-->
-<!--                                            </tbody>-->
-<!--                                        </table>-->
-<!--                                        <div class="container-fluid"-->
-<!--                                             data-th-each="censureDetail : ${employeeDetail.censure}">-->
-
-<!--                                            <div data-th-replace="~{censure/censure-detail :: censureDetail1}"></div>-->
-<!--                                            <hr>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
 
                     <!--                  Working Place Histry-->
                     <div class="row">

@@ -22,8 +22,20 @@
             </div>
         </div>
         <!--form action end button---------------------------------------------------------     -->
+        <div style="display:none;" >
+            <div class="row" data-th-fragment="briefingNews">
+                <tr th:each="briefing, rowCount : ${briefings}" scope="row">
+                     <td th:text="${briefing.subject}"></td>
+                    <td th:text="${briefing.effDate}"></td>
+                    <td> <a th:href="${'/briefing/' + briefing.id}" id="briefingView">
+                        &nbsp;&nbsp; </i> View &nbsp;</a>&nbsp;&nbsp;&nbsp;
 
 
+                    </td>
+                </tr>
+            </div>
+        </div>
+<!--briefing/ briefing line 25 to 38-->
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
