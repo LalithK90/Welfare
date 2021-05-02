@@ -108,7 +108,7 @@ public class GrievancesController implements AbstractController< Grievance, Inte
 
         employee.getWelfarePosition().equals(WelfarePosition.PRE) ||
         employee.getWelfarePosition().equals(WelfarePosition.SCTY) ) {
-      System.out.println(" i am in peding hoss");
+      System.out.println(" I am in pending hoss");
       List< Grievance > toPending =
           grievancesService.findBySolutionTypeAndGrievancesStatusAndCreatedAtBetween(SolutionType.PRO, grievancesStatus,
                   dateTimeAgeService.dateTimeToLocalDateStartInDay(form), dateTimeAgeService.dateTimeToLocalDateEndInDay(to));
