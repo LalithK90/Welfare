@@ -103,7 +103,10 @@ public class DependentController {
 
     if ( (dependent.getRelationship().equals(Relationship.HUS) || dependent.getRelationship().equals(Relationship.WIF)) && employee.getEpf() != null ) {
       Employee employeeDb = employeeService.findByEpf(dependent.getEpfNumber());
-      Dependent dependentDb = dependentService.findByNic(employeeDb.getNic());
+      Dependent dependentDb = null;
+      if (employeeDb != null) {
+        dependentDb = dependentService.findByNic(employeeDb.getNic());
+      }
       if ( dependentDb != null ) {
         ObjectError error = new ObjectError("dependent",
                                             "Why you try to be a dependent.");
@@ -125,6 +128,7 @@ public class DependentController {
     }
 
     DependentEmployee dependentEmployee = new DependentEmployee();
+    System.out.println("dependet epf "+ dependent.getEpfNumber());
 //if dependent has not id and dependent has epf number
     if ( dependent.getId() == null && dependent.getEpfNumber() != null ) {
       Employee companyEmployee = employeeService.findByEpf(dependent.getEpfNumber());

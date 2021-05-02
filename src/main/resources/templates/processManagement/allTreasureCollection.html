@@ -14,15 +14,11 @@
         <div class="text-right" >
           <div text-right >
             <button type="button" class="btn btn-info btn-sm" >
-              <a data-th-href="${'/employee/add'}" >
-                <span class="info-box-icon text-white" ><i class="fa fa-plus mr-1" ></i ></span >
-                <span class="text-white" > Add Employee </span ></a >
+              <a data-th-href="${'/collection'}" >
+                <span class="info-box-icon text-white" ><i class="fa fa-folder mr-1" ></i ></span >
+                <span class="text-white" > View Collection </span ></a >
             </button >
-            <button type="button" class="btn btn-success btn-sm" >
-              <a data-th-href="${'/home'}" >
-                <span class="info-box-icon text-white" ><i class="fas fa-home mr-1" ></i ></span >
-                <span class="text-white" > Home </span ></a >
-            </button >
+
           </div >
         </div >
       </div >
@@ -31,69 +27,7 @@
 
 
     <div class="content-header" >
-      <div class="container-fluid" >
-        <div class="row" >
-          <div class="col-md-12" >
-            <div class="row" >
-              <!-- /employee/add-->
-              <div class="col-12 col-sm-6 col-md-3" >
-                <a data-th-href="${'/employee/add'}" >
-                  <div class="info-box bg-success" >
-                    <span class="info-box-icon" ><i class="fas fa-user" ></i ></span >
-                    Add <br />Employee
-                  </div >
-                </a ></div >
-              <!-- /employee/View-->
-              <div class="col-12 col-sm-6 col-md-3" >
-                <!--
-                                                <a data-th-href="${'/employee/add'}">-->
-                <div class="info-box bg-info" data-toggle="modal" data-target="#modal" >
-                  <span class="info-box-icon" ><i class="fas fa-folder-open" ></i ></span >
-                  View <br />Employee
-                </div >
-                <!--</a>--></div >
-              <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle"
-                   aria-hidden="true" >
-                <div class="modal-dialog" role="document" >
-                  <div class="modal-content" >
-                    <div class="modal-header" >
-                      <h5 class="modal-title" id="modalTitle" >View Employee</h5 >
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
-                        <span aria-hidden="true" >×</span >
-                      </button >
-                    </div >
-                    <div class="modal-body" >
-                      Enter EPF No <input type="text" >
-                      <p ><a data-th-href="${'/employee/' + 1}" >enter</a ></p >
-                    </div >
-                    <div class="modal-footer" >
-                      <button type="button" class="btn btn-primary" >Action</button >
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close
-                      </button >
-                    </div >
-                  </div >
-                </div >
-              </div >
-              <!-- /employee/Edit-->
-              <div class="col-12 col-sm-6 col-md-3" >
-                <a data-th-href="${'/employee/add'}" >
-                  <div class="info-box bg-warning" >
-                    <span class="info-box-icon" ><i class="fas fa-edit" ></i ></span >
-                    Edit <br />Employee
-                  </div >
-                </a ></div >
-              <!--/employee/Delete-->
-              <div class="col-12 col-sm-6 col-md-3" >
-                <a data-th-href="${'/employee/add'}" >
-                  <div class="info-box bg-danger" >
-                    <span class="info-box-icon" ><i class="fas fa-trash" ></i ></span >
-                    Edit <br />Employee
-                  </div >
-                </a ></div >
-            </div >
-          </div >
-        </div >
-      </div >
+
       <div class="row" >
         <div class="col-md-12" >
           <div class="row" >
@@ -142,18 +76,21 @@
                         <span data-th-text="${'Save'}" ></span >
                       </button >
 
-                      <button type="clear" class="btn btn-primary float-right" >
-                        <i data-th-class="${'fa fa-save mr-1'}" ></i >
-                        <span data-th-text="${'Clear'}" ></span >
-                      </button >
-                    </div >
-                    <div class="container-fluid"
-                         data-th-if="${ #lists.isEmpty(instalmentTreasure.instalmentApproves)}" >
-                      There is not instalment to accept to treasure.
+<!--                      <button type="clear" class="btn btn-primary float-right" >-->
+<!--                        <i data-th-class="${'fa fa-save mr-1'}" ></i >-->
+<!--                        <span data-th-text="${'Clear'}" ></span >-->
+<!--                      </button >-->
+                      <button class="btn btn-dark float-right ml-2" type="button" tabindex="3"> <a data-th-href="${'/collection/treasure'}">
+                        <span class="info-box-icon text-white"><i class="fas fa-arrow-circle-left" style="font-size: 20px"></i>&nbsp;&nbsp;Back</span></a>
+                      </button>
                     </div >
                   </div >
 
                 </form >
+                <div class="container-fluid"
+                     data-th-if="${ #lists.isEmpty(instalmentTreasure.instalmentApproves)}" >
+                  <p class="text-danger">There is not instalment to accept to treasure.</p>
+                </div >
               </div >
             </div >
           </div >

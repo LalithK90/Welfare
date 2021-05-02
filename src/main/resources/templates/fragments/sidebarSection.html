@@ -15,7 +15,7 @@
 
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="/img/prasad.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="/img/user.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a><span data-th-text="${#authentication.name}"></span></a>
@@ -259,20 +259,20 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'',''ROLE_MEMBER'')')}">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Employee List</p>
-                            </a>
-                        </li>
+<!--                        <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'',''ROLE_MEMBER'')')}">-->
+<!--                            <a href="#" class="nav-link">-->
+<!--                                <i class="far fa-circle nav-icon"></i>-->
+<!--                                <p>Employee List</p>-->
+<!--                            </a>-->
+<!--                        </li>-->
 
 
-                        <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'',''ROLE_MEMBER'')')}">
-                            <a href="/report/employee" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Employee Reports</p>
-                            </a>
-                        </li>
+<!--                        <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'',''ROLE_MEMBER'')')}">-->
+<!--                            <a href="/report/employee" class="nav-link">-->
+<!--                                <i class="far fa-circle nav-icon"></i>-->
+<!--                                <p>Employee Reports</p>-->
+<!--                            </a>-->
+<!--                        </li>-->
 
                         <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'')')}">
                             <a href="/report/deathDonation" class="nav-link">
@@ -281,12 +281,12 @@
                             </a>
                         </li>
 
-                        <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'')')}">
-                            <a href="/report/employeeAllCount" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Employee All Count</p>
-                            </a>
-                        </li>
+<!--                        <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'',''ROLE_TREASURE'', ''ROLE_AGENT'')')}">-->
+<!--                            <a href="/report/employeeAllCount" class="nav-link">-->
+<!--                                <i class="far fa-circle nav-icon"></i>-->
+<!--                                <p>Employee All Count</p>-->
+<!--                            </a>-->
+<!--                        </li>-->
 
                         <li class="nav-item" data-th-if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_HOSS'',''ROLE_PRESIDENT'', ''ROLE_SECRETORY'')')}">
                             <a href="/report/mainAccount" class="nav-link">

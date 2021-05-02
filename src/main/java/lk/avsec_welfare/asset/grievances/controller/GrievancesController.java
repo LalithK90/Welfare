@@ -103,14 +103,14 @@ public class GrievancesController implements AbstractController< Grievance, Inte
     }
 
 //solution type, date range, grievance Status
-
+    System.out.println(" grivenences  "+ grievancesStatus);
     if ( employee.getWelfarePosition().equals(WelfarePosition.HOSS) ||
 
         employee.getWelfarePosition().equals(WelfarePosition.PRE) ||
         employee.getWelfarePosition().equals(WelfarePosition.SCTY) ) {
-
+      System.out.println(" i am in peding hoss");
       List< Grievance > toPending =
-          grievancesService.findBySolutionTypeAndGrievancesStatusAndCreatedAtBetween(SolutionType.PR, grievancesStatus,
+          grievancesService.findBySolutionTypeAndGrievancesStatusAndCreatedAtBetween(SolutionType.PRO, grievancesStatus,
                                                                                      dateTimeAgeService.dateTimeToLocalDateStartInDay(form), dateTimeAgeService.dateTimeToLocalDateEndInDay(to));
       List< Grievance > toClose =
           grievancesService.findBySolutionTypeAndGrievancesStatusAndCreatedAtBetween(SolutionType.CL, grievancesStatus,
@@ -118,15 +118,16 @@ public class GrievancesController implements AbstractController< Grievance, Inte
 
       if ( toPending.size() != 0 ) {
         model.addAttribute("toPending", toPending);
-
       }
       if ( toClose.size() != 0 ) {
         model.addAttribute("toClose", toClose);
-
       }
+
+      System.out.println("re pending "+ toPending.size());
+      System.out.println("re close "+ toClose.size());
     }
     List< Grievance > personalToPending =
-        grievancesService.findBySolutionTypeAndCreatedByAndCreatedAtBetween(SolutionType.PR, userName,
+        grievancesService.findBySolutionTypeAndCreatedByAndCreatedAtBetween(SolutionType.PRO, userName,
                                                                             dateTimeAgeService.dateTimeToLocalDateStartInDay(form), dateTimeAgeService.dateTimeToLocalDateEndInDay(to));
     List< Grievance > personalToClose =
         grievancesService.findBySolutionTypeAndCreatedByAndCreatedAtBetween(SolutionType.CL, userName,
@@ -138,6 +139,9 @@ public class GrievancesController implements AbstractController< Grievance, Inte
     if ( personalToClose.size() != 0 ) {
       model.addAttribute("personalToClose", personalToClose);
     }
+
+    System.out.println("personal pending "+ personalToPending.size());
+    System.out.println("personal close "+ personalToClose.size());
 
     model.addAttribute("form", form);
     model.addAttribute("to", to);
