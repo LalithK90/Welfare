@@ -235,8 +235,6 @@ model.addAttribute("count",twoDate.getCount());
   public String otherExpenseSearch(@ModelAttribute TwoDate twoDate, Model model) {
     String message = "This report is belongs from " + twoDate.getStartDate() + " to " + twoDate.getEndDate();
     model.addAttribute("message", message);
-    System.out.println(" other fund receiveing count "+ twoDate.getCount());
-    model.addAttribute("count",twoDate.getCount());
     return commonOtherExpense(twoDate, model);
   }
 
