@@ -1,127 +1,139 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head data-th-replace="~{fragments/headerSection :: headerSectionFragment}" >
 
 </head >
 <body class="hold-transition sidebar-mini layout-fixed" >
 <div class="wrapper" ><!-- wrapper start -->
-    <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
-    <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
-    <div class="content-wrapper" ><!-- content-wrapper Start -->
-        <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section ><!-- content-header Start -->
-        <!--action button layer---------------------------------------------------------     -->
-<!--        <div class="row m-1">-->
-<!--            <div class="col-12">-->
-<!--                <div class="text-right">-->
-<!--                    <div text-right>-->
-<!--                        <button type="button" class="btn btn-info btn-sm">-->
-<!--                            <a  data-th-href="${'/employee/add'}" >-->
-<!--                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >-->
-<!--                                <span class="text-white"> Add Employee </span></a>-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-        <!--form action end button---------------------------------------------------------     -->
+  <nav data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}" ></nav ><!-- navbar Section -->
+  <aside data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}" ></aside ><!-- navbar Section -->
+  <div class="content-wrapper" ><!-- content-wrapper Start -->
+    <section data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}" ></section >
+                                <!-- content-header Start -->
+                                <!--action button layer---------------------------------------------------------     -->
+                                <!--        <div class="row m-1">-->
+                                <!--            <div class="col-12">-->
+                                <!--                <div class="text-right">-->
+                                <!--                    <div text-right>-->
+                                <!--                        <button type="button" class="btn btn-info btn-sm">-->
+                                <!--                            <a  data-th-href="${'/employee/add'}" >-->
+                                <!--                                <span class="info-box-icon text-white"><i class="fa fa-plus mr-1" ></i ></span >-->
+                                <!--                                <span class="text-white"> Add Employee </span></a>-->
+                                <!--                        </button>-->
+                                <!--                    </div>-->
+                                <!--                </div>-->
+                                <!--            </div>-->
+                                <!--        </div>-->
+                                <!--form action end button---------------------------------------------------------     -->
 
 
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                             <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-body">
+    <div class="content-header" >
+      <div class="container-fluid" >
+        <div class="row" >
+          <div class="col-md-12" >
+            <div class="row" >
+              <div class="col-md-4" >
+                <div class="card" >
+                  <div class="card-body" >
 
 
-                                                            <div class="row" >
-                                                                    <h4 class="text-info" ><b > Custom Search</b ></h4 >
+                    <div class="row" >
+                      <h4 class="text-info" ><b > Custom Search</b ></h4 >
 
-                                                                    <form  data-th-action="@{/report/otherExpense}" data-th-method="POST" >
-                                                                      <table class="table" id="myTable">
-                                                                          <tr>
-                                                                          <th>
-                                                                              <label for="startDate" >FROM :</label >
-                                                                          </th>
-                                                                          <td>
-                                                                              <input class="form-control" id="startDate" name="startDate" type="date" />
+                      <form data-th-action="@{/report/otherExpense}" data-th-method="POST" >
+                        <table class="table" id="myTable" >
+                          <tr >
+                            <th >
+                              <label for="startDate" >FROM :</label >
+                            </th >
+                            <td >
+                              <input class="form-control" id="startDate" name="startDate" type="date" />
 
-                                                                          </td>
-                                                                              </tr><tr>
-                                                                          <th>
-                                                                              <label for="endDate" >TO :</label >
-                                                                          </th>
-                                                                          <td>
-                                                                              <input class="form-control" id="endDate" name="endDate" type="date" />
-                                                                          </td>
+                            </td >
+                          </tr >
+                          <tr >
+                            <th >
+                              <label for="endDate" >TO :</label >
+                            </th >
+                            <td >
+                              <input class="form-control" id="endDate" name="endDate" type="date" />
+                            </td >
 
-                                                                      </tr><tr>
-                                                                          <th>  </th>
-                                                                          <td>
-                                                                              <button class="btn btn-success" id="btnSummaryFind" type="submit" ><span
-                                                                                      class="glyphicon glyphicon-search" ></span >&nbsp;Search
-                                                                              </button >
+                          </tr >
+                          <tr >
+                            <th >
+                              <label for="endDate" >Count :</label >
+                            </th >
+                            <td >
+                              <input class="form-control" id="count" name="count" type="number" />
+                            </td >
 
-                                                                          </td>
-                                                                      </tr>
-                                                                      </table>
+                          </tr >
+                          <tr >
+                            <th ></th >
+                            <td >
+                              <button class="btn btn-success" id="btnSummaryFind" type="submit" ><span
+                                    class="glyphicon glyphicon-search" ></span >&nbsp;Search
+                              </button >
+
+                            </td >
+                          </tr >
+                        </table >
 
 
+                      </form >
+                    </div >
+                  </div >
+                </div >
+              </div >
 
-                                                                    </form >
-                                                                </div >
-                                                            </div >
-                                                        </div >
-                                                    </div >
+              <div class="col-md-8" >
+                <div class="card" >
 
-                                    <div class="col-md-8">
-                                        <div class="card" >
+                  <div class="card-header" >
+                    <col class=" col text-center" >
+                    <h3 ><strong >Other Fund Receiving - </strong ></h3 >
+                    <h3 data-th-text="${message}" ></h3 ></col >
 
-                                            <div class="card-header">
-                                                <col class=" col text-center" ><h3 ><strong>Other Fund Receiving - </strong></h3 >
-                                                <h3 data-th-text="${message}" ></h3 ></col >
+                  </div >
+                  <div class="card-body" >
 
-                                            </div >
-                                            <div class="card-body">
-
-                                            <div class="container-fluid">
-                                        <table class="table table-hover" id="myTable">
-                                            <thead class="thead-inverse">
-                                            <tr>
-                                                <th>Index</th>
-                                                <th>Fund Source</th>
-                                                <th>Record Count</th>
-                                                <th>Amount</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr th:each="otherExpenseCountAmount, index : ${otherExpenseCountAmounts}">
-                                                <td th:text="${index.count}"></td>
-                                                <td th:text="${otherExpenseCountAmount.otherExpenseType.otherExpenseType}"></td>
-                                                <td th:text="${otherExpenseCountAmount.recordCounter}"></td>
-                                                <td th:text="${otherExpenseCountAmount.amount}"></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- content-wrapper end -->
+                    <div class="container-fluid" >
+                      <table class="table table-hover" id="myTable" >
+                        <thead class="thead-inverse" >
+                        <tr >
+                          <th >Index</th >
+                          <th >Fund Source</th >
+                          <th >Record Count</th >
+                          <th >Amount</th >
+                        </tr >
+                        </thead >
+                        <tbody >
+                        <tr th:each="otherExpenseCountAmount, index : ${otherExpenseCountAmounts}" >
+                          <td th:text="${index.count}" ></td >
+                          <td th:text="${otherExpenseCountAmount.otherExpenseType.otherExpenseType}" ></td >
+                          <td th:text="${otherExpenseCountAmount.recordCounter}" ></td >
+                          <td th:text="${otherExpenseCountAmount.amount}" ></td >
+                        </tr >
+                        </tbody >
+                      </table >
+                    </div >
+                  </div >
+                </div >
+              </div >
+            </div >
+          </div >
+        </div >
+      </div >
+    </div >
+  </div >
+</div ><!-- content-wrapper end -->
 </div>
-<!--footer include-->
-<div data-th-replace="~{fragments/footerSection :: footerSectionFragment}"></div><!-- footer Section -->
+       <!--footer include-->
+<div data-th-replace="~{fragments/footerSection :: footerSectionFragment}" ></div ><!-- footer Section -->
 </div><!-- wrapper end -->
-<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}">
+<div data-th-replace="~{fragments/scriptSection :: scriptSectionFragment}" >
 
-</div><!-- script Fragment -->
-</body>
-</html>
+</div ><!-- script Fragment -->
+</body >
+</html >

@@ -216,7 +216,7 @@ public class ReportController {
   }
 
 
-  //4. other expences for one day and date range
+  //4. other expenses for one day and date range
   @GetMapping( "/otherExpense" )
   public String otherExpense(Model model) {
     LocalDate localDate = LocalDate.now();
