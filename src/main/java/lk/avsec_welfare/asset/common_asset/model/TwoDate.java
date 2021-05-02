@@ -16,4 +16,5 @@ public class TwoDate {
     @DateTimeFormat( pattern = "yyyy-MM-dd" )
     private LocalDate endDate;
     private Integer id;
+    private Integer count;
 }
