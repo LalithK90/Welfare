@@ -140,6 +140,8 @@ public class ReportController {
   public String donationReportSearch(@ModelAttribute TwoDate twoDate, Model model) {
     String message = "This report is belongs from " + twoDate.getStartDate() + " to " + twoDate.getEndDate();
     model.addAttribute("message", message);
+    System.out.println(" other fund receiving count "+ twoDate.getCount());
+
     return commonOtherFundReceivingType(twoDate.getStartDate(), twoDate.getEndDate(), model);
   }
 
@@ -216,7 +218,7 @@ public class ReportController {
   }
 
 
-  //4. other expences for one day and date range
+  //4. other expenses for one day and date range
   @GetMapping( "/otherExpense" )
   public String otherExpense(Model model) {
     LocalDate localDate = LocalDate.now();
@@ -233,6 +235,8 @@ public class ReportController {
   public String otherExpenseSearch(@ModelAttribute TwoDate twoDate, Model model) {
     String message = "This report is belongs from " + twoDate.getStartDate() + " to " + twoDate.getEndDate();
     model.addAttribute("message", message);
+    System.out.println(" other fund receiveing count "+ twoDate.getCount());
+
     return commonOtherExpense(twoDate, model);
   }
 
