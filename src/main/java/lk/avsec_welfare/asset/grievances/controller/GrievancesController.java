@@ -111,7 +111,9 @@ public class GrievancesController implements AbstractController< Grievance, Inte
       System.out.println(" i am in peding hoss");
       List< Grievance > toPending =
           grievancesService.findBySolutionTypeAndGrievancesStatusAndCreatedAtBetween(SolutionType.PRO, grievancesStatus,
-                                                                                     dateTimeAgeService.dateTimeToLocalDateStartInDay(form), dateTimeAgeService.dateTimeToLocalDateEndInDay(to));
+                  dateTimeAgeService.dateTimeToLocalDateStartInDay(form), dateTimeAgeService.dateTimeToLocalDateEndInDay(to));
+      toPending.addAll(grievancesService.findBySolutionTypeAndGrievancesStatusAndCreatedAtBetween(SolutionType.PR, grievancesStatus,
+              dateTimeAgeService.dateTimeToLocalDateStartInDay(form), dateTimeAgeService.dateTimeToLocalDateEndInDay(to)));
       List< Grievance > toClose =
           grievancesService.findBySolutionTypeAndGrievancesStatusAndCreatedAtBetween(SolutionType.CL, grievancesStatus,
                                                                                      dateTimeAgeService.dateTimeToLocalDateStartInDay(form), dateTimeAgeService.dateTimeToLocalDateEndInDay(to));
@@ -129,6 +131,8 @@ public class GrievancesController implements AbstractController< Grievance, Inte
     List< Grievance > personalToPending =
         grievancesService.findBySolutionTypeAndCreatedByAndCreatedAtBetween(SolutionType.PRO, userName,
                                                                             dateTimeAgeService.dateTimeToLocalDateStartInDay(form), dateTimeAgeService.dateTimeToLocalDateEndInDay(to));
+    personalToPending.addAll(grievancesService.findBySolutionTypeAndCreatedByAndCreatedAtBetween(SolutionType.PR, userName,
+            dateTimeAgeService.dateTimeToLocalDateStartInDay(form), dateTimeAgeService.dateTimeToLocalDateEndInDay(to)));
     List< Grievance > personalToClose =
         grievancesService.findBySolutionTypeAndCreatedByAndCreatedAtBetween(SolutionType.CL, userName,
                                                                             dateTimeAgeService.dateTimeToLocalDateStartInDay(form), dateTimeAgeService.dateTimeToLocalDateEndInDay(to));
