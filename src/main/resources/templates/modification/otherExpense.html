@@ -99,7 +99,7 @@
                     <h3 ><strong >Other Fund Receiving - </strong ></h3 >
                     <h3 data-th-text="${message}" ></h3 >
                     </col >
-                    <div class="col bg-warning">
+                    <div class="col bg-warning" data-th-if="${user!=null}">
                    this report is belong to    <span data-th-text="${user.employee.name}"></span>
                     </div>
 
