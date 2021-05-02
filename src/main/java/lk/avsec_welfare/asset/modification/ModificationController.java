@@ -130,7 +130,7 @@ public class ModificationController {
 
     model.addAttribute("otherExpenseCountAmounts", otherExpenseCountAmounts);
 
-    return "report/otherExpense";
+    return "modification/otherExpense";
   }
 
   //2 other fund receiving for one date and date range
@@ -189,6 +189,6 @@ public class ModificationController {
     }
     model.addAttribute("otherFundReceivingTypeAmounts", otherFundReceivingTypeAmounts);
 
-    return "report/otherFundReceivingType";
+    return "modification/otherFundReceivingType";
   }
 }
