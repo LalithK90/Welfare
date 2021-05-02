@@ -198,6 +198,7 @@ public class GrievancesController implements AbstractController< Grievance, Inte
     }
 
     redirectAttributes.addFlashAttribute("grievancesDetail", grievancesService.persist(grievance));
+
     return "redirect:/grievances";
   }
 
